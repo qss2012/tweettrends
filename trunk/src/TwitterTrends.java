@@ -42,18 +42,18 @@ public class TwitterTrends {
         //------------------------------------ FORFILE PRINTING STARTS-------------------------------------------
         
         FileWriter fstream = new FileWriter("results/words4LDA.txt");
-		BufferedWriter out = new BufferedWriter(fstream);
-		FileWriter fstream1 = new FileWriter("results/dummy");
-		BufferedWriter out1 = new BufferedWriter(fstream1);
-		FileWriter fstream2 = new FileWriter("results/LDAInputFile");
-		BufferedWriter out2 = new BufferedWriter(fstream2);
+        BufferedWriter out = new BufferedWriter(fstream);
+        FileWriter fstream1 = new FileWriter("results/dummy");
+        BufferedWriter out1 = new BufferedWriter(fstream1);
+        FileWriter fstream2 = new FileWriter("results/LDAInputFile");
+        BufferedWriter out2 = new BufferedWriter(fstream2);
                 
         //------------------------------------ FORFILE PRINTING ENDS---------------------------------------------
         
         //------------------------------------ RUNNING THREADS FOR EACH INPUT FILE STARTS------------------------
         //Thread t1=new Thread1("src/resources/gentest1",ag,out,out1);
 		//Thread t2=new Thread2("src/resources/gentest2",ag,out,out1);
-		Thread t1=new Thread1("src/resources/firstpart.txt",ag,out,out1);
+        Thread t1=new Thread1("src/resources/firstpart.txt",ag,out,out1);
         Thread t2=new Thread2("src/resources/secondpart.txt",ag,out,out1);
         Thread t3=new Thread3("src/resources/thirdpart.txt",ag,out,out1);
         Thread t4=new Thread4("src/resources/fourthpart.txt",ag,out,out1);
@@ -86,13 +86,13 @@ public class TwitterTrends {
 			out.flush();
 		while(itr.hasNext())
 		{
-			cpd=itr.next();//System.out.print("!");
+			cpd=itr.next();
 			String word=cpd.word.word;
 			if(!ag.forLDA.containsKey(cpd.word.word))
 			{
 				ag.forLDA.put(cpd.word.word, cpd);
 				out.write(word);
-				//System.out.print("~"+word+"~");
+
 			}
 		}
 		}catch (FileNotFoundException e) {e.printStackTrace();} catch (IOException e) {e.printStackTrace();}
@@ -110,7 +110,8 @@ public class TwitterTrends {
          * a document which will be the collection of all tweets containing that term.
          * Now perform LDA on this for_LDA file.
          */
-		performLDA(1);performLDA(2);performLDA(3);performLDA(4);
+        performLDA(1);
+        performLDA(2);performLDA(3);performLDA(4);
         //------------------------------------ RUNNING THE LDA ENDS----------------------------------------------
 	}
 	
