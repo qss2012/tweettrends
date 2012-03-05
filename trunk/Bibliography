@@ -1,0 +1,24 @@
+[1]Hip and Trendy: Characterizing Emerging Trends on Twitter. Journal of the American Society for Information Science and Technology (JASIST) 2011.
+
+[2]Comparing Twitter and Traditional Media Using Topic Models. ECIR 2011.
+
+[3]Empirical Study of Topic Modeling in Twitter. SOMA 2010. workshop on Social Media Analytics KDD
+
+[4]Topical Keyphrase Extraction from Twitter. ACL 2011.
+
+[5]Characterizing Microblogs with Topic Models. AAAI ICWSM 2010
+
+[6]Monitoring Trends on Facebook. SCA 2011. International Conference on Social Computing and its Applications (SCA 2011), Sydney
+
+[7]Eddi-Interactive Topic-based Browsing of Social Status Streams. UIST 2010 ACM User Interface Software and Technology
+
+[8]Labeled LDA- A supervised topic model for credit attribution in multi-labeled corpora. EMNLP 2009
+
+
+[1] presents a Burst Detection mechanish to detect trends. I have tried to incorporate this algorithm in my implementation.
+[2]. [4] & [5] discuss the various appoaches centered around LDA for topic modeling for Twitter.
+[3] discusses 3 Topic Modeling schemes: MSG, USER and TERM. I have incprporated the TERM schemes in my implementation using the basic LDA code provided by
+Phan, Cam at http://jgibblda.sourceforge.net/.
+
+[7] presents a different approach which would involve querying a search engine for a search query derived from a tweet to get the topic
+for any particular tweet. Initially I thought of including this module as well, but because of scalability and time issues, I couldn't work on it.
