@@ -2,17 +2,19 @@
 
 [2]Comparing Twitter and Traditional Media Using Topic Models. ECIR 2011.
 
-[3]Empirical Study of Topic Modeling in Twitter. SOMA 2010. workshop on Social Media Analytics KDD
+[3]Empirical Study of Topic Modeling in Twitter. KDD Workshop on Social Media Analytics SOMA 2010. 
 
 [4]Topical Keyphrase Extraction from Twitter. ACL 2011.
 
 [5]Characterizing Microblogs with Topic Models. AAAI ICWSM 2010
 
-[6]Monitoring Trends on Facebook. SCA 2011. International Conference on Social Computing and its Applications (SCA 2011), Sydney
+[6]Monitoring Trends on Facebook.  International Conference on Social Computing and its Applications (SCA 2011), Sydney.
 
-[7]Eddi-Interactive Topic-based Browsing of Social Status Streams. UIST 2010 ACM User Interface Software and Technology
+[7]Eddi-Interactive Topic-based Browsing of Social Status Streams.  ACM User Interface Software and Technology UIST 2010.
 
 [8]Labeled LDA- A supervised topic model for credit attribution in multi-labeled corpora. EMNLP 2009
+
+[9]Spatiotemporal-thematic analysis of citizen sensor data: Challenges and experiences. In Web Information Systems Engineering - WISE 2009.
 
 
 [1] presents a Burst Detection mechanish to detect trends. I have tried to incorporate this algorithm in my implementation.
