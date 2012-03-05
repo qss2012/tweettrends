@@ -1,0 +1,87 @@
+================================================================================================================================================
+
+Project Title: TwitterTrends
+Feb-March 2012
+
+================================================================================================================================================
+
+Purpose:
+Given a dataset of tweets recorded over some period of time, this project tries to find out trending topics and corresponding time 
+using a mixture of approaches
+
+
+================================================================================================================================================
+
+Contributed By:
+Rishabh Mehrotra (erishabh@gmail.com)
+
+================================================================================================================================================
+
+Package Outline
+******************
+
+twittertrends				This package contains the main file: TwitterTrends.java which controls the entire module.
+					Other classes are used by TwitterTrends.java accodingly.
+				
+twittertrends.datastr			This package contains the definitions of the various data structures used in the project.
+
+twittertrends.preprocessing		This package contains the classes used to preprocess the data and update the relevant data structures 
+					with corresponding values. The Burst.java file is used to calculate the Burst Scores which is used
+					to rank potential trends.
+					
+twittertrends.lda			This package contains the code for Latent Dirichlet Allocation used for topic modeling of tweets.
+					This code is a modified version of the LDA code provided by Phan, Cam at http://jgibblda.sourceforge.net/.
+					
+twittertrends.resources			This package will contain the dataset and ther resources to be used by the project. The temporary files
+					to be used by LDA will also be stored here.
+					
+twittertrends.results			This package will contain all the results from this project, including some temporary files created
+					while running the different modules of the program.
+
+twittertrends.results.final		This package will contain the final results of the project. There will be 6 files:"finalScores_by_BurstScores_then_count" 
+					& "finalScores_by_BurstScores_then_count"- give the top candidates according to the BurstScores and count along with
+					the tweet dates. The other 4 files will each contain the output of the LDA performed individually on the 4 partioned
+					files. Each file will have the topics and top-20 words corresponding t that topic along with the
+					respective probabilities.
+					
+
+================================================================================================================================================
+
+How To Run The Code
+*********************
+
+Import the entire code ie all packages as a Project in Eclipse. 
+Place the dataset file(tab seperated format) under the resources folder. 
+Inside TwitterTrends.java on Line No 25 specify the name of the dataset file.
+
+RUNNING FOR THE FIRST TIME <On a normal machine>:
+---------------------------------------------------
+
+Due to limitations of Java Heap Size, this program will divide the dataset file into 4 parts according to the dates of the tweets.
+Uncomment Line 27-30 in TwitterTrends.java to execute the Input.java code which will divide the dataset into 4 parts namely:
+firstpart.txt
+secondpart.txt
+thirdpart.txt
+fourthpart.txt
+according to the dates of the tweets, and place these 4 files in the resources folder.
+
+The 4 Threads on line 56-59 in TwitterTrends.java will then run the project for the dataset. For each part it takes approx. 15 mints. to execute, for a 20Mb(=80/4) part.
+
+
+FOR RUNNING ON ADVANCED MACHINES:
+------------------------------------
+
+If you are sure that your machine will have enough Java Heap Space, then you can comment lines 57-59 and 64-71 and 114 of TwitterTrends.java
+and specify your dataset name(along with relevant path) at line 56 of TwitterTrends.java.
+This will run the project on the entire dataset without partioning it.
+
+Please take note that doing this will increase the amount of time taken by the code to run by a considerable amount and may result in Insufficient memory error.
+
+
+FINAL OUTPUT
+--------------
+
+The package "twittertrends.results.final" will contain the final results of the project. There will be 6 files:"finalScores_by_BurstScores_then_count" 
+& "finalScores_by_BurstScores_then_count"- give the top candidates according to the BurstScores and count along with
+the tweet dates. The other 4 files will each contain the output of the LDA performed individually on the 4 partioned
+files. Each file will have the topics and top-20 words corresponding t that topic along with the respective probabilities.
