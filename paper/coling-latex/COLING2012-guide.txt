@@ -1,0 +1,36 @@
+﻿How to use the Latex style for COLING-2012 
+
+NOTE: for the authors of COLING 2012, please be aware that this year, we set up an experimental stylesheet that is optimized for on screen reading (which will be the first use of the articles). We are aware of the modification this implies to your usages, but we hope that usage will evolve for onscreen reading instead of on paper printing. The format has largely been adapted from templates of JEP-TALN 2012 conference.
+
+Kindly note that the PDF generated from LaTeX is different from that of the Word template ONLY in the table on pages 2 & 3 where use of separate packages for a few languages might be necessary to be incorporated for LaTeX.
+
+You will need the following files:
+    coling2012.sty     conference style file provided
+
+This style requires the following additional styles to be present in your installation
+    apalike.bst		style used for citation.
+    geometry.sty        package that allows easy setting of paper size and margins
+    microtype.sty       package that provides better character arrangement 
+    mathdesign.sty      package that allows the use of charter font, with an correct math font integration
+    natbib.sty          package used for natural (author, year) in text citations
+    url.sty             package for better url formatting
+    longtable.sty		package which allows flexible table formatting spanning multiple pages
+    titlesec.sty		package for customising section title attributes
+    paralist.sty		package for customising paragraph attributes
+	
+The LaTeX example zip file contains:
+    coling2012.tex	an example paper
+    coling2012.sty	COLING 2012 style file (mentioned above)
+    colingbiblio.bib	an example bibliography
+    coling2012.pdf	result
+    coling_log.jpg	image file for illustration 1 
+    illustration2.jpg	image file for illustration 2
+
+How to use BibTex:
+    http://www.tug.org/pracjourn/2006-4/fenn/fenn.pdf
+
+Procedure:
+    pdflatex coling2012
+    bibtex coling2012
+    pdflatex coling2012
+    pdflatex coling2012
