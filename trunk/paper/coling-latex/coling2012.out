@@ -1,0 +1,15 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}
+\BOOKMARK [1][-]{section.2}{Topic Models : Latent Dirichlet Allocation}{}
+\BOOKMARK [1][-]{section.3}{Pooling Schemes}{}
+\BOOKMARK [1][-]{section.4}{Lexical Normalization of Hashtags}{}
+\BOOKMARK [2][-]{subsection.4.1}{Scoping Hashtag Normalization}{section.4}
+\BOOKMARK [2][-]{subsection.4.2}{Candidate Set Generation}{section.4}
+\BOOKMARK [2][-]{subsection.4.3}{Context Based Pruning}{section.4}
+\BOOKMARK [1][-]{section.5}{Experimental Setup}{}
+\BOOKMARK [2][-]{subsection.5.1}{Dataset Description}{section.5}
+\BOOKMARK [2][-]{subsection.5.2}{Document Characteristics after Pooling}{section.5}
+\BOOKMARK [2][-]{subsection.5.3}{Evaluation Metrics}{section.5}
+\BOOKMARK [1][-]{section.6}{Results}{}
+\BOOKMARK [1][-]{section.7}{Observations}{}
+\BOOKMARK [1][-]{section.8}{Related Work}{}
+\BOOKMARK [1][-]{section.9}{Conclusion}{}
