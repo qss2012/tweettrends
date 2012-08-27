@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.21)  27 AUG 2012 03:09
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.21)  27 AUG 2012 05:40
 entering extended mode
  %&-line parsing enabled.
 **coling2012.tex
@@ -999,20 +999,20 @@ LaTeX Warning: Label `fig:dist' multiply defined.
 )
 \openout1 = `coling2012.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
 
 *geometry auto-detecting driver*
 *geometry detected driver: pdftex*
@@ -1055,7 +1055,7 @@ driver: pdftex
 \@twosidetrue \@mparswitchtrue 
 (1in=72.27pt, 1cm=28.45pt)
 -----------------------
-LaTeX Info: Redefining \microtypecontext on input line 37.
+LaTeX Info: Redefining \microtypecontext on input line 38.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1083,7 +1083,7 @@ File: mt-cmr.cfg 2008/02/29 v1.9a microtype config. file: Computer Modern Roman
 \MPnumerator=\count154
 \everyMPtoPDFconversion=\toks49
 )
-Package hyperref Info: Link coloring OFF on input line 37.
+Package hyperref Info: Link coloring OFF on input line 38.
  (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
 
@@ -1092,8 +1092,8 @@ Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 )
 \c@section@level=\count155
 )
-LaTeX Info: Redefining \ref on input line 37.
-LaTeX Info: Redefining \pageref on input line 37.
+LaTeX Info: Redefining \ref on input line 38.
+LaTeX Info: Redefining \pageref on input line 38.
  (./coling2012.out)
 (./coling2012.out)
 \@outlinefile=\write5
@@ -1101,7 +1101,7 @@ LaTeX Info: Redefining \pageref on input line 37.
 
 \AtBeginShipoutBox=\box49
  ABD: EveryShipout initializing macros
-LaTeX Font Info:    Try loading font information for U+msa on input line 38.
+LaTeX Font Info:    Try loading font information for U+msa on input line 39.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
@@ -1109,7 +1109,7 @@ File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 (/usr/share/texmf-texlive/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 38.
+LaTeX Font Info:    Try loading font information for U+msb on input line 39.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
@@ -1117,102 +1117,102 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 (/usr/share/texmf-texlive/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 38.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 39.
 
 (/usr/share/texmf-texlive/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-Underfull \hbox (badness 10000) in paragraph at lines 43--43
+Underfull \hbox (badness 10000) in paragraph at lines 44--44
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 69--78
+Underfull \hbox (badness 10000) in paragraph at lines 70--79
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 69--78
+Underfull \hbox (badness 10000) in paragraph at lines 70--79
 
  []
 
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 81--88
+Underfull \hbox (badness 10000) in paragraph at lines 82--89
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 81--88
+Underfull \hbox (badness 10000) in paragraph at lines 82--89
 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 88.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 89.
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 88.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 89.
  [2]
-Underfull \hbox (badness 10000) in paragraph at lines 144--147
+Underfull \hbox (badness 10000) in paragraph at lines 145--148
 
  []
 
 <LDA.png, id=118, 228.10219pt x 114.4275pt>
 File: LDA.png Graphic file (type png)
  <use LDA.png> [3] [4 <./LDA.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 218--220
+Underfull \hbox (badness 10000) in paragraph at lines 219--221
 
  []
 
 
-Overfull \hbox (5.69035pt too wide) in paragraph at lines 226--237
+Overfull \hbox (5.69035pt too wide) in paragraph at lines 227--238
  [][] 
  []
 
 
-Overfull \hbox (5.6939pt too wide) in paragraph at lines 245--256
+Overfull \hbox (5.6939pt too wide) in paragraph at lines 246--257
  [][] 
  []
 
 
-Overfull \hbox (5.68704pt too wide) in paragraph at lines 262--272
+Overfull \hbox (5.68704pt too wide) in paragraph at lines 263--273
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 275--276
+Underfull \hbox (badness 10000) in paragraph at lines 276--277
 
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 289--291
+Underfull \hbox (badness 10000) in paragraph at lines 290--292
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 313--315
+Underfull \hbox (badness 10000) in paragraph at lines 314--316
 
  []
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 344--345
+Underfull \hbox (badness 10000) in paragraph at lines 345--346
 
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 366--370
+Underfull \hbox (badness 10000) in paragraph at lines 367--371
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 393--395
+Underfull \hbox (badness 10000) in paragraph at lines 394--396
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 396--400
+Underfull \hbox (badness 10000) in paragraph at lines 397--401
 
  []
 
@@ -1220,40 +1220,40 @@ Underfull \hbox (badness 10000) in paragraph at lines 396--400
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [8]
-Underfull \hbox (badness 10000) in paragraph at lines 401--405
+Underfull \hbox (badness 10000) in paragraph at lines 402--406
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 406--412
+Underfull \hbox (badness 10000) in paragraph at lines 407--413
 
  []
 
 
-Overfull \hbox (5.69466pt too wide) in paragraph at lines 421--441
+Overfull \hbox (5.69466pt too wide) in paragraph at lines 422--442
  [][] 
  []
 
 [9] [10]
-Overfull \hbox (5.71385pt too wide) in paragraph at lines 547--563
+Overfull \hbox (5.71385pt too wide) in paragraph at lines 548--564
  [][] 
  []
 
 [11]
 Package hyperref Info: bookmark level for unknown algocf defaults to 0 on input
- line 641.
+ line 642.
 
-Underfull \hbox (badness 10000) detected at line 642
+Underfull \hbox (badness 10000) detected at line 643
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 648--650
+Underfull \hbox (badness 10000) in paragraph at lines 649--651
 
  []
 
 
-Overfull \hbox (5.70314pt too wide) in paragraph at lines 654--674
+Overfull \hbox (5.70314pt too wide) in paragraph at lines 655--675
  [][] 
  []
 
@@ -1261,42 +1261,42 @@ Overfull \hbox (5.70314pt too wide) in paragraph at lines 654--674
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 703--704
+Underfull \hbox (badness 10000) in paragraph at lines 704--705
 
  []
 
 [13]
-Overfull \hbox (9.67815pt too wide) in paragraph at lines 712--1295
+Overfull \hbox (9.67815pt too wide) in paragraph at lines 713--1296
  [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1306--1308
+Underfull \hbox (badness 10000) in paragraph at lines 1307--1309
 
  []
 
 
-Overfull \hbox (5.69885pt too wide) in paragraph at lines 1312--1328
+Overfull \hbox (5.69885pt too wide) in paragraph at lines 1313--1329
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1333--1341
+Underfull \hbox (badness 10000) in paragraph at lines 1334--1342
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1333--1341
+Underfull \hbox (badness 10000) in paragraph at lines 1334--1342
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1333--1341
+Underfull \hbox (badness 10000) in paragraph at lines 1334--1342
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1333--1341
+Underfull \hbox (badness 10000) in paragraph at lines 1334--1342
 
  []
 
@@ -1304,7 +1304,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1333--1341
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [15]
-Underfull \hbox (badness 10000) in paragraph at lines 1348--1351
+Underfull \hbox (badness 10000) in paragraph at lines 1349--1352
 
  []
 
@@ -1352,7 +1352,7 @@ sr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts
 /type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-sup
 er/sfti0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb></us
 r/share/texmf/fonts/type1/public/cm-super/sftt0900.pfb>
-Output written on coling2012.pdf (17 pages, 499217 bytes).
+Output written on coling2012.pdf (17 pages, 499854 bytes).
 PDF statistics:
  359 PDF objects out of 1000 (max. 8388607)
  86 named destinations out of 1000 (max. 500000)
