@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.21)  27 AUG 2012 05:40
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.21)  27 AUG 2012 05:50
 entering extended mode
  %&-line parsing enabled.
 **coling2012.tex
@@ -1207,12 +1207,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 367--371
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 394--396
+Underfull \hbox (badness 10000) in paragraph at lines 387--389
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 397--401
+Underfull \hbox (badness 10000) in paragraph at lines 390--394
 
  []
 
@@ -1220,40 +1220,40 @@ Underfull \hbox (badness 10000) in paragraph at lines 397--401
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [8]
-Underfull \hbox (badness 10000) in paragraph at lines 402--406
+Underfull \hbox (badness 10000) in paragraph at lines 395--399
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 407--413
+Underfull \hbox (badness 10000) in paragraph at lines 400--406
 
  []
 
 
-Overfull \hbox (5.69466pt too wide) in paragraph at lines 422--442
+Overfull \hbox (5.69466pt too wide) in paragraph at lines 415--435
  [][] 
  []
 
 [9] [10]
-Overfull \hbox (5.71385pt too wide) in paragraph at lines 548--564
+Overfull \hbox (5.71385pt too wide) in paragraph at lines 541--557
  [][] 
  []
 
 [11]
 Package hyperref Info: bookmark level for unknown algocf defaults to 0 on input
- line 642.
+ line 635.
 
-Underfull \hbox (badness 10000) detected at line 643
+Underfull \hbox (badness 10000) detected at line 636
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 649--651
+Underfull \hbox (badness 10000) in paragraph at lines 642--644
 
  []
 
 
-Overfull \hbox (5.70314pt too wide) in paragraph at lines 655--675
+Overfull \hbox (5.70314pt too wide) in paragraph at lines 648--668
  [][] 
  []
 
@@ -1261,42 +1261,42 @@ Overfull \hbox (5.70314pt too wide) in paragraph at lines 655--675
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 704--705
+Underfull \hbox (badness 10000) in paragraph at lines 697--698
 
  []
 
 [13]
-Overfull \hbox (9.67815pt too wide) in paragraph at lines 713--1296
+Overfull \hbox (9.67815pt too wide) in paragraph at lines 706--1289
  [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1307--1309
+Underfull \hbox (badness 10000) in paragraph at lines 1300--1302
 
  []
 
 
-Overfull \hbox (5.69885pt too wide) in paragraph at lines 1313--1329
+Overfull \hbox (5.69885pt too wide) in paragraph at lines 1306--1322
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1334--1342
+Underfull \hbox (badness 10000) in paragraph at lines 1327--1335
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1334--1342
+Underfull \hbox (badness 10000) in paragraph at lines 1327--1335
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1334--1342
+Underfull \hbox (badness 10000) in paragraph at lines 1327--1335
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1334--1342
+Underfull \hbox (badness 10000) in paragraph at lines 1327--1335
 
  []
 
@@ -1304,11 +1304,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 1334--1342
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [15]
-Underfull \hbox (badness 10000) in paragraph at lines 1349--1352
+Underfull \hbox (badness 10000) in paragraph at lines 1342--1345
 
  []
 
-No file coling2012.bbl.
 No file coling2012.bbl.
 
 Underfull \vbox (badness 1577) has occurred while \output is active []
@@ -1320,11 +1319,11 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 22077 strings out of 495061
- 423183 string characters out of 1182621
- 692058 words of memory out of 3000000
- 24563 multiletter control sequences out of 15000+50000
- 29966 words of font info for 131 fonts, out of 3000000 for 9000
+ 22074 strings out of 495061
+ 423151 string characters out of 1182621
+ 692052 words of memory out of 3000000
+ 24562 multiletter control sequences out of 15000+50000
+ 29847 words of font info for 130 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  63i,26n,69p,1283b,1664s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf-
@@ -1352,7 +1351,7 @@ sr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts
 /type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-sup
 er/sfti0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb></us
 r/share/texmf/fonts/type1/public/cm-super/sftt0900.pfb>
-Output written on coling2012.pdf (17 pages, 499854 bytes).
+Output written on coling2012.pdf (17 pages, 499838 bytes).
 PDF statistics:
  359 PDF objects out of 1000 (max. 8388607)
  86 named destinations out of 1000 (max. 500000)
