@@ -384,14 +384,7 @@ Correspondingly, $ SD(R) $ is the standard deviation of the number of messages w
 $ burst\_score(R,y) = \frac{|M(R,y) - Mean(r)|}{SD(R)} $
 \end{center}
 
-Let us denote the terms having burst-scores greater than 5 as \textit{burst-term}. We create the burst score-wise pooling scheme using these burst-terms as follows:
-\begin{compactitem}
-\item For each burst-term, aggregate tweets which contain this term.
-\item Train LDA on this aggregation of tweets
-\item Use the train model to infer a topic mixture for each of the individual tweets.
-\end{compactitem}
-
-This scheme is henceforth referred to as Burst Score-wise pooling.
+Let us denote the terms having burst-scores greater than 5 as \textit{burst-term}. For each burst-term, aggregate tweets which contain this term and train LDA on this aggregation of tweets. We then use the trained model to infer a topic mixture for each of the individual tweets. This scheme is henceforth referred to as Burst Score-wise pooling.
 \\
 
 \item  \textbf{Author-wise Pooling}
@@ -1365,8 +1358,8 @@ The Hashtag-based pooling scheme and tag assignment proposed works better than a
 
 %'apa' style does not apply "smallcaps style" on author names and goes with the [english] option in the babel package
 
-\bibliography{colingbiblio}
-\bibliographystyle{apa}
+%\bibliography{colingbiblio}
+%\bibliographystyle{apa}
 
 
 
@@ -1374,10 +1367,10 @@ The Hashtag-based pooling scheme and tag assignment proposed works better than a
 %\bibliography{sve}
 %\bibliographystyle{aaai}
 
-\nocite{*}
+
 \bibliographystyle{coling2012}
 \bibliography{colingbiblio}
-
+\nocite{*}
 %\bibliographystyle{coling2012}
 
 
