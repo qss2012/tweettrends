@@ -1,10 +1,10 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}
 \BOOKMARK [1][-]{section.2}{Topic modeling and Latent Dirichlet Allocation}{}
 \BOOKMARK [1][-]{section.3}{Twitter Dataset Construction}{}
-\BOOKMARK [1][-]{section.4}{Evaluating Topic Models :: Metrics used}{}
+\BOOKMARK [1][-]{section.4}{Evaluating Topic Models - Metrics used}{}
 \BOOKMARK [2][-]{subsection.4.1}{Purity Scores}{section.4}
 \BOOKMARK [2][-]{subsection.4.2}{Normalized Mutual Information}{section.4}
-\BOOKMARK [2][-]{subsection.4.3}{Pointwise Mutual information :: Topic Coherence}{section.4}
+\BOOKMARK [2][-]{subsection.4.3}{Pointwise Mutual Information}{section.4}
 \BOOKMARK [1][-]{section.5}{Tweet Pooling}{}
 \BOOKMARK [2][-]{subsection.5.1}{Pooling Schemes}{section.5}
 \BOOKMARK [2][-]{subsection.5.2}{Document Characteristics for different pooling schemes}{section.5}
@@ -16,8 +16,7 @@
 \BOOKMARK [3][-]{subsubsection.6.3.1}{Algorithm}{subsection.6.3}
 \BOOKMARK [3][-]{subsubsection.6.3.2}{Hashtag Assignment Results}{subsection.6.3}
 \BOOKMARK [3][-]{subsubsection.6.3.3}{Other Similarity Metrics}{subsection.6.3}
-\BOOKMARK [3][-]{subsubsection.6.3.4}{New Similarity Metric}{subsection.6.3}
-\BOOKMARK [3][-]{subsubsection.6.3.5}{Results of new Similarity Metrics}{subsection.6.3}
+\BOOKMARK [3][-]{subsubsection.6.3.4}{Results of other similarity metrics}{subsection.6.3}
 \BOOKMARK [1][-]{section.7}{Overall Comparison}{}
 \BOOKMARK [1][-]{section.8}{Observations}{}
 \BOOKMARK [1][-]{section.9}{Related Work}{}
