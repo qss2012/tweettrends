@@ -127,30 +127,62 @@ In the following sections we describe the proposed tweet pooling schemes  and de
 
 \section{Topic Modelling and Latent Dirichlet Allocation}
 
-Latent Dirichlet allocation (LDA), originally introduced by Blei et al.[1], is a generative model for text. In this model, a “topic” t is a discrete distribution over words with probability vector $\phi_{t}$. Dirichlet
-priors, with concentration parameter $\beta$ and base measure $n$, are placed over the topics $\Phi = \lbrace \phi_{1}, ... , \phi_{T} \rbrace $ :
+Latent Dirichlet allocation (LDA), originally introduced by Blei et al.[1], is a generative model for text. In LDA, each document may be viewed as a mixture of various topics. We use the following notations for describing the LDA model:\\
+\hspace{2cm} M : number of documents\\
+\hspace{2cm} N : number of words in a document\\
+\hspace{2cm} $\alpha$ : parameter of the Dirichlet prior on the per-document topic   distributions\\
+\hspace{2cm} $\beta$ : the parameter of the Dirichlet prior on the per-topic word distribution\\
+\hspace{2cm} $\theta_i$ : the topic distribution for document i,\\
+\hspace{2cm} $\phi_k$ is the word distribution for topic k,\\
+\hspace{2cm} $z_{ik}$ is the topic for the jth word in document i, and\\
+\hspace{2cm} $w_{ij}$ is the specific word.
+ 
+The $w_{ij}$ are the only observable variables, and the other variables are latent variables. If K be the number of topics considered in the model, $\phi$ is a $K*V$ (V is the dimension of the vocabulary) matrix each row of which denotes the word distribution of a topic.
 
-\begin{center}
-$P\left( \Phi \right)  = \Pi_{t}  Dir\left(  \phi_{t} ; \beta n  \right) $
-\end{center}
+The generative process behind is that documents are represented as random mixtures over latent topics, where each topic is characterized by a distribution over words. LDA assumes the following generative process for each document i in a corpus D :
 
-Each document, indexed by d, is assumed to have its own distribution over topics given by probabilities $\theta_{d}$. The priors over $\Theta = \lbrace  \theta_{1}, ... , \theta_{d}  \rbrace$ are also Dirichlet, with concentration parameter $\alpha$ and base measure $m$:
+\begin{compactenum}
+\item Choose $\phi_i \sim Dir(\alpha)$, where i $\in$ {1,...,M} and Dir($\alpha$) is the Dirichlet distribution for parameter $\alpha$
+\item Chose $\phi_k \sim Dir(\beta)$, where k $\in {1,...,K}$
+\item For each of the words $w_{ij}$, where j $\in {1,...,N_i}$
+	\begin{compactenum}
+		\item Chose a topic $z_{i,j} \sim Multinomial(\theta)$
+		\item Chose a word $w_{i,j} \sim Multinomial(\phi_{z_{i,j}})$
+	\end{compactenum}
+\end{compactenum}
 
-\begin{center}
-$P\left( \Theta \right)  = \Pi_{d}  Dir\left(  \theta_{d} ; \alpha m  \right) $
-\end{center}
 
-The tokens in a document $w^{d} = \lbrace w^{d}_{n} \rbrace^{N_{d}}_{n=1} $ (where $N_d$ is the number of tokens in the document d)are associated with topic assignments $z^{d} = \lbrace z^{d}_{n} \rbrace^{N_{d}}_{n=1} $, drawn i.i.d. from the document-specific topic distribution:
-\begin{center}
-$P\left( z_{d} | \theta_{d}  \right) = \Pi_{n} \theta_{ z^{\left( d\right) }_{n} | d}$.
-\end{center}
-The tokens are drawn from the topics’ distributions:
-\begin{center}
-$P\left( w_{d} | z_{d}, \Phi  \right) = \Pi_{n} \phi_{ w^{\left( d\right) }_{n} | z^{\left( d\right) }_{n}}$.
-\end{center}
+Learning the various distributions (the set of topics, their associated word probabilities, the topic of each word, and the particular topic mixture of each document) is a problem of Bayesian inference. The original paper used a variational Bayes approximation of the posterior distribution; alternative inference techniques use Gibbs sampling and expectation propagation.
 
-A data set of documents $W = \lbrace w^(1) , w^(2) , ..., w^(D) \rbrace $ is observed, while the underlying corresponding topic assignments $Z = \lbrace z^(1) , z^(2) , ..., z^(D) \rbrace $ are unobserved. 
-\\
+
+
+
+
+
+
+%In this model, a “topic” t is a discrete distribution over words with probability vector $\phi_{t}$. Dirichlet priors, with concentration parameter $\beta$ and base measure $n$, are placed over the topics $\Phi = \lbrace \phi_{1}, ... , \phi_{T} \rbrace $ :
+
+%\begin{center}
+%$P\left( \Phi \right)  = \Pi_{t}  Dir\left(  \phi_{t} ; \beta n  \right) $
+%\end{center}
+
+%Each document, indexed by d, is assumed to have its own distribution over topics given by probabilities $\theta_{d}$. The priors over $\Theta = \lbrace  \theta_{1}, ... , \theta_{d}  \rbrace$ are also Dirichlet, with concentration parameter $\alpha$ and base measure $m$:
+
+%\begin{center}
+%$P\left( \Theta \right)  = \Pi_{d}  Dir\left(  \theta_{d} ; \alpha m  \right) $
+%\end{center}
+
+%The tokens in a document $w^{d} = \lbrace w^{d}_{n} \rbrace^{N_{d}}_{n=1} $ (where $N_d$ is the number of tokens in the document d)are associated with topic assignments $z^{d} = \lbrace z^{d}_{n} \rbrace^{N_{d}}_{n=1} $, drawn i.i.d. from the document-specific topic distribution:
+%\begin{center}
+%$P\left( z_{d} | \theta_{d}  \right) = \Pi_{n} \theta_{ z^{\left( d\right) }_{n} %| d}$.
+%\end{center}
+%The tokens are drawn from the topics’ distributions:
+%\begin{center}
+%$P\left( w_{d} | z_{d}, \Phi  \right) = \Pi_{n} \phi_{ w^{\left( d\right) }_{n} | z^{\left( d\right) }_{n}}$.
+%\end{center}
+
+%A data set of documents $W = \lbrace w^(1) , w^(2) , ..., w^(D) \rbrace $ is observed, while the underlying corresponding topic assignments $Z = \lbrace z^(1) , z^(2) , ..., z^(D) \rbrace $ are unobserved. 
+%\\
 
 We use the Mallet[4] implementation of LDA for performing our experiments.
 
@@ -267,9 +299,8 @@ It is to be noted that the 3 datasets span three different scenarios in which  t
 
 When the text being modelled is plentiful, clear and well written (e.g. large
 collections of abstracts from scientific literature), learned topics are usually coherent, easily understood, and fit for use in user interfaces. However, topics are not always consistently coherent, and even with relatively well written text, one can learn topics that are a mix of concepts or hard to understand. This problem is exacerbated for content that is sparse or noisy, such as tweets.
-\\
+\\\\
 Evaluation of the different topic models based on the above mentioned features of interpretability, usability and coherence is an important issue, but the unsupervised nature of topic models makes this difficult. For some applications there may be extrinsic tasks, such as information retrieval or document classification, for which performance can be evaluated. However, such tasks are not applicable for evaluating topics models in the {\it undirected informational task}. 
-\\
 
 We evaluate our topic models based on the following two approaches:
 \begin{compactenum}
@@ -747,23 +778,6 @@ Figure 2 presents the results obtained for the three evaluation metrics on the t
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{figure}[t!]
-\begin{center}
-%\vspace{-1mm}
-\includegraphics[width=.85\textwidth]{Metrics.png}
-\end{center}
-%\vspace{-2mm}
-\caption{\footnotesize Comparison of different similarity metrics for the thee datasets.
-} \label{fig:xadd}
-%\vspace{-4mm}
-\end{figure}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
 \section{Overall Comparison}
 The goal of this work was to get better topics which have better coherence, interpretability and usability without modifying the basic machinery of standard LDA. The default way of using tweets to train LDA was to treat each tweet as a single document (referred in this work as the Unpooled scheme). Simple hashtag based pooling outperformed unpooled scheme and other pooling schemes while hashtag assignment further improved results. Table 13 provides an overall comparison of the different schemes: Unpooled vs simple hashtag vs hashtag assignment on the three datasets.
 \\
@@ -837,7 +851,7 @@ The Hashtag-based pooling scheme and tag assignment proposed works better than a
 %\bibliographystyle{aaai}
 
 
-\bibliographystyle{coling2012}
+\bibliographystyle{apa}
 \bibliography{colingbiblio}
 \nocite{*}
 %\bibliographystyle{coling2012}
