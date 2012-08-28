@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.21)  28 AUG 2012 08:24
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.21)  28 AUG 2012 20:19
 entering extended mode
  %&-line parsing enabled.
 **coling2012.tex
@@ -1264,56 +1264,91 @@ Underfull \hbox (badness 10000) in paragraph at lines 684--685
 
  []
 
-[13] <Metrics.png, id=225, 613.54219pt x 459.96844pt>
+[13] <Figs/1-1.jpg, id=225, 642.4pt x 481.8pt>
+File: Figs/1-1.jpg Graphic file (type jpg)
+ <use Figs/1-1.jpg>
+<Figs/1-2.jpg, id=226, 642.4pt x 481.8pt>
+File: Figs/1-2.jpg Graphic file (type jpg)
+ <use Figs/1-2.jpg>
+<Figs/1-3.jpg, id=227, 642.4pt x 481.8pt>
+File: Figs/1-3.jpg Graphic file (type jpg)
+ <use Figs/1-3.jpg>
+<Figs/2-1.jpg, id=228, 642.4pt x 481.8pt>
+File: Figs/2-1.jpg Graphic file (type jpg)
+ <use Figs/2-1.jpg>
+<Figs/2-2.jpg, id=229, 642.4pt x 481.8pt>
+File: Figs/2-2.jpg Graphic file (type jpg)
+ <use Figs/2-2.jpg>
+<Figs/2-3.jpg, id=230, 642.4pt x 481.8pt>
+File: Figs/2-3.jpg Graphic file (type jpg)
+ <use Figs/2-3.jpg>
+<Figs/3-1.jpg, id=231, 642.4pt x 481.8pt>
+File: Figs/3-1.jpg Graphic file (type jpg)
+ <use Figs/3-1.jpg>
+<Figs/3-2.jpg, id=232, 642.4pt x 481.8pt>
+File: Figs/3-2.jpg Graphic file (type jpg)
+ <use Figs/3-2.jpg>
+<Figs/3-3.jpg, id=233, 642.4pt x 481.8pt>
+File: Figs/3-3.jpg Graphic file (type jpg)
+ <use Figs/3-3.jpg>
+Overfull \hbox (5.69597pt too wide) in paragraph at lines 692--741
+ [] 
+ []
+
+<Metrics.png, id=234, 613.54219pt x 459.96844pt>
 File: Metrics.png Graphic file (type png)
  <use Metrics.png>
-Underfull \hbox (badness 10000) in paragraph at lines 706--708
+Underfull \hbox (badness 10000) in paragraph at lines 768--770
 
  []
 
 
-Overfull \hbox (5.69885pt too wide) in paragraph at lines 712--728
+Overfull \hbox (5.69885pt too wide) in paragraph at lines 774--790
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 733--741
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 795--803
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 733--741
+Underfull \hbox (badness 10000) in paragraph at lines 795--803
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 733--741
+Underfull \hbox (badness 10000) in paragraph at lines 795--803
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 733--741
+Underfull \hbox (badness 10000) in paragraph at lines 795--803
 
  []
 
+[14 <./Figs/1-1.jpg> <./Figs/1-2.jpg> <./Figs/1-3.jpg> <./Figs/2-1.jpg> <./Figs
+/2-2.jpg> <./Figs/2-3.jpg> <./Figs/3-1.jpg> <./Figs/3-2.jpg> <./Figs/3-3.jpg>]
+Underfull \vbox (badness 1675) has occurred while \output is active []
 
-Underfull \vbox (badness 5260) has occurred while \output is active []
-
- [14 <./Metrics.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 748--751
+ [15 <./Metrics.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 810--813
 
  []
 
-[15] (./coling2012.bbl) [16] (./coling2012.aux)
+(./coling2012.bbl) [16] (./coling2012.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 21851 strings out of 495061
- 418341 string characters out of 1182621
+ 21899 strings out of 495061
+ 419024 string characters out of 1182621
  577772 words of memory out of 3000000
- 24335 multiletter control sequences out of 15000+50000
+ 24371 multiletter control sequences out of 15000+50000
  30085 words of font info for 132 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  63i,19n,61p,1283b,529s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1342,9 +1377,9 @@ sr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts
 /type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-sup
 er/sfti0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb></us
 r/share/texmf/fonts/type1/public/cm-super/sftt0900.pfb>
-Output written on coling2012.pdf (16 pages, 567694 bytes).
+Output written on coling2012.pdf (16 pages, 1310983 bytes).
 PDF statistics:
- 353 PDF objects out of 1000 (max. 8388607)
- 84 named destinations out of 1000 (max. 500000)
- 32458 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 364 PDF objects out of 1000 (max. 8388607)
+ 85 named destinations out of 1000 (max. 500000)
+ 32503 words of extra memory for PDF output out of 35830 (max. 10000000)
 
