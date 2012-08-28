@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.21)  27 AUG 2012 14:48
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.21)  27 AUG 2012 16:02
 entering extended mode
  %&-line parsing enabled.
 **coling2012.tex
@@ -993,9 +993,6 @@ LaTeX Warning: Label `Table' multiply defined.
 
 LaTeX Warning: Label `Table' multiply defined.
 
-
-LaTeX Warning: Label `fig:dist' multiply defined.
-
 )
 \openout1 = `coling2012.aux'.
 
@@ -1313,17 +1310,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 1329--1332
 
  []
 
-No file coling2012.bbl.
-[16] (./coling2012.aux)
+(./coling2012.bbl) [16] (./coling2012.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 22070 strings out of 495061
- 423120 string characters out of 1182621
+ 22073 strings out of 495061
+ 423160 string characters out of 1182621
  689874 words of memory out of 3000000
- 24558 multiletter control sequences out of 15000+50000
+ 24559 multiletter control sequences out of 15000+50000
  30085 words of font info for 132 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  63i,26n,69p,1283b,1664s stack positions out of 5000i,500n,10000p,200000b,50000s
