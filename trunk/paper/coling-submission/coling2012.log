@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.21)  27 AUG 2012 16:02
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.21)  28 AUG 2012 08:24
 entering extended mode
  %&-line parsing enabled.
 **coling2012.tex
@@ -1264,65 +1264,59 @@ Underfull \hbox (badness 10000) in paragraph at lines 684--685
 
  []
 
-[13]
-Overfull \hbox (9.67815pt too wide) in paragraph at lines 693--1276
- [] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1287--1289
+[13] <Metrics.png, id=225, 613.54219pt x 459.96844pt>
+File: Metrics.png Graphic file (type png)
+ <use Metrics.png>
+Underfull \hbox (badness 10000) in paragraph at lines 706--708
 
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [14]
-Overfull \hbox (5.69885pt too wide) in paragraph at lines 1293--1309
+Overfull \hbox (5.69885pt too wide) in paragraph at lines 712--728
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1314--1322
+Underfull \hbox (badness 10000) in paragraph at lines 733--741
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1314--1322
+Underfull \hbox (badness 10000) in paragraph at lines 733--741
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1314--1322
+Underfull \hbox (badness 10000) in paragraph at lines 733--741
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1314--1322
+Underfull \hbox (badness 10000) in paragraph at lines 733--741
 
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 5260) has occurred while \output is active []
 
- [15]
-Underfull \hbox (badness 10000) in paragraph at lines 1329--1332
+ [14 <./Metrics.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 748--751
 
  []
 
-(./coling2012.bbl) [16] (./coling2012.aux)
+[15] (./coling2012.bbl) [16] (./coling2012.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 22073 strings out of 495061
- 423160 string characters out of 1182621
- 689874 words of memory out of 3000000
- 24559 multiletter control sequences out of 15000+50000
+ 21851 strings out of 495061
+ 418341 string characters out of 1182621
+ 577772 words of memory out of 3000000
+ 24335 multiletter control sequences out of 15000+50000
  30085 words of font info for 132 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 63i,26n,69p,1283b,1664s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 63i,19n,61p,1283b,529s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf-
 texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fon
 ts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts/type1/pu
@@ -1348,9 +1342,9 @@ sr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts
 /type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-sup
 er/sfti0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb></us
 r/share/texmf/fonts/type1/public/cm-super/sftt0900.pfb>
-Output written on coling2012.pdf (16 pages, 488839 bytes).
+Output written on coling2012.pdf (16 pages, 567694 bytes).
 PDF statistics:
- 352 PDF objects out of 1000 (max. 8388607)
+ 353 PDF objects out of 1000 (max. 8388607)
  84 named destinations out of 1000 (max. 500000)
- 32453 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 32458 words of extra memory for PDF output out of 35830 (max. 10000000)
 
