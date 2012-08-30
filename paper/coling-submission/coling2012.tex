@@ -26,7 +26,7 @@
 \newcommand{\R}{\mathbb{R}}
 \renewcommand{\vec}[1]{\mathbf{#1}}
 %\title{United We Stand: Tweet Pooling for a better LDA}
-\title{Improving Topic Models for Microblogs : Tweet pooling for a better LDA}
+\title{Improving LDA Topic Models for Microblogs\\ via Automatic Tweet Labeling and Pooling}
 %for authors: in case of more than four author names ref. to commented line below 
 %\author{$Annie~SMITH^{1, 2}~~~LI~Xiao Dong^{1, 3}$\\$~~~Third~Author^{1, 2}~~~Fourth~Author^{1, 3}~~~ Fifth~Author^{2, 3}$\\
 \author{$Author1^{1}~~~Author2^{2}$\\
@@ -38,153 +38,139 @@
 \begin{document}
 \maketitle
 
-\abstractEn{ 
-Microblogging : the world of 140 characters poses serious challenges to the efficacy of topic models on short, noisy text. While Latent Dirichlet Allocation (LDA) and related models have a long history of application to news articles and academic abstracts, it has been found that standard LDA does not works well when dealing with generally messy Twitter data. When dealing with such text, learned topics can be less coherent, less interpretable, and less useful. The goal of this work is to get better topics from Twitter content without modifying the basic machinery of the standard LDA. To this effect, we present various pooling schemes to aggregate tweets for use as training data for building better LDA models. Using carefully designed experiments we propose ways of improving the quality of topics obtained, and empirically establish the effectiveness of our work on three different kinds of datasets using three different evaluation metrics.
-\\
-}
+\abstractEn{ Twitter : the world of 140 characters poses serious
+  challenges to the efficacy of topic models on short, messy text.
+  While topic models such as Latent Dirichlet Allocation (LDA) have a
+  long history of successful application to news articles and academic
+  abstracts, they are often less coherent when applied to microblog
+  content like Twitter.  In this paper, we investigate methods to
+  improve topics learned from Twitter content \emph{without} modifying
+  the basic machinery of LDA; we achieve this through various pooling
+  schemes that aggregate tweets in a data preprocessing step for LDA.
+  We empirically establish that combining automatic hashtag labeling
+  techniques with tweet pooling by hashtags leads to a vast
+  improvement in a variety of measures of topic coherence across three
+  diverse Twitter datasets in comparison to an unmodified LDA baseline
+  and previously proposed as well as novel pooling schemes.\\}
 
-\keywordsEn{Topic modeling, LDA, Tweets\\}
+% this is due to the decreased
+%  co-occurence of common topic words across tweets that results from
+%  wide lexical variation on the Twittersphere compounded by its severe
+%  document length restrictions
+
+\keywordsEn{Topic modeling, LDA, Microblogs}
 \section{Introduction}
 
-
 In the general area of information retrieval or information access,
-the {\it undirected informational task} 
-[Rose and Levinson, WWW 2004] is one where people seek to
+the {\it undirected informational task} \cite{RoseLev}
+ is one where people seek to
 better understand the information available to them in a particular area.
-This is a form of {\it information discovery} that techniques
-such as multidocument summarisation [Radev, Hovy, and McKeown, Computational linguistics, 2002] and topic modelling hope to address.
-
-Probabilistic topic models are a class of Bayesian latent variable
-model, originally developed for analyzing the semantic content of
-large document corpora. Topic models uncover the salient patterns of a
-collection under the mixed-membership assumption: each data instance
-can exhibit multiple patterns to different extent. When analysing
-text, these patterns are represented as distributions over words and
-often place high probability on semantically meaningful sets called
-“topics”. With the increasing availability of large, heterogeneous
-data collections, topic models have been adapted to model document
-genres as diverse as news articles [12], blogs, academic abstracts [13], 
+This is a form of information discovery that techniques
+such as multidocument summarisation \cite{radev02}
+and topic modeling have been developed to address.
+Probabilistic topic models  \cite{?????}
+are a class of Bayesian latent variable
+model developed for analyzing the semantic content of
+document corpora. Topic models uncover the salient patterns of a
+collection under the mixed-membership assumption: each document
+can exhibit multiple patterns to different extents. When analysing
+text, these patterns are represented as distributions over words, called
+“topics”.  Topic models have been adapted to model document
+genres as diverse as news articles \cite{baldwin11}, 
+blogs, 
+academic abstracts \cite{?????}, 
 and encyclopaedia entries.
 
-To satisfy the undirected informational task arising from the vast 
-data from Twitter,
+To address the undirected informational task arising from the 
+exploration of Twitter content,
 we are exploring the use of topic models.
 However, 
 Twitter content poses unique challenges different to much of standard
-NLP content: 
-\begin{itemize}
-\item
+NLP content:  (1)
 posts are short (140 characters or less),
-\item
+(2)
 mixed with some contextual clues such as URLs, tags, and twitter names, and
-\item
+(3)
 using informal language unlike the standard written English
 with  misspelling, acronyms and nonstandard abbreviations.
-\end{itemize}
- on which many
-Tweets or status messages are thus short and linguistically
-messy making it difficult to get contextual and semantic clues. 
 Effectively modeling content on Twitter
 requires techniques that can readily adapt to this kind of data and
 require little supervision.
 
-It has been found that simple LDA [1] does not works well when dealing
-with the messy Twitter data[7]. Topics learned from LDA are formally a
+It has been found that standard LDA \cite{blei03} 
+does not work well 
+with the messy form of Twitter content \cite{wayne,????}. 
+Topics learned from LDA are formally a
 multinomial distribution over words, and by convention the top-10
 words are used to identify the subject area or give an interpretation
-of a topic, thereby distinguishing one topic from another. The
-application of LDA on Twitter data produces messy topics with
-incoherent topic words which are difficult to interpret. While few
-topics are vaguely interpretable but contain unrelated words in the
+of a topic.   The naive
+application of LDA to Twitter content produces mostly incoherent topics,
+some are vaguely interpretable but contain unrelated words in the
 top-10 word set.
 
+How can we extract better topics in
+microblogging environments with standard LDA without the need of any
+major modifications?  An intuitive solution to this problem is tweet
+pooling: merging related tweets together and presenting them as a
+single document to the LDA model.  
+%  The bad performance of LDA on
+%  Twitter data can be attributed to the fact that in an unpooled setting
+%  each document is small (140 characters) as well as written with
+%  non-standard words, 
+%  hence an individual document does not contains enough content
+%  which might help LDA to discover latent semantics in a document.
+In this paper we look at various tweet-pooling schemes and compare
+their performances across different datasets. The datasets are
+constructed so that they are representative of the diverse
+collections of content possible in the microblog environment.
+%different types of Twitter datasets available thus ensuring that they cover the wide spectrum of domains in which a tweet can belong.
+We observe that of the different pooling schemes discussed, hashtag
+based tweet pooling scheme outperforms the others across all
+datasets. We further look into hashtag based tweet pooling scheme and
+suggest ways of assigning hashtags to tweets which do not have any
+hashtag, which further improves the quality of topics obtained. For
+the task of hashtag assignment, we look at various similarity metrics
+and compare the quality of topics obtained.
 
-In this paper we look at ways of extracting better topics from standard LDA without the need of any major modification to the basic LDA machinery. We address the problem of using standard topic models in microblogging environments by studying various tweet pooling schemes and compare their performance against the default way of training LDA: each tweet representing a document. The bad performance of LDA on Twitter data can be attributed to the fact that in an unpooled setting each document is small (140 characters) as well as written in improper grammar, hence an individual document does not contains enough content which might help LDA to discover latent semantics in a document.
-\\\\
-An intuitive solution to this problem is tweet pooling: merging related tweets together and presenting them as a single document to learn the LDA model. In this work we look at various tweet-pooling schemes and compare their performances across different datasets. The datasets are constructed in a way that they are representative of the diverse collections of content possible in the microblog environment. %different types of Twitter datasets available thus ensuring that they cover the wide spectrum of domains in which a tweet can belong.
-We observe that of the different pooling schemes discussed, hashtag based tweet pooling scheme outperforms the others across all datasets. We further look into Hashtag based tweet pooling scheme and suggest ways of assigning hashtags to tweets which do not have any hashtag, which further improves the quality of topics obtained. For the task of hashtag assignment, we look at various similarity metrics and compare the quality of topics obtained.
-\\\\
-Evaluation of the resultant topic model is challenging because of the unsupervised nature of topic models. We look at different evaluation metrics which evaluate the topics obtained based on different approaches including the ability of the topics obtained to reconstruct known clusters, interpretability of topics and topic coherence. We wish to answer the following questions in the paper:
+Evaluation of the resultant topic model is challenging because of the unsupervised nature of the problem. We look at different evaluation metrics 
+including the ability of the topics obtained to reconstruct known clusters, 
+interpretability of topics and topic coherence. We wish to answer the following questions in the paper:
 \begin{compactitem}
-\item  Can we learn an LDA topic model with better performance without any modification to the core LDA algorithm?
+% \item  Can we learn an LDA topic model with better performance without any modification to the core LDA algorithm?
 \item Do the different proposed pooling strategies perform better than unpooled tweets?
 \item Which pooling scheme work best for which metric and why?
 \item What further improvements can be made to various pooling schemes so as to obtain topics which are coherent and interpretable.
 %\item Can we shed some light on how to better the best results obtained thus far? What kind of modifications are required for the same?
 \end{compactitem}
-
-With a set of carefully designed experiments spanning different dataset of Twitter content and evaluation metrics which adhere to different requirements, we make the following contributions:
+% With a set of carefully designed experiments spanning different dataset of Twitter content and evaluation metrics which adhere to different requirements, 
+We make the following contributions:
 \begin{compactitem}
-\item We highlight how different evaluation metrics can be used to measure the performance of the different schemes.
+% \item We highlight how different evaluation metrics can be used to measure the performance of the different schemes.
 \item We show that different pooling schemes perform differently across different datasets and some pooling schemes consistently outperform unpooled tweets.
-\item We show that Hashtag-wise pooling leads to best results across all evaluation metrics
-\item We present ways of assigning hashtags to tweets which further improve the performance.
+\item We show that hashtag-wise pooling leads to best results across all evaluation metrics.  The performance is a significant improvement over unpooled use.
+\item We present ways of assigning hashtags to tweets for further improvement.
 \end{compactitem}
 
-In the following sections we describe the proposed tweet pooling schemes  and demonstrate that tweet pooling improves the quality of the topics obtained by a big margin (of the order of ten for one of the evaluation metrics). The Hashtag-based pooling scheme and tag assignment proposed works better than all other schemes across almost all datasets and metrics. 
+In the following sections we describe the proposed tweet pooling schemes.
+???????????
+% and demonstrate that tweet pooling improves the quality of the topics obtained by a big margin (of the order of ten for one of the evaluation metrics). The hashtag-based pooling scheme and tag assignment proposed works better than all other schemes across almost all datasets and metrics. 
 
 
 
 \section{Topic Modelling and Latent Dirichlet Allocation}
 
-Latent Dirichlet allocation (LDA), originally introduced by Blei et al.[1], is a generative model for text. In LDA, each document may be viewed as a mixture of various topics. We use the following notations for describing the LDA model:\\
-\hspace{2cm} M : number of documents\\
-\hspace{2cm} N : number of words in a document\\
-\hspace{2cm} $\alpha$ : parameter of the Dirichlet prior on the per-document topic   distributions\\
-\hspace{2cm} $\beta$ : the parameter of the Dirichlet prior on the per-topic word distribution\\
-\hspace{2cm} $\theta_i$ : the topic distribution for document i,\\
-\hspace{2cm} $\phi_k$ is the word distribution for topic k,\\
-\hspace{2cm} $z_{ik}$ is the topic for the jth word in document i, and\\
-\hspace{2cm} $w_{ij}$ is the specific word.
- 
-The $w_{ij}$ are the only observable variables, and the other variables are latent variables. If K be the number of topics considered in the model, $\phi$ is a $K*V$ (V is the dimension of the vocabulary) matrix each row of which denotes the word distribution of a topic.
-
-The generative process behind is that documents are represented as random mixtures over latent topics, where each topic is characterized by a distribution over words. LDA assumes the following generative process for each document i in a corpus D :
-
-\begin{compactenum}
-\item Choose $\phi_i \sim Dir(\alpha)$, where i $\in$ {1,...,M} and Dir($\alpha$) is the Dirichlet distribution for parameter $\alpha$
-\item Chose $\phi_k \sim Dir(\beta)$, where k $\in {1,...,K}$
-\item For each of the words $w_{ij}$, where j $\in {1,...,N_i}$
-	\begin{compactenum}
-		\item Chose a topic $z_{i,j} \sim Multinomial(\theta)$
-		\item Chose a word $w_{i,j} \sim Multinomial(\phi_{z_{i,j}})$
-	\end{compactenum}
-\end{compactenum}
-
-
-Learning the various distributions (the set of topics, their associated word probabilities, the topic of each word, and the particular topic mixture of each document) is a problem of Bayesian inference. The original paper used a variational Bayes approximation of the posterior distribution; alternative inference techniques use Gibbs sampling and expectation propagation.
-
-
-
-
-
-
-
-%In this model, a “topic” t is a discrete distribution over words with probability vector $\phi_{t}$. Dirichlet priors, with concentration parameter $\beta$ and base measure $n$, are placed over the topics $\Phi = \lbrace \phi_{1}, ... , \phi_{T} \rbrace $ :
-
-%\begin{center}
-%$P\left( \Phi \right)  = \Pi_{t}  Dir\left(  \phi_{t} ; \beta n  \right) $
-%\end{center}
-
-%Each document, indexed by d, is assumed to have its own distribution over topics given by probabilities $\theta_{d}$. The priors over $\Theta = \lbrace  \theta_{1}, ... , \theta_{d}  \rbrace$ are also Dirichlet, with concentration parameter $\alpha$ and base measure $m$:
-
-%\begin{center}
-%$P\left( \Theta \right)  = \Pi_{d}  Dir\left(  \theta_{d} ; \alpha m  \right) $
-%\end{center}
-
-%The tokens in a document $w^{d} = \lbrace w^{d}_{n} \rbrace^{N_{d}}_{n=1} $ (where $N_d$ is the number of tokens in the document d)are associated with topic assignments $z^{d} = \lbrace z^{d}_{n} \rbrace^{N_{d}}_{n=1} $, drawn i.i.d. from the document-specific topic distribution:
-%\begin{center}
-%$P\left( z_{d} | \theta_{d}  \right) = \Pi_{n} \theta_{ z^{\left( d\right) }_{n} %| d}$.
-%\end{center}
-%The tokens are drawn from the topics’ distributions:
-%\begin{center}
-%$P\left( w_{d} | z_{d}, \Phi  \right) = \Pi_{n} \phi_{ w^{\left( d\right) }_{n} | z^{\left( d\right) }_{n}}$.
-%\end{center}
-
-%A data set of documents $W = \lbrace w^(1) , w^(2) , ..., w^(D) \rbrace $ is observed, while the underlying corresponding topic assignments $Z = \lbrace z^(1) , z^(2) , ..., z^(D) \rbrace $ are unobserved. 
-%\\
-
-We use the Mallet[4] implementation of LDA for performing our experiments.
+%%%  Wray:  I cut this subsection back since its not really used
+%           placed the old stuff at the end
+Latent Dirichlet allocation (LDA) \cite{blei03} is a generative model
+for text. In LDA, each document may be viewed as a mixture of various
+topics.  The generative process is that documents are
+represented as random mixtures over latent topics, where each topic is
+characterized by a distribution over words.  Learning the various
+distributions (the set of topics, their associated word probabilities,
+the topic of each word, and the particular topic mixture of each
+document) is a problem of Bayesian inference, and many algorithms are
+available.  We use the Mallet \cite{mallet} implementation of LDA for
+performing our experiments.
 
 
 \section{Twitter Dataset Construction}
@@ -192,175 +178,111 @@ We use the Mallet[4] implementation of LDA for performing our experiments.
 %Topics learned from a statistical topic model are formally a multinomial distribution over words, and are often displayed by printing the 10 most probable words in the topic. These top-10 words usually provide sufficient information to determine the subject area and interpretation of a topic, and distinguish one topic from another. However, topics learned on sparse or noisy text data are
 often less coherent, difficult to interpret, and not particularly useful. Some of these noisy topics can be vaguely interpretable, but contain (in the top-10 words) one or two unrelated words – while other topics can be practically incoherent. 
 
-Focusing on the messy text of microblogs, the primary goal of this work is to get topics which have better coherence and interpretability using standard LDA. We discuss the following five tweet pooling schemes, which are described in detail in a later section:
-\begin{compactitem}
-\item Unpooled
-\item Author wise pooling
-\item Temporal Pooling
-\item Burst score wise pooling
-\item Hashtag based pooling
-\end{compactitem}
+Focusing on the messy text of microblogs, the primary goal of this work is to get topics which have better coherence and interpretability using standard LDA. We discuss the following five tweet pooling schemes, which are described in detail later: Unpooled, Author-wise pooling, Temporal pooling,
+Burst-score wise pooling, and Hashtag based pooling
 
-The different pooling schemes and their proposed modifications result in different topic models, the evaluation of which is a major concern. We wish to answer questions like: Which scheme performs better on which aspects and on what kinds of data? Due to the large number of tweets (~360000) in any of the twitter specific datasets, manual labelling of topics is not feasible. To circumvent this problem of unsupervised evaluation we carefully construct our datasets keeping the following points in mind:
-\begin{compactitem}
-\item The datasets should cover diverse collections of content possible in the microblog environment
-\item The method of dataset creation should help in evaluation of the topic model obtained using the different tweet pooling schemes.
-\end{compactitem}
+The different pooling schemes and their proposed modifications result in different topic models, the evaluation of which is a major concern. We wish to answer questions like: Which scheme performs better on which aspects and on what kinds of data? Due to the large number of tweets (~360000) in any of the twitter specific datasets, manual labelling of topics is not feasible.
+ To circumvent this problem of unsupervised evaluation we carefully construct our datasets keeping the following point in mind:
+The datasets should cover diverse collections of content,
+but also the known source of the content
+should help in evaluation of the different schemes.
 
-Based on the above mentioned points we construct three datasets which we believe are representative of the diverse collections of content found in Twitter data. From a large collection of tweets we choose single/double word queries to search the tweet collection and each resulting set of tweets was labelled by the query. Since the number of queries (equivalently the number of clusters) is known beforehand, we could use this knowledge to evaluate how well the topics output by LDA match with known clusters. A brief description of the three datasets is as follows:
-
-\begin{compactenum}
-
-\item Generic Dataset
-\begin{compactitem}
-%\item Number of tweets: 676258
-\item Number of tweets: 359478
-\item Time Duration: 11 Jan'09 - 30 Jan'09
-\item Description: General dataset with tweets containing generic terms which represent a broader sense.
-\end{compactitem}
-
-\item Specific Dataset
-\begin{compactitem}
-%\item Number of tweets: 415926
-\item Number of tweets: 214580
-\item Time Duration: 11 Jan'09 - 30 Jan'09
-\item Description: Dataset composed of tweets which have specific terms which refer to named entity topics.
-\end{compactitem}
-
-\item Event Dataset
-\begin{compactitem}
-\item Number of tweets: 207128
-\item Time Duration: 1 June 2009 - 30 June 2009
-\item Description: Event related dataset which contains tweets which were posted about some particular events. The query terms are terms which represent events.
-\end{compactitem}
-
-\end{compactenum}
-Each of these datasets was created by querying a collection of 100 million tweets spanning 2 months (January'09 \& June'09) with terms that relate to generic queries (broad topic words like music, business, etc), specific queries(named entity topics like Obama, McDonalds, etc) and event related queries(actual events in that timeframe like recession, Flight 447, Iran elections, etc ). Tables 1,2 and 3 give the terms and the percentage tweets in the datasets which contain that term.
-\\
-
+We construct three datasets which we believe are representative of the diverse collections of content found on Twitte.  We choose single/double word queries to search a tweet collection and each resulting set of tweets was labelled by the query. Since the number of queries (equivalently the number of clusters) is known beforehand, we could use this knowledge to evaluate how well the topics output by LDA match with known clusters. A brief description of the three datasets is as follows:\vspace{-5pt}
+\begin{description}
+\item[Generic Dataset: ]
+ 359478 tweets from 11 Jan'09 to 30 Jan'09.
+A general dataset with tweets containing generic terms which represent a broader sense.\vspace{-5pt}
+\item[Specific Dataset: ]
+214580 tweets from 11 Jan'09 to 30 Jan'09.
+A dataset composed of tweets which have specific terms which refer to named entity topics.\vspace{-5pt}
+\item[Event Dataset: ]
+207128 tweets from 1 June 2009 to 30 June 2009.
+An event related dataset which contains tweets which were posted about some particular events. The query terms are terms which represent events.\vspace{-5pt}
+\end{description}
+Each of these datasets was created by querying a collection of 100 million tweets spanning 2 months (January'09 \& June'09) with terms that relate to generic queries (broad topic words like music, business, {\it  etc.}), specific queries(named entity topics like Obama, McDonalds, {\it etc.}) and event related queries(actual events in that timeframe like recession, Flight 447, Iran elections, 
+{\it etc.}). 
+Table~\ref{tbl-q} give the terms and the percentage tweets in the datasets which contain that term.
 
 \begin{table}[!h]
-\setcounter{table}{0}
 \centering
-
-\resizebox{14cm}{!} 
-{
-	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+	\begin{tabular}{|c|p{4in}|}
 	\hline
-	Term & music & business & movie & design & food & fun & health & family & sport & space\\
-	\hline
-%	\# tw & 121511 & 107422 & 98496 & 73422 & 64723 & 61776 & 47209 & 43705 & 33758 & 24236 \\
-	\% tw & 17.9 & 15.8 & 14.5 & 10.8 & 9.6 & 9.1 & 6.9 & 6.4 & 4.9 & 3.2 \\
+        Dataset & Term/\% \\
+\hline
+Generic &{\small music/17.9 business/15.8 movie/14.5 design/10.8
+       food/9.6 fun/9.1 health/6.9 family/6.4 sport/4.9 space/3.2}  \\
+%music & business & movie & design & food & fun & health & family & sport & space
+%\# tw & 121511 & 107422 & 98496 & 73422 & 64723 & 61776 & 47209 & 43705 & 33758 & 24236 \\
+%\% tw & 17.9 & 15.8 & 14.5 & 10.8 & 9.6 & 9.1 & 6.9 & 6.4 & 4.9 & 3.2 \\
+Specific &{\small 
+Obama/23.2 Sarkozy/0.4 baseball/3.5 cricket/1.8 Mcdonalds/1.5 Burgerking/0.5 Apple/16.3 Microsoft/6.8 United-states/40.7 France/4.9} \\
+% Term & obama & sarkozy & baseball & cricket & mcdonalds & burgerkings & apple & microsoft & united statess & france\\
+%\# tw & 96810 & 1831 & 14343 & 7627 & 6313 & 2224 & 67886 & 28497 & 169396 & 20502 \\
+% tw & 23.2 & 0.4 & 3.5 & 1.8 & 1.5 & 0.5 & 16.3 & 6.8 & 40.7 & 4.9 \\
+Events &{\small Flight-447/0.9 Jackson/13.9  Lakers/13.8 attack/13.8 scandal/4.1 swine-flu/13.8 recession/12.3 conference/14.1 T20/4.4 Iran-election/8.6  }\\
+% Term & Flight 447 & Jackson & Lakers & attack & scandal & swine flu & recession & conference & T20 & Iran election \\
+%  tw & 0.9 & 13.9 & 13.8 & 13.8 & 4.1 & 13.8 & 12.3 & 14.1 & 4.4 & 8.6 \\
 	\hline
 	\end{tabular}
-}
-\caption{Generic Dataset.}\label{Dataset}
+\caption{Datasets}\label{tbl-q}
 \end{table}
-
-
-\begin{table}[!h]
-\setcounter{table}{1}
-\centering
-
-\resizebox{14cm}{!} 
-{
-	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
-	\hline
-	Term & obama & sarkozy & baseball & cricket & mcdonalds & burgerkings & apple & microsoft & united statess & france\\
-	\hline
-%	\# tw & 96810 & 1831 & 14343 & 7627 & 6313 & 2224 & 67886 & 28497 & 169396 & 20502 \\
-	\% tw & 23.2 & 0.4 & 3.5 & 1.8 & 1.5 & 0.5 & 16.3 & 6.8 & 40.7 & 4.9 \\
-	\hline
-	\end{tabular}
-}
-\caption{Events Dataset.}\label{Dataset}
-\end{table}
-
-\begin{table}[!h]
-\setcounter{table}{2}
-\centering
-\resizebox{14cm}{!} 
-{
-	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
-	\hline
-	Term & Flight 447 & Jackson & Lakers & attack & scandal & swine flu & recession & conference & T20 & Iran election \\
-	\hline
-	\% tw & 0.9 & 13.9 & 13.8 & 13.8 & 4.1 & 13.8 & 12.3 & 14.1 & 4.4 & 8.6 \\
-	\hline
-	\end{tabular}
-}
-\caption{Specific Dataset.}\label{Table}
-\end{table}
-
-It is to be noted that the 3 datasets span three different scenarios in which  tweets would be posted. Evaluating our methods on each of these would give us useful insights as to which methods work well for which type of data. We next present the evaluation metrics used to compare the different topic models learnt by the different pooling schemes. \\
-
+Note that the 3 datasets span three different scenarios in which  tweets would be posted. Evaluating our methods on each of these would give us useful insights as to which methods work well for which type of data. 
+% We next present the evaluation metrics used to compare the different topic models learnt by the different pooling schemes. \\
 
 \section{Evaluating Topic Models - Metrics used}
 
-When the text being modelled is plentiful, clear and well written (e.g. large
-collections of abstracts from scientific literature), learned topics are usually coherent, easily understood, and fit for use in user interfaces. However, topics are not always consistently coherent, and even with relatively well written text, one can learn topics that are a mix of concepts or hard to understand. This problem is exacerbated for content that is sparse or noisy, such as tweets.
-\\\\
-Evaluation of the different topic models based on the above mentioned features of interpretability, usability and coherence is an important issue, but the unsupervised nature of topic models makes this difficult. For some applications there may be extrinsic tasks, such as information retrieval or document classification, for which performance can be evaluated. However, such tasks are not applicable for evaluating topics models in the {\it undirected informational task}. 
+% When the text being modelled is plentiful, clear and well written (e.g. large
+% collections of abstracts from scientific literature), learned topics are usually easily understood and fit for use in user interfaces. However, topics are not always consistently coherent, and even with relatively well written text, one can learn topics that are a mix of concepts or hard to understand. This problem is exacerbated for content that is sparse or noisy, such as tweets.
+
+Evaluation of the different topic models based on the features of interpretability, usability and coherence is an important issue, but the unsupervised nature of topic models makes this difficult. For some applications there may be extrinsic tasks, such as information retrieval or document classification, for which performance can be evaluated. However, such tasks are not applicable for evaluating topics models in the {\it undirected informational task}. 
 
 We evaluate our topic models based on the following two approaches:
-\begin{compactenum}
-\item \textbf{Clustering based metrics} \\
-We would like to measure the quality of topics found by the models. The dataset we used is a classification dataset containing 10 categories. Since we know the ground truth label of all the tweets in the dataset (their categories), we can measure the quality by how likely the topics agree with the true category labels. To measure how well the topics produced by LDA reconstruct known clusters, we use clustering based measures of purity and normalized mutual information (NMI).\\
+\paragraph{Clustering based metrics:} 
+We would like to measure the quality of topics found by the models. The dataset we used is a classification dataset containing 10 categories. Since we know the ground truth label of all the tweets in the dataset (their categories), we can measure the quality by how likely the topics agree with the true category labels. To measure how well the topics produced by LDA reconstruct known clusters, we use clustering based measures of purity and normalized mutual information (NMI).
 
-\item \textbf{Metrics measuring topic coherence} \\
-It is desirable that the learnt topics are coherent and interpretable. Recent work[10] has demonstrated that it is possible to automatically measure topic coherence with near-human accuracy using a score based on pointwise mutual information (PMI). PMI scores serve as our metric to measure coherence of the topics output by different tweet-pooling schemes.
-\end{compactenum}
-
-We next describe each of these measures in detail.
-
+\paragraph{Metrics measuring topic coherence:}
+Learnt topics should be coherent and interpretable. 
+Topic coherence – meaning semantic coherence – is a human judged quality that depends on the semantics of the words, and cannot be measured by model-based statistical measures that treat the words as exchangeable tokens. 
+It is possible to automatically measure topic coherence with near-human accuracy
+\cite{baldwin10}
+using a score based on pointwise mutual information (PMI). 
+We use this to measure coherence of the topics 
+from different tweet-pooling schemes.
 
 \subsection{Purity Scores}
-To compute purity[15], each cluster is assigned to the class which is most frequent in the cluster, and then the accuracy of this assignment is measured by counting the number of correctly assigned documents and dividing by N. For each tweet $d$, we use the maximum value in topic mixture $\theta_{d} $ to determine its class/topic.
+To compute purity \cite{MRS08},
+ each cluster is assigned to the class which is most frequent in the cluster, and then the accuracy of this assignment is measured by counting the number of correctly assigned documents and dividing by N. For each tweet $d$, we use the maximum value in topic mixture $\theta_{d} $ to determine its class/topic.
 
 We interpret $t_{k}$ as the set of tweets in cluster $t_{k}$ and $g_{k}$ as the set of tweets in category-label $g_{k}$. $m$ is the total number of tweets; $T = \lbrace t_{1}, ... , t_{k} \rbrace$ is the set of k clusters and $ G = \lbrace g_{1}, ... , g_{k}\rbrace $ is the set of k category-labels (e.g. Obama, Microsoft).
-
-\begin{center}
-$ purity (T,G) = \frac{1}{N} \Sigma_{k} max_{j} |t_{k} \cap g_{j}|$
-\end{center}
-
-where
-
-\begin{center}
-$ t_k = \lbrace  d \hspace{2 mm} |  \hspace{2 mm} argmax_{t^*} \theta^{t^{*}}_d = t \rbrace $
-\end{center}
-
+\[
+ purity (T,G) = \frac{1}{N} \Sigma_{k} max_{j} |t_{k} \cap g_{j}|
+\]
+where $ t_k = \lbrace  d \hspace{2 mm} |  \hspace{2 mm} argmax_{t^*} \theta^{t^{*}}_d = t \rbrace $.
 As the number of correctly assigned tweets increases for each cluster, the overall purity score increases. hence high purity scores reflect better cluster reconstruction, hence a topic model with high purity score is considered better.
 \\
 
 \subsection{Normalized Mutual Information}
 Since we know the ground truth label of all the tweets in the dataset, i.e., their categories, we can measure the quality by how likely the topics agree with the true category labels. 
-\begin{center}
-$NMI(T,G) = \frac{2 I(T;G)}{H(T) + H(G)} $
-\end{center}
+\[
+NMI(T,G) = \frac{2 I(T;G)}{H(T) + H(G)} 
+\]
 where $I(T,G)$ is Mutual Information and $H(T)$ gives the entropy. The 
 corresponding values are:
+\[
+I(T,G) = \Sigma_{k} \Sigma_{j} \frac{|t_{k} \cap g_{j}|}{N} log \frac{|t_{k} \cap g_{j}|}{|t_{k}| |g_{j}|} 
+~~~~~~~~~~~~~~~~~~
+H(T) = - \Sigma_k \frac{|t_k|}{N} log \frac{|t_k|}{N} 
+\]
+NMI \cite{MRS08} is always a number between 0 and 1. NMI score will be 1 if the clustering results exactly match the category labels while 0 if the two sets are independent. For each tweet $d$, we use the maximum value in topic mixture $ \theta_{d} $ to determine its cluster. After this mapping process, we compute NMI scores with the labels.
 
-\begin{center}
-$ I(T,G) = \Sigma_{k} \Sigma_{j} \frac{|t_{k} \cap g_{j}|}{N} log \frac{|t_{k} \cap g_{j}|}{|t_{k}| |g_{j}|} $
-\end{center}
-
-\begin{center}
-$ H(T) = - \Sigma_k \frac{|t_k|}{N} log \frac{|t_k|}{N} $
-\end{center}
-
-NMI[15] is always a number between 0 and 1. NMI score will be 1 if the clustering results exactly match the category labels while 0 if the two sets are independent. For each tweet $d$, we use the maximum value in topic mixture $ \theta_{d} $ to determine its cluster. After this mapping process, we compute NMI scores with the labels.
-\\
 High purity is easy to achieve when the number of clusters is large. The normalization by the denominator in the NMI fixes this problem as entropy tends to increase with the number of clusters.
 
 \subsection{Pointwise Mutual Information}
 
-One of the goals of our work is to get topics which are more coherent. Topic coherence – meaning semantic coherence – is a human judged quality that depends on the semantics of the words, and cannot be measured by model-based statistical measures that treat the words as exchangeable tokens. Recent work[12] has demonstrated that it is possible to automatically measure topic coherence with near-human accuracy using a score based on pointwise mutual information (PMI).
-
-\begin{center}
-$ PMI Score(w) = Mean ( PMI(w_i,w_j) ) i,j \in \lbrace1.....10\rbrace $
-\end{center}
-
-A key aspect of this score is that it uses external data. Newman et al[16] used the Wikipedia corpus as their external data. We eliminate the need of this external data source by using our own dataset to calculate the probabilities used in this score.\\
+One of the goals of our work is to get topics that are more coherent. 
+We measure topic coherence using PMI defined as follows:
+$PMI Score(w) = Mean ( PMI(w_i,w_j) ) i,j \in \lbrace1.....10\rbrace $.
+A key aspect of this score is that it uses external data.  \cite{baldwin10} used the Wikipedia corpus as their external data. We eliminate the need of this external data source by using our own dataset to calculate the probabilities used in this score.\\
 
 
 \section{Tweet Pooling}
@@ -379,50 +301,30 @@ A key aspect of this score is that it uses external data. Newman et al[16] used 
 
 The goal of this paper is to get better topics from Twitter content without modifying the basic machinery of standard LDA. Microblog messages differ from conventional text. They feature many unique symbols like mentions, hashtags and urls, and the popular use of colloquial words and Internet slang. Message quality varies greatly, from newswire-like utterances  to babble (e.g. O o haha wow). In terms of text processing, there are significant research challenges. To this effect we present various pooling schemes to aggregate tweets together for use as training data for building better LDA models. The motivation behind tweet pooling is that individual tweets are very short($\leq$ 140 characters) and hence treating each tweet as a document does not works well for topic modelling. Aggregating tweets which are similar in some sense (semantically, temporally etc) enriches the content present in a single document from which the LDA can learn better topic model. We next describe four different tweet pooling schemes and compare the resulting models against the one obtained with unpooled tweets.
 
-
-\begin{compactenum}
-
-\item \textbf{Basic scheme: Unpooled Tweets}
-\\
+\paragraph{Basic scheme: Unpooled Tweets:}
 The default way of training models involves treating each tweet as a single document and training LDA on all tweets. This serves as our baseline and we compare results of other pooling schemes against this Unpooled scheme. For each tweet $d$, using the trained model, we use the maximum value in topic mixture $\theta_{d} $ to determine its class/topic and use theresult to calculate the Purity and NMI scores.
-\\
 
-\item \textbf{ Burst Score wise Pooling}
-\\
+\paragraph{Burst-score wise Pooling:}
 A \textit{trend} on Twitter (sometimes referred to as a trending topic) consists of one or more terms and a time period, such that the volume of messages posted for the terms in the time period exceeds some expected level of activity. In order to identify trends in Twitter posts, "bursts" of interest and attention can be detected in the data. We run a simple burst detection algorithm to detect such trending topics and aggregate tweets containing those terms having high burst scores.
-\\
-Specifically, to identify terms that appear more frequently than expected, we will assign a score to terms according to their deviation from an expected frequency. Assume that $M$ is the set of all messages in our Tweets dataset, $R$ is a set of one or more terms to which we wish to assign a score, and $y$ represents a day of the total $z$ days. We then define $M(R, y)$ as the set of every Twitter message in $M$ such that (1) the message contains all the terms in $R$ and (2) the message was posted during day $y$. With this information, we can compare the volume in a specific day to the other days. Let 
-
-\begin{center}
-$ Mean(R) = \frac{\Sigma_d M(R,y)}{z} $
-\end{center}
-
+To identify terms that appear more frequently than expected, we will assign a score to terms according to their deviation from an expected frequency. Assume that $M$ is the set of all messages in our Tweets dataset, $R$ is a set of one or more terms to which we wish to assign a score, and $y$ represents a day of the total $z$ days. We then define $M(R, y)$ as the set of every Twitter message in $M$ such that (1) the message contains all the terms in $R$ and (2) the message was posted during day $y$. With this information, we can compare the volume in a specific day to the other days. Let 
+$ Mean(R) = \Sigma_d M(R,y) / z $.
 Correspondingly, $ SD(R) $ is the standard deviation of the number of messages with the terms in $R$ posted over all the days. The \textit{burst-score} is defined as:
-\begin{center}
-$ burst\_score(R,y) = \frac{|M(R,y) - Mean(r)|}{SD(R)} $
-\end{center}
+\[
+burst\_score(R,y) = \frac{|M(R,y) - Mean(r)|}{SD(R)} 
+\]
 
 Let us denote the terms having burst-scores greater than 5 as \textit{burst-term}. For each burst-term, aggregate tweets which contain this term and train LDA on this aggregation of tweets. We then use the trained model to infer a topic mixture for each of the individual tweets. This scheme is henceforth referred to as Burst Score-wise pooling.
-\\
 
-\item  \textbf{Author-wise Pooling}
-\\
+\paragraph{Author-wise Pooling: }
 Another way of tweet pooling could be to aggregate tweets posted by a particular author as a single document and repeat this for all the authors. We train LDA on aggregated author profiles, each of which combines all tweets posted by the same author. Using this model we infer a topic mixture of individual tweets.
-\\
 
-\item  \textbf{Temporal Pooling}
-\\
+\paragraph{Temporal Pooling: }
 The fourth scheme, known as Temporal Pooling, is utilizes the temporal information of the tweets. It is noted that whenever a major event occurs a large number of users start tweeting about the event. Temporal pooling of tweets might help us in extracting useful information from the LDA topics. We train the LDA on an aggregate of tweets posted within the same hour and use this model to infer a topic mixture for each of the individual tweets.
-\\
 
-\item  \textbf{Hashtag-wise Pooling}
-\\
+\paragraph{Hashtag-wise Pooling:}
 A Twitter \textit{hashtag} is a string of characters preceded by the hash (\#) character. In many cases hashtags can be viewed as topical markers, an indication to the context of the tweet or as the core idea expressed in the tweet, therefore hashtags are adopted by other users that contribute similar content or express a related idea. A few examples of the use of hashtags are: "ask GAGA anything using the tag \#GoogleGoesGaga for her interview! RT so every monster learns about it!! " referring to an exclusive interview for Google by Lady Gaga (singer), "Whoever
 said 'youth is wasted on the young' must be eating his words right now. \#March15 \#Jan25 \#Feb14 ", referring to the protest movements in the Arab world.
-\\\\
 For the hashtag based pooling scheme, for each hashtag we aggregate tweets containing this hashtag and train LDA on this collection. Each hashtag pooled tweet collection thus represents a document. If any tweet has more than one hashtag, this tweet gets added to the tweet-pool of each of those hashtags. This results in tweets being repeated across documents. We notice that this tweet pooling scheme outperforms the rest. We discuss hashtag based pooling in detail in a later section.
-
-\end{compactenum}
 
 \subsection{Document Characteristics for different pooling schemes}
 Here we look at the document characteristics of the documents in the different pooling schemes for the three datasets. The characteristics like the number of documents affect LDA directly and hence it will be interesting to look at what the training data consists of. Table 3 presents the required statistics.
@@ -690,21 +592,16 @@ The results obtained via hashtag assignment are better than those of simple hash
 
 \subsubsection{Other Similarity Metrics}
 The results presented in Table 12 use the tf-cosine similarity between tweet and tweet-collection of a hashtag to assign a hashtag to the tweet in  consideration. We next answer the question of how other similarity metrics affect the results of hashtag assignments. We look at the following six metrics to be used to represent each document while calculating the cosine similarity scores:
-
-\begin{enumerate}
-\item \textbf{Term Frequency (TF)}: Already discussed in the previous section.
-\item \textbf{Inverse Document Frequency (IDF)}:  a measure of whether the term is common or rare across all documents. It is obtained by dividing the total number of documents by the number of documents containing the term, and then taking the logarithm of that quotient. Thus the idf of a rare term is high, whereas the idf of a frequent term is likely to be low.
-\item \textbf{Inverse Author Frequency (IAF)}: Each term used in a tweet has a relationship to the tweet's author. The relationship of terms and authors could be harnessed using the inverse author frequency (IAF) [17] which is computed as follows:
-
-\begin{center}
+\begin{description}
+\item{\bf Term Frequency (TF)}: Already discussed in the previous section.
+\item{\bf Inverse Document Frequency (IDF)}:  a measure of whether the term is common or rare across all documents. It is obtained by dividing the total number of documents by the number of documents containing the term, and then taking the logarithm of that quotient. Thus the idf of a rare term is high, whereas the idf of a frequent term is likely to be low.
+\item{\bf Inverse Author Frequency (IAF)}: Each term used in a tweet has a relationship to the tweet's author. The relationship of terms and authors could be harnessed using the inverse author frequency (IAF) [17] which is computed as follows:
 $iaf_i = log \frac{N}{n_i}$
-\end{center}
 where $N: \#$ of total authors and $n_i: \#$ of authors who use term i
-
-\item \textbf{TF-IDF}: the product of the term frequency and inverse document frequency of each term.
+\item{\bf TF-IDF}: the product of the term frequency and inverse document frequency of each term.
 %\item \textbf{TF-IAF}: TF-IAF is the product of the term frequency and inverse author frequency of each term.
-\item \textbf{TF-IDF-IAF}: the product of the term frequency, inverse document frequency and the inverse author frequency of each term.
-\end{enumerate}
+\item{\bf TF-IDF-IAF}: the product of the term frequency, inverse document frequency and the inverse author frequency of each term.
+\end{description}
 
 %\subsubsection*{Tf-IAF}
 %Description\\
@@ -723,7 +620,6 @@ Figure 2 presents the results obtained for the three evaluation metrics on the t
 \resizebox{14cm}{!} 
 {
 	\begin{tabular}{ccc}
-	
 %		\vspace{-3mm}
 %		\hspace{-8mm} 
 		\includegraphics[width=140pt]{Figs/1-1.jpg} & 
@@ -765,8 +661,7 @@ Figure 2 presents the results obtained for the three evaluation metrics on the t
 		%\hspace{-3mm} 
 		{\footnotesize PMI(Events)}\\
 
-		
-
+	
 	\end{tabular}
 }
 \end{center}
@@ -780,7 +675,6 @@ Figure 2 presents the results obtained for the three evaluation metrics on the t
 
 \section{Overall Comparison}
 The goal of this work was to get better topics which have better coherence, interpretability and usability without modifying the basic machinery of standard LDA. The default way of using tweets to train LDA was to treat each tweet as a single document (referred in this work as the Unpooled scheme). Simple hashtag based pooling outperformed unpooled scheme and other pooling schemes while hashtag assignment further improved results. Table 13 provides an overall comparison of the different schemes: Unpooled vs simple hashtag vs hashtag assignment on the three datasets.
-\\
 
 \begin{table}[!h]
 \setcounter{table}{13}
@@ -817,11 +711,20 @@ Overall, results shown in Table 13 compare unpooled scheme with simple hashtag p
 
 
 \section{Related Work}
-Topic modelling is gaining increasing attention in different text mining communities. Latent Dirichlet Allocation (LDA) [1] is becoming a standard tool in topic modelling. LDA has been extended in a variety of interesting ways, and in particular for social networks and social media, a number of extensions to LDA have been proposed. For example, Newman et al. [2] proposed two methods to regularize the learning of topic models aimed at short text snippets. While the focus of this work was on blogs and search result snippets, it would be interesting to see how well they work on Twitter data. Also, the combination of the work proposed in this paper with the tweet pooling schemes we describe before could produce interesting results.
+Topic modelling is widely used in text mining communities with LDA
+being the benchmark.  LDA has been extended in a variety of ways, and
+in particular for social networks and social media, a number of
+extensions to LDA have been proposed.  For example, \cite{newman11} proposed
+two methods to regularize the learning of topic models aimed at short
+text snippets. While the focus of this work was on blogs and search
+result snippets, it would be interesting to see how well they work on
+Twitter data. Also, the combination of the work proposed in this paper
+with the tweet pooling schemes we describe before could produce
+interesting results.
 
 %Among the social networks, several characteristics of the data available in microblogs make them appealing for applications which fall into three broad categories: event detection [3], trend identification [4], and social group identification [5]. The interested reader is directed to the work of Liao et al[9] which discusses the opportunities and challenges related to mining microblogs.
 
-Our work is quite different from many pioneering studies on Twitter and topic modeling because we try to study how we could get better topics using tweets with minimalistic efforts. Prior work on topic modeling for tweets includes the work of Ramage et al[6] which presents a scalable implementation of a partially supervised learning model (Labeled LDA) that maps the content of the Twitter feed into dimensions and characterize users and tweets using this model. Zhao et al [7] empirically compare the content of Twitter with a traditional news medium, New York Times, using unsupervised topic modeling. Hong et al [8] use the topic modeling approach for predicting popular Twitter messages and classifying Twitter users and corresponding messages into topical categories. Our work is different from these in the sense that we provide a simple yet effective way which greatly improves the quality of topics obtained without making any major complicated modifications to standard LDA. The detailed experiments on a variety of datasets highlight which scheme works well for which kind of dataset and for which task.
+Our work is quite different from many pioneering studies on Twitter and topic modeling because we try to study how we could get better topics using tweets with minimalistic efforts. Prior work on topic modeling for tweets includes the work of \cite{ramage} which presents a scalable implementation of a partially supervised learning model (Labeled LDA) that maps the content of the Twitter feed into dimensions and characterize users and tweets using this model. \cite{wayne} empirically compare the content of Twitter with a traditional news medium, New York Times, using unsupervised topic modeling. \cite{hong} use the topic modeling approach for predicting popular Twitter messages and classifying Twitter users and corresponding messages into topical categories. Our work is different from these in the sense that we provide a simple yet effective way which greatly improves the quality of topics obtained without making any major complicated modifications to standard LDA. The detailed experiments on a variety of datasets highlight which scheme works well for which kind of dataset and for which task.
 \\
 %Evaluating topic models has continued to be an active research topic with the aim of automatically evaluating topic models. Newman et l [10] introduce the task of topic coherence evaluation, whereby a set of words, as generated by a topic model, is rated for coherence or interpretability. Wallach [11] present evaluation methods based on the probability of held-out documents given a trained model.
 
@@ -833,7 +736,6 @@ The Hashtag-based pooling scheme and tag assignment proposed works better than a
 %\section*{Acknowledgments}
 %NICTA is funded by the Australian Government as represented by the Department of Broadband, Communications and the Digital Economy and the Australian Research Council through the ICT Centre of Excellence program.
 
-\section*{References}
 %'apalike-fr' style below applies smallcaps style on author names
 %in order to apply 'apalike-fr' the babel package must be given [frenchb] option instead of [english]
 % \usepackage[frenchb]{babel} also causes title "References" to render with French accents like "R\'ef\'erences"
@@ -853,12 +755,69 @@ The Hashtag-based pooling scheme and tag assignment proposed works better than a
 
 \bibliographystyle{apa}
 \bibliography{colingbiblio}
-\nocite{*}
-%\bibliographystyle{coling2012}
-
+% \nocite{*}
+%\bibliographystyle{coling2012
 
 %\nocite{TALN2007,LaigneletRioult09,LanglaisPatry07,au1972,cks1981,mb2012}
 
 %%================================================================
 \end{document}
+
+
+Latent Dirichlet allocation (LDA) \cite{blei03} is a generative model for text. In LDA, each document may be viewed as a mixture of various topics. We use the following notations for describing the LDA model:\\
+\hspace{2cm} M : number of documents\\
+\hspace{2cm} N : number of words in a document\\
+\hspace{2cm} $\alpha$ : parameter of the Dirichlet prior on the per-document topic   distributions\\
+\hspace{2cm} $\beta$ : the parameter of the Dirichlet prior on the per-topic word distribution\\
+\hspace{2cm} $\theta_i$ : the topic distribution for document i,\\
+\hspace{2cm} $\phi_k$ is the word distribution for topic k,\\
+\hspace{2cm} $z_{ik}$ is the topic for the jth word in document i, and\\
+\hspace{2cm} $w_{ij}$ is the specific word.
+ 
+The $w_{ij}$ are the only observable variables, and the other variables are latent variables. If K be the number of topics considered in the model, $\phi$ is a $K*V$ (V is the dimension of the vocabulary) matrix each row of which denotes the word distribution of a topic.
+
+The generative process behind is that documents are represented as random mixtures over latent topics, where each topic is characterized by a distribution over words. LDA assumes the following generative process for each document i in a corpus D :
+
+\begin{compactenum}
+\item Choose $\phi_i \sim Dir(\alpha)$, where i $\in$ {1,...,M} and Dir($\alpha$) is the Dirichlet distribution for parameter $\alpha$
+\item Chose $\phi_k \sim Dir(\beta)$, where k $\in {1,...,K}$
+\item For each of the words $w_{ij}$, where j $\in {1,...,N_i}$
+	\begin{compactenum}
+		\item Chose a topic $z_{i,j} \sim Multinomial(\theta)$
+		\item Chose a word $w_{i,j} \sim Multinomial(\phi_{z_{i,j}})$
+	\end{compactenum}
+\end{compactenum}
+
+
+Learning the various distributions (the set of topics, their associated word probabilities, the topic of each word, and the particular topic mixture of each document) is a problem of Bayesian inference. The original paper used a variational Bayes approximation of the posterior distribution; alternative inference techniques use Gibbs sampling and expectation propagation.
+
+
+
+
+
+
+
+%In this model, a “topic” t is a discrete distribution over words with probability vector $\phi_{t}$. Dirichlet priors, with concentration parameter $\beta$ and base measure $n$, are placed over the topics $\Phi = \lbrace \phi_{1}, ... , \phi_{T} \rbrace $ :
+
+%\begin{center}
+%$P\left( \Phi \right)  = \Pi_{t}  Dir\left(  \phi_{t} ; \beta n  \right) $
+%\end{center}
+
+%Each document, indexed by d, is assumed to have its own distribution over topics given by probabilities $\theta_{d}$. The priors over $\Theta = \lbrace  \theta_{1}, ... , \theta_{d}  \rbrace$ are also Dirichlet, with concentration parameter $\alpha$ and base measure $m$:
+
+%\begin{center}
+%$P\left( \Theta \right)  = \Pi_{d}  Dir\left(  \theta_{d} ; \alpha m  \right) $
+%\end{center}
+
+%The tokens in a document $w^{d} = \lbrace w^{d}_{n} \rbrace^{N_{d}}_{n=1} $ (where $N_d$ is the number of tokens in the document d)are associated with topic assignments $z^{d} = \lbrace z^{d}_{n} \rbrace^{N_{d}}_{n=1} $, drawn i.i.d. from the document-specific topic distribution:
+%\begin{center}
+%$P\left( z_{d} | \theta_{d}  \right) = \Pi_{n} \theta_{ z^{\left( d\right) }_{n} %| d}$.
+%\end{center}
+%The tokens are drawn from the topics’ distributions:
+%\begin{center}
+%$P\left( w_{d} | z_{d}, \Phi  \right) = \Pi_{n} \phi_{ w^{\left( d\right) }_{n} | z^{\left( d\right) }_{n}}$.
+%\end{center}
+
+%A data set of documents $W = \lbrace w^(1) , w^(2) , ..., w^(D) \rbrace $ is observed, while the underlying corresponding topic assignments $Z = \lbrace z^(1) , z^(2) , ..., z^(D) \rbrace $ are unobserved. 
+%\\
 
