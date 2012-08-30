@@ -1,23 +1,23 @@
-\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
-\BOOKMARK [1][-]{section.2}{Topic Modelling and Latent Dirichlet Allocation}{}% 2
-\BOOKMARK [1][-]{section.3}{Twitter Dataset Construction}{}% 3
-\BOOKMARK [1][-]{section.4}{Evaluating Topic Models - Metrics used}{}% 4
-\BOOKMARK [2][-]{subsection.4.1}{Purity Scores}{section.4}% 5
-\BOOKMARK [2][-]{subsection.4.2}{Normalized Mutual Information}{section.4}% 6
-\BOOKMARK [2][-]{subsection.4.3}{Pointwise Mutual Information}{section.4}% 7
-\BOOKMARK [1][-]{section.5}{Tweet Pooling}{}% 8
-\BOOKMARK [2][-]{subsection.5.1}{Pooling Schemes}{section.5}% 9
-\BOOKMARK [2][-]{subsection.5.2}{Document Characteristics for different pooling schemes}{section.5}% 10
-\BOOKMARK [2][-]{subsection.5.3}{Initial Results}{section.5}% 11
-\BOOKMARK [1][-]{section.6}{General Study of Hashtags \046 Hashtag Pooling}{}% 12
-\BOOKMARK [2][-]{subsection.6.1}{Do all tweets have hashtags?}{section.6}% 13
-\BOOKMARK [2][-]{subsection.6.2}{Incorporating Other Tweets :: Brute Force Way}{section.6}% 14
-\BOOKMARK [2][-]{subsection.6.3}{Assigning Hashtags}{section.6}% 15
-\BOOKMARK [3][-]{subsubsection.6.3.1}{Algorithm}{subsection.6.3}% 16
-\BOOKMARK [3][-]{subsubsection.6.3.2}{Hashtag Assignment Results}{subsection.6.3}% 17
-\BOOKMARK [3][-]{subsubsection.6.3.3}{Other Similarity Metrics}{subsection.6.3}% 18
-\BOOKMARK [3][-]{subsubsection.6.3.4}{Results of other similarity metrics}{subsection.6.3}% 19
-\BOOKMARK [1][-]{section.7}{Overall Comparison}{}% 20
-\BOOKMARK [1][-]{section.8}{Observations}{}% 21
-\BOOKMARK [1][-]{section.9}{Related Work}{}% 22
-\BOOKMARK [1][-]{section.10}{Conclusion}{}% 23
+\BOOKMARK [1][-]{section.1}{Introduction}{}
+\BOOKMARK [1][-]{section.2}{Topic Modelling and Latent Dirichlet Allocation}{}
+\BOOKMARK [1][-]{section.3}{Twitter Dataset Construction}{}
+\BOOKMARK [1][-]{section.4}{Evaluating Topic Models - Metrics used}{}
+\BOOKMARK [2][-]{subsection.4.1}{Purity Scores}{section.4}
+\BOOKMARK [2][-]{subsection.4.2}{Normalized Mutual Information}{section.4}
+\BOOKMARK [2][-]{subsection.4.3}{Pointwise Mutual Information}{section.4}
+\BOOKMARK [1][-]{section.5}{Tweet Pooling}{}
+\BOOKMARK [2][-]{subsection.5.1}{Pooling Schemes}{section.5}
+\BOOKMARK [2][-]{subsection.5.2}{Document Characteristics for different pooling schemes}{section.5}
+\BOOKMARK [2][-]{subsection.5.3}{Initial Results}{section.5}
+\BOOKMARK [1][-]{section.6}{General Study of Hashtags \046 Hashtag Pooling}{}
+\BOOKMARK [2][-]{subsection.6.1}{Do all tweets have hashtags?}{section.6}
+\BOOKMARK [2][-]{subsection.6.2}{Incorporating Other Tweets :: Brute Force Way}{section.6}
+\BOOKMARK [2][-]{subsection.6.3}{Assigning Hashtags}{section.6}
+\BOOKMARK [3][-]{subsubsection.6.3.1}{Algorithm}{subsection.6.3}
+\BOOKMARK [3][-]{subsubsection.6.3.2}{Hashtag Assignment Results}{subsection.6.3}
+\BOOKMARK [3][-]{subsubsection.6.3.3}{Other Similarity Metrics}{subsection.6.3}
+\BOOKMARK [3][-]{subsubsection.6.3.4}{Results of other similarity metrics}{subsection.6.3}
+\BOOKMARK [1][-]{section.7}{Overall Comparison}{}
+\BOOKMARK [1][-]{section.8}{Observations}{}
+\BOOKMARK [1][-]{section.9}{Related Work}{}
+\BOOKMARK [1][-]{section.10}{Conclusion}{}
