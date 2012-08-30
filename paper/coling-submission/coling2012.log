@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011/Cygwin) (format=pdflatex 2012.5.9)  30 AUG 2012 19:15
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011/Cygwin) (format=pdflatex 2012.5.9)  30 AUG 2012 21:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1165,48 +1165,41 @@ LaTeX Font Info:    Try loading font information for T1+cmtt on input line 39.
 (/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-Underfull \hbox (badness 10000) in paragraph at lines 54--54
 
- []
-
-
-Package natbib Warning: Citation `?????' on page 1 undefined on input line 71.
+Package natbib Warning: Citation `?????' on page 1 undefined on input line 79.
 
 
-Package natbib Warning: Citation `?????' on page 1 undefined on input line 81.
-
-
-Package natbib Warning: Citation `????' on page 1 undefined on input line 102.
+Package natbib Warning: Citation `????' on page 1 undefined on input line 98.
 
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 140.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 136.
 
 
 (/usr/share/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 140.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 136.
  [2]
-Underfull \hbox (badness 1024) in paragraph at lines 212--217
+Underfull \hbox (badness 1024) in paragraph at lines 208--213
 []|\T1/cmr/m/n/9 (+20) music/17.9 busi-ness/15.8 movie/14.5 de-sign/10.8 food/9
 .6 fun/9.1
  []
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 259--263
+Underfull \hbox (badness 10000) in paragraph at lines 255--259
 
  []
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 282--286
+Underfull \hbox (badness 10000) in paragraph at lines 278--282
 
  []
 
 [5] [6]
-Overfull \hbox (5.69466pt too wide) in paragraph at lines 335--355
+Overfull \hbox (5.69466pt too wide) in paragraph at lines 331--351
  [][] 
  []
 
@@ -1217,7 +1210,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [7]
-Overfull \hbox (5.71385pt too wide) in paragraph at lines 461--477
+Overfull \hbox (5.71385pt too wide) in paragraph at lines 457--473
  [][] 
  []
 
@@ -1226,87 +1219,87 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [8]
 Package hyperref Info: bookmark level for unknown algocf defaults to 0 on input
- line 555.
+ line 551.
 
-Underfull \hbox (badness 10000) detected at line 556
+Underfull \hbox (badness 10000) detected at line 552
 [][]
  []
 
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 562--564
+Underfull \hbox (badness 10000) in paragraph at lines 558--560
 
  []
 
 
-Overfull \hbox (5.70314pt too wide) in paragraph at lines 568--588
+Overfull \hbox (5.70314pt too wide) in paragraph at lines 564--584
  [][] 
  []
 
 [10]
-Underfull \hbox (badness 10000) in paragraph at lines 612--613
+Underfull \hbox (badness 10000) in paragraph at lines 608--609
 
  []
 
-<Figs/1-1.jpg, id=233, 642.4pt x 481.8pt>
+<Figs/1-1.jpg, id=235, 642.4pt x 481.8pt>
 File: Figs/1-1.jpg Graphic file (type jpg)
  <use Figs/1-1.jpg>
-Package pdftex.def Info: Figs/1-1.jpg used on input line 666.
+Package pdftex.def Info: Figs/1-1.jpg used on input line 662.
 (pdftex.def)             Requested size: 140.0pt x 104.99649pt.
 
-<Figs/1-2.jpg, id=234, 642.4pt x 481.8pt>
+<Figs/1-2.jpg, id=236, 642.4pt x 481.8pt>
 File: Figs/1-2.jpg Graphic file (type jpg)
  <use Figs/1-2.jpg>
-Package pdftex.def Info: Figs/1-2.jpg used on input line 666.
+Package pdftex.def Info: Figs/1-2.jpg used on input line 662.
 (pdftex.def)             Requested size: 140.0pt x 104.99649pt.
 
-<Figs/1-3.jpg, id=235, 642.4pt x 481.8pt>
+<Figs/1-3.jpg, id=237, 642.4pt x 481.8pt>
 File: Figs/1-3.jpg Graphic file (type jpg)
  <use Figs/1-3.jpg>
-Package pdftex.def Info: Figs/1-3.jpg used on input line 666.
+Package pdftex.def Info: Figs/1-3.jpg used on input line 662.
 (pdftex.def)             Requested size: 140.0pt x 104.99649pt.
 
-<Figs/2-1.jpg, id=236, 642.4pt x 481.8pt>
+<Figs/2-1.jpg, id=238, 642.4pt x 481.8pt>
 File: Figs/2-1.jpg Graphic file (type jpg)
  <use Figs/2-1.jpg>
-Package pdftex.def Info: Figs/2-1.jpg used on input line 666.
+Package pdftex.def Info: Figs/2-1.jpg used on input line 662.
 (pdftex.def)             Requested size: 140.0pt x 104.99649pt.
 
-<Figs/2-2.jpg, id=237, 642.4pt x 481.8pt>
+<Figs/2-2.jpg, id=239, 642.4pt x 481.8pt>
 File: Figs/2-2.jpg Graphic file (type jpg)
  <use Figs/2-2.jpg>
-Package pdftex.def Info: Figs/2-2.jpg used on input line 666.
+Package pdftex.def Info: Figs/2-2.jpg used on input line 662.
 (pdftex.def)             Requested size: 140.0pt x 104.99649pt.
 
-<Figs/2-3.jpg, id=238, 642.4pt x 481.8pt>
+<Figs/2-3.jpg, id=240, 642.4pt x 481.8pt>
 File: Figs/2-3.jpg Graphic file (type jpg)
  <use Figs/2-3.jpg>
-Package pdftex.def Info: Figs/2-3.jpg used on input line 666.
+Package pdftex.def Info: Figs/2-3.jpg used on input line 662.
 (pdftex.def)             Requested size: 140.0pt x 104.99649pt.
 
-<Figs/3-1.jpg, id=239, 642.4pt x 481.8pt>
+<Figs/3-1.jpg, id=241, 642.4pt x 481.8pt>
 File: Figs/3-1.jpg Graphic file (type jpg)
  <use Figs/3-1.jpg>
-Package pdftex.def Info: Figs/3-1.jpg used on input line 666.
+Package pdftex.def Info: Figs/3-1.jpg used on input line 662.
 (pdftex.def)             Requested size: 140.0pt x 104.99649pt.
 
-<Figs/3-2.jpg, id=240, 642.4pt x 481.8pt>
+<Figs/3-2.jpg, id=242, 642.4pt x 481.8pt>
 File: Figs/3-2.jpg Graphic file (type jpg)
  <use Figs/3-2.jpg>
-Package pdftex.def Info: Figs/3-2.jpg used on input line 666.
+Package pdftex.def Info: Figs/3-2.jpg used on input line 662.
 (pdftex.def)             Requested size: 140.0pt x 104.99649pt.
 
-<Figs/3-3.jpg, id=241, 642.4pt x 481.8pt>
+<Figs/3-3.jpg, id=243, 642.4pt x 481.8pt>
 File: Figs/3-3.jpg Graphic file (type jpg)
  <use Figs/3-3.jpg>
-Package pdftex.def Info: Figs/3-3.jpg used on input line 666.
+Package pdftex.def Info: Figs/3-3.jpg used on input line 662.
 (pdftex.def)             Requested size: 140.0pt x 104.99649pt.
 
-Overfull \hbox (5.69597pt too wide) in paragraph at lines 620--667
+Overfull \hbox (5.69597pt too wide) in paragraph at lines 616--663
  [] 
  []
 
 
-Overfull \hbox (5.69885pt too wide) in paragraph at lines 682--698
+Overfull \hbox (5.69885pt too wide) in paragraph at lines 678--694
  [][] 
  []
 
@@ -1314,29 +1307,29 @@ Overfull \hbox (5.69885pt too wide) in paragraph at lines 682--698
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 703--711
+Underfull \hbox (badness 10000) in paragraph at lines 699--707
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 703--711
+Underfull \hbox (badness 10000) in paragraph at lines 699--707
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 703--711
+Underfull \hbox (badness 10000) in paragraph at lines 699--707
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 703--711
+Underfull \hbox (badness 10000) in paragraph at lines 699--707
 
  []
 
 [11] [12 <./Figs/1-1.jpg> <./Figs/1-2.jpg> <./Figs/1-3.jpg> <./Figs/2-1.jpg> <.
 /Figs/2-2.jpg> <./Figs/2-3.jpg> <./Figs/3-1.jpg> <./Figs/3-2.jpg> <./Figs/3-3.j
 pg>]
-Underfull \hbox (badness 10000) in paragraph at lines 727--730
+Underfull \hbox (badness 10000) in paragraph at lines 723--726
 
  []
 
@@ -1344,12 +1337,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 727--730
 
 Package natbib Warning: There were undefined citations.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 764.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 760.
 [14]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 764.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 760.
  (./coling2012.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 764.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 764.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 760.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 760.
 Package rerunfilecheck Info: File `coling2012.out' has not changed.
 (rerunfilecheck)             Checksum: 67291E9AD9CA17F8AC8A1452B2BCC3E0;1617.
 
@@ -1358,11 +1351,11 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 25548 strings out of 493629
- 517229 string characters out of 3148772
+ 25546 strings out of 493629
+ 517209 string characters out of 3148772
  733995 words of memory out of 3000000
  28117 multiletter control sequences out of 15000+200000
- 30256 words of font info for 135 fonts, out of 3000000 for 9000
+ 30198 words of font info for 134 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
  63i,19n,74p,1283b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/t
@@ -1390,10 +1383,10 @@ ts/type1/public/cm-super/sfrm0800.pfb></usr/share/texmf-dist/fonts/type1/public
 hare/texmf-dist/fonts/type1/public/cm-super/sfti0900.pfb></usr/share/texmf-dist
 /fonts/type1/public/cm-super/sfti1000.pfb></usr/share/texmf-dist/fonts/type1/pu
 blic/cm-super/sftt0900.pfb>
-Output written on coling2012.pdf (14 pages, 1182106 bytes).
+Output written on coling2012.pdf (14 pages, 1182132 bytes).
 PDF statistics:
- 386 PDF objects out of 1000 (max. 8388607)
- 328 compressed objects within 4 object streams
+ 388 PDF objects out of 1000 (max. 8388607)
+ 330 compressed objects within 4 object streams
  83 named destinations out of 1000 (max. 500000)
  32498 words of extra memory for PDF output out of 35830 (max. 10000000)
 

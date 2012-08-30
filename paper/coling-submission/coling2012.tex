@@ -51,7 +51,7 @@
   techniques with tweet pooling by hashtags leads to a vast
   improvement in a variety of measures of topic coherence across three
   diverse Twitter datasets in comparison to an unmodified LDA baseline
-  and previously proposed as well as novel pooling schemes.\\}
+  and previously proposed as well as novel pooling schemes.}
 
 % this is due to the decreased
 %  co-occurence of common topic words across tweets that results from
@@ -59,32 +59,28 @@
 %  document length restrictions
 
 \keywordsEn{Topic modeling, LDA, Microblogs}
+
 \section{Introduction}
 
 In the general area of information retrieval or information access,
-the {\it undirected informational task} \cite{RoseLev}
- is one where people seek to
-better understand the information available to them in a particular area.
-This is a form of information discovery that techniques
-such as multidocument summarisation \cite{radev02}
-and topic modeling have been developed to address.
-Probabilistic topic models  \cite{?????}
-are a class of Bayesian latent variable
-model developed for analyzing the semantic content of
-document corpora. Topic models uncover the salient patterns of a
-collection under the mixed-membership assumption: each document
-can exhibit multiple patterns to different extents. When analysing
-text, these patterns are represented as distributions over words, called
-“topics”.  Topic models have been adapted to model document
-genres as diverse as news articles \cite{baldwin11}, 
-blogs, 
-academic abstracts \cite{?????}, 
-and encyclopaedia entries.
+the {\it undirected informational task} \cite{RoseLev} is one where
+people seek to better understand the information available to them in
+a particular area.  This is a form of information discovery that
+techniques such as multidocument summarisation \cite{radev02} and
+topic modeling have been developed to address.  Probabilistic topic
+models such as Latent Dirichlet Allocation (LDA) \cite{blei03} are a
+class of Bayesian latent variable models developed for analysing the
+semantic content of document corpora.  Topic models uncover the salient
+patterns of a collection under the mixed-membership assumption: each
+document can exhibit multiple patterns to different extents.  When
+analysing text, these patterns are represented as distributions over
+words, called “topics”.  Topic models have been adapted to model
+document genres as diverse as news articles \cite{baldwin11}, blogs,
+academic abstracts \cite{?????}, and encyclopaedia entries.
 
-To address the undirected informational task arising from the 
-exploration of Twitter content,
-we are exploring the use of topic models.
-However, 
+To address the undirected informational task arising for the 
+exploration of Twitter content, we propose the use of popular topic
+models like LDA.
 Twitter content poses unique challenges different to much of standard
 NLP content:  (1)
 posts are short (140 characters or less),
