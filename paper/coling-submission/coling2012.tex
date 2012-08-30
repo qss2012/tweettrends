@@ -102,7 +102,28 @@ words are used to identify the subject area or give an interpretation
 of a topic.   The naive
 application of LDA to Twitter content produces mostly incoherent topics,
 some are vaguely interpretable but contain unrelated words in the
-top-10 word set.
+top-10 word set. Table~\ref{tbl-0} shows an example of poor topic words as compared to topic words which are much more coherent and interpretable. 
+
+\begin{table}[!h]
+\centering
+%\resizebox{14cm}{!} 
+{
+	%\begin{tabular}{|p{2in}|p{2in}|}
+	\begin{tabular}{|c|c|}
+	\hline
+        Poor Topics  & Coherent Topics \\
+\hline
+ {\small barack cool apple health iphone}
+ &
+ {\small flu swine news pandemic health}\\
+ {\small los barackobama video uma gop} & {\small death flight h1n1 vaccine confirmed} \\
+ \hline
+	\end{tabular}
+}
+\caption{Sample Topic Words}\label{tbl-0}
+\end{table}
+
+
 
 How can we extract better topics in
 microblogging environments with standard LDA without the need of any
@@ -182,7 +203,7 @@ The datasets should cover diverse collections of content,
 but also the known source of the content
 should help in evaluation of the different schemes.
 
-We construct three datasets which we believe are representative of the diverse collections of content found on Twitte.  We choose single/double word queries to search a tweet collection and each resulting set of tweets was labelled by the query. Since the number of queries (equivalently the number of clusters) is known beforehand, we could use this knowledge to evaluate how well the topics output by LDA match with known clusters. A brief description of the three datasets is as follows:\vspace{-5pt}
+We construct three datasets which we believe are representative of the diverse collections of content found on Twitter.  We choose single/double word queries to search a tweet collection and each resulting set of tweets was labelled by the query. Since the number of queries (equivalently the number of clusters) is known beforehand, we could use this knowledge to evaluate how well the topics output by LDA match with known clusters. A brief description of the three datasets is as follows:\vspace{-5pt}
 \begin{description}
 \item[Generic Dataset: ]
  359478 tweets from 11 Jan'09 to 30 Jan'09.
@@ -825,4 +846,5 @@ Learning the various distributions (the set of topics, their associated word pro
 
 %A data set of documents $W = \lbrace w^(1) , w^(2) , ..., w^(D) \rbrace $ is observed, while the underlying corresponding topic assignments $Z = \lbrace z^(1) , z^(2) , ..., z^(D) \rbrace $ are unobserved. 
 %\\
+
 
