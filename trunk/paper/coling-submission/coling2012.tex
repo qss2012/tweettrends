@@ -164,13 +164,11 @@ We make the following contributions:
 \begin{compactitem}
 % \item We highlight how different evaluation metrics can be used to measure the performance of the different schemes.
 \item We show that different pooling schemes perform differently across different datasets and some pooling schemes consistently outperform unpooled tweets.
-\item We show that hashtag-wise pooling leads to best results across all evaluation metrics.  The performance is a significant improvement over unpooled use.
+\item We show that hashtag-based pooling leads to best results across all evaluation metrics.  The performance is a significant improvement over unpooled use.
 \item We present ways of assigning hashtags to tweets for further improvement.
 \end{compactitem}
 
-In the following sections we describe the proposed tweet pooling schemes.
-???????????
-% and demonstrate that tweet pooling improves the quality of the topics obtained by a big margin (of the order of ten for one of the evaluation metrics). The hashtag-based pooling scheme and tag assignment proposed works better than all other schemes across almost all datasets and metrics. 
+In the following sections we first provide a brief overview of topic modelling and LDA followed by the Twitter dataset construction in Section 3. The evaluation metrics are described in Section 4 following which we propose different tweet pooling schemes in Section 5. We then discuss the hashtag assignment followed by an overall comparison of the results and few observations. Related work is described in Section 9 and Section 10 concludes. %describe the proposed tweet pooling schemes and demonstrate that tweet pooling improves the quality of the topics obtained by a sizeable margin (of the order of ten for one of the evaluation metrics). The hashtag-based pooling scheme and tag assignment proposed works better than all other schemes across almost all datasets and metrics. 
 
 
 
@@ -197,7 +195,7 @@ performing our experiments.
 Focusing on the messy text of microblogs, the primary goal of this work is to get topics which have better coherence and interpretability using standard LDA. We discuss the following five tweet pooling schemes, which are described in detail later: Unpooled, Author-wise pooling, Temporal pooling,
 Burst-score wise pooling, and Hashtag based pooling
 
-The different pooling schemes and their proposed modifications result in different topic models, the evaluation of which is a major concern. We wish to answer questions like: Which scheme performs better on which aspects and on what kinds of data? Due to the large number of tweets (~360000) in any of the twitter specific datasets, manual labelling of topics is not feasible.
+The different pooling schemes and their proposed modifications result in different topic models, the evaluation of which is a major concern. We wish to answer questions like: Which scheme performs better on which aspects and on what kinds of data? Due to the large number of tweets (~360K) in any of the twitter specific datasets, manual labelling of topics is not feasible.
  To circumvent this problem of unsupervised evaluation we carefully construct our datasets keeping the following point in mind:
 The datasets should cover diverse collections of content,
 but also the known source of the content
@@ -329,10 +327,10 @@ Correspondingly, $ SD(R) $ is the standard deviation of the number of messages w
 burst\_score(R,y) = \frac{|M(R,y) - Mean(r)|}{SD(R)} 
 \]
 
-Let us denote the terms having burst-scores greater than 5 as \textit{burst-term}. For each burst-term, aggregate tweets which contain this term and train LDA on this aggregation of tweets. We then use the trained model to infer a topic mixture for each of the individual tweets. This scheme is henceforth referred to as Burst Score-wise pooling.
+Let us denote the terms having burst-scores greater than 5 as \textit{burst-term}. For each burst-term, aggregate tweets which contain this term and train LDA on this aggregation of tweets. The tweets which do not contain any of the burst-term were ignored for the purpose of training the LDA model. We then use the trained model to infer a topic mixture for each of the individual tweets. This scheme is henceforth referred to as Burst Score-wise pooling.
 
 \paragraph{Author-wise Pooling: }
-Another way of tweet pooling could be to aggregate tweets posted by a particular author as a single document and repeat this for all the authors. We train LDA on aggregated author profiles, each of which combines all tweets posted by the same author. Using this model we infer a topic mixture of individual tweets.
+Another way of tweet pooling could be to aggregate tweets posted by a particular author as a single document and repeat this for all the authors\cite{Weng2010wsdm}. We train LDA on aggregated author profiles, each of which combines all tweets posted by the same author. Using this model we infer a topic mixture of individual tweets.
 
 \paragraph{Temporal Pooling: }
 The fourth scheme, known as Temporal Pooling, is utilizes the temporal information of the tweets. It is noted that whenever a major event occurs a large number of users start tweeting about the event. Temporal pooling of tweets might help us in extracting useful information from the LDA topics. We train the LDA on an aggregate of tweets posted within the same hour and use this model to infer a topic mixture for each of the individual tweets.
@@ -374,67 +372,37 @@ Here we look at the document characteristics of the documents in the different p
 The statistics presented above highlight the differences in the characteristics of the documents on which LDA models have been trained. The number of documents decreases as we move from Unpooled scheme to Authorwise and Hashtagwise pooling scheme, while the corresponding size of the documents in each case increases. On an average the document size increases by a factor of ~7 in hashtag based pooling when compared against unpooled or authorwise pooling schemes. Thus each document in hashtag based pooling contains more content from which LDA could possibly extract latent semantics. On the other extreme lies the temporal pooling with very less number of documents and hence each document of a much larger size. Such large documents might impact the topic model in an unpleasant manner. These statistics highlights that hashtag based pooling scheme lies mid-way between both the extremes (small documents in unpooled tweets vs large documents in temporal pooling) and hence suggests that hashtag based pooling should perform optimally in comparison to other schemes.
 
 \subsection{Initial Results}
-In this section we discuss the results of the experimental evaluation of the tweet pooling schemes discussed previously. The datasets used were described in section 3 while the evaluation metrics used were described in section 4. For each of the three datasets (viz. Generic, Specific and Events) we present the Purity scores, the NMI scores and the PMI scores in Table~\ref{tbl-4}, ~\ref{tbl-5} and ~\ref{tbl-6} respectively. 
+In this section we discuss the results of the experimental evaluation of the tweet pooling schemes discussed previously. The datasets used were described in section 3 while the evaluation metrics used were described in section 4. For each of the three datasets (viz. Generic, Specific and Events) we present the Purity scores, the NMI scores and the PMI scores in Table~\ref{tbl-456}. 
 \\
+
 \begin{table}[!h]
-%\setcounter{table}{4}
+%\setcounter{table}{11}
 \centering
-%\resizebox{14cm}{!} 
-%{
-	\begin{tabular}{|l|c|c|c|c|c|}
+\resizebox{14cm}{!} 
+{
+	\begin{tabular}{|l|ccc|ccc|ccc|}
 	\hline
-	Pooling Scheme & Unpooled & Author & Hourly & Burstwise & Hashtag\\
+	Scheme  & \multicolumn {3}{c|}{Purity} & \multicolumn {3}{c|}{NMI Score} & \multicolumn {3}{c|}{PMI score}\\
 	\hline
-	Generic & 0.49 & \textbf{0.54} & 0.45 & 0.42 & \textbf{0.54}\\
+	 & Generic & Specific & Events &  Generic & Specific & Events &  Generic & Specific & Events\\
 	\hline
-	Specific & 0.64 & 0.62 & 0.61 & 0.60 & \textbf{0.68}\\
+	Unpooled & 0.49 & 0.64 & 0.69 & 0.28 & 0.22 & 0.39 & -1.27 & 0.47 & 0.47 \\
 	\hline
-	Events & 0.69 & 0.70 & 0.61 & 0.64 & \textbf{0.71} \\
+	Author & 0.54 & 0.62 & 0.60 & 0.24 & 0.17 & 0.41 & 0.21 & 0.79 & 0.51 \\
+	\hline
+	Hourly & 0.45 & 0.61 & 0.61 & 0.07 & 0.09 & 0.32 & -1.31 & 0.87 & 0.22 \\
+	\hline
+	Burstwise & 0.42 & 0.60 & 0.64 & 0.18 & 0.16 & 0.33 & 0.48 & 0.74 & 0.58 \\
+	\hline
+	Hashtag & \textbf{0.54} & \textbf{0.68} & \textbf{0.71} & \textbf{0.28} & \textbf{0.23} & \textbf{0.42} & \textbf{0.78} & \textbf{1.43} & \textbf{1.07} \\
 	\hline
 	\end{tabular}
-%}
-\caption{Purity Scores for different datasets}\label{tbl-4}
+}
+\caption{Hashtag Assignment Results}\label{tbl-456}
 \end{table}
 
 
-\begin{table}[!h]
-%\setcounter{table}{5}
-\centering
-%\resizebox{14cm}{!} 
-%{
-	\begin{tabular}{|l|c|c|c|c|c|}
-	\hline
-	Pooling Scheme & Unpooled & Author & Hourly & Burstwise & Hashtag\\
-	\hline
-	Generic & 0.28 & 0.24 & 0.07 & 0.18 & \textbf{0.28}\\
-	\hline
-	Specific & 0.22 & 0.17 & 0.09 & 0.16 & \textbf{0.23}\\
-	\hline
-	Events & 0.39 & 0.41 & 0.32 & 0.33 & \textbf{0.42}\\
-	\hline
-	\end{tabular}\caption{NMI Scores for different datasets}\label{tbl-5}
-%}
-\end{table}
 
-
-\begin{table}[!h]
-%\setcounter{table}{6}
-\centering
-%\resizebox{14cm}{!}
-%{
-	\begin{tabular}{|l|c|c|c|c|c|}
-	\hline
-	Pooling Scheme & Unpooled & Author & Hourly & Burstwise & Hashtag\\
-	\hline
-	Generic & -1.27 & 0.21 & -1.31 & 0.48 & \textbf{0.78}\\
-	\hline
-	Specific & 0.47 & 0.79 & 0.87 & 0.74 & \textbf{1.43}\\
-	\hline
-	Events & 0.47 & 0.51 & 0.22 & 0.58 & \textbf{1.07}\\
-	\hline
-	\end{tabular}\caption{PMI Scores for different datasets}\label{tbl-6}
-%}
-\end{table}
 
 Based on these results we conclude that Hashtag wise pooling scheme performs better than unpooled scheme as well as other pooling schemes. An obvious question to ask is: Can we do better? In the next section we look into Hashtag-wise pooling in detail and devise methods which further improve the results and provide better topics.
 
@@ -442,7 +410,7 @@ Based on these results we conclude that Hashtag wise pooling scheme performs bet
 
 Hashtag based tweet pooling outperforms other pooling schemes and unpooled tweets in terms of both: reconstructing known clusters as well as extracting coherent topic words. In this section we look into hashtags and hashtag based pooling in detail and analyse the prominence of hashtags in our datasets and look at ways to further improve the results.
 
-\subsection{Do all tweets have hashtags?}
+\subsection{How many tweets have hashtags?}
 Among all tweet pooling schemes Hashtag based pooling gives the best results in terms of purity scores, NMI and PMI values. There are two obvious questions to ask at this stage include: How common are the hashtags? Do all tweets have hashtags? Table~\ref{tbl-7} presents few statistics on the percentage of tweets which do not have any hashtag in the 3 datasets.
 
 In this section we look at the number of tweets which do not have any hashtag and posit problems which arise due to this.
@@ -848,3 +816,63 @@ Learning the various distributions (the set of topics, their associated word pro
 %\\
 
 
+
+\begin{table}[!h]
+%\setcounter{table}{4}
+\centering
+%\resizebox{14cm}{!} 
+%{
+	\begin{tabular}{|l|c|c|c|c|c|}
+	\hline
+	Pooling Scheme & Unpooled & Author & Hourly & Burstwise & Hashtag\\
+	\hline
+	Generic & 0.49 & \textbf{0.54} & 0.45 & 0.42 & \textbf{0.54}\\
+	\hline
+	Specific & 0.64 & 0.62 & 0.61 & 0.60 & \textbf{0.68}\\
+	\hline
+	Events & 0.69 & 0.70 & 0.61 & 0.64 & \textbf{0.71} \\
+	\hline
+	\end{tabular}
+%}
+\caption{Purity Scores for different datasets}\label{tbl-4}
+\end{table}
+
+
+\begin{table}[!h]
+%\setcounter{table}{5}
+\centering
+%\resizebox{14cm}{!} 
+%{
+	\begin{tabular}{|l|c|c|c|c|c|}
+	\hline
+	Pooling Scheme & Unpooled & Author & Hourly & Burstwise & Hashtag\\
+	\hline
+	Generic & 0.28 & 0.24 & 0.07 & 0.18 & \textbf{0.28}\\
+	\hline
+	Specific & 0.22 & 0.17 & 0.09 & 0.16 & \textbf{0.23}\\
+	\hline
+	Events & 0.39 & 0.41 & 0.32 & 0.33 & \textbf{0.42}\\
+	\hline
+	\end{tabular}\caption{NMI Scores for different datasets}\label{tbl-5}
+%}
+\end{table}
+
+
+\begin{table}[!h]
+%\setcounter{table}{6}
+\centering
+%\resizebox{14cm}{!}
+%{
+	\begin{tabular}{|l|c|c|c|c|c|}
+	\hline
+	Pooling Scheme & Unpooled & Author & Hourly & Burstwise & Hashtag\\
+	\hline
+	Generic & -1.27 & 0.21 & -1.31 & 0.48 & \textbf{0.78}\\
+	\hline
+	Specific & 0.47 & 0.79 & 0.87 & 0.74 & \textbf{1.43}\\
+	\hline
+	Events & 0.47 & 0.51 & 0.22 & 0.58 & \textbf{1.07}\\
+	\hline
+	\end{tabular}\caption{PMI Scores for different datasets}\label{tbl-6}
+%}
+\end{table}
