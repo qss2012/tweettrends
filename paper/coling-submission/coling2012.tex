@@ -159,7 +159,7 @@ interpretability of topics and topic coherence. We wish to answer the following 
 \item What further improvements can be made to various pooling schemes so as to obtain topics which are coherent and interpretable.
 %\item Can we shed some light on how to better the best results obtained thus far? What kind of modifications are required for the same?
 \end{compactitem}
-% With a set of carefully designed experiments spanning different dataset of Twitter content and evaluation metrics which adhere to different requirements, 
+%With a set of carefully designed experiments spanning different dataset of Twitter content and evaluation metrics which adhere to different requirements, 
 We make the following contributions:
 \begin{compactitem}
 % \item We highlight how different evaluation metrics can be used to measure the performance of the different schemes.
@@ -333,9 +333,9 @@ Let us denote the terms having burst-scores greater than 5 as \textit{burst-term
 Another way of tweet pooling could be to aggregate tweets posted by a particular author as a single document and repeat this for all the authors\cite{Weng2010wsdm}. We train LDA on aggregated author profiles, each of which combines all tweets posted by the same author. Using this model we infer a topic mixture of individual tweets.
 
 \paragraph{Temporal Pooling: }
-The fourth scheme, known as Temporal Pooling, is utilizes the temporal information of the tweets. It is noted that whenever a major event occurs a large number of users start tweeting about the event. Temporal pooling of tweets might help us in extracting useful information from the LDA topics. We train the LDA on an aggregate of tweets posted within the same hour and use this model to infer a topic mixture for each of the individual tweets.
+The fourth scheme, known as Temporal Pooling, utilizes the temporal information of the tweets. It is noted that whenever a major event occurs a large number of users start tweeting about the event. Temporal pooling of tweets might help us in extracting useful information from the LDA topics. We train the LDA on an aggregate of tweets posted within the same hour and use this model to infer a topic mixture for each of the individual tweets.
 
-\paragraph{Hashtag-wise Pooling:}
+\paragraph{Hashtag-based Pooling:}
 A Twitter \textit{hashtag} is a string of characters preceded by the hash (\#) character. In many cases hashtags can be viewed as topical markers, an indication to the context of the tweet or as the core idea expressed in the tweet, therefore hashtags are adopted by other users that contribute similar content or express a related idea. A few examples of the use of hashtags are: "ask GAGA anything using the tag \#GoogleGoesGaga for her interview! RT so every monster learns about it!! " referring to an exclusive interview for Google by Lady Gaga (singer), "Whoever
 said 'youth is wasted on the young' must be eating his words right now. \#March15 \#Jan25 \#Feb14 ", referring to the protest movements in the Arab world.
 For the hashtag based pooling scheme, for each hashtag we aggregate tweets containing this hashtag and train LDA on this collection. Each hashtag pooled tweet collection thus represents a document. If any tweet has more than one hashtag, this tweet gets added to the tweet-pool of each of those hashtags. This results in tweets being repeated across documents. We notice that this tweet pooling scheme outperforms the rest. We discuss hashtag based pooling in detail in a later section.
@@ -684,7 +684,7 @@ The goal of this work was to get better topics which have better coherence, inte
 
 
 \section{Observations}
-The work described in this paper presents a way of aggregating tweets in order to improve performance of topic models in terms of quality of topics obtained  measures by the ability to reconstruct clusters and topic coherence. The initial results presented in Table~\ref{tbl-4}, ~\ref{tbl-5} and ~\ref{tbl-6} suggest that hashtag based pooling outperforms all other pooling strategies including the default way of training topic models on Twitter data(unpooled).
+The work described in this paper presents a way of aggregating tweets in order to improve performance of topic models in terms of quality of topics obtained  measures by the ability to reconstruct clusters and topic coherence. The initial results presented in Table~\ref{tbl-456} suggest that hashtag based pooling outperforms all other pooling strategies including the default way of training topic models on Twitter data(unpooled).
 \\\\
 Since a major portion of Twitter data does not contains hashtags we looked at ways of assigning hashtags to tweets. Insights from Hashtag Assignment results (Table~\ref{tbl-9}) suggest that when the main aim is to use the topics obtained to extract different events mentioned in the Twitter data one should use hashtag assignment with a relaxed threshold(~0.5). The high values of Purity scores and NMI values for low threshold support this claim.
 \\\\
