@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.21)  30 AUG 2012 21:54
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.21)  31 AUG 2012 00:38
 entering extended mode
  %&-line parsing enabled.
 **coling2012.tex
@@ -965,29 +965,7 @@ File: tikzlibraryplotmarks.code.tex 2008/01/09 v2.10 (rcs-revision 1.1)
 (/usr/share/texmf/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex
 File: pgflibraryplotmarks.code.tex 2010/10/15 v2.10 (rcs-revision 1.12)
 )))
-(./coling2012.aux
-
-LaTeX Warning: Label `Table' multiply defined.
-
-
-LaTeX Warning: Label `Table' multiply defined.
-
-
-LaTeX Warning: Label `Table' multiply defined.
-
-
-LaTeX Warning: Label `Table' multiply defined.
-
-
-LaTeX Warning: Label `Table' multiply defined.
-
-
-LaTeX Warning: Label `Table' multiply defined.
-
-
-LaTeX Warning: Label `Table' multiply defined.
-
-)
+(./coling2012.aux)
 \openout1 = `coling2012.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
@@ -1114,21 +1092,6 @@ LaTeX Font Info:    Try loading font information for T1+cmtt on input line 39.
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 
-Package natbib Warning: Citation `RoseLev' on page 1 undefined on input line 66
-.
-
-
-Package natbib Warning: Citation `radev02' on page 1 undefined on input line 69
-.
-
-
-Package natbib Warning: Citation `baldwin11' on page 1 undefined on input line 
-78.
-
-
-Package natbib Warning: Citation `?????' on page 1 undefined on input line 79.
-
-
 Package natbib Warning: Citation `????' on page 1 undefined on input line 98.
 
 [1
@@ -1149,29 +1112,11 @@ Underfull \hbox (badness 1024) in paragraph at lines 208--213
  []
 
 [3]
-
-Package natbib Warning: Citation `baldwin10' on page 4 undefined on input line 
-243.
-
-
-Package natbib Warning: Citation `MRS08' on page 4 undefined on input line 249.
-
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 255--259
 
  []
 
 [4]
-
-Package natbib Warning: Citation `MRS08' on page 5 undefined on input line 272.
-
-
-
-Package natbib Warning: Citation `baldwin10' on page 5 undefined on input line 
-281.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 278--282
 
  []
@@ -1222,55 +1167,55 @@ Underfull \hbox (badness 10000) in paragraph at lines 608--609
 
 pdfTeX warning: pdflatex (file ./Figs/1-1.pdf): PDF inclusion: found PDF versio
 n <1.5>, but at most version <1.4> allowed
-<Figs/1-1.pdf, id=215, 361.35pt x 216.81pt>
+<Figs/1-1.pdf, id=246, 361.35pt x 216.81pt>
 File: Figs/1-1.pdf Graphic file (type pdf)
  <use Figs/1-1.pdf>
 
 pdfTeX warning: pdflatex (file ./Figs/1-2.pdf): PDF inclusion: found PDF versio
 n <1.5>, but at most version <1.4> allowed
-<Figs/1-2.pdf, id=217, 361.35pt x 216.81pt>
+<Figs/1-2.pdf, id=248, 361.35pt x 216.81pt>
 File: Figs/1-2.pdf Graphic file (type pdf)
  <use Figs/1-2.pdf>
 
 pdfTeX warning: pdflatex (file ./Figs/1-3.pdf): PDF inclusion: found PDF versio
 n <1.5>, but at most version <1.4> allowed
-<Figs/1-3.pdf, id=219, 361.35pt x 216.81pt>
+<Figs/1-3.pdf, id=250, 361.35pt x 216.81pt>
 File: Figs/1-3.pdf Graphic file (type pdf)
  <use Figs/1-3.pdf>
 
 pdfTeX warning: pdflatex (file ./Figs/2-1.pdf): PDF inclusion: found PDF versio
 n <1.5>, but at most version <1.4> allowed
-<Figs/2-1.pdf, id=221, 361.35pt x 216.81pt>
+<Figs/2-1.pdf, id=252, 361.35pt x 216.81pt>
 File: Figs/2-1.pdf Graphic file (type pdf)
  <use Figs/2-1.pdf>
 
 pdfTeX warning: pdflatex (file ./Figs/2-2.pdf): PDF inclusion: found PDF versio
 n <1.5>, but at most version <1.4> allowed
-<Figs/2-2.pdf, id=223, 361.35pt x 216.81pt>
+<Figs/2-2.pdf, id=254, 361.35pt x 216.81pt>
 File: Figs/2-2.pdf Graphic file (type pdf)
  <use Figs/2-2.pdf>
 
 pdfTeX warning: pdflatex (file ./Figs/2-3.pdf): PDF inclusion: found PDF versio
 n <1.5>, but at most version <1.4> allowed
-<Figs/2-3.pdf, id=225, 361.35pt x 216.81pt>
+<Figs/2-3.pdf, id=256, 361.35pt x 216.81pt>
 File: Figs/2-3.pdf Graphic file (type pdf)
  <use Figs/2-3.pdf>
 
 pdfTeX warning: pdflatex (file ./Figs/3-1.pdf): PDF inclusion: found PDF versio
 n <1.5>, but at most version <1.4> allowed
-<Figs/3-1.pdf, id=227, 361.35pt x 216.81pt>
+<Figs/3-1.pdf, id=258, 361.35pt x 216.81pt>
 File: Figs/3-1.pdf Graphic file (type pdf)
  <use Figs/3-1.pdf>
 
 pdfTeX warning: pdflatex (file ./Figs/3-2.pdf): PDF inclusion: found PDF versio
 n <1.5>, but at most version <1.4> allowed
-<Figs/3-2.pdf, id=229, 361.35pt x 216.81pt>
+<Figs/3-2.pdf, id=260, 361.35pt x 216.81pt>
 File: Figs/3-2.pdf Graphic file (type pdf)
  <use Figs/3-2.pdf>
 
 pdfTeX warning: pdflatex (file ./Figs/3-3.pdf): PDF inclusion: found PDF versio
 n <1.5>, but at most version <1.4> allowed
-<Figs/3-3.pdf, id=231, 361.35pt x 216.81pt>
+<Figs/3-3.pdf, id=262, 361.35pt x 216.81pt>
 File: Figs/3-3.pdf Graphic file (type pdf)
  <use Figs/3-3.pdf>
 Overfull \hbox (5.69597pt too wide) in paragraph at lines 616--663
@@ -1313,53 +1258,50 @@ Underfull \hbox (badness 10000) in paragraph at lines 723--726
  []
 
 (./coling2012.bbl
-Underfull \vbox (badness 1577) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [13])
 [14]
 
 Package natbib Warning: There were undefined citations.
 
-(./coling2012.aux)
-
-LaTeX Warning: There were multiply-defined labels.
-
- ) 
+(./coling2012.aux) ) 
 Here is how much of TeX's memory you used:
- 21952 strings out of 495061
- 419815 string characters out of 1182621
- 578772 words of memory out of 3000000
- 24420 multiletter control sequences out of 15000+50000
- 30317 words of font info for 135 fonts, out of 3000000 for 9000
+ 21943 strings out of 495061
+ 419687 string characters out of 1182621
+ 578770 words of memory out of 3000000
+ 24415 multiletter control sequences out of 15000+50000
+ 30198 words of font info for 134 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  63i,19n,61p,1283b,529s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf-
-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fon
-ts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts/type1/pu
-blic/amsfonts/cm/cmmi5.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfont
-s/cm/cmmi6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi7.p
-fb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/sha
-re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-tex
-live/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/t
-ype1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/a
-msfonts/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cm
-sy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy5.pfb></u
-sr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/tex
-mf-texlive/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texmf/fonts/typ
-e1/public/cm-super/sfbi0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/s
-fbx0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx0900.pfb></usr/sh
-are/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type
-1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sf
-bx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc1000.pfb></usr/sha
-re/texmf/fonts/type1/public/cm-super/sfcc1200.pfb></usr/share/texmf/fonts/type1
-/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfr
-m0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/shar
-e/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/
-public/cm-super/sfti0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti
-1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt0900.pfb>
-Output written on coling2012.pdf (14 pages, 556883 bytes).
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share
+/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texl
+ive/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texmf-texlive/fonts/ty
+pe1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-texlive/fonts/type1/public/a
+msfonts/cm/cmmi7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
+mmi9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
+sr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/tex
+mf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fo
+nts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/pub
+lic/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfont
+s/cm/cmsy5.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy7.p
+fb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/sha
+re/texmf/fonts/type1/public/cm-super/sfbi0900.pfb></usr/share/texmf/fonts/type1
+/public/cm-super/sfbx0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfb
+x0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/shar
+e/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/
+public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc
+1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc1200.pfb></usr/share
+/texmf/fonts/type1/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/p
+ublic/cm-super/sfrm0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1
+000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/
+texmf/fonts/type1/public/cm-super/sfti0900.pfb></usr/share/texmf/fonts/type1/pu
+blic/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt09
+00.pfb>
+Output written on coling2012.pdf (14 pages, 560711 bytes).
 PDF statistics:
- 457 PDF objects out of 1000 (max. 8388607)
- 86 named destinations out of 1000 (max. 500000)
+ 484 PDF objects out of 1000 (max. 8388607)
+ 84 named destinations out of 1000 (max. 500000)
  32498 words of extra memory for PDF output out of 35830 (max. 10000000)
 

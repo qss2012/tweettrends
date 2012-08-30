@@ -76,7 +76,7 @@ document can exhibit multiple patterns to different extents.  When
 analysing text, these patterns are represented as distributions over
 words, called “topics”.  Topic models have been adapted to model
 document genres as diverse as news articles \cite{baldwin11}, blogs,
-academic abstracts \cite{?????}, and encyclopaedia entries.
+academic abstracts \cite{acadz}, and encyclopaedia entries.
 
 To address the undirected informational task arising for the 
 exploration of Twitter content, we propose the use of popular topic
@@ -323,10 +323,10 @@ said 'youth is wasted on the young' must be eating his words right now. \#March1
 For the hashtag based pooling scheme, for each hashtag we aggregate tweets containing this hashtag and train LDA on this collection. Each hashtag pooled tweet collection thus represents a document. If any tweet has more than one hashtag, this tweet gets added to the tweet-pool of each of those hashtags. This results in tweets being repeated across documents. We notice that this tweet pooling scheme outperforms the rest. We discuss hashtag based pooling in detail in a later section.
 
 \subsection{Document Characteristics for different pooling schemes}
-Here we look at the document characteristics of the documents in the different pooling schemes for the three datasets. The characteristics like the number of documents affect LDA directly and hence it will be interesting to look at what the training data consists of. Table 3 presents the required statistics.
+Here we look at the document characteristics of the documents in the different pooling schemes for the three datasets. The characteristics like the number of documents affect LDA directly and hence it will be interesting to look at what the training data consists of. Table~\ref{tbl-3} presents the required statistics.
 
 \begin{table}[!h]
-\setcounter{table}{3}
+%\setcounter{table}{3}
 \centering
 \resizebox{14cm}{!} 
 {
@@ -348,16 +348,16 @@ Here we look at the document characteristics of the documents in the different p
 	\hline
 	\end{tabular}
 }
-\caption{Document Characteristics for different schemes}\label{Table}
+\caption{Document Characteristics for different schemes}\label{tbl-3}
 \end{table}
 
 The statistics presented above highlight the differences in the characteristics of the documents on which LDA models have been trained. The number of documents decreases as we move from Unpooled scheme to Authorwise and Hashtagwise pooling scheme, while the corresponding size of the documents in each case increases. On an average the document size increases by a factor of ~7 in hashtag based pooling when compared against unpooled or authorwise pooling schemes. Thus each document in hashtag based pooling contains more content from which LDA could possibly extract latent semantics. On the other extreme lies the temporal pooling with very less number of documents and hence each document of a much larger size. Such large documents might impact the topic model in an unpleasant manner. These statistics highlights that hashtag based pooling scheme lies mid-way between both the extremes (small documents in unpooled tweets vs large documents in temporal pooling) and hence suggests that hashtag based pooling should perform optimally in comparison to other schemes.
 
 \subsection{Initial Results}
-In this section we discuss the results of the experimental evaluation of the tweet pooling schemes discussed previously. The datasets used were described in section 3 while the evaluation metrics used were described in section 4. For each of the three datasets (viz. Generic, Specific and Events) we present the Purity scores, the NMI scores and the PMI scores in Table 4, 5 and 6 respectively. 
+In this section we discuss the results of the experimental evaluation of the tweet pooling schemes discussed previously. The datasets used were described in section 3 while the evaluation metrics used were described in section 4. For each of the three datasets (viz. Generic, Specific and Events) we present the Purity scores, the NMI scores and the PMI scores in Table~\ref{tbl-4}, ~\ref{tbl-5} and ~\ref{tbl-6} respectively. 
 \\
 \begin{table}[!h]
-\setcounter{table}{4}
+%\setcounter{table}{4}
 \centering
 %\resizebox{14cm}{!} 
 %{
@@ -373,12 +373,12 @@ In this section we discuss the results of the experimental evaluation of the twe
 	\hline
 	\end{tabular}
 %}
-\caption{Purity Scores for different datasets}\label{Table}
+\caption{Purity Scores for different datasets}\label{tbl-4}
 \end{table}
 
 
 \begin{table}[!h]
-\setcounter{table}{5}
+%\setcounter{table}{5}
 \centering
 %\resizebox{14cm}{!} 
 %{
@@ -392,13 +392,13 @@ In this section we discuss the results of the experimental evaluation of the twe
 	\hline
 	Events & 0.39 & 0.41 & 0.32 & 0.33 & \textbf{0.42}\\
 	\hline
-	\end{tabular}\caption{NMI Scores for different datasets}\label{Table}
+	\end{tabular}\caption{NMI Scores for different datasets}\label{tbl-5}
 %}
 \end{table}
 
 
 \begin{table}[!h]
-\setcounter{table}{6}
+%\setcounter{table}{6}
 \centering
 %\resizebox{14cm}{!}
 %{
@@ -412,7 +412,7 @@ In this section we discuss the results of the experimental evaluation of the twe
 	\hline
 	Events & 0.47 & 0.51 & 0.22 & 0.58 & \textbf{1.07}\\
 	\hline
-	\end{tabular}\caption{PMI Scores for different datasets}\label{Table}
+	\end{tabular}\caption{PMI Scores for different datasets}\label{tbl-6}
 %}
 \end{table}
 
@@ -423,13 +423,13 @@ Based on these results we conclude that Hashtag wise pooling scheme performs bet
 Hashtag based tweet pooling outperforms other pooling schemes and unpooled tweets in terms of both: reconstructing known clusters as well as extracting coherent topic words. In this section we look into hashtags and hashtag based pooling in detail and analyse the prominence of hashtags in our datasets and look at ways to further improve the results.
 
 \subsection{Do all tweets have hashtags?}
-Among all tweet pooling schemes Hashtag based pooling gives the best results in terms of purity scores, NMI and PMI values. There are two obvious questions to ask at this stage include: How common are the hashtags? Do all tweets have hashtags? Table 9 presents few statistics on the percentage of tweets which do not have any hashtag in the 3 datasets.
+Among all tweet pooling schemes Hashtag based pooling gives the best results in terms of purity scores, NMI and PMI values. There are two obvious questions to ask at this stage include: How common are the hashtags? Do all tweets have hashtags? Table~\ref{tbl-7} presents few statistics on the percentage of tweets which do not have any hashtag in the 3 datasets.
 
 In this section we look at the number of tweets which do not have any hashtag and posit problems which arise due to this.
 
 
 \begin{table}[!h]
-\setcounter{table}{8}
+%\setcounter{table}{8}
 \centering
 	\begin{tabular}{|c|c|}
 	\hline
@@ -442,17 +442,17 @@ In this section we look at the number of tweets which do not have any hashtag an
 	Event & 19.5\% \\
 	\hline
 	\end{tabular}
-\caption{\% tweets haing hashtags}\label{Table}
+\caption{\% tweets haing hashtags}\label{tbl-7}
 \end{table}
 
 As is evident from the figures a large number of tweets do not contain any hashtag, with the percentages varying from 77.7\% to a surprising 91.6\%. This suggests that a large portion of the training data does not participates in the hashtag pooling scheme. Since a large portion of the data is getting ignored we need to figure out ways of incorporating this data while training LDA models. We next address this issue and present a brute force way of doing so.
 
 \subsection{Incorporating Other Tweets :: Brute Force Way}
 
-As discussed in the previous section, at least 77\% of tweets do not have any hashtags. One ways of incorporating this left out part of the dataset could be to include the entire remaining portion as is alongside hashtag pooled collection of tweets. Table 10 shows the results on different datasets when the entire remaining part of tweets which do not have any hashtag are included alongside hashtag pooled tweets and the percentage improvement. 
+As discussed in the previous section, at least 77\% of tweets do not have any hashtags. One ways of incorporating this left out part of the dataset could be to include the entire remaining portion as is alongside hashtag pooled collection of tweets. Table~\ref{tbl-8} shows the results on different datasets when the entire remaining part of tweets which do not have any hashtag are included alongside hashtag pooled tweets and the percentage improvement. 
 
 \begin{table}[!h]
-\setcounter{table}{9}
+%\setcounter{table}{9}
 \centering
 \resizebox{14cm}{!} 
 {
@@ -470,7 +470,7 @@ As discussed in the previous section, at least 77\% of tweets do not have any ha
 	\hline
 	\end{tabular}
 }
-\caption{Results of incorporating other tweets on different datasets. \% improvements are measured in comparison with simple hashtag pooling results.}\label{Table}
+\caption{Results of incorporating other tweets on different datasets. \% improvements are measured in comparison with simple hashtag pooling results.}\label{tbl-8}
 \end{table}
 
 The results in the above table suggests that this technique harms the topic coherence in a very bad manner(lower PMI scores) but improves cluster reconstruction(higher purity scores). We need to look at ways in which we could improve cluster reconstruction without adversely affecting the topic coherence. In the next section we present a way of doing so and show that our proposed method performs better than the results so far.
@@ -486,7 +486,7 @@ Our aim here is to assign hashtags to tweets which have none. Since this step is
 $sim(d1,d2) = \frac{d1 . d2}{||d1|| ||d2||}$
 \end{center}
 
-where d1 is the tweet in consideration to which we intend to assign a hashtag and d2 is the collection of tweets for some hashtag. We iterate through all the hashtag for different d2 vectors and assign the hashtag which maximizes this similarity score. We use the term frequency of the words in the tweet to represent the tweet as a tf vector. Algorithm 1 describes the same algorithm in detail.
+where d1 is the tweet in consideration to which we intend to assign a hashtag and d2 is the collection of tweets for some hashtag. We iterate through all the hashtag for different d2 vectors and assign the hashtag which maximizes this similarity score. We use the term frequency of the words in the tweet to represent the tweet as a tf vector. Algorithm~\ref{alg-1} describes the same algorithm in detail.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -548,18 +548,18 @@ hashtag $h$ (in $T$) for tweet $n_t$ $\in$ $N_T$ if score($n_t$,$h$) > c
 
 }
 }
-\caption{{\sc Hashtag Assignment} \label{alg:tagassign}}
+\caption{{\sc Hashtag Assignment} \label{alg-1}}
 \end{algorithm}
 \decmargin{1.5em}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Hashtag Assignment Results}
-Table 12 presents the results of hashtag assignment based on the 3 metrics for different threshold varying from 0.5 to 0.9. We notice that as the threshold increases the corresponding value of PMI scores increases and purity scores decreases which is intuitive: on increasing the threshold lesser number of tweets get assigned a hashtag and hence cluster reconstruction suffers while the topic coherence is improved because a tweet is assigned a hashtag only if its highly similar to the tweet collection of that hashtag(threshold = 0.9). 
+Table~\ref{tbl-9} presents the results of hashtag assignment based on the 3 metrics for different threshold varying from 0.5 to 0.9. We notice that as the threshold increases the corresponding value of PMI scores increases and purity scores decreases which is intuitive: on increasing the threshold lesser number of tweets get assigned a hashtag and hence cluster reconstruction suffers while the topic coherence is improved because a tweet is assigned a hashtag only if its highly similar to the tweet collection of that hashtag(threshold = 0.9). 
 \\
 
 \begin{table}[!h]
-\setcounter{table}{11}
+%\setcounter{table}{11}
 \centering
 \resizebox{14cm}{!} 
 {
@@ -581,13 +581,13 @@ Table 12 presents the results of hashtag assignment based on the 3 metrics for d
 	\hline
 	\end{tabular}
 }
-\caption{Hashtag Assignment Results}\label{Table}
+\caption{Hashtag Assignment Results}\label{tbl-9}
 \end{table}
 
 The results obtained via hashtag assignment are better than those of simple hashtag-based pooling as well as unpooled scheme. These results were obtained on using tf-cosine similarity metric to compute the similarity between a tweet and the tweet collection of the hashtag in consideration. We next look at some other similarity metrics and see if we could further improve our results.
 
 \subsubsection{Other Similarity Metrics}
-The results presented in Table 12 use the tf-cosine similarity between tweet and tweet-collection of a hashtag to assign a hashtag to the tweet in  consideration. We next answer the question of how other similarity metrics affect the results of hashtag assignments. We look at the following six metrics to be used to represent each document while calculating the cosine similarity scores:
+The results presented in Table~\ref{tbl-9} use the tf-cosine similarity between tweet and tweet-collection of a hashtag to assign a hashtag to the tweet in  consideration. We next answer the question of how other similarity metrics affect the results of hashtag assignments. We look at the following six metrics to be used to represent each document while calculating the cosine similarity scores:
 \begin{description}
 \item{\bf Term Frequency (TF)}: Already discussed in the previous section.
 \item{\bf Inverse Document Frequency (IDF)}:  a measure of whether the term is common or rare across all documents. It is obtained by dividing the total number of documents by the number of documents containing the term, and then taking the logarithm of that quotient. Thus the idf of a rare term is high, whereas the idf of a frequent term is likely to be low.
@@ -605,7 +605,7 @@ where $N: \#$ of total authors and $n_i: \#$ of authors who use term i
 %Description\\
 
 \subsubsection{Results of other similarity metrics}
-Figure 2 presents the results obtained for the three evaluation metrics on the three datasets for the different similarity metrics discussed in the previous section. It is interesting to note that the simplest of all: term-frequency based cosine similarity generally performs better than others. Inverse Author Frequency (IAF) gives almost comparable results when evaluating topic coherence using the PMI scores. When the task at hand is reconstruction of known clusters one should prefer using TF based cosine similarity to assign hashtags while both TF and IAF work well when one is interested in obtaining coherent topics.\\
+Figure~\ref{fig-1} presents the results obtained for the three evaluation metrics on the three datasets for the different similarity metrics discussed in the previous section. It is interesting to note that the simplest of all: term-frequency based cosine similarity generally performs better than others. Inverse Author Frequency (IAF) gives almost comparable results when evaluating topic coherence using the PMI scores. When the task at hand is reconstruction of known clusters one should prefer using TF based cosine similarity to assign hashtags while both TF and IAF work well when one is interested in obtaining coherent topics.\\
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -662,7 +662,7 @@ Figure 2 presents the results obtained for the three evaluation metrics on the t
 }
 \end{center}
 \vspace{-4mm}
-\caption{\footnotesize Comparison of Purity, NMI and PMI scores for different similarity metrics for Hashtag Assignment.} \label{fig:dist}
+\caption{\footnotesize Comparison of Purity, NMI and PMI scores for different similarity metrics for Hashtag Assignment.} \label{fig-1}
 \end{figure*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -670,10 +670,10 @@ Figure 2 presents the results obtained for the three evaluation metrics on the t
 
 
 \section{Overall Comparison}
-The goal of this work was to get better topics which have better coherence, interpretability and usability without modifying the basic machinery of standard LDA. The default way of using tweets to train LDA was to treat each tweet as a single document (referred in this work as the Unpooled scheme). Simple hashtag based pooling outperformed unpooled scheme and other pooling schemes while hashtag assignment further improved results. Table 13 provides an overall comparison of the different schemes: Unpooled vs simple hashtag vs hashtag assignment on the three datasets.
+The goal of this work was to get better topics which have better coherence, interpretability and usability without modifying the basic machinery of standard LDA. The default way of using tweets to train LDA was to treat each tweet as a single document (referred in this work as the Unpooled scheme). Simple hashtag based pooling outperformed unpooled scheme and other pooling schemes while hashtag assignment further improved results. Table~\ref{tbl-10} provides an overall comparison of the different schemes: Unpooled vs simple hashtag vs hashtag assignment on the three datasets.
 
 \begin{table}[!h]
-\setcounter{table}{13}
+%\setcounter{table}{13}
 \centering
 \resizebox{14cm}{!} 
 {
@@ -691,18 +691,18 @@ The goal of this work was to get better topics which have better coherence, inte
 	\hline
 	\end{tabular}
 }
-\caption{Overall comparison of improvement}\label{Table}
+\caption{Overall comparison of improvement}\label{tbl-10}
 \end{table}
 
 
 \section{Observations}
-The work described in this paper presents a way of aggregating tweets in order to improve performance of topic models in terms of quality of topics obtained  measures by the ability to reconstruct clusters and topic coherence. The initial results presented in Table 5,6 and 7 suggest that hashtag based pooling outperforms all other pooling strategies including the default way of training topic models on Twitter data(unpooled).
+The work described in this paper presents a way of aggregating tweets in order to improve performance of topic models in terms of quality of topics obtained  measures by the ability to reconstruct clusters and topic coherence. The initial results presented in Table~\ref{tbl-4}, ~\ref{tbl-5} and ~\ref{tbl-6} suggest that hashtag based pooling outperforms all other pooling strategies including the default way of training topic models on Twitter data(unpooled).
 \\\\
-Since a major portion of Twitter data does not contains hashtags we looked at ways of assigning hashtags to tweets. Insights from Hashtag Assignment results (Table 12) suggest that when the main aim is to use the topics obtained to extract different events mentioned in the Twitter data one should use hashtag assignment with a relaxed threshold(~0.5). The high values of Purity scores and NMI values for low threshold support this claim.
+Since a major portion of Twitter data does not contains hashtags we looked at ways of assigning hashtags to tweets. Insights from Hashtag Assignment results (Table~\ref{tbl-9}) suggest that when the main aim is to use the topics obtained to extract different events mentioned in the Twitter data one should use hashtag assignment with a relaxed threshold(~0.5). The high values of Purity scores and NMI values for low threshold support this claim.
 \\\\
-When the goal is to obtain interesting topics with topic words pertaining to the same common theme (coherent topic words), hashtag assignment with strict constraints(threshold ~ 0.9) works well. The PMI scores in Table 12 highlight that topic coherence increases as we move down the column. Thus the threshold of 0.9 gives most coherent topics.
+When the goal is to obtain interesting topics with topic words pertaining to the same common theme (coherent topic words), hashtag assignment with strict constraints(threshold ~ 0.9) works well. The PMI scores in Table~\ref{tbl-9} highlight that topic coherence increases as we move down the column. Thus the threshold of 0.9 gives most coherent topics.
 \\\\
-Overall, results shown in Table 13 compare unpooled scheme with simple hashtag pooling and hashtag assignment schemes. The best Purity and NMI scores are obtained by hashtag assignment while even the simple hashtag based pooling scheme working much better than the default way of unpooled tweets. When the dataset in consideration consists of generic terms simple hashtag pooling gives the best results in terms of topic coherence. On the other hand when we have tweets on specific named entities or events in general one might want to prefer hashtag assignment as it results in best PMI scores. 
+Overall, results shown in Table~\ref{tbl-10} compare unpooled scheme with simple hashtag pooling and hashtag assignment schemes. The best Purity and NMI scores are obtained by hashtag assignment while even the simple hashtag based pooling scheme working much better than the default way of unpooled tweets. When the dataset in consideration consists of generic terms simple hashtag pooling gives the best results in terms of topic coherence. On the other hand when we have tweets on specific named entities or events in general one might want to prefer hashtag assignment as it results in best PMI scores. 
 \\
 
 
