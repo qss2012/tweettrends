@@ -551,7 +551,7 @@ Table~\ref{tbl-9} presents the results of hashtag assignment based on the 3 metr
 \centering
 \resizebox{14cm}{!} 
 {
-	\begin{tabular}{|l|ccc|ccc|ccc|}
+	\begin{tabular}{|c|ccc|ccc|ccc|}
 	\hline
 	\footnotesize{Threshold}  & \multicolumn {3}{c}{Purity} & \multicolumn {3}{c}{NMI Score} & \multicolumn {3}{c|}{PMI score}\\
 	\hline
@@ -565,7 +565,10 @@ Table~\ref{tbl-9} presents the results of hashtag assignment based on the 3 metr
 	\hline
 	0.8 & 0.55 & 0.69 & 0.72 & 0.295 & 0.225 & 0.429 & 0.72 & 1.16 & 1.0 \\
 	\hline
-	0.9 & 0.53 & 0.69 & 0.71 & 0.28 & 0.227 & 0.42 & \textbf{0.82} & \textbf{1.21} & \textbf{1.05} \\
+	0.9 & 0.53 & 0.69 & 0.71 & 0.28 & 0.227 & 0.42 & \textbf{0.82} & 1.21 & 1.05 \\
+	\hline
+	1.0 (Simple & 0.54 & 0.68 & 0.71 & 0.28 & 0.23 & 0.42 & 0.78 & \textbf{1.43} & \textbf{1.07} \\
+	\small Hashtag Pooling) & & & & & & & & & \\
 	\hline
 	\end{tabular}
 }
