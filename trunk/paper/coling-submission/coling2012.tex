@@ -82,7 +82,7 @@ To address the undirected informational task arising for the
 exploration of Twitter content, we propose the use of popular topic
 models like LDA.
 Twitter content poses unique challenges different to much of standard
-NLP content:  (1)
+NLP content: (1)
 posts are short (140 characters or less),
 (2)
 mixed with some contextual clues such as URLs, tags, and twitter names, and
@@ -93,6 +93,11 @@ Effectively modeling content on Twitter
 requires techniques that can readily adapt to this kind of data and
 require little supervision.
 
+*** In short, these properties lead to a decreased 
+co-occurence of common topic words across tweets 
+makes it difficult for topic modeling methods like LDA to 
+uncover the hidden patterns that comprise coherent topics.
+
 It has been found that standard LDA \cite{blei03} 
 does not work well 
 with the messy form of Twitter content \cite{wayne}. 
@@ -102,7 +107,8 @@ words are used to identify the subject area or give an interpretation
 of a topic.   The naive
 application of LDA to Twitter content produces mostly incoherent topics,
 some are vaguely interpretable but contain unrelated words in the
-top-10 word set. Table~\ref{tbl-0} shows an example of poor topic words as compared to topic words which are much more coherent and interpretable. 
+top-10 word set.
+Table~\ref{tbl-0} shows an example of poor topic words as compared to topic words which are much more coherent and interpretable. 
 
 \begin{table}[!h]
 \centering
