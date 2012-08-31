@@ -294,7 +294,7 @@ compare the volume in a specific day to the other days. Let $ Mean(R)
 deviation of the number of messages with the terms in $R$ posted over
 all the days. The \textit{burst-score} is defined as:
 \[
-burst\_score(R,y) = \frac{|M(R,y) - Mean(r)|}{SD(R)} 
+\mathit{burst\textrm{-}score}(R,y) = \frac{|M(R,y) - Mean(r)|}{SD(R)} 
 \]
 
 Let us denote the terms having burst-scores greater than 5 as
@@ -538,7 +538,7 @@ One of the goals of our work is to get topics that are more coherent.
 We measure topic coherence using PMI defined as follows:
 $PMI Score(w) = Mean ( PMI(w_i,w_j) ) i,j \in \lbrace1.....10\rbrace $.
 %%
-%% TODO: SHOULDN'T WE DEFINE PMI???
+%% TODO: SHOULDN'T WE DEFINE PMI MUCH MORE FORMALLY THAN ABOVE???
 %%
 A key aspect of this score is that it uses external data.  \cite{baldwin10} used the Wikipedia corpus as their external data. We eliminate the need of this external data source by using our own dataset to calculate the probabilities used in this score.
 
@@ -747,47 +747,55 @@ for performing this automated hashtag assignment with high confidence.
 
 Our aim here is to assign hashtags to tweets which have none. Since
 this step is done after hashtag-based pooling of tweets, for each
-hashtag we conveniently have a collection of tweets, each of which contain this
-particular hashtag.  We will make use of this collection to compare each
-tweet with each hashtag's collection and compute the similarity
-scores. If the similarity score crosses a certain threshold for some
-tweet having an assigned hashtag, we assign
-the hashtag to this tweet and add this tweet to the pool of tweets
-assigned to this hashtag. The similarity metric used here is the
-tf-cosine similarity. To avoid the bias caused by different document
-lengths, a common way to compute the similarity of two documents is
-using the cosine similarity measure. The inner product of the two
-vectors (sum of the pairwise multiplied elements) is divided by the
-product of their vector lengths. This has the effect that the vectors
-are normalized to unit length and only the angle, more precisely the
-cosine of the angle, between the vectors accounts for their
-similarity. Documents not sharing a single word get assigned a
-similarity value of zero because of the orthogonality of their vectors
-while documents sharing a similar vocabulary get higher values (up to
-one in the case of identical documents).
-
-\begin{center}
-$sim(d1,d2) = \frac{d1 . d2}{||d1|| ||d2||}$
-\end{center}
-
-where d1 is the tweet in consideration to which we intend to assign a
-hashtag and d2 is the collection of tweets for some hashtag. We
-iterate through all the hashtag for different d2 vectors and assign
-the hashtag which maximizes this similarity score. We use the term
-frequency of the words in the tweet to represent the tweet as a tf
-vector. Algorithm~\ref{alg-1} describes the same algorithm in detail.
+hashtag we conveniently have a collection of tweets that contain this
+particular hashtag.  We will make use of this collection to compare
+each unlabeled tweet with each hashtag's collection and compute the
+similarity scores. If the similarity score between an unlabeled and
+labeled tweet exceeds a certain threshold $C$, we assign the hashtag
+of the labeled tweet to the unlabeled tweet (and hence it joins the
+pool for this hashtag). The similarity metric we use initially is
+just the cosine similarity between the term frequency (TF) vector
+space model (i.e., $t_i := f_i$ if the frequency count for term $i$ in
+tweet $t$ is $f_i$) of two Tweets $t$ and $\hat{t}$ where cosine
+similarity is simply
+% Note that in the framework Rishabh is using, TF, IDF, and IAF simply
+% weight the boolean space model.
+\begin{equation*}
+  \mathit{Sim}(\hat{t},t) = \frac{\hat{t} \cdot t}{\|\hat{t}\| \|t\|}.
+\end{equation*}
+%%
+%% WHY ARE WE EXPLAINING HIGH SCHOOL MATH???
+%%
+%To avoid the bias caused by different document
+%lengths, a common way to compute the similarity of two documents is
+%using the cosine similarity measure. The inner product of the two
+%vectors (sum of the pairwise multiplied elements) is divided by the
+%product of their vector lengths. This has the effect that the vectors
+%are normalized to unit length and only the angle, more precisely the
+%cosine of the angle, between the vectors accounts for their
+%similarity. Documents not sharing a single word get assigned a
+%similarity value of zero because of the orthogonality of their vectors
+%while documents sharing a similar vocabulary get higher values (up to
+%one in the case of identical documents).
+After initial experiments with the cosine TF similarity, 
+we will later define and experiment with additional similarity metrics.
+Algorithm~\ref{alg-1} describes the hashtag assignment procedure;
+the document resulting from pooling tweets for each hashtag $h$ under
+this assignment scheme will then be composed of $T_h \cup \hat{T}_h$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%
-%% NOTES: THIS ALGORITHM WAS IN BAD SHAPE... SETS ARE USED IMPLICITLY
+%% NOTES: THIS ALGORITHM WAS IN BAD SHAPE... SETS WERE USED IMPLICITLY
 %%       WITHOUT BEING ASSIGNED TO VARIABLES... THERE SHOULD BE A NAME
 %%       FOR THE SET $T_h$ OF TWEETS HAVING HASHTAG h, THIS SHOULD
-%%       BE BUILD BY A LOOP AND SET UNION WHERE A SIMILARITY FUNCTION
+%%       BE BUILT BY A LOOP AND SET UNION WHERE A SIMILARITY FUNCTION
 %%       IS APPLIED AND PROPERLY THRESHOLDED!  TO CALCULATE A SIMILARITY
-%%       IS TO CALL A FUNCTION ON TWO OBJECTS Sim(t_1,t_2).
+%%       IS TO CALL A FUNCTION ON TWO OBJECTS Sim(t_1,t_2)!
 %%
-%%       WHY DO YOU USE n_t, WHAT IS THE MEANING OF THE SUBSCRIPT???
+%%       WHY DID YOU USE n_t, WHAT IS THE MEANING OF THE SUBSCRIPT???
+%%
+%%       WHY DID YOU USE H FOR A TWEET AND T FOR A SET OF HASHTAGS???
 %%
 
 \incmargin{1.5em}
@@ -800,53 +808,28 @@ vector. Algorithm~\ref{alg-1} describes the same algorithm in detail.
 
 \Input
 {
-$T_H$ : set of tweets having hashtags ($N$ in total)
- 
-$T_N$ : set of tweets with no hashtag ($M$ in total)
- 
-$T$ : set of hashtags
- 
-$c$ = \footnotesize{Threshold} on the similarity score
-%$F,\mathit{order}$: a set of factors $F$, and a variable 
-%$\mathit{order}$ for elimination
+$H$: set of hashtags\\
+$T_h$ : for each $h \in H$, set of tweets labeled with $h$\\
+$T_n$ : set of tweets with no hashtag \\
+$\mathit{Sim}(\cdot,\cdot)$: a similarity function between two tweets\\
+$C$: Threshold on the similarity score\\
 }
 \Output
 {
-hashtag $h$ (in $T$) for tweet $n_t$ $\in$ $N_T$ if score($n_t$,$h$) > c
-%a set of factors after eliminating each $\var \in \mathit{order}$
+$\hat{T}_h$: for each $h \in H$, set of tweets newly assigned label $h$\\
 }
 \BlankLine
-{\small
 \Begin{
-   \emph{
-   %// eliminate each $\var$ in the given $\mathit{order}$
-   // \textbf{--Pooling Step--}
-   }\\
-   \ForEach{$hashtag h \in T$}{
-   collect all tweets containing hashtag $h$
+   \ForEach{$h \in H$}{
+     $\hat{T}_h := \emptyset$\;
+     \ForEach{$\hat{t} \in T_n$}{
+       \textit{// Hashtag $h$ assignment for $\hat{t}$ if any $t \in T_h$ is near:}\;
+       \ForEach{$t \in T_h$}{
+         \lIf{$\mathit{Sim}(\hat{t},t) > C$}{$\hat{T}_h := \hat{T}_h \cup \{ \hat{t} \}$, \textbf{break}\;}
+         }
+     }
    }
-   max\_score = 0
-   \\
-    // \textbf{--Assignment Step--}\\
-   \ForEach{$tweet n_t \in N_T$}
-   {
-		\ForEach{$hashtag h \in T$}
-		{
-			calculate similarity score \emph{sim\_score} b/w $n_t$ and tweet pool of hashtag h
-			\\
-			\lIf{($sim_score$ $>$ $max_score$)\;}
-			{
-				 temp\_assigned\_tag = h ; max\_score = sim\_score
-       		}		
-		}
-   
-	\lIf{($max\_score$ $>$ $c$)\;}
-			{
-				 assigned\_tag = temp\_assigned\_tag
-       		}
-	}
-
-}
+   \Return{$\hat{T}_h$}\;
 }
 \caption{{\sc Hashtag Assignment} \label{alg-1}}
 \end{algorithm}
@@ -854,17 +837,17 @@ hashtag $h$ (in $T$) for tweet $n_t$ $\in$ $N_T$ if score($n_t$,$h$) > c
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Hashtag Assignment Results}
+\subsubsection{Automatic Hashtag Labeling}
 
 Table~\ref{tbl-9} presents the results of hashtag assignment based on
-the three metrics for different threshold varying from 0.5 to 0.9. We
-notice that as the threshold increases the corresponding value of PMI
-scores increases and purity scores decreases which is intuitive: on
-increasing the threshold lesser number of tweets get assigned a
-hashtag and hence cluster reconstruction suffers while the topic
-coherence is improved because a tweet is assigned a hashtag only if
-its highly similar to the tweet collection of that hashtag(threshold =
-0.9).
+the three metrics for different confidence thresholds $C$ varying from
+0.5 to 0.9. We notice that as the threshold increases the
+corresponding value of PMI scores increases and purity scores
+decreases which is intuitive: on increasing the threshold, fewer 
+tweets get assigned a hashtag and hence cluster
+reconstruction suffers while the topic coherence is improved because a
+tweet is assigned a hashtag only if its \emph{highly} similar to the tweet
+collection of that hashtag.
 
 \begin{table}[!h]
 %\setcounter{table}{11}
@@ -896,51 +879,57 @@ its highly similar to the tweet collection of that hashtag(threshold =
 \end{table}
 
 The results obtained via hashtag assignment are better than those of
-simple hashtag-based pooling as well as unpooled scheme. These results
-were obtained on using tf-cosine similarity metric to compute the
-similarity between a tweet and the tweet collection of the hashtag in
-consideration. We next look at some other similarity metrics and see
-if we could further improve our results.
+simple hashtag-based pooling as well as the unpooled scheme.
+Encouraged by this, we next look at some other similarity metrics and
+see if we could further improve our results.
 
 \subsubsection{Other Similarity Metrics}
 
-The results presented in Table~\ref{tbl-9} use the tf-cosine
-similarity between tweet and tweet-collection of a hashtag to assign a
-hashtag to the tweet in consideration. We next answer the question of
-how other similarity metrics affect the results of hashtag
-assignments. We look at the following six metrics to be used to
-represent each document while calculating the cosine similarity
-scores:
-%%
-%% TODO: WE NEED CLEAR DEFINITIONS OF ALL THESE, ESPECIALLY THE BOOLEAN
-%%       ASPECTS OF IAF, IDF USED BY THEMSELVES
-%%
+There is no inherent reason why cosine TF should be the ideal
+similarity metric for automatic labeling of Tweets and hence in this
+section we define a number of other similarity metrics and 
+evaluate them on hashtag pooling with automatic hashtag labeling.
+We now describe the following five document representations to be used to
+be used in conjunction with the cosine similarity function $\mathit{Sim}$
+defined previously:
 \begin{description}
-\item{\bf Term Frequency (TF)}: Already discussed in the previous section.
-\item{\bf Inverse Document Frequency (IDF)}:  a measure of whether the term is common or rare across all documents. It is obtained by dividing the total number of documents by the number of documents containing the term, and then taking the logarithm of that quotient. Thus the idf of a rare term is high, whereas the idf of a frequent term is likely to be low.
-\item{\bf Inverse Author Frequency (IAF)}: Each term used in a tweet has a relationship to the tweet's author. The relationship of terms and authors could be harnessed using the inverse author frequency (IAF)~\cite{iaf} which is computed as follows:
-$iaf_i = log \frac{N}{n_i}$
-where $N: \#$ of total authors and $n_i: \#$ of authors who use term i
-\item{\bf TF-IDF}: the product of the term frequency and inverse document frequency of each term.
-%\item \textbf{TF-IAF}: TF-IAF is the product of the term frequency and inverse author frequency of each term.
-\item{\bf TF-IDF-IAF}: the product of the term frequency, inverse document frequency and the inverse author frequency of each term.
+\item{\bf Term Frequency (TF)}: As previously defined for TF, we set the vector element $t_i := f_i$ if the frequency of term $i$ in tweet $t$ is $f_i$.
+\item{\bf Inverse Document Frequency (IDF)}:  Given the occurrence of term $i$ in $N_i$ of the total $N$ tweets, $\mathit{IDF}_i$, the $i$th entry of $t$'s document representation ($t_i$) is set as
+\begin{equation*}
+t_i := \mathit{IDF}_i = \log{\frac{N}{N_i}}.
+\end{equation*}
+Thus the IDF of a rare term in the corpus is high, whereas the IDF of a frequent term is low.
+\item{\bf Inverse Author Frequency (IAF)}: The relationship of terms and authors could be harnessed using the inverse author frequency (IAF)~\cite{iaf}, which is computed similarly to IDF except that we let $A_i$ represent the number of authors who mention term $i$ out of the total number of authors $A$:
+\begin{equation*}
+t_i := \mathit{IDF}_i = \log{\frac{A}{A_i}}.
+\end{equation*}
+Here, the IAF of a term used only by a few different authors is high, whereas the IAF of a term used by most authors is low.
+\item{\bf TF-IDF}: The tweet document representation is simply the elementwise product of TF and IDF: $t_i := f_i \cdot \mathrm{IDF}_i$.
+\item{\bf TF-IDF-IAF}: The tweet document representation is simply the elementwise product of TF, IDF, \emph{and} IAF: $t_i := f_i \cdot \mathrm{IDF}_i \cdot \mathrm{IAF}_i$.
 \end{description}
+We experimented with other similarity metrics, but found these five to
+offer the best performance, hence we show their evaluation next.
 
-%\subsubsection*{Tf-IAF}
-%Description\\
-%\subsubsection{New Similarity Metric}
-%Description\\
-
-Figure~\ref{fig-1} presents the results obtained for the three
-evaluation metrics on the three datasets for the different similarity
-metrics discussed in the previous section. It is interesting to note
-that the simplest of all: term-frequency based cosine similarity
-generally performs better than others. Inverse Author Frequency (IAF)
-gives almost comparable results when evaluating topic coherence using
-the PMI scores. When the task at hand is reconstruction of known
-clusters one should prefer using TF based cosine similarity to assign
-hashtags while both TF and IAF work well when one is interested in
-obtaining coherent topics.
+Figure~\ref{fig-1} presents the results obtained for different
+similarity metrics for automatic hashtag labeling in the hashtag
+pooling scheme discussed above on the same three datasets and
+evaluation metrics used previously.  It is interesting to note that
+the simplest of all, TF-based cosine similarity, performs well in
+almost all cases except one.  We note that metrics like IAF that are
+relevant only on socially authored media such as Twitter perform quite
+well on this task.  Indeed IAF often performs quite comparably to or
+better than TF and is quite consistent across all three datasets, all
+three evaluation metrics, and all confidence thresholds, unlike TF and
+other metrics which show cases of poor performance or anomalous
+dips.  Hence, when compared to the other metrics, we might conclude
+that IAF is a robust similarity metric for purposes of automatic
+hashtag labeling as demonstrated consistently across all these experiments.
+%Inverse Author Frequency (IAF)
+%gives almost comparable results when evaluating topic coherence using
+%the PMI scores. When the task at hand is reconstruction of known
+%clusters one should prefer using TF based cosine similarity to assign
+%hashtags while both TF and IAF work well when one is interested in
+%obtaining coherent topics.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure*}[t!]
@@ -1014,8 +1003,8 @@ single document (referred in this work as the Unpooled scheme). Simple
 hashtag-based pooling outperformed unpooled scheme and other pooling
 schemes while hashtag assignment further improved
 results. Table~\ref{tbl-10} provides an overall comparison of the best
-of the different schemes: Unpooled vs simple hashtag vs hashtag
-assignment on the three datasets.
+of the different schemes: unpooled vs simple hashtag vs hashtag
+assignment on the three datasets and across the three metrics.
 
 \begin{table}[!h]
 %\setcounter{table}{13}
@@ -1043,10 +1032,12 @@ In Table~\ref{tbl-10}, we see that the best Purity and NMI scores are
 obtained by hashtag assignment while even the simple hashtag-based
 pooling scheme works much better than the baseline method of unpooled
 tweets. When the dataset in consideration consists of generic terms
-simple hashtag pooling gives the best results in terms of topic
-coherence. On the other hand when we have tweets on specific named
-entities or events in general one might want to prefer hashtag
-assignment as it results in best PMI scores.
+simple hashtag pooling gives the best results on the Generic data in
+terms of topic coherence. On the other hand when we have tweets on
+specific named entities or events in general, one might want to prefer
+hashtag assignment as it results in best PMI scores for the Specific
+and Events datasets, presumably because it is better at recovering
+coherent multiword topics for these entities or events.
 
 \section{Related Work}
 
@@ -1148,22 +1139,25 @@ coherence increases as we move down the column. Thus the threshold of
 
 Overall, results shown in Table~\ref{tbl-10} compare unpooled scheme
 with simple hashtag pooling and hashtag assignment schemes.  In short,
-across all datasets and metrics, the best hashtag assignment method
-performs optimally or near-optimally indicating the promise of this
-novel automatic hashtag labeling and pooling approach.
+across diverse datasets and various topic coherence metrics, the best
+hashtag assignment method performs substantially better in comparison
+to an unmodified LDA baseline and a variety of existing and novel
+pooling schemes.  This indicicates the promise of this novel automatic
+hashtag labeling and pooling approach that drastically improves the
+quality of topic models for Twitter and microblog data.
 
-To this end, we have achieved our initial goal.  We have introduced
-novel techniques for automatic tweet hashtag labeling and pooling that
-have produced topics representative of the events queried to construct
-the source data and have substantially improved various quantitative
-measures of topic coherence.  Further, we have achieved this without
-modifying the LDA algorithm itself but rather by preprocessing its
-input.
+%To this end, we have achieved our initial goal.  We have introduced
+%novel techniques for automatic tweet hashtag labeling and pooling that
+%have produced topics representative of the events queried to construct
+%the source data and have substantially improved various quantitative
+%measures of topic coherence over a wide range of data and topic
+%coherence measures.  Further, we have achieved this without modifying
+%the LDA algorithm itself but rather by preprocessing its input.
 
-This technique worked well across a diverse set of data and suggests
-that continued investigation into aggregation techniques for topic
-modeling on short text and microblog documents is warranted given its
-highly successful outcome demonstrated in this work.
+%This technique worked well across a diverse set of data and suggests
+%that continued investigation into aggregation techniques for topic
+%modeling on short text and microblog documents is warranted given its
+%highly successful outcome demonstrated in this work.
 
 %\section*{Acknowledgments} 
 %
