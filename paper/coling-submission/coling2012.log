@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.21)  31 AUG 2012 19:10
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.5.21)  31 AUG 2012 19:13
 entering extended mode
  %&-line parsing enabled.
 **coling2012.tex
@@ -36,7 +36,7 @@ Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 )
 (/usr/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty
 Package: ifpdf 2009/04/10 v2.0 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in pdf mode detected.
+Package ifpdf Info: pdfTeX in pdf mode not detected.
 )
 (/usr/share/texmf-texlive/tex/generic/oberdiek/ifvtex.sty
 Package: ifvtex 2008/11/04 v1.4 Switches for detecting VTeX and its modes (HO)
@@ -302,11 +302,10 @@ Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 (/etc/texmf/tex/latex/config/graphics.cfg
 File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
 )
-Package graphics Info: Driver file: pdftex.def on input line 91.
+Package graphics Info: Driver file: dvips.def on input line 91.
 
-(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
-File: pdftex.def 2010/03/12 v0.04p Graphics/color for pdfTeX
-\Gread@gobject=\count91
+(/usr/share/texmf-texlive/tex/latex/graphics/dvips.def
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
 ))
 \Gin@req@height=\dimen108
 \Gin@req@width=\dimen109
@@ -328,16 +327,16 @@ Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
 \LTright=\skip54
 \LTpre=\skip55
 \LTpost=\skip56
-\LTchunksize=\count92
+\LTchunksize=\count91
 \LTcapwidth=\dimen110
 \LT@head=\box26
 \LT@firsthead=\box27
 \LT@foot=\box28
 \LT@lastfoot=\box29
-\LT@cols=\count93
-\LT@rows=\count94
-\c@LT@tables=\count95
-\c@LT@chunks=\count96
+\LT@cols=\count92
+\LT@rows=\count93
+\c@LT@tables=\count94
+\c@LT@chunks=\count95
 \LT@p@ftn=\toks19
 )
 (/usr/share/texmf-texlive/tex/generic/babel/babel.sty
@@ -348,7 +347,7 @@ Language: english 2005/03/30 v3.3o English support from the babel system
 
 (/usr/share/texmf-texlive/tex/generic/babel/babel.def
 File: babel.def 2008/07/06 v3.8l Babel common definitions
-\babel@savecnt=\count97
+\babel@savecnt=\count96
 \U@D=\dimen111
 )
 \l@british = a dialect from \language\l@english 
@@ -383,8 +382,8 @@ O)
 Package: xcolor-patch 2009/10/02 xcolor patch
 ))
 \@linkdim=\dimen117
-\Hy@linkcounter=\count98
-\Hy@pagecounter=\count99
+\Hy@linkcounter=\count97
+\Hy@pagecounter=\count98
 
 (/usr/share/texmf-texlive/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2009/10/09 v6.79a Hyperref: PDFDocEncoding definition (HO)
@@ -451,7 +450,7 @@ Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 )))
-\Fld@menulength=\count100
+\Fld@menulength=\count99
 \Field@Width=\dimen118
 \Fld@charsize=\dimen119
 \Field@toks=\toks21
@@ -466,32 +465,39 @@ Package hyperref Info: PDF/A mode OFF on input line 4407.
 (/usr/share/texmf-texlive/tex/generic/oberdiek/atbegshi.sty
 Package: atbegshi 2008/07/31 v1.9 At begin shipout hook (HO)
 )
-\Hy@abspage=\count101
-\c@Item=\count102
-\c@Hfootnote=\count103
+\Hy@abspage=\count100
+\c@Item=\count101
+\c@Hfootnote=\count102
 )
-*hyperref using default driver hpdftex*
-(/usr/share/texmf-texlive/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2009/10/09 v6.79a Hyperref driver for pdfTeX
-\Fld@listcount=\count104
-)
+*hyperref using default driver hdvips*
+(/usr/share/texmf-texlive/tex/latex/hyperref/hdvips.def
+File: hdvips.def 2009/10/09 v6.79a Hyperref driver for dvips
+
+(/usr/share/texmf-texlive/tex/latex/hyperref/pdfmark.def
+File: pdfmark.def 2009/10/09 v6.79a Hyperref definitions for pdfmark specials
+\pdf@docset=\toks22
+\pdf@box=\box31
+\pdf@toks=\toks23
+\pdf@defaulttoks=\toks24
+\Fld@listcount=\count103
+))
 (/usr/share/texmf-texlive/tex/latex/paralist/paralist.sty
 Package: paralist 2002/03/18 v2.3b Extended list environments (BS)
 \pltopsep=\skip59
 \plpartopsep=\skip60
 \plitemsep=\skip61
 \plparsep=\skip62
-\pl@lab=\toks22
+\pl@lab=\toks25
 )
 (/usr/share/texmf-texlive/tex/latex/natbib/natbib.sty
 Package: natbib 2009/07/16 8.31 (PWD, AO)
 \bibhang=\skip63
 \bibsep=\skip64
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count105
+\c@NAT@ctr=\count104
 )) (./algorithm2e.sty
 Package: algorithm2e 2005/10/04 v3.9 algorithms environments
-\c@AlgoLine=\count106
+\c@AlgoLine=\count105
 
 (/usr/share/texmf-texlive/tex/latex/base/ifthen.sty
 Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
@@ -516,15 +522,15 @@ subscribe by emailing sympa@lirmm.fr with 'subscribe <list> <firstname name>'
 \algowidth=\dimen120
 \inoutsize=\dimen121
 \inoutline=\dimen122
-\algocf@inoutbox=\box31
-\algocf@inputbox=\box32
+\algocf@inoutbox=\box32
+\algocf@inputbox=\box33
 \AlCapSkip=\skip72
 \AlCapHSkip=\skip73
-\algocf@capbox=\box33
-\c@algocfline=\count107
-\c@algocf=\count108
-\algocf@algoframe=\box34
-\algocf@algobox=\box35
+\algocf@capbox=\box34
+\c@algocfline=\count106
+\c@algocf=\count107
+\algocf@algoframe=\box35
+\algocf@algobox=\box36
 ) (/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2000/07/18 v2.13 AMS math features
 \@mathmargin=\skip74
@@ -535,7 +541,7 @@ Package: amstext 2000/06/29 v2.01
 
 (/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
-\@emptytoks=\toks23
+\@emptytoks=\toks26
 \ex@=\dimen123
 ))
 (/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty
@@ -545,41 +551,41 @@ Package: amsbsy 1999/11/29 v1.2d
 (/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
-\inf@bad=\count109
+\inf@bad=\count108
 LaTeX Info: Redefining \frac on input line 211.
-\uproot@=\count110
-\leftroot@=\count111
+\uproot@=\count109
+\leftroot@=\count110
 LaTeX Info: Redefining \overline on input line 307.
-\classnum@=\count112
-\DOTSCASE@=\count113
+\classnum@=\count111
+\DOTSCASE@=\count112
 LaTeX Info: Redefining \ldots on input line 379.
 LaTeX Info: Redefining \dots on input line 382.
 LaTeX Info: Redefining \cdots on input line 467.
-\Mathstrutbox@=\box36
-\strutbox@=\box37
+\Mathstrutbox@=\box37
+\strutbox@=\box38
 \big@size=\dimen125
 LaTeX Font Info:    Redeclaring font encoding OML on input line 567.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
-\macc@depth=\count114
-\c@MaxMatrixCols=\count115
+\macc@depth=\count113
+\c@MaxMatrixCols=\count114
 \dotsspace@=\muskip11
-\c@parentequation=\count116
-\dspbrk@lvl=\count117
-\tag@help=\toks24
-\row@=\count118
-\column@=\count119
-\maxfields@=\count120
-\andhelp@=\toks25
+\c@parentequation=\count115
+\dspbrk@lvl=\count116
+\tag@help=\toks27
+\row@=\count117
+\column@=\count118
+\maxfields@=\count119
+\andhelp@=\toks28
 \eqnshift@=\dimen126
 \alignsep@=\dimen127
 \tagshift@=\dimen128
 \tagwidth@=\dimen129
 \totwidth@=\dimen130
 \lineht@=\dimen131
-\@envbody=\toks26
+\@envbody=\toks29
 \multlinegap=\skip75
 \multlinetaggap=\skip76
-\mathdisplay@stack=\toks27
+\mathdisplay@stack=\toks30
 LaTeX Info: Redefining \[ on input line 2666.
 LaTeX Info: Redefining \] on input line 2667.
 )
@@ -595,21 +601,21 @@ Package: amssymb 2009/06/22 v3.00
 )
 (/usr/share/texmf-texlive/tex/latex/amscls/amsthm.sty
 Package: amsthm 2004/08/06 v2.20
-\thm@style=\toks28
-\thm@bodyfont=\toks29
-\thm@headfont=\toks30
-\thm@notefont=\toks31
-\thm@headpunct=\toks32
+\thm@style=\toks31
+\thm@bodyfont=\toks32
+\thm@headfont=\toks33
+\thm@notefont=\toks34
+\thm@headpunct=\toks35
 \thm@preskip=\skip77
 \thm@postskip=\skip78
 \thm@headsep=\skip79
-\dth@everypar=\toks33
+\dth@everypar=\toks36
 )
 (/usr/share/texmf-texlive/tex/latex/tools/array.sty
 Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
 \col@sep=\dimen132
 \extrarowheight=\dimen133
-\NC@list=\toks34
+\NC@list=\toks37
 \extratabsurround=\skip80
 \backup@length=\skip81
 )
@@ -626,10 +632,10 @@ Package: subfigure 2002/03/15 v2.1.5 subfigure package
 \subfigbottomskip=\skip84
 \subfigcapmargin=\dimen137
 \subfiglabelskip=\skip85
-\c@subfigure=\count121
-\c@lofdepth=\count122
-\c@subtable=\count123
-\c@lotdepth=\count124
+\c@subfigure=\count120
+\c@lofdepth=\count121
+\c@subtable=\count122
+\c@lotdepth=\count123
 
 ****************************************
 * Local config file subfigure.cfg used *
@@ -645,10 +651,10 @@ Package: pgfplots 2009/02/14 Version 1.2.2
 (/usr/share/texmf/tex/latex/pgf/basiclayer/pgf.sty
 (/usr/share/texmf/tex/latex/pgf/utilities/pgfrcs.sty
 (/usr/share/texmf/tex/generic/pgf/utilities/pgfutil-common.tex
-\pgfutil@everybye=\toks35
+\pgfutil@everybye=\toks38
 )
 (/usr/share/texmf/tex/generic/pgf/utilities/pgfutil-latex.def
-\pgfutil@abb=\box38
+\pgfutil@abb=\box39
 
 (/usr/share/texmf-texlive/tex/latex/ms/everyshi.sty
 Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
@@ -664,11 +670,11 @@ Package: pgf 2008/01/15 v2.10 (rcs-revision 1.12)
 Package: pgfsys 2010/06/30 v2.10 (rcs-revision 1.37)
 
 (/usr/share/texmf/tex/generic/pgf/utilities/pgfkeys.code.tex
-\pgfkeys@pathtoks=\toks36
-\pgfkeys@temptoks=\toks37
+\pgfkeys@pathtoks=\toks39
+\pgfkeys@temptoks=\toks40
 
 (/usr/share/texmf/tex/generic/pgf/utilities/pgfkeysfiltered.code.tex
-\pgfkeys@tmptoks=\toks38
+\pgfkeys@tmptoks=\toks41
 ))
 \pgf@x=\dimen138
 \pgf@y=\dimen139
@@ -680,21 +686,22 @@ Package: pgfsys 2010/06/30 v2.10 (rcs-revision 1.37)
 \pgf@yc=\dimen145
 \w@pgf@writea=\write3
 \r@pgf@reada=\read1
-\c@pgf@counta=\count125
-\c@pgf@countb=\count126
-\c@pgf@countc=\count127
-\c@pgf@countd=\count128
+\c@pgf@counta=\count124
+\c@pgf@countb=\count125
+\c@pgf@countc=\count126
+\c@pgf@countd=\count127
 
 (/usr/share/texmf/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
 )
-Package pgfsys Info: Driver file for pgf: pgfsys-pdftex.def on input line 900.
+Package pgfsys Info: Driver file for pgf: pgfsys-dvips.def on input line 900.
 
-(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
-File: pgfsys-pdftex.def 2009/05/22  (rcs-revision 1.26)
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys-dvips.def
+File: pgfsys-dvips.def 2008/04/03  (rcs-revision 1.20)
 
-(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
-File: pgfsys-common-pdf.def 2008/05/19  (rcs-revision 1.10)
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys-common-postscript.def
+File: pgfsys-common-postscript.def 2008/10/01  (rcs-revision 1.22)
+\pgf@objectcount=\count128
 )))
 (/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2008/07/18  (rcs-revision 1.7)
@@ -710,9 +717,8 @@ Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
 (/etc/texmf/tex/latex/config/color.cfg
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
-Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Driver file: dvips.def on input line 225.
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
-Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
 Package xcolor Info: Model `RGB' extended on input line 1353.
 Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
 Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
@@ -730,10 +736,10 @@ Package: pgfcore 2010/04/11 v2.10 (rcs-revision 1.7)
 (/usr/share/texmf/tex/generic/pgf/math/pgfmathparser.code.tex
 \pgfmath@dimen=\dimen146
 \pgfmath@count=\count131
-\pgfmath@box=\box39
-\pgfmath@toks=\toks39
-\pgfmath@stack@operand=\toks40
-\pgfmath@stack@operation=\toks41
+\pgfmath@box=\box40
+\pgfmath@toks=\toks42
+\pgfmath@stack@operand=\toks43
+\pgfmath@stack@operation=\toks44
 )
 (/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.code.tex
 (/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex)
@@ -775,9 +781,9 @@ File: pgfcorepathusage.code.tex 2008/04/22  (rcs-revision 1.12)
 )
 (/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
 File: pgfcorescopes.code.tex 2010/09/08  (rcs-revision 1.34)
-\pgfpic=\box40
-\pgf@hbox=\box41
-\pgf@layerbox@main=\box42
+\pgfpic=\box41
+\pgf@hbox=\box42
+\pgf@layerbox@main=\box43
 \pgf@picture@serial@count=\count133
 )
 (/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
@@ -812,7 +818,7 @@ File: pgfcoreimage.code.tex 2010/03/25  (rcs-revision 1.16)
 
 (/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
 File: pgfcoreexternal.code.tex 2010/09/01  (rcs-revision 1.17)
-\pgfexternal@startupbox=\box43
+\pgfexternal@startupbox=\box44
 ))
 (/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
 File: pgfcorelayers.code.tex 2010/08/27  (rcs-revision 1.2)
@@ -825,7 +831,7 @@ File: pgfcorepatterns.code.tex 2009/07/02  (rcs-revision 1.3)
 )))
 (/usr/share/texmf/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
 File: pgfmoduleshapes.code.tex 2010/09/09  (rcs-revision 1.13)
-\pgfnodeparttextbox=\box44
+\pgfnodeparttextbox=\box45
 )
 (/usr/share/texmf/tex/generic/pgf/modules/pgfmoduleplot.code.tex
 File: pgfmoduleplot.code.tex 2010/10/22  (rcs-revision 1.8)
@@ -845,8 +851,8 @@ Package: pgfcomp-version-1-18 2007/07/23 v2.10 (rcs-revision 1.1)
 Package: pgffor 2010/03/23 v2.10 (rcs-revision 1.18)
 \pgffor@iter=\dimen172
 \pgffor@skip=\dimen173
-\pgffor@stack=\toks42
-\pgffor@toks=\toks43
+\pgffor@stack=\toks45
+\pgffor@toks=\toks46
 ))
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
 Package: tikz 2010/10/13 v2.10 (rcs-revision 1.76)
@@ -862,8 +868,8 @@ File: pgflibraryplothandlers.code.tex 2010/05/31 v2.10 (rcs-revision 1.15)
 \tikz@lastysaved=\dimen178
 \tikzleveldistance=\dimen179
 \tikzsiblingdistance=\dimen180
-\tikz@figbox=\box45
-\tikz@tempbox=\box46
+\tikz@figbox=\box46
+\tikz@tempbox=\box47
 \tikztreelevel=\count136
 \tikznumberofchildren=\count137
 \tikznumberofcurrentchild=\count138
@@ -882,9 +888,9 @@ hs.code.tex
 File: tikzlibrarytopaths.code.tex 2008/06/17 v2.10 (rcs-revision 1.2)
 ))) (/usr/share/texmf-texlive/tex/generic/pgfplots/pgfplots.code.tex (/usr/shar
 e/texmf-texlive/tex/generic/pgfplots/pgfplotscore.code.tex
-\t@pgfplots@toka=\toks44
-\t@pgfplots@tokb=\toks45
-\t@pgfplots@tokc=\toks46
+\t@pgfplots@toka=\toks47
+\t@pgfplots@tokb=\toks48
+\t@pgfplots@tokc=\toks49
 \pgfplots@tmpa=\dimen181
 )
 (/usr/share/texmf-texlive/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsup
@@ -895,7 +901,7 @@ Package pgfplots: loading complementary code for your PGF version...
 p_misc.code.tex)
 (/usr/share/texmf-texlive/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsup
 p_pgfkeysfiltered.code.tex
-\pgfkeys@tmptoks=\toks47
+\pgfkeys@tmptoks=\toks50
 )
 (/usr/share/texmf-texlive/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsup
 p_pgfmathfloat.code.tex
@@ -940,7 +946,7 @@ ations.code.tex
 \pgfdecorationsegmentamplitude=\dimen188
 \pgfdecorationsegmentlength=\dimen189
 )
-\tikz@lib@dec@box=\box47
+\tikz@lib@dec@box=\box48
 )
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecor
 ations.pathmorphing.code.tex
@@ -984,7 +990,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 38.
 LaTeX Font Info:    ... okay on input line 38.
 
 *geometry auto-detecting driver*
-*geometry detected driver: pdftex*
+*geometry detected driver: dvips*
 -------------------- Geometry parameters
 paper: user defined
 landscape: --
@@ -1002,7 +1008,7 @@ truedimen: --
 includehead: --
 includefoot: --
 includemp: --
-driver: pdftex
+driver: dvips
 -------------------- Page layout dimensions and switches
 \paperwidth  421.10078pt
 \paperheight 597.50787pt
@@ -1025,12 +1031,10 @@ driver: pdftex
 (1in=72.27pt, 1cm=28.45pt)
 -----------------------
 LaTeX Info: Redefining \microtypecontext on input line 38.
-Package microtype Info: Generating PDF output.
+Package microtype Info: Generating DVI output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
-Package microtype Info: Automatic font expansion enabled (level 2),
-(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
-Package microtype Info: Using default expansion set `basictext'.
+Package microtype Info: No font expansion.
 Package microtype Info: No tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: Adjustment of character kerning enabled.
@@ -1039,27 +1043,15 @@ Package microtype Info: Using default kerning set `alltext'.
 File: mt-cmr.cfg 2008/02/29 v1.9a microtype config. file: Computer Modern Roman
  (RS)
 )
-(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count150
-\scratchdimen=\dimen196
-\scratchbox=\box48
-\nofMPsegments=\count151
-\nofMParguments=\count152
-\everyMPshowfont=\toks48
-\MPscratchCnt=\count153
-\MPscratchDim=\dimen197
-\MPnumerator=\count154
-\everyMPtoPDFconversion=\toks49
-)
 Package hyperref Info: Link coloring OFF on input line 38.
- (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+
+(/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
 
 (/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty
 Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 )
-\c@section@level=\count155
+\c@section@level=\count150
 )
 LaTeX Info: Redefining \ref on input line 38.
 LaTeX Info: Redefining \pageref on input line 38.
@@ -1090,13 +1082,9 @@ LaTeX Font Info:    Try loading font information for T1+cmtt on input line 39.
 
 (/usr/share/texmf-texlive/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
+) [1
 
-Package natbib Warning: Citation `????' on page 1 undefined on input line 98.
-
-[1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+]
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 157.
 
 
@@ -1109,9 +1097,9 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 Underfull \vbox (badness 2042) has occurred while \output is active []
 
  [2]
-Underfull \hbox (badness 1024) in paragraph at lines 226--231
-[]|\T1/cmr/m/n/9 (+20) music/17.9 busi-ness/15.8 movie/14.5 de-sign/10.8 food/9
-.6 fun/9.1
+Underfull \hbox (badness 2261) in paragraph at lines 226--231
+[]|\T1/cmr/m/n/9 music/17.9 busi-ness/15.8 movie/14.5 de-sign/10.8 food/9.6 fun
+/9.1
  []
 
 
@@ -1128,6 +1116,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 296--300
  []
 
 [5]
+Underfull \hbox (badness 1147) in paragraph at lines 333--334
+\T1/cmr/m/n/10 posted by a par-tic-u-lar au-thor as a sin-gle doc-u-ment and re
+-peat this for all the
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 339--344
 
  []
@@ -1142,7 +1136,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 378--380
 
  []
 
-[7]
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [7]
 Overfull \hbox (5.6896pt too wide) in paragraph at lines 384--404
  [][] 
  []
@@ -1179,72 +1176,148 @@ Underfull \hbox (badness 10000) in paragraph at lines 601--602
  []
 
 
+! LaTeX Error: Cannot determine size of graphic in Figs/1-1.pdf (no BoundingBox
+).
 
-pdfTeX warning: pdflatex (file ./Figs/1-1.pdf): PDF inclusion: found PDF versio
-n <1.5>, but at most version <1.4> allowed
-<Figs/1-1.pdf, id=249, 258.92007pt x 162.18071pt>
-File: Figs/1-1.pdf Graphic file (type pdf)
- <use Figs/1-1.pdf>
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.655 }
+       
+? 
+File: Figs/1-1.pdf Graphic file (type eps)
+<Figs/1-1.pdf>
 
-pdfTeX warning: pdflatex (file ./Figs/1-2.pdf): PDF inclusion: found PDF versio
-n <1.5>, but at most version <1.4> allowed
-<Figs/1-2.pdf, id=251, 258.92007pt x 162.18071pt>
-File: Figs/1-2.pdf Graphic file (type pdf)
- <use Figs/1-2.pdf>
+! LaTeX Error: Cannot determine size of graphic in Figs/1-2.pdf (no BoundingBox
+).
 
-pdfTeX warning: pdflatex (file ./Figs/1-3.pdf): PDF inclusion: found PDF versio
-n <1.5>, but at most version <1.4> allowed
-<Figs/1-3.pdf, id=253, 258.92007pt x 162.18071pt>
-File: Figs/1-3.pdf Graphic file (type pdf)
- <use Figs/1-3.pdf>
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.655 }
+       
+? 
+File: Figs/1-2.pdf Graphic file (type eps)
+<Figs/1-2.pdf>
 
-pdfTeX warning: pdflatex (file ./Figs/2-1.pdf): PDF inclusion: found PDF versio
-n <1.5>, but at most version <1.4> allowed
-<Figs/2-1.pdf, id=255, 258.92007pt x 162.18071pt>
-File: Figs/2-1.pdf Graphic file (type pdf)
- <use Figs/2-1.pdf>
+! LaTeX Error: Cannot determine size of graphic in Figs/1-3.pdf (no BoundingBox
+).
 
-pdfTeX warning: pdflatex (file ./Figs/2-2.pdf): PDF inclusion: found PDF versio
-n <1.5>, but at most version <1.4> allowed
-<Figs/2-2.pdf, id=257, 258.92007pt x 162.18071pt>
-File: Figs/2-2.pdf Graphic file (type pdf)
- <use Figs/2-2.pdf>
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.655 }
+       
+? 
+File: Figs/1-3.pdf Graphic file (type eps)
+<Figs/1-3.pdf>
 
-pdfTeX warning: pdflatex (file ./Figs/2-3.pdf): PDF inclusion: found PDF versio
-n <1.5>, but at most version <1.4> allowed
-<Figs/2-3.pdf, id=259, 258.92007pt x 162.18071pt>
-File: Figs/2-3.pdf Graphic file (type pdf)
- <use Figs/2-3.pdf>
+! LaTeX Error: Cannot determine size of graphic in Figs/2-1.pdf (no BoundingBox
+).
 
-pdfTeX warning: pdflatex (file ./Figs/3-1.pdf): PDF inclusion: found PDF versio
-n <1.5>, but at most version <1.4> allowed
-<Figs/3-1.pdf, id=261, 258.92007pt x 162.18071pt>
-File: Figs/3-1.pdf Graphic file (type pdf)
- <use Figs/3-1.pdf>
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.655 }
+       
+? 
+File: Figs/2-1.pdf Graphic file (type eps)
+<Figs/2-1.pdf>
 
-pdfTeX warning: pdflatex (file ./Figs/3-2.pdf): PDF inclusion: found PDF versio
-n <1.5>, but at most version <1.4> allowed
-<Figs/3-2.pdf, id=263, 258.92007pt x 162.18071pt>
-File: Figs/3-2.pdf Graphic file (type pdf)
- <use Figs/3-2.pdf>
+! LaTeX Error: Cannot determine size of graphic in Figs/2-2.pdf (no BoundingBox
+).
 
-pdfTeX warning: pdflatex (file ./Figs/3-3.pdf): PDF inclusion: found PDF versio
-n <1.5>, but at most version <1.4> allowed
-<Figs/3-3.pdf, id=265, 258.92007pt x 162.18071pt>
-File: Figs/3-3.pdf Graphic file (type pdf)
- <use Figs/3-3.pdf>
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.655 }
+       
+? 
+File: Figs/2-2.pdf Graphic file (type eps)
+<Figs/2-2.pdf>
+
+! LaTeX Error: Cannot determine size of graphic in Figs/2-3.pdf (no BoundingBox
+).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.655 }
+       
+? 
+File: Figs/2-3.pdf Graphic file (type eps)
+<Figs/2-3.pdf>
+
+! LaTeX Error: Cannot determine size of graphic in Figs/3-1.pdf (no BoundingBox
+).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.655 }
+       
+? 
+File: Figs/3-1.pdf Graphic file (type eps)
+<Figs/3-1.pdf>
+
+! LaTeX Error: Cannot determine size of graphic in Figs/3-2.pdf (no BoundingBox
+).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.655 }
+       
+? 
+File: Figs/3-2.pdf Graphic file (type eps)
+<Figs/3-2.pdf>
+
+! LaTeX Error: Cannot determine size of graphic in Figs/3-3.pdf (no BoundingBox
+).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.655 }
+       
+? 
+File: Figs/3-3.pdf Graphic file (type eps)
+<Figs/3-3.pdf>
 Overfull \hbox (5.6805pt too wide) in paragraph at lines 609--656
  [] 
  []
 
-
+[11]
 Overfull \hbox (5.69885pt too wide) in paragraph at lines 671--687
  [][] 
  []
 
-[11]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 692--700
 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 692--700
+
+ []
+
+
+Underfull \hbox (badness 1184) in paragraph at lines 692--700
+\T1/cmr/m/n/10 same com-mon theme (co-her-ent topic words), hash-tag as-sign-me
+nt with strict con-
  []
 
 
@@ -1258,57 +1331,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 692--700
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 692--700
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
- []
-
-[12 <./Figs/1-1.pdf> <./Figs/1-2.pdf> <./Figs/1-3.pdf> <./Figs/2-1.pdf> <./Figs
-/2-2.pdf> <./Figs/2-3.pdf> <./Figs/3-1.pdf> <./Figs/3-2.pdf> <./Figs/3-3.pdf>]
+ [12]
+[13]
 Underfull \hbox (badness 10000) in paragraph at lines 726--729
 
  []
 
-[13] (./coling2012.bbl [14]) [15]
-
-Package natbib Warning: There were undefined citations.
-
-(./coling2012.aux) ) 
+(./coling2012.bbl [14]) [15] (./coling2012.aux) ) 
 Here is how much of TeX's memory you used:
- 21964 strings out of 495061
- 420058 string characters out of 1182621
- 579772 words of memory out of 3000000
- 24426 multiletter control sequences out of 15000+50000
- 30555 words of font info for 137 fonts, out of 3000000 for 9000
+ 21388 strings out of 495062
+ 412872 string characters out of 1182644
+ 576761 words of memory out of 3000000
+ 24084 multiletter control sequences out of 15000+50000
+ 25879 words of font info for 66 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 63i,19n,61p,1283b,529s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share
-/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texl
-ive/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texmf-texlive/fonts/ty
-pe1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-texlive/fonts/type1/public/a
-msfonts/cm/cmmi7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
-mmi9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
-sr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/tex
-mf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fo
-nts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/pub
-lic/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfont
-s/cm/cmsy5.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy7.p
-fb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/sha
-re/texmf/fonts/type1/public/cm-super/sfbi0900.pfb></usr/share/texmf/fonts/type1
-/public/cm-super/sfbx0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfb
-x0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/shar
-e/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/
-public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc
-1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc1200.pfb></usr/share
-/texmf/fonts/type1/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/p
-ublic/cm-super/sfrm0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1
-000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/
-texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf/fonts/type1/pu
-blic/cm-super/sfti0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti10
-00.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt0900.pfb>
-Output written on coling2012.pdf (15 pages, 580970 bytes).
-PDF statistics:
- 508 PDF objects out of 1000 (max. 8388607)
- 88 named destinations out of 1000 (max. 500000)
- 32498 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 63i,19n,61p,1283b,484s stack positions out of 5000i,500n,10000p,200000b,50000s
 
+Output written on coling2012.dvi (15 pages, 106996 bytes).
