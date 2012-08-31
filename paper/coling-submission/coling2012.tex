@@ -693,7 +693,7 @@ this issue with a naive brute force approach.
 
 \subsection{Incorporating Other Tweets :: Brute Force Approach}
 
-One ways of incorporating the up to 91.6\% of the dataset that is not
+One way of incorporating the large portion of the dataset that is not
 aggregated into a pooled document could be to include all of these
 unpooled tweets as individual documents alongside the hashtag-pooled
 documents.  Table~\ref{tbl-8} shows the results on the different datasets when
@@ -733,38 +733,38 @@ method performs better than all results so far.
 
 \label{subsec:assign_hashtags}
 
-The brute force way of incorporating tweets without hashtags terribly
-degrades the PMI scores alongside improving the purity scores. In this
-subsection we wish to look into another ways of incorporating these
-tweets so as to balance out improvements in cluster reconstruction and
-degradation of topic coherence.Since a large number of tweets do not
-have hashtags we propose that assigning hashtags to some of those
-tweets help in improving overall results. We discuss here an algorithm
-which assigns a hashtag to some of the tweets and hence increases the
-number of tweets having at least one hashtag.
-
+Since a large number of tweets do not have hashtags, we conjecture
+that assigning \emph{appropriate} hashtags to some of those tweets
+should help in improving our overall evaluation metrics -- ideally all
+of purity, NMI, and PMI and not just a subset of these metrics as we
+saw for the brute force method.  The more tweets without hashtags that
+are assigned at least one accurate hashtag, the more data will be
+incorporated into the correct pooled documents and the less data that
+will be discarded prior to running LDA.  Next we present an algorithm
+for performing this automated hashtag assignment with high confidence.
 
 \subsubsection{Algorithm}
 
 Our aim here is to assign hashtags to tweets which have none. Since
 this step is done after hashtag-based pooling of tweets, for each
-hashtag we have a collection of tweets each of which contain this
-particular hashtag. We make use of this collection to compare each
+hashtag we conveniently have a collection of tweets, each of which contain this
+particular hashtag.  We will make use of this collection to compare each
 tweet with each hashtag's collection and compute the similarity
-scores. If the similarity score crosses a certain threshold(burst
-score $\>$5) we assign the hashtag to this tweet and add this tweet to
-the pool of tweets assigned to this hashtag. The similarity metric
-used here is the tf-cosine similarity. To avoid the bias caused by
-different document lengths, a common way to compute the similarity of
-two documents is using the cosine similarity measure. The inner
-product of the two vectors (sum of the pairwise multiplied elements)
-is divided by the product of their vector lengths. This has the effect
-that the vectors are normalized to unit length and only the angle,
-more precisely the cosine of the angle, between the vectors accounts
-for their similarity. Documents not sharing a single word get assigned
-a similarity value of zero because of the orthogonality of their
-vectors while documents sharing a similar vocabulary get higher values
-(up to one in the case of identical documents).
+scores. If the similarity score crosses a certain threshold for some
+tweet having an assigned hashtag, we assign
+the hashtag to this tweet and add this tweet to the pool of tweets
+assigned to this hashtag. The similarity metric used here is the
+tf-cosine similarity. To avoid the bias caused by different document
+lengths, a common way to compute the similarity of two documents is
+using the cosine similarity measure. The inner product of the two
+vectors (sum of the pairwise multiplied elements) is divided by the
+product of their vector lengths. This has the effect that the vectors
+are normalized to unit length and only the angle, more precisely the
+cosine of the angle, between the vectors accounts for their
+similarity. Documents not sharing a single word get assigned a
+similarity value of zero because of the orthogonality of their vectors
+while documents sharing a similar vocabulary get higher values (up to
+one in the case of identical documents).
 
 \begin{center}
 $sim(d1,d2) = \frac{d1 . d2}{||d1|| ||d2||}$
@@ -779,6 +779,17 @@ vector. Algorithm~\ref{alg-1} describes the same algorithm in detail.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%
+%% NOTES: THIS ALGORITHM WAS IN BAD SHAPE... SETS ARE USED IMPLICITLY
+%%       WITHOUT BEING ASSIGNED TO VARIABLES... THERE SHOULD BE A NAME
+%%       FOR THE SET $T_h$ OF TWEETS HAVING HASHTAG h, THIS SHOULD
+%%       BE BUILD BY A LOOP AND SET UNION WHERE A SIMILARITY FUNCTION
+%%       IS APPLIED AND PROPERLY THRESHOLDED!  TO CALCULATE A SIMILARITY
+%%       IS TO CALL A FUNCTION ON TWO OBJECTS Sim(t_1,t_2).
+%%
+%%       WHY DO YOU USE n_t, WHAT IS THE MEANING OF THE SUBSCRIPT???
+%%
+
 \incmargin{1.5em}
 \linesnumbered
 \begin{algorithm}[hb!]
@@ -789,9 +800,9 @@ vector. Algorithm~\ref{alg-1} describes the same algorithm in detail.
 
 \Input
 {
-$H_T$ : set of tweets having hashtags ($N$ in total)
+$T_H$ : set of tweets having hashtags ($N$ in total)
  
-$N_T$ : set of tweets with no hashtag ($M$ in total)
+$T_N$ : set of tweets with no hashtag ($M$ in total)
  
 $T$ : set of hashtags
  
