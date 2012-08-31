@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.21)  31 AUG 2012 15:45
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.21)  31 AUG 2012 15:54
 entering extended mode
  %&-line parsing enabled.
 **coling2012.tex
@@ -1167,12 +1167,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 546--548
  []
 
 
-Overfull \hbox (5.70314pt too wide) in paragraph at lines 552--572
+Overfull \hbox (5.70897pt too wide) in paragraph at lines 552--575
  [][] 
  []
 
 [10]
-Underfull \hbox (badness 10000) in paragraph at lines 596--597
+Underfull \hbox (badness 10000) in paragraph at lines 599--600
 
  []
 
@@ -1231,12 +1231,12 @@ n <1.5>, but at most version <1.4> allowed
 <Figs/3-3.pdf, id=265, 361.35pt x 216.81pt>
 File: Figs/3-3.pdf Graphic file (type pdf)
  <use Figs/3-3.pdf>
-Overfull \hbox (5.69597pt too wide) in paragraph at lines 604--651
+Overfull \hbox (5.69597pt too wide) in paragraph at lines 607--654
  [] 
  []
 
 
-Overfull \hbox (5.69885pt too wide) in paragraph at lines 666--682
+Overfull \hbox (5.69885pt too wide) in paragraph at lines 669--685
  [][] 
  []
 
@@ -1244,29 +1244,29 @@ Overfull \hbox (5.69885pt too wide) in paragraph at lines 666--682
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 687--695
+Underfull \hbox (badness 10000) in paragraph at lines 690--698
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 687--695
+Underfull \hbox (badness 10000) in paragraph at lines 690--698
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 687--695
+Underfull \hbox (badness 10000) in paragraph at lines 690--698
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 687--695
+Underfull \hbox (badness 10000) in paragraph at lines 690--698
 
  []
 
 [11] [12 <./Figs/1-1.pdf> <./Figs/1-2.pdf> <./Figs/1-3.pdf> <./Figs/2-1.pdf> <.
 /Figs/2-2.pdf> <./Figs/2-3.pdf> <./Figs/3-1.pdf> <./Figs/3-2.pdf> <./Figs/3-3.p
 df>]
-Underfull \hbox (badness 10000) in paragraph at lines 721--724
+Underfull \hbox (badness 10000) in paragraph at lines 724--727
 
  []
 
@@ -1278,44 +1278,41 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package natbib Warning: There were undefined citations.
 
-(./coling2012.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+(./coling2012.aux) ) 
 Here is how much of TeX's memory you used:
  21964 strings out of 495061
  420058 string characters out of 1182621
- 576772 words of memory out of 3000000
+ 577772 words of memory out of 3000000
  24426 multiletter control sequences out of 15000+50000
  30555 words of font info for 137 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  63i,19n,61p,1283b,529s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf-
-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fon
-ts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts/type1/pu
-blic/amsfonts/cm/cmmi5.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfont
-s/cm/cmmi6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi7.p
-fb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/sha
-re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-tex
-live/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/t
-ype1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/a
-msfonts/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cm
-sy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy5.pfb></u
-sr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/tex
-mf-texlive/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texmf/fonts/typ
-e1/public/cm-super/sfbi0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/s
-fbx0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx0900.pfb></usr/sh
-are/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type
-1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sf
-bx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc1000.pfb></usr/sha
-re/texmf/fonts/type1/public/cm-super/sfcc1200.pfb></usr/share/texmf/fonts/type1
-/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfr
-m0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/shar
-e/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/
-public/cm-super/sfti0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti
-1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt0900.pfb>
-Output written on coling2012.pdf (15 pages, 570338 bytes).
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share
+/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texl
+ive/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texmf-texlive/fonts/ty
+pe1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-texlive/fonts/type1/public/a
+msfonts/cm/cmmi7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
+mmi9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
+sr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/tex
+mf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fo
+nts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/pub
+lic/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfont
+s/cm/cmsy5.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy7.p
+fb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/sha
+re/texmf/fonts/type1/public/cm-super/sfbi0900.pfb></usr/share/texmf/fonts/type1
+/public/cm-super/sfbx0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfb
+x0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/shar
+e/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/
+public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc
+1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc1200.pfb></usr/share
+/texmf/fonts/type1/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/p
+ublic/cm-super/sfrm0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1
+000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/
+texmf/fonts/type1/public/cm-super/sfti0900.pfb></usr/share/texmf/fonts/type1/pu
+blic/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt09
+00.pfb>
+Output written on coling2012.pdf (15 pages, 570789 bytes).
 PDF statistics:
  504 PDF objects out of 1000 (max. 8388607)
  88 named destinations out of 1000 (max. 500000)
