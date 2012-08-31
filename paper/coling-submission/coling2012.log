@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.21)  31 AUG 2012 15:55
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.21)  31 AUG 2012 16:23
 entering extended mode
  %&-line parsing enabled.
 **coling2012.tex
@@ -1231,7 +1231,7 @@ n <1.5>, but at most version <1.4> allowed
 <Figs/3-3.pdf, id=265, 361.35pt x 216.81pt>
 File: Figs/3-3.pdf Graphic file (type pdf)
  <use Figs/3-3.pdf>
-Overfull \hbox (5.69597pt too wide) in paragraph at lines 607--654
+Overfull \hbox (5.6805pt too wide) in paragraph at lines 607--654
  [] 
  []
 
@@ -1312,7 +1312,7 @@ ublic/cm-super/sfrm0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1
 texmf/fonts/type1/public/cm-super/sfti0900.pfb></usr/share/texmf/fonts/type1/pu
 blic/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt09
 00.pfb>
-Output written on coling2012.pdf (15 pages, 570796 bytes).
+Output written on coling2012.pdf (15 pages, 570895 bytes).
 PDF statistics:
  504 PDF objects out of 1000 (max. 8388607)
  88 named destinations out of 1000 (max. 500000)
