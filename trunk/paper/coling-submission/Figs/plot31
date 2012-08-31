@@ -1,0 +1,4 @@
+set term pdf
+set output "./3-1.pdf"
+
+plot "./3-1" using 1:2 title 'TF' with linespoints lw 5, "./3-1" using 1:3 title 'IDF' with linespoints lw 5, "./3-1" using 1:4 title 'IAF' with linespoints lw 5, "./3-1" using 1:5 title 'TF-IDF' with linespoints lw 5, "./3-1" using 1:6 title 'TF-IDF-IAF' with linespoints lw 5
