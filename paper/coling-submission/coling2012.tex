@@ -122,10 +122,13 @@ words which are much more coherent and interpretable.
 \end{table}
 
 
-
 How can we extract better topics in
 microblogging environments with standard LDA without the need of any
-major modifications?  An intuitive solution to this problem is tweet
+major modifications?  
+While lingistic ``cleaning'' of text could help somewhat,
+for instance  \cite{Han2012},  a complementary approach 
+using LDA is also needed because there are so few words in a tweet.
+An intuitive solution to this problem is tweet
 pooling~\cite{Weng2010wsdm,hong}: merging related tweets together and presenting them as a
 single document to the LDA model.  
 %  The bad performance of LDA on
@@ -211,9 +214,9 @@ summarises and concludes.
 %           placed the old stuff at the end
 Latent Dirichlet allocation (LDA) \cite{blei03} is a generative model
 for text. In LDA, each document may be viewed as a mixture of various
-topics.  The generative process is that documents are
+topics.  The generative process has documents 
 represented as random mixtures over latent topics, where each topic is
-characterized by a distribution over words.  Learning the various
+characterized by a distribution over words.  Learning the 
 distributions (the set of topics, their associated word probabilities,
 the topic of each word, and the particular topic mixture of each
 document) is a problem of Bayesian inference, and many algorithms are
@@ -453,13 +456,14 @@ tasks are not applicable for evaluating topics models in the {\it
   undirected informational task}.
 
 We evaluate our topic models based on the following two general
-approaches to measuring topical coherence:
+approaches to measuring topical coherence,
+as well as a pure probability approach \cite{wallach}.
 
 \paragraph{Clustering-based metrics:} 
 
-We would like to measure the quality of topics found by the models --
-both that the model is able to recall known existing topics in the
-data, and that it consistently assigns the right tweets to the right
+We would like to measure the quality of topics found by the models,
+that the models can recall known existing topics in the
+data, and can consistently assign the right tweets to the right
 topics.  Fortunately, each dataset we constructed is a class-labeled
 dataset containing ten categories. Since we know the ground truth
 label of all the tweets in the dataset (their categories), we can
@@ -496,7 +500,7 @@ We interpret $t_{k}$ as the set of tweets in cluster $t_{k}$ and
 $g_{k}$ as the set of tweets in category-label $g_{k}$. $m$ is the
 total number of tweets; $T = \lbrace t_{1}, ... , t_{k} \rbrace$ is
 the set of k clusters and $ G = \lbrace g_{1}, ... , g_{k}\rbrace $ is
-the set of k category-labels (e.g. Obama, Microsoft).
+the set of k category-labels (e.g. Obama, Microsoft).\vspace{-3pt}
 \[
  purity (T,G) = \frac{1}{N} \Sigma_{k} max_{j} |t_{k} \cap g_{j}|
 \]
@@ -511,11 +515,14 @@ score is considered better.
 Since we know the ground truth label of all the tweets in the dataset,
 i.e., their categories, we can measure the quality by how likely the
 topics agree with the true category labels.
+But high agreement is easy to achieve when the number of clusters is
+large, thus one needs a divisor to discount for a large number of clusters.
+The resulting two-part score is:
 \[
 NMI(T,G) = \frac{2 I(T;G)}{H(T) + H(G)} 
 \]
 where $I(T,G)$ is Mutual Information and $H(T)$ gives the entropy. The 
-corresponding values are:
+corresponding values are:\vspace{-3pt}
 \[
 I(T,G) = \Sigma_{k} \Sigma_{j} \frac{|t_{k} \cap g_{j}|}{N} log \frac{|t_{k} \cap g_{j}|}{|t_{k}| |g_{j}|} 
 ~~~~~~~~~~~~~~~~~~
@@ -528,9 +535,6 @@ maximum value in topic mixture $ \theta_{d} $ to determine its
 cluster. After this mapping process, we compute NMI scores with the
 labels.
 
-High purity is easy to achieve when the number of clusters is
-large. The normalization by the denominator in the NMI fixes this
-problem as entropy tends to increase with the number of clusters.
 
 \subsection{Pointwise Mutual Information}
 
@@ -545,6 +549,11 @@ where PMI Score(w) represents the PMI score of the topic w. The average of the P
 close proximity. We treat two words as co-occurring if both the words occur in the same tweet. We compute the PMI of a given pair of words $(w_i, w_j)$ as:
 $PMI (w_i,w_j) = log \frac{p(w_i,w_j)}{p(w_i)p(w_j)}$. 
 A key aspect of this score is that it uses external data.  \cite{baldwin10} used the Wikipedia corpus as their external data. We eliminate the need of this external data source by using our own dataset to calculate the probabilities used in this score.
+
+\subsection{Held Out Probability}
+Another way of evaluating topic models is to compare predictive performance by estimating the probability of a subset of held-out documents.  We used the Left to Right evaluation algorithm as described in \cite{wallach} to calculate these values, which is an unbiased method.  Another approach is the so-called
+document completion method \cite{wallach}, however with so few words we felt holding out a subset of a (small) document was ill-advised.
+
 
 \section{Initial Results for Pooling Schemes}
 
@@ -571,7 +580,7 @@ of. Table~\ref{tbl-3} presents the required statistics.
 {
 	\begin{tabular}{|l|ccc|ccc|ccc|}
 	\hline
-	Pooling Scheme  & \multicolumn {3}{c}{\#of docs} & \multicolumn {3}{c}{Avg \# of words/doc} & \multicolumn {3}{c|}{Max \# of words/doc}\\
+	Pooling Scheme  & \multicolumn {3}{c|}{\#of docs} & \multicolumn {3}{c|}{Avg \# of words/doc} & \multicolumn {3}{c|}{Max \# of words/doc}\\
 	\hline
 	 & Generic & Specific & Events &  Generic & Specific & Events &  Generic & Specific & Events\\
 	\hline
@@ -619,21 +628,21 @@ using each scheme.
 \centering
 \resizebox{14cm}{!} 
 {
-	\begin{tabular}{|l|ccc|ccc|ccc|}
+	\begin{tabular}{|l|ccc|ccc|ccc|ccc|}
 	\hline
-	Scheme  & \multicolumn {3}{c|}{Purity} & \multicolumn {3}{c|}{NMI Score} & \multicolumn {3}{c|}{PMI score}\\
+	Scheme  & \multicolumn {3}{c|}{Purity} & \multicolumn {3}{c|}{NMI Score} & \multicolumn {3}{c|}{PMI score} & \multicolumn {3}{c|}{Held Out Probability}\\
 	\hline
-	 & Generic & Specific & Events &  Generic & Specific & Events &  Generic & Specific & Events\\
+	 & Generic & Specific & Events &  Generic & Specific & Events &  Generic & Specific & Events & Generic & Specific & Events\\
 	\hline
-	Unpooled & 0.49 & 0.64 & 0.69 & 0.28 & 0.22 & 0.39 & -1.27 & 0.47 & 0.47 \\
+	Unpooled & 0.49 & 0.64 & 0.69 & 0.28 & 0.22 & 0.39 & -1.27 & 0.47 & 0.47 & -82.2 & -89.3 & -86.3\\
 	\hline
-	Author & 0.54 & 0.62 & 0.60 & 0.24 & 0.17 & 0.41 & 0.21 & 0.79 & 0.51 \\
+	Author & 0.54 & 0.62 & 0.60 & 0.24 & 0.17 & 0.41 & 0.21 & 0.79 & 0.51 &-63.0 & -68.6 & -66.4\\
 	\hline
-	Hourly & 0.45 & 0.61 & 0.61 & 0.07 & 0.09 & 0.32 & -1.31 & 0.87 & 0.22 \\
+	Hourly & 0.45 & 0.61 & 0.61 & 0.07 & 0.09 & 0.32 & -1.31 & 0.87 & 0.22 & -64.8 & -69.4 & -67.9\\
 	\hline
-	Burstwise & 0.42 & 0.60 & 0.64 & 0.18 & 0.16 & 0.33 & 0.48 & 0.74 & 0.58 \\
+	Burstwise & 0.42 & 0.60 & 0.64 & 0.18 & 0.16 & 0.33 & 0.48 & 0.74 & 0.58 & -56.7 & -59.0 & -57.8\\
 	\hline
-	Hashtag & \textbf{0.54} & \textbf{0.68} & \textbf{0.71} & \textbf{0.28} & \textbf{0.23} & \textbf{0.42} & \textbf{0.78} & \textbf{1.43} & \textbf{1.07} \\
+	Hashtag & \textbf{0.54} & \textbf{0.68} & \textbf{0.71} & \textbf{0.28} & \textbf{0.23} & \textbf{0.42} & \textbf{0.78} & \textbf{1.43} & \textbf{1.07} & \textbf{-55.9} & \textbf{-58.9} & \textbf{-55.4}\\
 	\hline
 	\end{tabular}
 }
@@ -645,7 +654,10 @@ Based on these results we conclude that hashtag-based pooling scheme
 pooling schemes. An obvious question to ask is: Can we do better? In
 the next section we look into hashtag-based pooling in detail and
 devise methods which further improve the results and provide better
-topics.
+topics.  We did not evaluate the held-out probabilty in later
+experiments as it agreed generally with the other scores,
+and is not as appropriate  as a quality metric for the
+undirected information task.
 
 \section{General Study of Hashtags \& Hashtag Pooling}
 
@@ -907,7 +919,7 @@ Thus the IDF of a rare term in the corpus is high, whereas the IDF of a frequent
 \begin{equation*}
 t_i := \mathit{IDF}_i = \log{\frac{A}{A_i}}.
 \end{equation*}
-Here, the IAF of a term used only by a few different authors is high, whereas the IAF of a term used by most authors is low. In our framework we use the IDF and IAF values to weigh the boolean vector space model (0-1 in place of TF) and compute IDF- and IAF-weighted inner products on the boolean vector spaced model.
+The IAF of a term used only by a few different authors is high, whereas the IAF of a term used by most authors is low. In our framework we use the IDF and IAF values to weigh the boolean vector space model (0-1 in place of TF) and compute IDF- and IAF-weighted inner products on the boolean vector spaced model.
 \item{\bf TF-IDF}: The tweet document representation is simply the elementwise product of TF and IDF: $t_i := f_i \cdot \mathrm{IDF}_i$.
 \item{\bf TF-IDF-IAF}: The tweet document representation is simply the elementwise product of TF, IDF, \emph{and} IAF: $t_i := f_i \cdot \mathrm{IDF}_i \cdot \mathrm{IAF}_i$.
 \end{description}
@@ -1124,7 +1136,7 @@ topics obtained measures by the ability to reconstruct clusters and
 topic coherence. The initial results presented in Table~\ref{tbl-456}
 suggest that hashtag-based pooling outperforms all other pooling
 strategies including the default way of training topic models on
-Twitter data(unpooled).
+Twitter data (unpooled).
 
 Since a major portion of Twitter data does not contains hashtags we
 looked at ways of assigning hashtags to tweets. Insights from Hashtag
@@ -1138,12 +1150,12 @@ When the goal is to obtain interesting topics with topic words
 pertaining to the same common theme (coherent topic words), hashtag
 assignment with strict constraints (a threshold of $\sim 0.9$) works
 well. The PMI scores in Table~\ref{tbl-9} highlight that topic
-coherence increases as we move down the column. Thus the threshold of
+coherence increases down the column. Thus the threshold of
 0.9 gives most coherent topics.
 
 Overall, results shown in Table~\ref{tbl-10} compare unpooled scheme
-with simple hashtag pooling and hashtag assignment schemes.  In short,
-across diverse datasets and various topic coherence metrics, the best
+with simple hashtag pooling and hashtag assignment schemes.  
+Across diverse datasets and various topic coherence metrics, the best
 hashtag assignment method performs substantially better in comparison
 to an unmodified LDA baseline and a variety of existing and novel
 pooling schemes.  This indicicates the promise of this novel automatic

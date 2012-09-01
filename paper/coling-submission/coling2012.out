@@ -7,6 +7,7 @@
 \BOOKMARK [2][-]{subsection.4.1}{Purity Scores}{section.4}
 \BOOKMARK [2][-]{subsection.4.2}{Normalized Mutual Information}{section.4}
 \BOOKMARK [2][-]{subsection.4.3}{Pointwise Mutual Information}{section.4}
+\BOOKMARK [2][-]{subsection.4.4}{Held Out Probability}{section.4}
 \BOOKMARK [1][-]{section.5}{Initial Results for Pooling Schemes}{}
 \BOOKMARK [2][-]{subsection.5.1}{Document Characteristics for Different Pooling Schemes}{section.5}
 \BOOKMARK [2][-]{subsection.5.2}{Comparison of Pooling Schemes}{section.5}
