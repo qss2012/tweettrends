@@ -536,10 +536,14 @@ problem as entropy tends to increase with the number of clusters.
 
 One of the goals of our work is to get topics that are more coherent. 
 We measure topic coherence using PMI defined as follows:
-$PMI Score(w) = Mean ( PMI(w_i,w_j) ) i,j \in \lbrace1.....10\rbrace $.
+$PMI Score(w) = Mean ( PMI(w_i,w_j) )  i,j \in \lbrace1.....10\rbrace $;
 %%
 %% TODO: SHOULDN'T WE DEFINE PMI MUCH MORE FORMALLY THAN ABOVE???
 %%
+%% Done.
+where PMI Score(w) represents the PMI score of the topic w. The average of the PMI score over all the 10 topics is used as the final measure of the PMI score. PMI is one measure of the statistical independence of observing two words in
+close proximity. We treat two words as co-occurring if both the words occur in the same tweet. We compute the PMI of a given pair of words $(w_i, w_j)$ as:
+$PMI (w_i,w_j) = log \frac{p(w_i,w_j)}{p(w_i)p(w_j)}$. 
 A key aspect of this score is that it uses external data.  \cite{baldwin10} used the Wikipedia corpus as their external data. We eliminate the need of this external data source by using our own dataset to calculate the probabilities used in this score.
 
 \section{Initial Results for Pooling Schemes}
@@ -898,12 +902,12 @@ defined previously:
 \begin{equation*}
 t_i := \mathit{IDF}_i = \log{\frac{N}{N_i}}.
 \end{equation*}
-Thus the IDF of a rare term in the corpus is high, whereas the IDF of a frequent term is low.
+Thus the IDF of a rare term in the corpus is high, whereas the IDF of a frequent term is low. 
 \item{\bf Inverse Author Frequency (IAF)}: The relationship of terms and authors could be harnessed using the inverse author frequency (IAF)~\cite{iaf}, which is computed similarly to IDF except that we let $A_i$ represent the number of authors who mention term $i$ out of the total number of authors $A$:
 \begin{equation*}
 t_i := \mathit{IDF}_i = \log{\frac{A}{A_i}}.
 \end{equation*}
-Here, the IAF of a term used only by a few different authors is high, whereas the IAF of a term used by most authors is low.
+Here, the IAF of a term used only by a few different authors is high, whereas the IAF of a term used by most authors is low. In our framework we use the IDF and IAF values to weigh the boolean vector space model (0-1 in place of TF) and compute IDF- and IAF-weighted inner products on the boolean vector spaced model.
 \item{\bf TF-IDF}: The tweet document representation is simply the elementwise product of TF and IDF: $t_i := f_i \cdot \mathrm{IDF}_i$.
 \item{\bf TF-IDF-IAF}: The tweet document representation is simply the elementwise product of TF, IDF, \emph{and} IAF: $t_i := f_i \cdot \mathrm{IDF}_i \cdot \mathrm{IAF}_i$.
 \end{description}
