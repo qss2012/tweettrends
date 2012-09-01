@@ -51,10 +51,10 @@
   automatic hashtag labeling techniques with tweet pooling by hashtags
   leads to a vast improvement in a variety of measures of topic
   coherence across three diverse Twitter datasets in comparison to an
-  unmodified LDA baseline and a variety of pooling schemes.}
+  unmodified LDA baseline and a variety of pooling schemes.\\}
 
 \keywordsEn{Topic modeling, LDA, Microblogs}
-
+\newpage
 \section{Introduction}
 
 \label{sec:intro}
@@ -551,7 +551,9 @@ $PMI (w_i,w_j) = log \frac{p(w_i,w_j)}{p(w_i)p(w_j)}$.
 A key aspect of this score is that it uses external data.  \cite{baldwin10} used the Wikipedia corpus as their external data. We eliminate the need of this external data source by using our own dataset to calculate the probabilities used in this score.
 
 \subsection{Held Out Probability}
-Another way of evaluating topic models is to compare predictive performance by estimating the probability of a subset of held-out documents.  We used the Left to Right evaluation algorithm as described in \cite{wallach} to calculate the average log likelihood values of the tweets using the learnt model, which is an unbiased method.  Another approach is the so-called
+Another way of evaluating topic models is to compare predictive performance by estimating the probability of a subset of held-out documents.  We used the Left to Right evaluation algorithm as described in \cite{wallach} to calculate these values, 
+%to calculate the average log likelihood values of the tweets using the learnt model,
+which is an unbiased method.  Another approach is the so-called
 document completion method \cite{wallach}, however with so few words we felt holding out a subset of a (small) document was ill-advised.
 
 
@@ -677,10 +679,7 @@ results in terms of purity scores, NMI and PMI values. There are two
 obvious questions to ask at this stage include: How common are the
 hashtags? Do all tweets have hashtags? Table~\ref{tbl-7} presents few
 statistics on the percentage of tweets which do not have any hashtag
-in the three datasets.
-
-In this section we look at the number of tweets which do not have any
-hashtag and posit problems which arise due to this.
+in the three datasets. In this section we look at the number of tweets which do not have any hashtag and posit problems which arise due to this.
 
 \begin{table}[!h]
 %\setcounter{table}{8}
@@ -696,7 +695,7 @@ hashtag and posit problems which arise due to this.
 	Event & 19.5\% \\
 	\hline
 	\end{tabular}
-\caption{\% tweets haing hashtags}\label{tbl-7}
+\caption{ \% tweets haing hashtags}\label{tbl-7}
 \end{table}
 
 As is evident from the figures a large number of tweets do not contain
@@ -776,9 +775,9 @@ tweet $t$ is $f_i$) of two Tweets $t$ and $\hat{t}$ where cosine
 similarity is simply
 % Note that in the framework Rishabh is using, TF, IDF, and IAF simply
 % weight the boolean space model.
-\begin{equation*}
-  \mathit{Sim}(\hat{t},t) = \frac{\hat{t} \cdot t}{\|\hat{t}\| \|t\|}.
-\end{equation*}
+%\begin{equation*}
+ $ \mathit{Sim}(\hat{t},t) = \frac{\hat{t} \cdot t}{\|\hat{t}\| \|t\|}.$
+%\end{equation*}
 %%
 %% WHY ARE WE EXPLAINING HIGH SCHOOL MATH???
 %%
@@ -813,7 +812,7 @@ this assignment scheme will then be composed of $T_h \cup \hat{T}_h$.
 %%
 %%       WHY DID YOU USE H FOR A TWEET AND T FOR A SET OF HASHTAGS???
 %%
-
+\vspace{-4mm}
 \incmargin{1.5em}
 \linesnumbered
 \begin{algorithm}[hb!]
@@ -824,29 +823,30 @@ this assignment scheme will then be composed of $T_h \cup \hat{T}_h$.
 
 \Input
 {
-$H$: set of hashtags\\
-$T_h$ : for each $h \in H$, set of tweets labeled with $h$\\
+$H$: set of hashtags \\
+$T_h$ : for each $h \in H$, set of tweets labeled with $h$ \\
 $T_n$ : set of tweets with no hashtag \\
-$\mathit{Sim}(\cdot,\cdot)$: a similarity function between two tweets\\
-$C$: Threshold on the similarity score\\
+$\mathit{Sim}(\cdot,\cdot)$ : a similarity function between two tweets\\
+$C$ : Threshold on the similarity score\\
 }
 \Output
 {
 $\hat{T}_h$: for each $h \in H$, set of tweets newly assigned label $h$\\
 }
-\BlankLine
 \Begin{
    \ForEach{$h \in H$}{
      $\hat{T}_h := \emptyset$\;
      \ForEach{$\hat{t} \in T_n$}{
        \textit{// Hashtag $h$ assignment for $\hat{t}$ if any $t \in T_h$ is near:}\;
        \ForEach{$t \in T_h$}{
-         \lIf{$\mathit{Sim}(\hat{t},t) > C$}{$\hat{T}_h := \hat{T}_h \cup \{ \hat{t} \}$, \textbf{break}\;}
+         \lIf{$\mathit{Sim}(\hat{t},t) > C$}{$\hat{T}_h := \hat{T}_h \cup \{ \hat{t} \}$, \textbf{break}\;
+         }
          }
      }
    }
    \Return{$\hat{T}_h$}\;
 }
+\vspace{-1mm}
 \caption{{\sc Hashtag Assignment} \label{alg-1}}
 \end{algorithm}
 \decmargin{1.5em}
@@ -891,7 +891,8 @@ collection of that hashtag.
 	\hline
 	\end{tabular}
 }
-\caption{Hashtag Assignment Results}\label{tbl-9}
+	\vspace{-4mm}
+\caption{ Hashtag Assignment Results}\label{tbl-9}
 \end{table}
 
 The results obtained via hashtag assignment are better than those of
@@ -912,18 +913,20 @@ defined previously:
 \itemsep -2pt
 \item{\bf Term Frequency (TF)}: As previously defined for TF, we set the vector element $t_i := f_i$ if the frequency of term $i$ in tweet $t$ is $f_i$.
 \item{\bf Inverse Document Frequency (IDF)}:  Given the occurrence of term $i$ in $N_i$ of the total $N$ tweets, $\mathit{IDF}_i$, the $i$th entry of $t$'s document representation ($t_i$) is set as
-\begin{equation*}
-t_i := \mathit{IDF}_i = \log{\frac{N}{N_i}}.
-\end{equation*}
+%\begin{equation*}
+$t_i := \mathit{IDF}_i = \log{\frac{N}{N_i}}.$
+%\end{equation*}
 Thus the IDF of a rare term in the corpus is high, whereas the IDF of a frequent term is low. 
-\item{\bf Inverse Author Frequency (IAF)}: The relationship of terms and authors could be harnessed using the inverse author frequency (IAF)~\cite{iaf}, which is computed similarly to IDF except that we let $A_i$ represent the number of authors who mention term $i$ out of the total number of authors $A$:
-\begin{equation*}
-t_i := \mathit{IDF}_i = \log{\frac{A}{A_i}}.
-\end{equation*}
+\item{\bf Inverse Author Frequency (IAF)}: The relationship of terms and authors could be harnessed using the inverse author frequency (IAF)~\cite{iaf}, which is computed similarly to IDF except that we let $A_i$ represent the number of authors who mention term $i$ out of the total number of authors $A$;
+%\begin{equation*}
+$t_i := \mathit{IDF}_i = \log{\frac{A}{A_i}}.$
+%\end{equation*}
+
 The IAF of a term used only by a few different authors is high, whereas the IAF of a term used by most authors is low. In our framework we use the IDF and IAF values to weigh the boolean vector space model (0-1 in place of TF) and compute IDF- and IAF-weighted inner products on the boolean vector spaced model.
 \item{\bf TF-IDF}: The tweet document representation is simply the elementwise product of TF and IDF: $t_i := f_i \cdot \mathrm{IDF}_i$.
 \item{\bf TF-IDF-IAF}: The tweet document representation is simply the elementwise product of TF, IDF, \emph{and} IAF: $t_i := f_i \cdot \mathrm{IDF}_i \cdot \mathrm{IAF}_i$.
 \end{description}
+\vspace{-2mm}
 We experimented with other similarity metrics, but found these five to
 offer the best performance, hence we show their evaluation next.
 
@@ -958,51 +961,51 @@ hashtag labeling as demonstrated consistently across all these experiments.
 	\begin{tabular}{ccc}
 %		\vspace{-3mm}
 %		\hspace{-8mm} 
-		\includegraphics[width=350pt]{Figs/1-1.pdf} & 
+		\includegraphics[width=200pt]{Figs/1-1.pdf} & 
 %		\hspace{-6mm} 
-		\includegraphics[width=350pt]{Figs/1-2.pdf} & 
+		\includegraphics[width=200pt]{Figs/1-2.pdf} & 
 %		\hspace{-10mm} 
-		\includegraphics[width=350pt]{Figs/1-3.pdf} \\  
-	
+		\includegraphics[width=200pt]{Figs/1-3.pdf} \\  
+	\vspace{-1mm}
 %		\vspace{4mm}
-		{\LARGE Purity (Generic)} & {\LARGE NMI (Generic)} & 
+		{ Purity (Generic)} & { NMI (Generic)} & 
 		%\hspace{-3mm} 
-		{\LARGE PMI (Generic)}\\
-	
+		{ PMI (Generic)}\\
+	\vspace{-1mm}	
 %		\vspace{-2mm}
 %		\hspace{-8mm} 
-		\includegraphics[width=350pt]{Figs/2-1.pdf} & 
+		\includegraphics[width=200pt]{Figs/2-1.pdf} & 
 %		\hspace{-6mm} 
-		\includegraphics[width=350pt]{Figs/2-2.pdf} & 
+		\includegraphics[width=200pt]{Figs/2-2.pdf} & 
 %		\hspace{-10mm}
-		 \includegraphics[width=350pt]{Figs/2-3.pdf} \\
-
-		{\LARGE Purity (Specific)} & {\LARGE NMI (Specific)} & 
+		 \includegraphics[width=200pt]{Figs/2-3.pdf} \\
+\vspace{-1mm}
+		{ Purity (Specific)} & { NMI (Specific)} & 
 		%\hspace{-3mm} 
-		{\LARGE PMI (Specific)}\\
+		{ PMI (Specific)}\\
 
-
+	\vspace{-1mm}
 %		\vspace{-2mm}
 %		\hspace{-1mm} 
-		\includegraphics[width=350pt]{Figs/3-1.pdf} & 
+		\includegraphics[width=200pt]{Figs/3-1.pdf} & 
 %		\hspace{-1mm} 
-		\includegraphics[width=350pt]{Figs/3-2.pdf} & 
+		\includegraphics[width=200pt]{Figs/3-2.pdf} & 
 		%\hspace{-1mm}
-		\includegraphics[width=350pt]{Figs/3-3.pdf} \\
+		\includegraphics[width=200pt]{Figs/3-3.pdf} \\
 
 		
 %		\vspace{4mm}
-
-		{\LARGE Purity (Events)} & {\LARGE NMI (Events)} & 
+\vspace{-2mm}
+		{Purity (Events)} & {NMI (Events)} & 
 		%\hspace{-3mm} 
-		{\LARGE PMI (Events)}\\
+		{PMI (Events)}\\
 
 	
 	\end{tabular}
 }
 \end{center}
 \vspace{-4mm}
-\caption{\footnotesize Comparison of Purity, NMI and PMI scores
+\caption{ \footnotesize Comparison of Purity, NMI and PMI scores
   (y-axis) for five different similarity metrics (TF, IDF, IAF,
   TF-IDF, TF-IDF-IAF) for various Hashtag assignment confidence
   threshold limits (x-axis).} \label{fig-1}
@@ -1042,24 +1045,17 @@ assignment on the three datasets and across the three metrics.
 	\hline
 	\end{tabular}
 }
-\caption{Overall comparison of improvement}\label{tbl-10}
+\vspace{-4mm}
+\caption{ Overall comparison of improvement}\label{tbl-10}
 \end{table}
+%\vspace{-2mm}
+%In Table~\ref{tbl-10}, we see that the best Purity and NMI scores are obtained by hashtag assignment while even the simple hashtag-based pooling scheme works much better than the baseline method of unpooled tweets. When the dataset in consideration consists of generic terms simple hashtag pooling gives the best results on the Generic data in terms of topic coherence. On the other hand when we have tweets on specific named entities or events in general, one might want to prefer hashtag assignment as it results in best PMI scores for the Specific and Events datasets, presumably because it is better at recovering coherent multiword topics for these entities or events.
 
-In Table~\ref{tbl-10}, we see that the best Purity and NMI scores are
-obtained by hashtag assignment while even the simple hashtag-based
-pooling scheme works much better than the baseline method of unpooled
-tweets. When the dataset in consideration consists of generic terms
-simple hashtag pooling gives the best results on the Generic data in
-terms of topic coherence. On the other hand when we have tweets on
-specific named entities or events in general, one might want to prefer
-hashtag assignment as it results in best PMI scores for the Specific
-and Events datasets, presumably because it is better at recovering
-coherent multiword topics for these entities or events.
+In Table~\ref{tbl-10}, we see that the best Purity and NMI scores are obtained by hashtag assignment while even the simple hashtag-based pooling works much better than the baseline method of unpooled tweets. When the dataset in consideration consists of generic terms simple hashtag pooling gives the best results in terms of topic coherence. On the other hand when we have tweets on specific named entities or events in general, one might want to prefer hashtag assignment as it results in best PMI scores for the Specific and Events datasets, presumably because it is better at recovering coherent multiword topics for these entities/events.
 
 \section{Related Work}
 
 \label{sec:related_work}
-
 Topic modeling is widely used in text mining communities with LDA
 being the benchmark.  LDA has been extended in a variety of ways, and
 in particular for social networks and social media, a number of
@@ -1069,49 +1065,28 @@ at short text snippets. While the focus of this work was on blogs and
 search result snippets, it would be interesting to see how well they
 work on Twitter data.  Also, the combination of the work proposed in
 \cite{newman11} with the tweet pooling schemes we describe before
-could produce interesting results.
-
-%There are other recent approaches for microblog retrieval, including
-%estimating text quality of each tweet [ISTI-TREC2011], designing
-%tweet informativeness and user/social features [Yandex-TREC2011] but
-%these are not focused on improving LDA.
-
-For automatic hashtag labeling (i.e., recommendation) that proved
-crucial to improving topics in our hastag-based pooling model,
-\cite{zangerle2011recommending} also uses tweet similarity as a
+could produce interesting results. For automatic
+ hashtag labeling that proved crucial to improving topics in our hastag-based pooling model, \cite{zangerle2011recommending} also uses tweet similarity as a
 criteria, but does not explore metrics based on inverse author
-frequency (IAF)~\cite{iaf} that we found to offer the most robust
-performance across datasets and evaluation metrics. Additional features 
-for hashtag assignment can be found in the comprehensive study \cite{yang2012www}
-which we could leverage in future extensions.
-%Moreover, the fraction of tweets with hashtags is observed as ~30+% on a large corpus, higher than what was observed on the three datasets here.
-
-
-%Among the social networks, several characteristics of the data available in microblogs make them appealing for applications which fall into three broad categories: event detection [3], trend identification [4], and social group identification [5]. The interested reader is directed to the work of Liao et al[9] which discusses the opportunities and challenges related to mining microblogs.
+frequency ~\cite{iaf} that we found to offer the most robust
+performance across datasets and evaluation metrics. Additional features  for hashtag assignment can be found in the comprehensive study \cite{yang2012www} which can be leveraged in future extensions.
 
 Our work is quite different from many pioneering studies on Twitter
 and topic modeling because we focus on how we could get better
 topic coherence over tweets with minimal modification to existing
 models. Prior work on topic modeling for tweets includes the work of
 \cite{ramage} which presents a scalable implementation of a partially
-supervised learning model (Labeled LDA) that maps the content of the
-Twitter feed into dimensions and characterizes users and tweets using
-this model. \cite{wayne} empirically compare the content of Twitter
+supervised learning model (Labeled LDA). % that maps the content of the Twitter feed into dimensions and characterizes users and tweets using this model.
+ \cite{wayne} empirically compare the content of Twitter
 with a traditional news medium, New York Times, using unsupervised
 topic modeling. \cite{hong} use the topic modeling approach for
 predicting popular Twitter messages and classifying Twitter users and
-corresponding messages into topical categories. \cite{han2012tist} propose a 
-novel method for normalising ill-formed out-of-vocabulary words in short 
-microblog messages.
-
-The {T}witterRank system~\cite{Weng2010wsdm} and \cite{hong} uses
-author-based pooling to apply LDA to tweets. \cite{wayne} compared
-topic characteristics between twitter and traditional news media (NY
-Times); they propose to use one topic per tweet (in a manner similar to
-PLSA), and argues (with some evidence) that this is better than no
-pooling, or the author-topic model. \cite{kireyev2009} used term weighting
-to tackle term sparseness in LDA, the weights are derived from LSA
-vector length. \cite{Naveed2011cikm} used LDA for tweet retrieval. In
+corresponding messages into topical categories. %\cite{han2012tist} propose a  novel method for normalising ill-formed out-of-vocabulary words in short  microblog messages.
+The {T}witterRank system~\cite{Weng2010wsdm} and \cite{hong} uses author-based pooling to apply LDA to tweets. \cite{wayne} compared
+topic characteristics between twitter and traditional news media; they propose to use one topic per tweet (similar to
+PLSA), and argues that this is better than no
+pooling, or the author-topic model. %\cite{kireyev2009} used term weighting to tackle term sparseness in LDA, the weights are derived from LSA vector length.
+ \cite{Naveed2011cikm} used LDA for tweet retrieval. In
 addition, they used retweet as an indicator of "interestingness" to
 improve retrieval quality, which suggests additional features we
 could incorporate in future extensions to our pooling framework.
@@ -1123,13 +1098,6 @@ standard LDA. The detailed experiments on a variety of datasets
 highlight our novel contribution of hashtag-based pooling and automatic
 hashtag labeling using similarity metrics like IAF~\cite{iaf} as an
 approach that improves a range of topic coherence measures.
-
-%Evaluating topic models has continued to be an active research topic
-%with the aim of automatically evaluating topic models. Newman et l
-%[10] introduce the task of topic coherence evaluation, whereby a set
-%of words, as generated by a topic model, is rated for coherence or
-%interpretability. Wallach [11] present evaluation methods based on
-%the probability of held-out documents given a trained model.
 
 \section{Summary and Conclusion}
 
@@ -1143,26 +1111,19 @@ topics obtained measures by the ability to reconstruct clusters and
 topic coherence. The initial results presented in Table~\ref{tbl-456}
 suggest that hashtag-based pooling outperforms all other pooling
 strategies including the default way of training topic models on
-Twitter data (unpooled).
-
-Since a major portion of Twitter data does not contains hashtags we
-looked at ways of assigning hashtags to tweets. Insights from Hashtag
+Twitter data (unpooled). Since a major portion of Twitter data does not contains hashtags we looked at ways of assigning hashtags to tweets. Insights from Hashtag
 Assignment results (Table~\ref{tbl-9}) suggest that when the main aim
 is to use the topics obtained to extract different events mentioned in
 the Twitter data, one should use hashtag assignment with a relaxed
-threshold(~0.5). The high values of Purity scores and NMI values for
+threshold($\sim0.5$). The high values of Purity scores and NMI values for
 low threshold support this claim.
 
 When the goal is to obtain interesting topics with topic words
 pertaining to the same common theme (coherent topic words), hashtag
-assignment with strict constraints (a threshold of $\sim 0.9$) works
+assignment with strict constraints (threshold $\sim 0.9$) works
 well. The PMI scores in Table~\ref{tbl-9} highlight that topic
-coherence increases down the column. Thus the threshold of
-0.9 gives most coherent topics.
-
-Overall, results shown in Table~\ref{tbl-10} compare unpooled scheme
-with simple hashtag pooling and hashtag assignment schemes.  
-Across diverse datasets and various topic coherence metrics, the best
+coherence increases down the column with a threshold of
+0.9 giving most coherent topics. Overall, results shown in Table~\ref{tbl-10} compare unpooled scheme with simple hashtag pooling and hashtag assignment schemes. Across diverse datasets and various topic coherence metrics, the best
 hashtag assignment method performs substantially better in comparison
 to an unmodified LDA baseline and a variety of existing and novel
 pooling schemes.  This indicates the promise of this novel automatic
