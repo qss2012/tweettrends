@@ -12,12 +12,17 @@ Chan, S.~E., Pon, R.~K., and Cárdenas, A.~F. (2006).
   Workshop on Visual Languages and Computing in Grand Canyon}, pages 30--31,
   Arizona, USA.
 
-\bibitem[\protect\astroncite{Han et~al.}{2012}]{Han2012}
-Han, B., Cook, P., and Baldwin, T. (2012).
+\bibitem[\protect\astroncite{Han et~al.}{2012a}]{Han2012}
+Han, B., Cook, P., and Baldwin, T. (2012a).
 \newblock Automatically constructing a normalisation dictionary for microblogs.
 \newblock In {\em Proc.\ of the 2012 Joint Conf.\ on Empirical Methods in
   Natural Language Processing and Computational Natural Language Learning
   (EMNLP-CoNLL 2012)}, pages 421--432, Jeju Island, Korea.
+
+\bibitem[\protect\astroncite{Han et~al.}{2012b}]{han2012tist}
+Han, B., Cook, P., and Baldwin, T. (to appear, 2012b).
+\newblock Lexical normalisation of short text messages.
+\newblock {\em ACM Transactions on Intelligent Systems and Technology}.
 
 \bibitem[\protect\astroncite{Hong and Davison}{2010}]{hong}
 Hong, L. and Davison, B. (2010).
@@ -95,6 +100,11 @@ Weng, J., Lim, E.-P., Jiang, J., and He, Q. (2010).
 \newblock Twitterrank: finding topic-sensitive influential twitterers.
 \newblock In {\em Proceedings of the third ACM international conference on Web
   search and data mining}, WSDM '10, pages 261--270, New York, NY, USA. ACM.
+
+\bibitem[\protect\astroncite{Yang et~al.}{2012}]{yang2012www}
+Yang, L., Sun, T., Zhang, M., and Mei, Q. (2012).
+\newblock We know what @you \#tag: does the dual role affect hashtag adoption?
+\newblock WWW '12, pages 261--270.
 
 \bibitem[\protect\astroncite{Yang et~al.}{2011}]{baldwin11}
 Yang, T.-I., Torget, A., and Mihalcea, R. (2011).

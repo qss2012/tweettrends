@@ -551,7 +551,7 @@ $PMI (w_i,w_j) = log \frac{p(w_i,w_j)}{p(w_i)p(w_j)}$.
 A key aspect of this score is that it uses external data.  \cite{baldwin10} used the Wikipedia corpus as their external data. We eliminate the need of this external data source by using our own dataset to calculate the probabilities used in this score.
 
 \subsection{Held Out Probability}
-Another way of evaluating topic models is to compare predictive performance by estimating the probability of a subset of held-out documents.  We used the Left to Right evaluation algorithm as described in \cite{wallach} to calculate these values, which is an unbiased method.  Another approach is the so-called
+Another way of evaluating topic models is to compare predictive performance by estimating the probability of a subset of held-out documents.  We used the Left to Right evaluation algorithm as described in \cite{wallach} to calculate the average log likelihood values of the tweets using the learnt model, which is an unbiased method.  Another approach is the so-called
 document completion method \cite{wallach}, however with so few words we felt holding out a subset of a (small) document was ill-advised.
 
 
@@ -568,7 +568,7 @@ described in Section~\ref{sec:evaluation}.
 \subsection{Document Characteristics for Different Pooling Schemes}
 
 Here we look at the document characteristics of the documents in the
-different pooling schemes for the three datasets. The characteristics
+different pooling schemes for the three datasets. Characteristics
 like the number of documents affect LDA directly and hence it will be
 interesting to look at what the training data consists
 of. Table~\ref{tbl-3} presents the required statistics.
@@ -619,7 +619,7 @@ pooling should perform optimally in comparison to other schemes.
 \subsection{Comparison of Pooling Schemes}
 
 For the three datasets (viz. Generic, Specific and Events) and pooling
-schemes, we next evaluate the Purity scores, NMI scores and PMI scores
+schemes, we next evaluate the Purity scores, NMI scores, PMI scores and the Held-Out probabilities
 in Table~\ref{tbl-456} on the topic model obtained by training LDA
 using each scheme.
 
@@ -654,7 +654,7 @@ Based on these results we conclude that hashtag-based pooling scheme
 pooling schemes. An obvious question to ask is: Can we do better? In
 the next section we look into hashtag-based pooling in detail and
 devise methods which further improve the results and provide better
-topics.  We did not evaluate the held-out probabilty in later
+topics.  We did not evaluate the held-out probability in later
 experiments as it agreed generally with the other scores,
 and is not as appropriate  as a quality metric for the
 undirected information task.
@@ -722,7 +722,7 @@ when using this method and the relative percentage improvement.
 {
 	\begin{tabular}{|l|cc|cc|cc|}
 	\hline
-	Metric  & \multicolumn {2}{c}{Generic} & \multicolumn {2}{c}{Specific} & \multicolumn {2}{c|}{Events}\\
+	Metric  & \multicolumn {2}{c|}{Generic} & \multicolumn {2}{c|}{Specific} & \multicolumn {2}{c|}{Events}\\
 	\hline
 	 & Full & \% improvement & Full & \% improvement & Full & \% improvement\\
 	\hline
@@ -853,7 +853,7 @@ $\hat{T}_h$: for each $h \in H$, set of tweets newly assigned label $h$\\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Automatic Hashtag Labeling}
+\subsubsection{Automatic Hashtag Labelling}
 
 Table~\ref{tbl-9} presents the results of hashtag assignment based on
 the three metrics for different confidence thresholds $C$ varying from
@@ -1100,7 +1100,7 @@ this model. \cite{wayne} empirically compare the content of Twitter
 with a traditional news medium, New York Times, using unsupervised
 topic modeling. \cite{hong} use the topic modeling approach for
 predicting popular Twitter messages and classifying Twitter users and
-corresponding messages into topical categories. \cite{han2012tist} poprose 
+corresponding messages into topical categories. \cite{han2012tist} propose a 
 novel method for normalising ill-formed out-of-vocabulary words in short 
 microblog messages.
 
@@ -1149,7 +1149,7 @@ Since a major portion of Twitter data does not contains hashtags we
 looked at ways of assigning hashtags to tweets. Insights from Hashtag
 Assignment results (Table~\ref{tbl-9}) suggest that when the main aim
 is to use the topics obtained to extract different events mentioned in
-the Twitter data one should use hashtag assignment with a relaxed
+the Twitter data, one should use hashtag assignment with a relaxed
 threshold(~0.5). The high values of Purity scores and NMI values for
 low threshold support this claim.
 
