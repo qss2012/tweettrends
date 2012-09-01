@@ -909,6 +909,7 @@ We now describe the following five document representations to be used to
 be used in conjunction with the cosine similarity function $\mathit{Sim}$
 defined previously:
 \begin{description}
+\itemsep -2pt
 \item{\bf Term Frequency (TF)}: As previously defined for TF, we set the vector element $t_i := f_i$ if the frequency of term $i$ in tweet $t$ is $f_i$.
 \item{\bf Inverse Document Frequency (IDF)}:  Given the occurrence of term $i$ in $N_i$ of the total $N$ tweets, $\mathit{IDF}_i$, the $i$th entry of $t$'s document representation ($t_i$) is set as
 \begin{equation*}
@@ -1080,7 +1081,9 @@ crucial to improving topics in our hastag-based pooling model,
 \cite{zangerle2011recommending} also uses tweet similarity as a
 criteria, but does not explore metrics based on inverse author
 frequency (IAF)~\cite{iaf} that we found to offer the most robust
-performance across datasets and evaluation metrics.
+performance across datasets and evaluation metrics. Additional features 
+for hashtag assignment can be found in the comprehensive study \cite{yang2012www}
+which we could leverage in future extensions.
 %Moreover, the fraction of tweets with hashtags is observed as ~30+% on a large corpus, higher than what was observed on the three datasets here.
 
 
@@ -1097,7 +1100,9 @@ this model. \cite{wayne} empirically compare the content of Twitter
 with a traditional news medium, New York Times, using unsupervised
 topic modeling. \cite{hong} use the topic modeling approach for
 predicting popular Twitter messages and classifying Twitter users and
-corresponding messages into topical categories.
+corresponding messages into topical categories. \cite{han2012tist} poprose 
+novel method for normalising ill-formed out-of-vocabulary words in short 
+microblog messages.
 
 The {T}witterRank system~\cite{Weng2010wsdm} and \cite{hong} uses
 author-based pooling to apply LDA to tweets. \cite{wayne} compared
@@ -1130,7 +1135,9 @@ approach that improves a range of topic coherence measures.
 
 \label{sec:conclusion}
 
-The work described in this paper presents a way of aggregating tweets
+%The work described in t
+This paper 
+presents a way of aggregating tweets
 in order to improve performance of topic models in terms of quality of
 topics obtained measures by the ability to reconstruct clusters and
 topic coherence. The initial results presented in Table~\ref{tbl-456}
@@ -1158,7 +1165,7 @@ with simple hashtag pooling and hashtag assignment schemes.
 Across diverse datasets and various topic coherence metrics, the best
 hashtag assignment method performs substantially better in comparison
 to an unmodified LDA baseline and a variety of existing and novel
-pooling schemes.  This indicicates the promise of this novel automatic
+pooling schemes.  This indicates the promise of this novel automatic
 hashtag labeling and pooling approach that drastically improves the
 quality of topic models for Twitter and microblog data.
 
