@@ -1,0 +1,1638 @@
+%File: formatting-instruction.tex
+\documentclass[letterpaper]{article}
+\usepackage[vlined,algoruled,titlenumbered,noend]{algorithm2e}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{array}
+\usepackage{amsmath,amssymb}
+\usepackage{epsfig,subfigure}
+\usepackage{pgfplots}
+\newcommand{\fix}{\marginpar{FIX}}
+\newcommand{\new}{\marginpar{NEW}}
+\newcommand{\ind}[1]{\mathbb{I}[#1]}
+\newcommand{\inde}{\mathbb{I}}
+
+\newcommand{\var}{v}
+\newcommand{\eq}{\leftarrow}
+
+\newcommand{\LB}{\mathit{LB}}
+\newcommand{\UB}{\mathit{UB}}
+
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\usepackage{aaai}
+\usepackage{times}
+\usepackage{helvet}
+\usepackage{courier}
+\frenchspacing
+\pdfinfo{
+/Title (Formatting Instructions for Authors Using LaTeX)
+/Subject (AAAI Publications)
+/Author (AAAI Press)}
+\setcounter{secnumdepth}{0}  
+ \begin{document}
+% The file aaai.sty is the style file for AAAI Press 
+% proceedings, working notes, and technical reports.
+%
+\title{Improving LDA Topic Models for Microblogs\\ via Automatic Tweet Labeling and Pooling}
+\author{AAAI Press\\
+Association for the Advancement of Artificial Intelligence\\
+2275 East Bayshore Road, Suite 160\\
+Palo Alto, California 94303\\
+}
+\maketitle
+\begin{abstract}
+\begin{quote}
+Twitter : the world of 140 characters poses serious
+  challenges to the efficacy of topic models on short, messy text.
+  While topic models such as Latent Dirichlet Allocation (LDA) have a
+  long history of successful application to news articles and academic
+  abstracts, they are often less coherent when applied to microblog
+  content like Twitter.  In this paper, we investigate methods to
+  improve topics learned from Twitter content \emph{without} modifying
+  the basic machinery of LDA; we achieve this through various pooling
+  schemes that aggregate tweets in a data preprocessing step for LDA.
+  We empirically establish that a novel method of combining
+  automatic hashtag labeling techniques with tweet pooling by hashtags
+  leads to a vast improvement in a variety of measures of topic
+  coherence across three diverse Twitter datasets in comparison to an
+  unmodified LDA baseline and a variety of pooling schemes.
+\end{quote}
+\end{abstract}
+
+\section*{Introduction}
+\label{sec:intro}
+
+In the general area of information retrieval or information access,
+the {\it undirected informational task} \cite{RoseLev} is one where
+people seek to better understand the information available to them in
+a particular area.  This is a form of information discovery that
+techniques such as multidocument summarisation \cite{radev02} and
+topic modeling have been developed to address.  Probabilistic topic
+models such as Latent Dirichlet Allocation (LDA) \cite{blei03} are a
+class of Bayesian latent variable models developed for analysing the
+semantic content of document corpora.  Topic models uncover the salient
+patterns of a collection under the mixed-membership assumption: each
+document can exhibit multiple patterns to different extents.  When
+analysing text, these patterns are represented as distributions over
+words, called ?topics?.  Topic models have been adapted to model
+document genres as diverse as news articles \cite{baldwin11}, blogs,
+academic abstracts \cite{acadz}, and encyclopaedia entries.
+
+To address the undirected informational task arising for the 
+exploration of Twitter content, we propose the use of popular topic
+models like LDA.  However, 
+Twitter content poses unique challenges different to much of standard
+NLP content: 
+\begin{itemize}
+\item posts are short (140 characters or less),
+\item mixed with contextual clues such as URLs, tags, and Twitter names, and
+\item use informal language with misspelling, acronyms and 
+nonstandard abbreviations.
+% Note: not all Twitter is English
+\end{itemize}
+Hence, effectively modeling content on Twitter
+requires techniques that can readily adapt to this unwieldy data while
+requiring little supervision.  
+
+Unfortunately, it has been found that topic modeling techniques like
+LDA do \emph{not} work well with the messy form of Twitter content
+\cite{wayne}.  Topics learned from LDA are formally a multinomial
+distribution over words, and by convention the top-10 words are used
+to identify the subject area or give an interpretation of a topic.
+The naive application of LDA to Twitter content produces mostly
+incoherent topics --- some are vaguely interpretable but contain
+unrelated words in the top-10 word set.  For example,
+Table~\ref{tbl-0} demonstrates poor topic words as compared to topic
+words which are much more coherent and interpretable.
+
+\begin{table}[!h]
+\centering
+\resizebox{8.5cm}{!} 
+{
+	%\begin{tabular}{|p{2in}|p{2in}|}
+	\begin{tabular}{|c|c|}
+	\hline
+        Poor Topics  & Coherent Topics \\
+\hline
+ {\small barack cool apple health iphone}
+ &
+ {\small flu swine news pandemic health}\\
+ {\small los barackobama video uma gop} & {\small death flight h1n1 vaccine confirmed} \\
+ \hline
+	\end{tabular}
+}
+\caption{Sample Topic Words}\label{tbl-0}
+\end{table}
+
+
+How can we extract better topics in
+microblogging environments with standard LDA without the need of any
+major modifications?  
+While lingistic ``cleaning'' of text could help somewhat,
+for instance  \cite{Han2012},  a complementary approach 
+using LDA is also needed because there are so few words in a tweet.
+An intuitive solution to this problem is tweet
+pooling~\cite{Weng2010wsdm,hong}: merging related tweets together and presenting them as a
+single document to the LDA model.  
+%  The bad performance of LDA on
+%  Twitter data can be attributed to the fact that in an unpooled setting
+%  each document is small (140 characters) as well as written with
+%  non-standard words, 
+%  hence an individual document does not contains enough content
+%  which might help LDA to discover latent semantics in a document.
+In this paper we examine various tweet-pooling schemes and further 
+enhancements to improve pooling quality.  We compare
+the performance of these methods across different datasets; these are
+constructed so that they are representative of the diverse collections
+of content possible in the microblog environment.  
+
+Evaluation of the resultant topic model on this data is challenging
+because of the unsupervised nature of the problem.  Hence, we look at
+a variety of topic coherence evaluation metrics including the ability
+of the topics obtained to reconstruct known clusters and
+the interpretability of topics via statistical information measures.
+
+% This is redunant with bullet points below, can omit I think.  -Scott
+%
+%We observe that of the different pooling schemes discussed, a
+%hashtag-based tweet pooling scheme outperforms the others across all
+%datasets.  Further, we evaluate a variety of similarity metrics for
+%assigning hashtags to tweets which do not have any hashtag and find
+%the best of these metrics further improve the quality of topics
+%obtained across all datasets and evaluation schemes.
+
+Given our diverse datasets and evaluation metrics, we wish to answer
+the following questions:
+\begin{itemize}
+\item Do the different proposed pooling strategies perform better than
+  unpooled tweets?
+\item Which pooling scheme works best for which metric and why?
+\item What further improvements can be made to the various pooling schemes
+  so as to obtain topics which are coherent and interpretable?
+\end{itemize}
+In answering these questions, we make the following novel
+contributions:
+\begin{itemize}
+\item We show that different pooling schemes perform differently
+  across different datasets and a few pooling schemes consistently
+  outperform unpooled tweets.
+\item We show that a novel \emph{hashtag-based pooling} approach leads
+  to best results across \emph{all} evaluation metrics.  The
+  performance is a substantial improvement over unpooled use.
+\item Given the prevalence of tweets without any hashtag, we present
+  similarity metrics for automatic hashtag assignment for these tweets and
+  demonstrate further improvement of hashtag-based pooling.  
+  We also observe that 
+  similarity metrics based on \emph{inverse author frequency}
+  (IAF)~\cite{iaf} offer some of the most robust performance for 
+  hashtag-based pooling across all datasets and evaluation metrics.
+\end{itemize}
+
+In the following sections we first provide a brief overview of topic
+modeling and LDA followed by a proposal for different tweet pooling
+schemes in Section~\ref{sec:pooling}.  We next discuss Twitter dataset
+construction in Section~\ref{sec:dataset} followed by evaluation
+metrics in Section~\ref{sec:evaluation}. After discussing initial
+results in Section~\ref{sec:init_results} where hashtag-based pooling
+emerges as a leading approach, we discuss further analysis and
+improvements to hashtag-based pooling in Section~\ref{sec:hashtag_pooling}, followed by an in-depth evaluation of similarity metrics for automatic hashtag labeling.  We present a
+final overall comparison of the best overall methods in
+Section~\ref{sec:overall}.  Related work is described in
+Section~\ref{sec:related_work} and Section~\ref{sec:conclusion}
+summarises and concludes.
+
+%%%%%%%%%%%%%%%%%%%%
+
+\section{Tweet Pooling for LDA Topic Modeling}
+
+\label{sec:pooling}
+
+\subsection{Latent Dirichlet Allocation and Topic Modeling}
+
+\label{subsec:lda}
+
+%%%  Wray:  I cut this subsection back since its not really used
+%           placed the old stuff at the end
+Latent Dirichlet allocation (LDA) \cite{blei03} is a generative model
+for text. In LDA, each document may be viewed as a mixture of various
+topics.  The generative process has documents 
+represented as random mixtures over latent topics, where each topic is
+characterized by a distribution over words.  Learning the 
+distributions (the set of topics, their associated word probabilities,
+the topic of each word, and the particular topic mixture of each
+document) is a problem of Bayesian inference, and many algorithms are
+available.  We use the Mallet \cite{mallet} implementation of LDA for
+performing our experiments.
+
+\subsection{Tweet Pooling Schemes}
+
+The goal of this paper is to obtain better LDA topics from Twitter
+content without modifying the basic machinery of standard LDA.  As
+noted in Section~\ref{sec:intro}, microblog messages differ from
+conventional text. They feature many unique symbols like mentions,
+hashtags and urls, and the popular use of colloquial words and
+Internet slang. Message quality varies greatly, from newswire-like
+utterances to babble (e.g. O o haha wow). In terms of text processing,
+these issues pose significant research challenges for LDA, which has
+been observed to perform poorly on Twitter~\cite{wayne}.
+
+To address these challenges, we present various pooling schemes to
+aggregate tweets together for use as training data for building better
+LDA models. The motivation behind tweet pooling is that individual
+tweets are very short($\leq$ 140 characters) and hence treating each
+tweet as an individual document does not present very rich term
+co-occurence data within documents that is highly useful for effective
+topic modeling.  Aggregating tweets which are similar in some sense
+(semantically, temporally, etc.) enriches the content present in a
+single document from which the LDA can learn a better topic model.  We
+next describe an unpooled baseline LDA model and four different tweet
+pooling schemes.
+
+\paragraph{Basic scheme -- Unpooled Tweets:}
+
+The default way of training models involves treating each tweet as a
+single document and training LDA on all tweets. This serves as our
+baseline and we compare results of other pooling schemes against this
+unpooled scheme. 
+%%
+%% TODO: DO WE NEED TO MENTION THESE DETAILS IN THE METRICS SECTION?
+%%       FOR EACH POOLING METHOD???  CAN'T DO HERE SINCE METRICS NOT
+%%       INTRODUCED YET.
+%%
+%For each tweet $d$, using the trained model, we use
+%the maximum value in topic mixture $\theta_{d} $ to determine its
+%class/topic and use theresult to calculate the Purity and NMI scores.
+
+\paragraph{Author-wise Pooling: }
+
+Pooling tweets according to author is the standard away of aggregating
+Twitter data to improve LDA topic modeling and has been previously
+proposed in the literature~\cite{Weng2010wsdm,hong} and shown to be
+superior to unpooled Tweets.  To use this method, we train LDA on
+aggregated author profiles, each of which combines all tweets posted
+by the same author.  
+%%
+%% TODO: NOT SURE WHAT FOLLOWING MEANS OR HOW IT'S DONE -- IMPORTANT TO MENTION?
+%%
+%Using this model we infer a topic mixture of individual tweets.
+
+\paragraph{Burst-score wise Pooling:}
+
+A \textit{trend} on Twitter~\cite{mor} (sometimes referred to as a trending
+topic) consists of one or more terms and a time period, such that the
+volume of messages posted for the terms in the time period exceeds
+some expected level of activity.  In order to identify trends in
+Twitter posts, "bursts" of interest and attention can be detected in
+the data. We run a simple burst detection algorithm to detect such
+trending topics and aggregate tweets containing those terms having
+high burst scores.  To identify terms that appear more frequently than
+expected, we will assign a score to terms according to their deviation
+from an expected frequency. Assume that $M$ is the set of all messages
+in our Tweets dataset, $R$ is a set of one or more terms to which we
+wish to assign a score, and $y$ represents a day of the total $z$
+days. We then define $M(R, y)$ as the set of every Twitter message in
+$M$ such that (1) the message contains all the terms in $R$ and (2)
+the message was posted during day $y$. With this information, we can
+compare the volume in a specific day to the other days. Let $ Mean(R)
+= \Sigma_d M(R,y) / z $.  Correspondingly, $ SD(R) $ is the standard
+deviation of the number of messages with the terms in $R$ posted over
+all the days. The \textit{burst-score} is defined as:
+\[
+\mathit{burst\textrm{-}score}(R,y) = \frac{|M(R,y) - Mean(r)|}{SD(R)} 
+\]
+
+Let us denote the terms having burst-scores greater than 5 as
+\textit{burst-term}.  Then our first novel aggregation method of
+burst-wise polling aggregates tweets for each burst-term into a single
+document trains LDA on the set of documents for each burst-term. The
+tweets which do not contain any of the burst-term were ignored for the
+purpose of training the LDA model. We then use the trained model to
+infer a topic mixture for each of the individual tweets. This scheme
+is henceforth referred to as Burst Score-wise pooling.
+
+\paragraph{Temporal Pooling: }
+
+The fourth scheme and our second novel pooling proposal is known as
+Temporal Pooling, which utilises the temporal information of the tweets. It
+is noted that whenever a major event occurs, a large number of users
+often start tweeting about the event. Temporal pooling of tweets might help
+us in extracting useful information from the LDA topics. We train the
+LDA on an aggregate document of tweets posted within the same hour.
+%%
+%% TODO: SEE PREVIOUS TODO's IN THIS SECTION, A SIMILAR ISSUE HERE.
+%%
+% and use this
+% model to infer a topic mixture for each of the individual tweets.
+
+\paragraph{Hashtag-based Pooling:}
+
+A Twitter \textit{hashtag} is a string of characters preceded by the
+hash (\#) character. In many cases hashtags can be viewed as topical
+markers, an indication to the context of the tweet or as the core idea
+expressed in the tweet, therefore hashtags are adopted by other users
+that contribute similar content or express a related idea. A few
+examples of the use of hashtags are: "ask GAGA anything using the tag
+\#GoogleGoesGaga for her interview! RT so every monster learns about
+it!! " referring to an exclusive interview for Google by Lady Gaga
+(singer), "Whoever said 'youth is wasted on the young' must be eating
+his words right now. \#March15 \#Jan25 \#Feb14 ", referring to the
+protest movements in the Arab world.  For the hashtag-based pooling
+scheme, for each hashtag we aggregate tweets containing this hashtag
+and train LDA on this collection.  The tweet pool for each hashtag
+thus represents a document. If any tweet has more than one hashtag,
+this tweet gets added to the tweet-pool of each of those
+hashtags. This results in tweets with multiple hashtags being repeated
+across documents.
+
+\paragraph{Other Pooling:}
+
+While a few other combinations of pooling schemes (eg.author-time,
+hashtag-time, \textit{etc}) are possible, the initial results obtained
+were not as good as those presented for the currently outlined
+pooling schemes.  This may be due to the lack of data in each
+finer-grained pool.  Despite the initial negative results, these 
+combinations of pooling schemes might be further explored in future 
+work and may help unveil even finer-grained topics (i.e., short-term 
+events centred on an author group or set of hashtags).
+
+%%%%%%%%%%%%%%%%%%%%
+
+\section{Twitter Dataset Construction}
+
+\label{sec:dataset}
+
+The different pooling schemes and their proposed modifications result
+in different topic models, the evaluation of which is a major
+concern. We wish to answer questions like: Which scheme performs
+better on which aspects and on what kinds of data? Due to the large
+number of tweets ($\sim$360K) in any of the twitter specific datasets,
+manual labeling of topics is not feasible.  To circumvent this
+problem of unsupervised evaluation we carefully construct our datasets
+keeping the following point in mind: The datasets should cover diverse
+collections of content, but also the known source of the content
+should help in evaluation of the different schemes.
+
+We construct three datasets which we believe are representative of the
+diverse collections of content found on Twitter.  We chose one or
+two term queries (often with similar pairs of queries to encourage
+a non-strongly diagonal confusion matrix) to search a tweet
+collection and each resulting set of tweets was labeled by the query
+that retrieved it.  Since the number of queries (equivalently the
+number of clusters) is known beforehand, we could use this knowledge
+to evaluate how well the topics output by LDA match with known
+clusters. A brief description of the three datasets is as
+follows:
+
+\begin{description}
+\item[Generic Dataset: ]
+ 359478 tweets from 11 Jan'09 to 30 Jan'09.
+A general dataset with tweets containing generic terms which represent a broader sense.\vspace{-5pt}
+\item[Specific Dataset: ]
+214580 tweets from 11 Jan'09 to 30 Jan'09.
+A dataset composed of tweets which have specific terms which refer to named entity topics.\vspace{-5pt}
+\item[Event Dataset: ]
+207128 tweets from 1 Jun'09 to 30 Jun'09.
+An event related dataset which contains tweets which were posted about some particular events. The query terms are terms which represent events.
+\end{description}
+
+Each of these datasets was created by querying a collection of 100
+million tweets spanning two months (Jan'09 \& Jun'09) with terms
+that relate to generic queries (broad topic words like music,
+business, {\it etc.}), specific queries (named entity topics like
+Obama, McDonalds, {\it etc.}) and event related queries (actual events
+in that timeframe like recession, Flight 447, Iran elections, {\it
+  etc.}).  Table~\ref{tbl-q} give the terms and the percentage tweets
+in the datasets which contain that term.
+
+
+\begin{table}[!ht]
+\centering
+\resizebox{8.5cm}{!} 
+{
+	\begin{tabular}{|c|p{4in}|}
+	\hline
+        Dataset & Term/\% \\
+\hline
+Generic &{\small music/17.9 business/15.8 movie/14.5 design/10.8
+       food/9.6 fun/9.1 health/6.9 family/6.4 sport/4.9 space/3.2}  \\
+%music & business & movie & design & food & fun & health & family & sport & space
+%\# tw & 121511 & 107422 & 98496 & 73422 & 64723 & 61776 & 47209 & 43705 & 33758 & 24236 \\
+%\% tw & 17.9 & 15.8 & 14.5 & 10.8 & 9.6 & 9.1 & 6.9 & 6.4 & 4.9 & 3.2 \\
+Specific &{\small 
+Obama/23.2 Sarkozy/0.4 baseball/3.5 cricket/1.8 Mcdonalds/1.5 Burgerking/0.5 Apple/16.3 Microsoft/6.8 United-states/40.7 France/4.9} \\
+% Term & obama & sarkozy & baseball & cricket & mcdonalds & burgerkings & apple & microsoft & united statess & france\\
+%\# tw & 96810 & 1831 & 14343 & 7627 & 6313 & 2224 & 67886 & 28497 & 169396 & 20502 \\
+% tw & 23.2 & 0.4 & 3.5 & 1.8 & 1.5 & 0.5 & 16.3 & 6.8 & 40.7 & 4.9 \\
+Events &{\small Flight-447/0.9 Jackson/13.9  Lakers/13.8 attack/13.8 scandal/4.1 swine-flu/13.8 recession/12.3 conference/14.1 T20/4.4 Iran-election/8.6  }\\
+% Term & Flight 447 & Jackson & Lakers & attack & scandal & swine flu & recession & conference & T20 & Iran election \\
+%  tw & 0.9 & 13.9 & 13.8 & 13.8 & 4.1 & 13.8 & 12.3 & 14.1 & 4.4 & 8.6 \\
+	\hline
+	\end{tabular}
+}
+\caption{Datasets}\label{tbl-q}
+\end{table}
+
+Note that the three datasets span three different scenarios in which
+tweets would be posted. Evaluating our methods on each of these would
+give us useful insights as to which methods work well for which type
+of data.
+ 
+% We next present the evaluation metrics used to compare the different topic models learnt by the different pooling schemes. \\
+
+%%%%%%%%%%%%
+
+\section{Evaluating Topic Models - Metrics used}
+
+\label{sec:evaluation}
+
+%%
+%% NOTES FROM SCOTT
+%%
+% I changed a little to indicate that every metric we discuss here is
+% some type of coherence... did this because lot's of other sections
+% (Introduction) only argue for general coherence so it is as if this
+% is the idea unifying all metrics... I think it makes enough sense;
+% see first sentence below.
+Evaluation of the different topic models based on the features of
+coherence: topical consistency of documents assigned to a topic with
+high probability, or human interpretability of the most probable words
+for a topic are both important issues, but the unsupervised nature of
+topic models makes this difficult. For some applications there may be
+extrinsic tasks, such as information retrieval or document
+classification, for which performance can be evaluated. However, such
+tasks are not applicable for evaluating topics models in the {\it
+  undirected informational task}.
+
+We evaluate our topic models based on the following two general
+approaches to measuring topical coherence,
+as well as a pure probability approach \cite{wallach}.
+
+\paragraph{Clustering-based metrics:} 
+
+We would like to measure the quality of topics found by the models,
+that the models can recall known existing topics in the
+data, and can consistently assign the right tweets to the right
+topics.  Fortunately, each dataset we constructed is a class-labeled
+dataset containing ten categories. Since we know the ground truth
+label of all the tweets in the dataset (their categories), we can
+measure the quality by how likely the topics agree with the true
+category labels. To measure how well the topics produced by LDA
+reconstruct known clusters and how consistent they are, we use
+clustering-based measures of purity and normalized mutual information
+(NMI), both defined below.
+
+%%
+%% SEE NOTES JUST ABOVE ON REASONS FOR CHANGES
+%%
+%\paragraph{Metrics measuring topic coherence:}
+\paragraph{Semantic coherence and interpretability:}
+
+Learnt topics should be coherent and interpretable.  Topic coherence ?
+meaning semantic coherence ? is a human judged quality that depends on
+the semantics of the words, and cannot be measured by model-based
+statistical measures that treat the words as exchangeable tokens.  It
+is possible to automatically measure topic coherence with near-human
+accuracy \cite{baldwin10} using a score based on pointwise mutual
+information (PMI).  We use this to measure coherence of the topics
+from different tweet-pooling schemes.
+
+\subsection{Purity Scores}
+
+To compute purity \cite{MRS08}, each cluster is assigned to the class
+which is most frequent in the cluster, and then the accuracy of this
+assignment is measured by counting the number of correctly assigned
+documents and dividing by N. For each tweet $d$, we use the maximum
+value in topic mixture $\theta_{d} $ to determine its class/topic.
+
+We interpret $t_{k}$ as the set of tweets in cluster $t_{k}$ and
+$g_{k}$ as the set of tweets in category-label $g_{k}$. $m$ is the
+total number of tweets; $T = \lbrace t_{1}, ... , t_{k} \rbrace$ is
+the set of k clusters and $ G = \lbrace g_{1}, ... , g_{k}\rbrace $ is
+the set of k category-labels (e.g. Obama, Microsoft).\vspace{-3pt}
+\[
+ purity (T,G) = \frac{1}{N} \Sigma_{k} max_{j} |t_{k} \cap g_{j}|
+\]
+where $ t_k = \lbrace  d \hspace{2 mm} |  \hspace{2 mm} argmax_{t^*} \theta^{t^{*}}_d = t \rbrace $.
+As the number of correctly assigned tweets increases for each cluster,
+the overall purity score increases. hence high purity scores reflect
+better cluster reconstruction, hence a topic model with high purity
+score is considered better.
+
+\subsection{Normalized Mutual Information}
+
+Since we know the ground truth label of all the tweets in the dataset,
+i.e., their categories, we can measure the quality by how likely the
+topics agree with the true category labels.
+But high agreement is easy to achieve when the number of clusters is
+large, thus one needs a divisor to discount for a large number of clusters.
+The resulting two-part score is:
+\[
+NMI(T,G) = \frac{2 I(T;G)}{H(T) + H(G)} 
+\]
+where $I(T,G)$ is Mutual Information and $H(T)$ gives the entropy. The 
+corresponding values are:
+\[
+I(T,G) = \Sigma_{k} \Sigma_{j} \frac{|t_{k} \cap g_{j}|}{N} log \frac{|t_{k} \cap g_{j}|}{|t_{k}| |g_{j}|} 
+\]
+\[
+H(T) = - \Sigma_k \frac{|t_k|}{N} log \frac{|t_k|}{N} 
+\]
+NMI \cite{MRS08} is always a number between 0 and 1. NMI score will be
+1 if the clustering results exactly match the category labels while 0
+if the two sets are independent. For each tweet $d$, we use the
+maximum value in topic mixture $ \theta_{d} $ to determine its
+cluster. After this mapping process, we compute NMI scores with the
+labels.
+
+
+\subsection{Pointwise Mutual Information}
+
+One of the goals of our work is to get topics that are more coherent. 
+We measure topic coherence using PMI defined as follows:
+$PMI Score(w) = Mean ( PMI(w_i,w_j) )  i,j \in \lbrace1.....10\rbrace $;
+%%
+%% TODO: SHOULDN'T WE DEFINE PMI MUCH MORE FORMALLY THAN ABOVE???
+%%
+%% Done.
+where PMI Score(w) represents the PMI score of the topic w. The average of the PMI score over all the 10 topics is used as the final measure of the PMI score. PMI is one measure of the statistical independence of observing two words in
+close proximity. We treat two words as co-occurring if both the words occur in the same tweet. We compute the PMI of a given pair of words $(w_i, w_j)$ as:
+$PMI (w_i,w_j) = log \frac{p(w_i,w_j)}{p(w_i)p(w_j)}$. 
+A key aspect of this score is that it uses external data.  \cite{baldwin10} used the Wikipedia corpus as their external data. We eliminate the need of this external data source by using our own dataset to calculate the probabilities used in this score.
+
+\subsection{Held Out Probability}
+Another way of evaluating topic models is to compare predictive performance by estimating the probability of a subset of held-out documents.  We used the Left to Right evaluation algorithm as described in \cite{wallach} to calculate these values, 
+%to calculate the average log likelihood values of the tweets using the learnt model,
+which is an unbiased method.  Another approach is the so-called
+document completion method \cite{wallach}, however with so few words we felt holding out a subset of a (small) document was ill-advised.
+
+
+\section{Initial Results for Pooling Schemes}
+
+In this section we discuss the results of the experimental evaluation
+of the tweet pooling schemes introduced in
+Section~\ref{sec:pooling}. The datasets used were described in
+Section~\ref{sec:dataset} while the evaluation metrics used were
+described in Section~\ref{sec:evaluation}.
+
+\label{sec:init_results}
+
+\subsection{Document Characteristics for Different Pooling Schemes}
+
+Here we look at the document characteristics of the documents in the
+different pooling schemes for the three datasets. Characteristics
+like the number of documents affect LDA directly and hence it will be
+interesting to look at what the training data consists
+of. Table~\ref{tbl-3} presents the required statistics.
+
+%\begin{figure*}
+{
+\begin{table*}[!ht]
+%\setcounter{table}{3}
+\centering
+\resizebox{14cm}{!} 
+{
+	\begin{tabular}{|l|ccc|ccc|ccc|}
+	\hline
+	Pooling Scheme  & \multicolumn {3}{c|}{\#of docs} & \multicolumn {3}{c|}{Avg \# of words/doc} & \multicolumn {3}{c|}{Max \# of words/doc}\\
+	\hline
+	 & Generic & Specific & Events &  Generic & Specific & Events &  Generic & Specific & Events\\
+	\hline
+	Authorwise & 208300 & 118133 & 67387 & 17.6 & 20.4 & 15.4 & 4893 & 3586 & 2775 \\
+	\hline
+	Unpooled & 359478 & 214580 & 207128 & 10.2 & 10.9 & 9.7 & 35 & 49 & 32 \\
+	\hline
+	Burst Score & 7658 & 7436 & 5434 & 76.5 & 154.2 & 71.6 & 61918 & 420249 & 57794 \\
+	\hline
+	Hourly & 465 & 464 & 463 & 8493.4 & 5387.5 & 2422 & 20144 & 18869 & 38893 \\
+	\hline
+	Hashtag & 8535 & 7029 & 4099 & 70.4 & 187.2 & 78.4 & 61918 & 420249 & 57794 \\
+	\hline
+	\end{tabular}
+}
+\caption{Document Characteristics for different schemes}\label{tbl-3}
+\end{table*}
+}
+%\end{figure*}
+
+The statistics presented above highlight the differences in the
+characteristics of the documents on which LDA models have been
+trained. The number of documents decreases as we move from Unpooled
+scheme to Authorwise and Hashtagwise pooling scheme, while the
+corresponding size of the documents in each case increases. On an
+average the document size increases by a factor of seven in hashtag-based
+pooling when compared against unpooled or authorwise pooling
+schemes. Thus each document in hashtag-based pooling contains more
+content from which LDA could possibly extract latent semantics. On the
+other extreme lies the temporal pooling with very less number of
+documents and hence each document of a much larger size. Such large
+documents might impact the topic model in an unpleasant manner. These
+statistics highlights that hashtag-based pooling scheme lies mid-way
+between both the extremes (small documents in unpooled tweets vs large
+documents in temporal pooling) and hence suggests that hashtag-based
+pooling should perform optimally in comparison to other schemes.
+
+\subsection{Comparison of Pooling Schemes}
+
+For the three datasets (viz. Generic, Specific and Events) and pooling
+schemes, we next evaluate the Purity scores, NMI scores, PMI scores and the Held-Out probabilities
+in Table~\ref{tbl-456} on the topic model obtained by training LDA
+using each scheme.
+
+\begin{table*}[!ht]
+%\setcounter{table}{11}
+\centering
+\resizebox{17cm}{!} 
+{
+	\begin{tabular}{|l|ccc|ccc|ccc|ccc|}
+	\hline
+	Scheme  & \multicolumn {3}{c|}{Purity} & \multicolumn {3}{c|}{NMI Score} & \multicolumn {3}{c|}{PMI score} & \multicolumn {3}{c|}{Held Out Probability}\\
+	\hline
+	 & Generic & Specific & Events &  Generic & Specific & Events &  Generic & Specific & Events & Generic & Specific & Events\\
+	\hline
+	Unpooled & 0.49 & 0.64 & 0.69 & 0.28 & 0.22 & 0.39 & -1.27 & 0.47 & 0.47 & -82.2 & -89.3 & -86.3\\
+	\hline
+	Author & 0.54 & 0.62 & 0.60 & 0.24 & 0.17 & 0.41 & 0.21 & 0.79 & 0.51 &-63.0 & -68.6 & -66.4\\
+	\hline
+	Hourly & 0.45 & 0.61 & 0.61 & 0.07 & 0.09 & 0.32 & -1.31 & 0.87 & 0.22 & -64.8 & -69.4 & -67.9\\
+	\hline
+	Burstwise & 0.42 & 0.60 & 0.64 & 0.18 & 0.16 & 0.33 & 0.48 & 0.74 & 0.58 & -56.7 & -59.0 & -57.8\\
+	\hline
+	Hashtag & \textbf{0.54} & \textbf{0.68} & \textbf{0.71} & \textbf{0.28} & \textbf{0.23} & \textbf{0.42} & \textbf{0.78} & \textbf{1.43} & \textbf{1.07} & \textbf{-55.9} & \textbf{-58.9} & \textbf{-55.4}\\
+	\hline
+	\end{tabular}
+}
+\caption{Initial results of different pooling schemes}\label{tbl-456}
+\end{table*}
+
+Based on these results we conclude that hashtag-based pooling scheme
+\emph{clearly} performs better than unpooled scheme as well as other
+pooling schemes. An obvious question to ask is: Can we do better? In
+the next section we look into hashtag-based pooling in detail and
+devise methods which further improve the results and provide better
+topics.  We did not evaluate the held-out probability in later
+experiments as it agreed generally with the other scores,
+and is not as appropriate  as a quality metric for the
+undirected information task.
+
+\section{General Study of Hashtags \& Hashtag Pooling}
+
+\label{sec:hashtag_pooling}
+
+Hashtag-based tweet pooling outperforms other pooling schemes and
+unpooled tweets in terms of both: reconstructing known clusters as
+well as extracting coherent topic words. In this section we look into
+hashtags and hashtag-based pooling in detail and analyse the
+prominence of hashtags in our datasets and look at ways to further
+improve the results.
+
+\subsection{How Many Tweets have Hashtags?}
+
+Among all tweet pooling schemes hashtag-based pooling gives the best
+results in terms of purity scores, NMI and PMI values. There are two
+obvious questions to ask at this stage include: How common are the
+hashtags? Do all tweets have hashtags? Table~\ref{tbl-7} presents few
+statistics on the percentage of tweets which do not have any hashtag
+in the three datasets. In this section we look at the number of tweets which do not have any hashtag and posit problems which arise due to this.
+
+\begin{table}[!h]
+%\setcounter{table}{8}
+\centering
+	\begin{tabular}{|c|c|}
+	\hline
+	Dataset & \% tweets having hashtags\\
+	\hline
+	Generic & 22.3\%\\
+	\hline
+	Specific & 9.4\% \\
+	\hline
+	Event & 19.5\% \\
+	\hline
+	\end{tabular}
+\caption{ \% tweets haing hashtags}\label{tbl-7}
+\end{table}
+
+As is evident from the figures a large number of tweets do not contain
+any hashtag, with the percentages varying from 77.7\% to a surprising
+91.6\%. This suggests that a large portion of the training data does
+not participate in the hashtag pooling scheme. Since a large proportion
+of the available data is ignored, we need to figure out ways of
+incorporating this data while training LDA models.  We first attempt addressing
+this issue with a naive brute force approach.
+
+\subsection{Incorporating Other Tweets :: Brute Force Approach}
+
+One way of incorporating the large portion of the dataset that is not
+aggregated into a pooled document could be to include all of these
+unpooled tweets as individual documents alongside the hashtag-pooled
+documents.  Table~\ref{tbl-8} shows the results on the different datasets when
+when using this method and the relative percentage improvement.
+
+\begin{table*}[!ht]
+%\setcounter{table}{9}
+\centering
+%\resizebox{8.5cm}{!} 
+{
+	\begin{tabular}{|l|cc|cc|cc|}
+	\hline
+	Metric  & \multicolumn {2}{c|}{Generic} & \multicolumn {2}{c|}{Specific} & \multicolumn {2}{c|}{Events}\\
+	\hline
+	 & Full & \% improvement & Full & \% improvement & Full & \% improvement\\
+	\hline
+	Purity & 0.60 & +13.2\% & 0.69 & +1.4\% & 0.68 & -1.5\% \\
+	\hline
+	NMI & 0.29 & +3.5\% & 0.23 & +0.1\% & 0.40 & +2.5\% \\
+	\hline
+	PMI & 0.42 & -46.1\% & 0.59 & -58\% & 1.2 & +155\% \\
+	\hline
+	\end{tabular}
+}
+\caption{Results of incorporating other tweets on different datasets. \% improvements are measured in comparison with simple hashtag pooling results.}\label{tbl-8}
+\end{table*}
+
+The results in the above table suggest this brute force technique
+substantially harms the topic coherence (lower PMI scores) but
+improves cluster reconstruction (higher purity scores).  Hence, we
+need to look for alternative ways in which we could improve cluster
+reconstruction without adversely affecting the topic coherence. In the
+next section we present a way of doing so and show that our proposed
+method performs better than all results so far.
+
+\subsection{Automatic Hashtag Labeling}
+
+\label{subsec:assign_hashtags}
+
+Since a large number of tweets do not have hashtags, we conjecture
+that assigning \emph{appropriate} hashtags to some of those tweets
+should help in improving our overall evaluation metrics -- ideally all
+of purity, NMI, and PMI and not just a subset of these metrics as we
+saw for the brute force method.  The more tweets without hashtags that
+are assigned at least one accurate hashtag, the more data will be
+incorporated into the correct pooled documents and the less data that
+will be discarded prior to running LDA.  Next we present an algorithm
+for performing this automated hashtag assignment with high confidence.
+
+\subsubsection{Algorithm}
+
+Our aim here is to assign hashtags to tweets which have none. Since
+this step is done after hashtag-based pooling of tweets, for each
+hashtag we conveniently have a collection of tweets that contain this
+particular hashtag.  We will make use of this collection to compare
+each unlabeled tweet with each hashtag's collection and compute the
+similarity scores. If the similarity score between an unlabeled and
+labeled tweet exceeds a certain threshold $C$, we assign the hashtag
+of the labeled tweet to the unlabeled tweet (and hence it joins the
+pool for this hashtag). The similarity metric we use initially is
+just the cosine similarity between the term frequency (TF) vector
+space model (i.e., $t_i := f_i$ if the frequency count for term $i$ in
+tweet $t$ is $f_i$) of two Tweets $t$ and $\hat{t}$ where cosine
+similarity is simply
+% Note that in the framework Rishabh is using, TF, IDF, and IAF simply
+% weight the boolean space model.
+%\begin{equation*}
+ $ \mathit{Sim}(\hat{t},t) = \frac{\hat{t} \cdot t}{\|\hat{t}\| \|t\|}.$
+%\end{equation*}
+%%
+%% WHY ARE WE EXPLAINING HIGH SCHOOL MATH???
+%%
+%To avoid the bias caused by different document
+%lengths, a common way to compute the similarity of two documents is
+%using the cosine similarity measure. The inner product of the two
+%vectors (sum of the pairwise multiplied elements) is divided by the
+%product of their vector lengths. This has the effect that the vectors
+%are normalized to unit length and only the angle, more precisely the
+%cosine of the angle, between the vectors accounts for their
+%similarity. Documents not sharing a single word get assigned a
+%similarity value of zero because of the orthogonality of their vectors
+%while documents sharing a similar vocabulary get higher values (up to
+%one in the case of identical documents).
+After initial experiments with the cosine TF similarity, 
+we will later define and experiment with additional similarity metrics.
+Algorithm~\ref{alg-1} describes the hashtag assignment procedure;
+the document resulting from pooling tweets for each hashtag $h$ under
+this assignment scheme will then be composed of $T_h \cup \hat{T}_h$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%
+%% NOTES: THIS ALGORITHM WAS IN BAD SHAPE... SETS WERE USED IMPLICITLY
+%%       WITHOUT BEING ASSIGNED TO VARIABLES... THERE SHOULD BE A NAME
+%%       FOR THE SET $T_h$ OF TWEETS HAVING HASHTAG h, THIS SHOULD
+%%       BE BUILT BY A LOOP AND SET UNION WHERE A SIMILARITY FUNCTION
+%%       IS APPLIED AND PROPERLY THRESHOLDED!  TO CALCULATE A SIMILARITY
+%%       IS TO CALL A FUNCTION ON TWO OBJECTS Sim(t_1,t_2)!
+%%
+%%       WHY DID YOU USE n_t, WHAT IS THE MEANING OF THE SUBSCRIPT???
+%%
+%%       WHY DID YOU USE H FOR A TWEET AND T FOR A SET OF HASHTAGS???
+%%
+\vspace{-4mm}
+\incmargin{1.5em}
+\linesnumbered
+\begin{algorithm}[hb!]
+\SetKwFunction{eliminate}{{\sc Eliminate}}
+\SetKwInOut{Input}{input}
+\SetKwInOut{Output}{output}
+\dontprintsemicolon
+
+\Input
+{
+$H$: set of hashtags \\
+$T_h$ : for each $h \in H$, set of tweets labeled with $h$ \\
+$T_n$ : set of tweets with no hashtag \\
+$\mathit{Sim}(\cdot,\cdot)$ : a similarity function between two tweets\\
+$C$ : Threshold on the similarity score\\
+}
+\Output
+{
+$\hat{T}_h$: for each $h \in H$, set of tweets newly assigned label $h$\\
+}
+\Begin{
+   \ForEach{$h \in H$}{
+     $\hat{T}_h := \emptyset$\;
+     \ForEach{$\hat{t} \in T_n$}{
+       \textit{// Hashtag $h$ assignment for $\hat{t}$ if any $t \in T_h$ is near:}\;
+       \ForEach{$t \in T_h$}{
+         \lIf{$\mathit{Sim}(\hat{t},t) > C$}{$\hat{T}_h := \hat{T}_h \cup \{ \hat{t} \}$, \textbf{break}\;
+         }
+         }
+     }
+   }
+   \Return{$\hat{T}_h$}\;
+}
+\vspace{-1mm}
+\caption{{\sc Hashtag Assignment} \label{alg-1}}
+\end{algorithm}
+\decmargin{1.5em}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Automatic Hashtag Labelling}
+
+Table~\ref{tbl-9} presents the results of hashtag assignment based on
+the three metrics for different confidence thresholds $C$ varying from
+0.5 to 0.9. We notice that as the threshold increases the
+corresponding value of PMI scores increases and purity scores
+decreases which is intuitive: on increasing the threshold, fewer 
+tweets get assigned a hashtag and hence cluster
+reconstruction suffers while the topic coherence is improved because a
+tweet is assigned a hashtag only if its \emph{highly} similar to the tweet
+collection of that hashtag.
+
+\begin{table*}[!ht]
+%\setcounter{table}{11}
+\centering
+\resizebox{14cm}{!} 
+{
+	\begin{tabular}{|c|ccc|ccc|ccc|}
+	\hline
+	\footnotesize{Threshold}  & \multicolumn {3}{c}{Purity} & \multicolumn {3}{c}{NMI Score} & \multicolumn {3}{c|}{PMI score}\\
+	\hline
+	 & Generic & Specific & Events &  Generic & Specific & Events &  Generic & Specific & Events\\
+	\hline
+	0.5 & 0.59 & \textbf{0.72} & \textbf{0.75} & \textbf{0.356} & \textbf{0.242} & \textbf{0.442} & 0.70 & 1.10 & 0.92 \\
+	\hline
+	0.6 & 0.59 & 0.68 & 0.73 & 0.334 & 0.221 & 0.437 & 0.59 & 1.11 & 0.96 \\
+	\hline
+	0.7 & \textbf{0.62} & 0.70 & 0.72 & 0.31 & 0.222 & 0.431 & 0.66 & 1.12 & 0.98 \\
+	\hline
+	0.8 & 0.55 & 0.69 & 0.72 & 0.295 & 0.225 & 0.429 & 0.72 & 1.16 & 1.0 \\
+	\hline
+	0.9 & 0.53 & 0.69 & 0.71 & 0.28 & 0.227 & 0.42 & \textbf{0.82} & 1.21 & 1.05 \\
+	\hline
+	1.0 (\small Simple & 0.54 & 0.68 & 0.71 & 0.28 & 0.23 & 0.42 & 0.78 & \textbf{1.43} & \textbf{1.07} \\
+	\small Hashtag Pooling) & & & & & & & & & \\
+	\hline
+	\end{tabular}
+}
+%	\vspace{-4mm}
+\caption{ Hashtag Assignment Results}\label{tbl-9}
+\end{table*}
+
+The results obtained via hashtag assignment are better than those of
+simple hashtag-based pooling as well as the unpooled scheme.
+Encouraged by this, we next look at some other similarity metrics and
+see if we could further improve our results.
+
+\subsubsection{Other Similarity Metrics}
+
+There is no inherent reason why cosine TF should be the ideal
+similarity metric for automatic labeling of Tweets and hence in this
+section we define a number of other similarity metrics and 
+evaluate them on hashtag pooling with automatic hashtag labeling.
+We now describe the following five document representations to be used to
+be used in conjunction with the cosine similarity function $\mathit{Sim}$
+defined previously:
+\begin{description}
+\itemsep -2pt
+\item{\bf Term Frequency (TF)}: As previously defined for TF, we set the vector element $t_i := f_i$ if the frequency of term $i$ in tweet $t$ is $f_i$.
+\item{\bf Inverse Document Frequency (IDF)}:  Given the occurrence of term $i$ in $N_i$ of the total $N$ tweets, $\mathit{IDF}_i$, the $i$th entry of $t$'s document representation ($t_i$) is set as
+%\begin{equation*}
+$t_i := \mathit{IDF}_i = \log{\frac{N}{N_i}}.$
+%\end{equation*}
+Thus the IDF of a rare term in the corpus is high, whereas the IDF of a frequent term is low. 
+\item{\bf Inverse Author Frequency (IAF)}: The relationship of terms and authors could be harnessed using the inverse author frequency (IAF)~\cite{iaf}, which is computed similarly to IDF except that we let $A_i$ represent the number of authors who mention term $i$ out of the total number of authors $A$;
+%\begin{equation*}
+$t_i := \mathit{IDF}_i = \log{\frac{A}{A_i}}.$
+%\end{equation*}
+
+The IAF of a term used only by a few different authors is high, whereas the IAF of a term used by most authors is low. In our framework we use the IDF and IAF values to weigh the boolean vector space model (0-1 in place of TF) and compute IDF- and IAF-weighted inner products on the boolean vector spaced model.
+\item{\bf TF-IDF}: The tweet document representation is simply the elementwise product of TF and IDF: $t_i := f_i \cdot \mathrm{IDF}_i$.
+\item{\bf TF-IDF-IAF}: The tweet document representation is simply the elementwise product of TF, IDF, \emph{and} IAF: $t_i := f_i \cdot \mathrm{IDF}_i \cdot \mathrm{IAF}_i$.
+\end{description}
+\vspace{-2mm}
+We experimented with other similarity metrics, but found these five to
+offer the best performance, hence we show their evaluation next.
+
+Figure~\ref{fig-1} presents the results obtained for different
+similarity metrics for automatic hashtag labeling in the hashtag
+pooling scheme discussed above on the same three datasets and
+evaluation metrics used previously.  It is interesting to note that
+the simplest of all, TF-based cosine similarity, performs well in
+almost all cases except one.  We note that metrics like IAF that are
+relevant only on socially authored media such as Twitter perform quite
+well on this task.  Indeed IAF often performs quite comparably to or
+better than TF and is quite consistent across all three datasets, all
+three evaluation metrics, and all confidence thresholds, unlike TF and
+other metrics which show cases of poor performance or anomalous
+dips.  Hence, when compared to the other metrics, we might conclude
+that IAF is a robust similarity metric for purposes of automatic
+hashtag labeling as demonstrated consistently across all these experiments.
+%Inverse Author Frequency (IAF)
+%gives almost comparable results when evaluating topic coherence using
+%the PMI scores. When the task at hand is reconstruction of known
+%clusters one should prefer using TF based cosine similarity to assign
+%hashtags while both TF and IAF work well when one is interested in
+%obtaining coherent topics.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[t!]
+\begin{center}
+%	\vspace{-1mm}
+	%{\tiny
+\resizebox{17cm}{!} 
+{
+	\begin{tabular}{ccc}
+%		\vspace{-3mm}
+%		\hspace{-8mm} 
+		\includegraphics[width=200pt]{Figs/1-1.pdf} & 
+%		\hspace{-6mm} 
+		\includegraphics[width=200pt]{Figs/1-2.pdf} & 
+%		\hspace{-10mm} 
+		\includegraphics[width=200pt]{Figs/1-3.pdf} \\  
+%	\vspace{-1mm}
+%		\vspace{4mm}
+		{ Purity (Generic)} & { NMI (Generic)} & 
+		%\hspace{-3mm} 
+		{ PMI (Generic)}\\
+%	\vspace{-1mm}	
+%		\vspace{-2mm}
+%		\hspace{-8mm} 
+		\includegraphics[width=200pt]{Figs/2-1.pdf} & 
+%		\hspace{-6mm} 
+		\includegraphics[width=200pt]{Figs/2-2.pdf} & 
+%		\hspace{-10mm}
+		 \includegraphics[width=200pt]{Figs/2-3.pdf} \\
+%\vspace{-1mm}
+		{ Purity (Specific)} & { NMI (Specific)} & 
+		%\hspace{-3mm} 
+		{ PMI (Specific)}\\
+
+	\vspace{-1mm}
+%		\vspace{-2mm}
+%		\hspace{-1mm} 
+		\includegraphics[width=200pt]{Figs/3-1.pdf} & 
+%		\hspace{-1mm} 
+		\includegraphics[width=200pt]{Figs/3-2.pdf} & 
+		%\hspace{-1mm}
+		\includegraphics[width=200pt]{Figs/3-3.pdf} \\
+
+		
+%		\vspace{4mm}
+%\vspace{-2mm}
+		{Purity (Events)} & {NMI (Events)} & 
+		%\hspace{-3mm} 
+		{PMI (Events)}\\
+
+	
+	\end{tabular}
+}
+\end{center}
+%\vspace{-4mm}
+\caption{ \footnotesize Comparison of Purity, NMI and PMI scores
+  (y-axis) for five different similarity metrics (TF, IDF, IAF,
+  TF-IDF, TF-IDF-IAF) for various Hashtag assignment confidence
+  threshold limits (x-axis).} \label{fig-1}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Overall Comparison}
+
+\label{sec:overall}
+
+The goal of this work was to get better topics which have better
+coherence without modifying the basic machinery of standard LDA. The
+default way of using tweets to train LDA was to treat each tweet as a
+single document (referred in this work as the Unpooled scheme). Simple
+hashtag-based pooling outperformed unpooled scheme and other pooling
+schemes while hashtag assignment further improved
+results. Table~\ref{tbl-10} provides an overall comparison of the best
+of the different schemes: unpooled vs simple hashtag vs hashtag
+assignment on the three datasets and across the three metrics.
+
+\begin{table*}[!ht]
+%\setcounter{table}{13}
+\centering
+%\resizebox{14cm}{!} 
+{
+	\begin{tabular}{|l|ccc|ccc|ccc|}
+	\hline
+	Pooling Scheme  & \multicolumn {3}{c}{Purity} & \multicolumn {3}{c}{NMI Scores} & \multicolumn {3}{c|}{PMI Scores}\\
+	\hline
+	 & Generic & Specific & Events &  Generic & Specific & Events &  Generic & Specific & Events\\
+	\hline
+	Unpooled & 0.49 & 0.64 & 0.69 & 0.29 & 0.22 & 0.39 & -1.27 & 0.47 & 0.47 \\
+	\hline
+	Basic Hashtagwise & 0.53 & 0.68 & 0.71 & 0.28 & 0.23 & 0.42 & 0.78 & \textbf{1.43} & \textbf{1.07} \\
+	\hline
+	Tag-Assignment & \textbf{0.62} & \textbf{0.72} & \textbf{0.75} & \textbf{0.36} & \textbf{0.24} & \textbf{0.44} & \textbf{0.82} & 1.21 & 1.05 \\
+	\hline
+	\end{tabular}
+}
+%\vspace{-4mm}
+\caption{ Overall comparison of improvement}\label{tbl-10}
+\end{table*}
+%\vspace{-2mm}
+%In Table~\ref{tbl-10}, we see that the best Purity and NMI scores are obtained by hashtag assignment while even the simple hashtag-based pooling scheme works much better than the baseline method of unpooled tweets. When the dataset in consideration consists of generic terms simple hashtag pooling gives the best results on the Generic data in terms of topic coherence. On the other hand when we have tweets on specific named entities or events in general, one might want to prefer hashtag assignment as it results in best PMI scores for the Specific and Events datasets, presumably because it is better at recovering coherent multiword topics for these entities or events.
+
+In Table~\ref{tbl-10}, we see that the best Purity and NMI scores are obtained by hashtag assignment while even the simple hashtag-based pooling works much better than the baseline method of unpooled tweets. When the dataset in consideration consists of generic terms simple hashtag pooling gives the best results in terms of topic coherence. On the other hand when we have tweets on specific named entities or events in general, one might want to prefer hashtag assignment as it results in best PMI scores for the Specific and Events datasets, presumably because it is better at recovering coherent multiword topics for these entities/events.
+
+\section{Related Work}
+
+\label{sec:related_work}
+Topic modeling is widely used in text mining communities with LDA
+being the benchmark.  LDA has been extended in a variety of ways, and
+in particular for social networks and social media, a number of
+extensions to LDA have been proposed.  For example, \cite{newman11}
+proposed two methods to regularize the learning of topic models aimed
+at short text snippets. While the focus of this work was on blogs and
+search result snippets, it would be interesting to see how well they
+work on Twitter data.  Also, the combination of the work proposed in
+\cite{newman11} with the tweet pooling schemes we describe before
+could produce interesting results. For automatic
+ hashtag labeling that proved crucial to improving topics in our hastag-based pooling model, \cite{zangerle2011recommending} also uses tweet similarity as a
+criteria, but does not explore metrics based on inverse author
+frequency ~\cite{iaf} that we found to offer the most robust
+performance across datasets and evaluation metrics. Additional features  for hashtag assignment can be found in the comprehensive study \cite{yang2012www} which can be leveraged in future extensions.
+
+Our work is quite different from many pioneering studies on Twitter
+and topic modeling because we focus on how we could get better
+topic coherence over tweets with minimal modification to existing
+models. Prior work on topic modeling for tweets includes the work of
+\cite{ramage} which presents a scalable implementation of a partially
+supervised learning model (Labeled LDA). % that maps the content of the Twitter feed into dimensions and characterizes users and tweets using this model.
+ \cite{wayne} empirically compare the content of Twitter
+with a traditional news medium, New York Times, using unsupervised
+topic modeling. \cite{hong} use the topic modeling approach for
+predicting popular Twitter messages and classifying Twitter users and
+corresponding messages into topical categories. %\cite{han2012tist} propose a  novel method for normalising ill-formed out-of-vocabulary words in short  microblog messages.
+The {T}witterRank system~\cite{Weng2010wsdm} and \cite{hong} uses author-based pooling to apply LDA to tweets. \cite{wayne} compared
+topic characteristics between twitter and traditional news media; they propose to use one topic per tweet (similar to
+PLSA), and argues that this is better than no
+pooling, or the author-topic model. %\cite{kireyev2009} used term weighting to tackle term sparseness in LDA, the weights are derived from LSA vector length.
+ \cite{Naveed2011cikm} used LDA for tweet retrieval. In
+addition, they used retweet as an indicator of "interestingness" to
+improve retrieval quality, which suggests additional features we
+could incorporate in future extensions to our pooling framework.
+
+Our work is different from these in the sense that we provide a simple
+yet effective way which greatly improves the quality of topics
+obtained without making any major complicated modifications to
+standard LDA. The detailed experiments on a variety of datasets
+highlight our novel contribution of hashtag-based pooling and automatic
+hashtag labeling using similarity metrics like IAF~\cite{iaf} as an
+approach that improves a range of topic coherence measures.
+
+\section{Summary and Conclusion}
+
+\label{sec:conclusion}
+
+%The work described in t
+This paper 
+presents a way of aggregating tweets
+in order to improve performance of topic models in terms of quality of
+topics obtained measures by the ability to reconstruct clusters and
+topic coherence. The initial results presented in Table~\ref{tbl-456}
+suggest that hashtag-based pooling outperforms all other pooling
+strategies including the default way of training topic models on
+Twitter data (unpooled). Since a major portion of Twitter data does not contains hashtags we looked at ways of assigning hashtags to tweets. Insights from Hashtag
+Assignment results (Table~\ref{tbl-9}) suggest that when the main aim
+is to use the topics obtained to extract different events mentioned in
+the Twitter data, one should use hashtag assignment with a relaxed
+threshold($\sim0.5$). The high values of Purity scores and NMI values for
+low threshold support this claim.
+
+When the goal is to obtain interesting topics with topic words
+pertaining to the same common theme (coherent topic words), hashtag
+assignment with strict constraints (threshold $\sim 0.9$) works
+well. The PMI scores in Table~\ref{tbl-9} highlight that topic
+coherence increases down the column with a threshold of
+0.9 giving most coherent topics. Overall, results shown in Table~\ref{tbl-10} compare unpooled scheme with simple hashtag pooling and hashtag assignment schemes. Across diverse datasets and various topic coherence metrics, the best
+hashtag assignment method performs substantially better in comparison
+to an unmodified LDA baseline and a variety of existing and novel
+pooling schemes.  This indicates the promise of this novel automatic
+hashtag labeling and pooling approach that drastically improves the
+quality of topic models for Twitter and microblog data.
+
+%To this end, we have achieved our initial goal.  We have introduced
+%novel techniques for automatic tweet hashtag labeling and pooling that
+%have produced topics representative of the events queried to construct
+%the source data and have substantially improved various quantitative
+%measures of topic coherence over a wide range of data and topic
+%coherence measures.  Further, we have achieved this without modifying
+%the LDA algorithm itself but rather by preprocessing its input.
+
+%This technique worked well across a diverse set of data and suggests
+%that continued investigation into aggregation techniques for topic
+%modeling on short text and microblog documents is warranted given its
+%highly successful outcome demonstrated in this work.
+
+%\section*{Acknowledgments} 
+%
+%NICTA is funded by the Australian
+%Government as represented by the Department of Broadband,
+%Communications and the Digital Economy and the Australian Research
+%Council through the ICT Centre of Excellence program.
+
+%'apalike-fr' style below applies smallcaps style on author names
+%in order to apply 'apalike-fr' the babel package must be given [frenchb] option instead of [english]
+% \usepackage[frenchb]{babel} also causes title "References" to render with French accents like "R\'ef\'erences"
+%\bibliographystyle{apalike-fr}
+
+%'apa' style does not apply "smallcaps style" on author names and goes with the [english] option in the babel package
+
+%\bibliography{colingbiblio}
+%\bibliographystyle{aaai}
+
+\bibliographystyle{aaai}
+\bibliography{colingbiblio}
+% \nocite{*}
+%\bibliographystyle{coling2012
+
+%\nocite{TALN2007,LaigneletRioult09,LanglaisPatry07,au1972,cks1981,mb2012}
+
+%%================================================================
+\end{document}
+
+
+\section{Copyright}
+All papers submitted for publication by AAAI Press must be accompanied by a valid signed copyright form or, in the case of technical reports, by a valid signed permission to distribute form. There are no exceptions to this requirement. You must send us the original version of this form. However, to meet the deadline, you may fax (1-650-321-4457) or scan and e-mail the form (pubforms12@aaai.org) to AAAI by the submission deadline, and then mail the original via postal mail to the AAAI office. \textbf{If you fail to send in a signed copyright or permission form, your paper will not be published.} You will find PDF versions of the AAAI copyright and permission to distribute forms in the author kit.
+
+\section{Formatting Requirements in Brief}
+We need source and PDF files that can be used in a variety of ways and can be output on a variety of devices. AAAI imposes some requirements on your source and PDF files that must be followed. Most of these requirements are based on our efforts to standardize conference manuscript properties and layout. These requirements are as follows, and all papers submitted to AAAI for publication must comply:
+
+\begin{itemize}
+\item All fonts must be embedded in the PDF file --- \textbf{ this includes your figures.}
+\item Modifications to the style sheet (or your document) in an effort to avoid extra page charges are NOT allowed.
+\item No type 3 fonts may be used (even in illustrations).
+\item Your title must follow US capitalization rules.
+\item \LaTeX{} documents must use the Times or Nimbus font package (do not use Computer Modern for the text of your paper).
+\item No \LaTeX{} 209 documents may be used or submitted.
+\item Fonts that require non-English language support (CID and Identity-H) must be converted to outlines or removed from the document (even if they are in a graphics file embedded in the document). 
+\item Two-column format in AAAI style is required for all papers.
+\item The paper size for final submission must be US letter. No exceptions.
+\item The source file must exactly match the PDF.
+\item The document margins must be as specified in the formatting instructions.
+\item The number of pages and the file size must be as specified for your event.
+\item No document may be password protected.
+\item Neither the PDFs nor the source may contain any embedded links or bookmarks.
+\item Your source and PDF must not have any page numbers, footers, or headers.
+\item Your source file must compile in PDFTeX
+\item Your PDF must be compatible with Acrobat 5 or higher.
+\item Your LaTeX source file (excluding references) must consist of a \textbf{single} file (use of the ``input" command is not allowed.
+\item Your graphics must be sized appropriately outside of LaTeX (do not use the ``clip" command) .
+\end{itemize}
+
+If you do not follow the above requirements, it is likely that we will be unable to publish your paper.
+
+\section{What Files to Submit}
+You must submit the following items to ensure that your paper is published:
+\begin{itemize}
+\item A fully-compliant PDF file.
+\item Your  \LaTeX{}  source file submitted as a \textbf{single} .tex file (do not use the ``input" command to include sections of your paper --- every section must be in the single source file). The only exception is the bibliography, which you may include separately. Your source must compile on our system.
+\item All your graphics files.
+\item The .aux and .log file for your compiled source.
+\item All the style files used in your document.
+\end{itemize}
+
+Your \LaTeX{} source will be reviewed and recompiled on our system (if it does not compile, you may incur late fees).   \textbf{Do not submit your source in multiple text files.} Your single \LaTeX{} source file must include all your text, your bibliography (formatted using aaai.bst), and any custom macros. Accompanying this source file, you must also supply all your referenced style files and graphics files. 
+
+Your files should work without any supporting files (other than the program itself) on any computer. Place your PDF and source files in a single tar, zipped, gzipped, stuffed, or compressed archive. Name your source file with your last (family) name.
+
+\textbf{Do not send files that are not actually used in the paper.} We don't want you to send us any files not needed for compiling your paper, including, for example, this instructions file, unused graphics files, and so forth.  A shell script that might help you create the \LaTeX{} source package is included in the Author Kit.
+
+\section{Using \LaTeX{} to Format Your Paper}
+
+The latest version of the AAAI style file is available on AAAI's website. Download this file and place it in a file named ``aaai.sty" in the \TeX\ search path. Placing it in the same directory as the paper should also work. You must download the latest version of the complete author kit so that you will have the latest instruction set.
+
+\subsection{Document Preamble}
+
+In the \LaTeX{} source for your paper, you \textbf{must} place the following lines as shown in the example in this subsection. This command set-up is for three authors. Add or subtract author and address lines as necessary, and uncomment the portions that apply to you. In most instances, this is all you need to do to format your paper in the Times font. The helvet package will cause Helvetica to be used for sans serif, and the courier package will cause Courier to be used for the typewriter font. These files are part of the PSNFSS2e package, which is freely available from many Internet sites (and is often part of a standard installation).
+
+Leave the setcounter for section number depth commented out and set at 0 unless you want to add section numbers to your paper. If you do add section numbers, you must uncomment this line and change the number to 1 (for section numbers), or 2 (for section and subsection numbers). The style file will not work properly with numbering of subsubsections, so do not use a number higher than 2.
+
+
+\begin{quote}
+\begin{small}
+\textbackslash documentclass[letterpaper]{article}\\
+\% \textit{Required Packages}\\
+\textbackslash usepackage\{aaai\}\\
+\textbackslash usepackage\{times\}\\
+\textbackslash usepackage\{helvet\}\\
+\textbackslash usepackage\{courier\}\\
+\%\%\%\%\%\%\%\%\%\%\\
+\% \textit{PDFINFO for PDF\TeX{}}\\
+\% Uncomment and complete the following for metadata (your paper must compile with PDF\TeX{})\\
+\textbackslash pdfinfo\{\\
+/Title (Input Your Paper Title Here)\\
+/Author (John Doe, Jane Doe)\\
+/Keywords (Input your paper's keywords in this optional area)\\
+\}\\
+\%\%\%\%\%\%\%\%\%\%\\
+\% \textit{Section Numbers}\\
+\% Uncomment if you want to use section numbers\\
+\% and change the 0 to a 1 or 2\\
+\% \textbackslash setcounter\{secnumdepth\}\{0\}\\
+\%\%\%\%\%\%\%\%\%\%\\
+\% \textit{Title, Author, and Address Information}\\
+\textbackslash title\{Title\}\\
+\textbackslash author\{Author 1 \textbackslash and Author 2\textbackslash\textbackslash \\ 
+Address line\textbackslash\textbackslash\\ Address line\textbackslash\textbackslash \\
+\textbackslash And\\
+Author 3\textbackslash\textbackslash\\ Address line\textbackslash\textbackslash\\ Address line\}\\
+\%\%\%\%\%\%\%\%\%\%\\
+\% \textit{Body of Paper Begins}\\
+\textbackslash begin\{document\}\\
+\textbackslash maketitle\\
+...\\
+\%\%\%\%\%\%\%\%\%\%\\
+\% \textit{References and End of Paper}\\
+\textbackslash bibliography\{Bibliography-File\}\\
+\textbackslash bibliographystyle\{aaai\}\\
+\textbackslash end\{document\}
+\end{small}
+\end{quote}
+
+\subsection{Inserting Document Metadata with \LaTeX{}}
+PDF files contain document summary information that enables us to create an Acrobat index (pdx) file, and also allows search engines to locate and present your paper more accurately. \textbf{Document Metadata  for Author and Title are REQUIRED.} 
+
+If your paper includes illustrations that are not compatible with PDF\TeX{} (such as .eps or .ps documents), you will need to convert them. The epstopdf package will usually work for eps files. You will need to convert your ps files to PDF however.
+
+\textit{Important:} Do not include \textit{any} \LaTeX{} code or nonascii characters (including accented characters) in the metadata. The data in the metadata must be completely plain ascii. It may not include slashes, accents, linebreaks, unicode, or any \LaTeX{} commands. Type the title exactly as it appears on the paper (minus all formatting). Input the author names in the order in which they appear on the paper (minus all accents), separating each author by a comma. You may also include keywords in the Keywords field.
+
+
+
+\subsection{Preparing Your Paper}
+
+After the preamble above, you should prepare your paper as follows:
+
+\begin{quote}
+\begin{small}
+\textbackslash begin\{document\}\\
+\textbackslash maketitle\\
+...\\
+\textbackslash bibliography\{Bibliography-File\}\\
+\textbackslash bibliographystyle\{aaai\}\\
+\textbackslash end\{document\}\\
+\end{small}
+\end{quote}
+\subsection{Incompatible Packages}
+The following packages are incompatible with aaai.sty and/or aaai.bst and must not be used (this list is not exhaustive --- there are others as well):
+\begin{itemize}
+\item hyperref
+\item natbib
+\item geometry
+\item titlesec
+\item layout
+\item caption
+\item T1 fontenc package (install the CM super fonts package instead)
+\end{itemize}
+
+\subsection{Illegal Commands}
+The following commands may not be used in your paper:
+\begin{itemize}
+\item \textbackslash input
+\item \textbackslash vspace (when used before or after a section or subsection)
+\item \textbackslash addtolength 
+\item \textbackslash columnsep
+\item \textbackslash top margin (or text height or addsidemargin or even side margin)
+\end{itemize}
+
+\subsection{Paper Size, Margins, and Column Width}
+Papers must be formatted to print in two-column format on 8.5 x 11 inch US letter-sized paper. The margins must be exactly as follows: 
+\begin{itemize}
+\item Top margin: .75 inches
+\item Left margin: .75 inches
+\item Right margin: .75 inches
+\item Bottom margin: 1.25 inches
+\end{itemize} 
+
+
+The default paper size in most installations of \LaTeX{} is A4. However, because we require that your electronic paper be formatted in US letter size, you will need to alter the default for this paper to US letter size. Assuming you are using the 2e version of \LaTeX{}, you can do this by including the [letterpaper] option at the beginning of your file: 
+\textbackslash documentclass[letterpaper]{article}. 
+
+This command is usually sufficient to change the format. Sometimes, however, it may not work. Use PDF\LaTeX{} and include
+\textbackslash setlength\{\textbackslash pdfpagewidth\}\{8.5in\}
+\textbackslash setlength\{\textbackslash pdfpageheight\}\{11in\}
+in your preamble. 
+
+\textbf{Do not use the Geometry package to alter the page size.} Use of this style file alters aaai.sty and will result in your paper being rejected. 
+
+
+\subsubsection{Column Width and Margins.}
+To ensure maximum readability, your paper must include two columns. Each column should be 3.3 inches wide (slightly more than 3.25 inches), with a .375 inch (.952 cm) gutter of white space between the two columns. The aaai.sty file will automatically create these columns for you. 
+
+\subsection{Overlength Papers}
+If your paper is too long, turn on \textbackslash frenchspacing, which will reduce the space after periods. Next,  shrink the size of your graphics. Use \textbackslash centering instead of \textbackslash begin\{center\} in your figure environment. If these two methods don't work, you may minimally use the following. For floats (tables and figures), you may minimally reduce \textbackslash floatsep, \textbackslash textfloatsep, \textbackslash abocaptionskip, and \textbackslash belowcaptionskip. For mathematical environments, you may minimally reduce \textbackslash abovedisplayskip, \textbackslash belowdisplayskip, and \textbackslash arraycolsep. You may also alter the size of your bibliography by inserting \textbackslash fontsize\{9pt\}\{10pt\} \textbackslash selectfont
+right before the bibliography. 
+
+Commands that alter page layout are forbidden. These include \textbackslash columnsep, \textbackslash topmargin, \textbackslash topskip, \textbackslash textheight, \textbackslash textwidth, \textbackslash oddsidemargin, and \textbackslash evensizemargin (this list is not exhaustive). If you alter page layout, you will be required to pay the page fee \textit{plus} a reformatting fee. Other commands that are questionable and may cause your paper to be rejected include  \textbackslash parindent, and \textbackslash parskip. Commands that alter the space between sections are also questionable. Regardless of the above, if your paper is obviously ``squeezed" it is not going to to be accepted. Before using every trick you know to make your paper a certain length, try cutting text instead or (if allowed) paying the extra page charge. It will be cheaper in the long run.
+
+\subsection{Type Font and Size}
+Your paper must be formatted in Times Roman or Nimbus. We will not accept papers formatted using Computer Modern or Palatino or some other font as the text or heading typeface. Sans serif, when used, should be Courier. Use Symbol or Lucida or Computer Modern for \textit{mathematics only. } 
+
+Do not use type 3 fonts for any portion of your paper, including graphics. Type 3 bitmapped fonts are designed for fixed resolution printers. Most print at 300 dpi even if the printer resolution is 1200 dpi or higher. They also often cause high resolution imagesetter devices and our PDF indexing software to crash. Consequently, AAAI will not accept electronic files containing obsolete type 3 fonts. Files containing those fonts (even in graphics) will be rejected. 
+
+Fortunately, there are effective workarounds that will prevent your file from embedding type 3 bitmapped fonts. The easiest workaround is to use the required times, helvet, and courier packages with \LaTeX{}2e. (Note that papers formatted in this way will still use Computer Modern for the mathematics. To make the math look good, you'll either have to use Symbol or Lucida, or you will need to install type 1 Computer Modern fonts --- for more on these fonts, see the section ``Obtaining Type 1 Computer Modern.")
+
+If you are unsure if your paper contains type 3 fonts, view the PDF in Acrobat Reader. The Properties/Fonts window will display the font name, font type, and encoding properties of all the fonts in the document. If you are unsure if your graphics contain type 3 fonts (and they are PostScript or encapsulated PostScript documents), create PDF versions of them, and consult the properties window in Acrobat Reader. 
+
+The default size for your type should be ten-point with twelve-point leading (line spacing). Start all pages (except the first) directly under the top margin. (See the next section for instructions on formatting the title page.) Indent ten points when beginning a new paragraph, unless the paragraph begins directly below a heading or subheading.
+
+\subsubsection{Obtaining Type 1 Computer Modern for \LaTeX{}.}
+
+If you use Computer Modern for the mathematics in your paper (you cannot use it for the text) you may need to download type 1 Computer fonts. They are available without charge from the American Mathematical Society:
+http://www.ams.org/tex/type1-fonts.html. 
+
+\subsection{Title and Authors}
+Your title must appear in mixed case (nouns, pronouns, and verbs are capitalized) near the top of the first page, centered over both columns in sixteen-point bold type (twenty-four point leading). This style is called ``mixed case." Author's names should appear below the title of the paper, centered in twelve-point type (with fifteen point leading), along with affiliation(s) and complete address(es) (including electronic mail address if available) in nine-point roman type (the twelve point leading). (If the title is long, or you have many authors, you may reduce the specified point sizes by up to two points.) You should begin the two-column format when you come to the abstract. 
+
+\subsubsection{Formatting Author Information}
+Author information can be set in a number of different styles, depending on the number of authors and the number of affiliations you need to display. For several authors from the same institution, use \textbackslash and:
+
+\begin{quote}
+\begin{small}
+\textbackslash author\{Author 1 \textbackslash and  ...  \textbackslash and Author \textit{n}\textbackslash \textbackslash  \\
+Address line \textbackslash \textbackslash ~... \textbackslash \textbackslash ~Address line\}
+\end{small}
+\end{quote}
+
+\noindent If the names do not fit well on one line use:
+
+\begin{quote}
+\begin{small}
+\textbackslash author\{Author 1\}\textbackslash \textbackslash \\ \{\textbackslash bf Author 2\}\textbackslash \textbackslash ~ 
+... \textbackslash \textbackslash ~\{\textbackslash bf Author \textit{n}\}\textbackslash \textbackslash \\
+Address line \textbackslash \textbackslash ~ ... \textbackslash \textbackslash ~ Address line\}
+\end{small}
+\end{quote}
+
+\noindent For authors from different institutions, use \textbackslash And:
+
+\begin{quote}
+\begin{small}
+\textbackslash author\{Author 1\textbackslash \textbackslash ~ Address line \textbackslash \textbackslash ~...  \textbackslash \textbackslash ~ Address line
+\textbackslash And  ...  
+\textbackslash And
+Author \textit{n}\textbackslash \textbackslash \\ Address line\textbackslash \textbackslash ~
+... \textbackslash \textbackslash ~
+Address line\}
+\end{small}
+\end{quote}
+
+\noindent To start a separate ``row" of authors, use \textbackslash AND:
+\begin{quote}
+\begin{small}
+\textbackslash author\{Author 1\textbackslash\textbackslash ~ Address line \textbackslash\textbackslash ~
+...  \textbackslash \textbackslash ~ Address line\textbackslash\textbackslash \\
+\textbackslash AND\\
+Author 2 \textbackslash\textbackslash ~ Address line \textbackslash\textbackslash ~
+...  \textbackslash \textbackslash ~ Address line\textbackslash\textbackslash \\
+\textbackslash And\\
+Author 3 \textbackslash\textbackslash ~ Address line \textbackslash\textbackslash ~
+...  \textbackslash \textbackslash ~ Address line\textbackslash\textbackslash \\\}
+\end{small}
+\end{quote}
+
+\noindent If the title and author information does not fit in the area allocated, place
+\textbackslash setlength\textbackslash titlebox\{\textit{height}\}
+after the \textbackslash documentclass line where \{\textit{height}\} is something like 2.5in.
+
+\subsection{\LaTeX{} Copyright Notice}
+The copyright notice automatically appears if you use aaai.sty. If you are creating a technical report, it is not necessary to include this notice. You may disable the copyright line using the \verb+\+nocopyrightcommand. To change the entire text of the copyright slug, use:
+\textbackslash copyrighttext \{\emph{text}\}.
+Either of these must appear before \textbackslash maketitle. Please be advised, however, that \textit{if you disable or change the copyright line and transfer of copyright is required, your paper will not be published.}
+
+\subsection{Credits}
+Any credits to a sponsoring agency should appear in the acknowledgments section, unless the agency requires different placement. If it is necessary to include this information on the front page, use
+\textbackslash thanks in either the \textbackslash author or \textbackslash title commands.
+For example:
+\begin{quote}
+\begin{small}
+\textbackslash title\{Very Important Results in AI\textbackslash thanks\{This work is
+ supported by everybody.\}\}
+\end{small}
+\end{quote}
+Multiple \textbackslash thanks commands can be given. Each will result in a separate footnote indication in the author or title with the corresponding text at the botton of the first column of the document. Note that the \textbackslash thanks command is fragile. You will need to use \textbackslash protect.
+
+Please do not include \textbackslash pubnote commands in your document.
+
+\subsection{Abstract}
+The abstract must be placed at the beginning of the first column, indented ten points from the left and right margins. The title “Abstract” should appear in ten-point bold type, centered above the body of the abstract. The abstract should be set in nine-point type with ten-point leading. This concise, one-paragraph summary should describe the general thesis and conclusion of your paper. A reader should be able to learn the purpose of the paper and the reason for its importance from the abstract. The abstract should be no more than two hundred words in length. (Authors who are submitting short one- or two-page extended extracts should provide a short abstract of only a sentence or so.) \textbf{Do not include references in your abstract!}
+
+\subsection{Page Numbers}
+
+Do not \textbf{ever} print any page numbers on your paper. 
+
+\subsection{Text }
+The main body of the paper must be formatted in ten-point with twelve-point leading (line spacing).
+
+\subsection{Citations}
+Citations within the text should include the author's last name and year, for example (Newell 1980). Append lower-case letters to the year in cases of ambiguity. Multiple authors should be treated as follows: (Feigenbaum and Engelmore 1988) or (Ford, Hayes, and Glymour 1992). In the case of four or more authors, list only the first author, followed by et al. (Ford et al. 1997).
+
+\subsection{Extracts}
+Long quotations and extracts should be indented ten points from the left and right margins. 
+
+\begin{quote}
+This is an example of an extract or quotation. Note the indent on both sides. Quotation marks are not necessary if you offset the text in a block like this, and properly identify and cite the quotation in the text. 
+
+\end{quote}
+
+\subsection{Footnotes}
+Avoid footnotes as much as possible; they interrupt the reading of the text. When essential, they should be consecutively numbered throughout with superscript Arabic numbers. Footnotes should appear at the bottom of the page, separated from the text by a blank line space and a thin, half-point rule. 
+
+\subsection{Headings and Sections}
+When necessary, headings should be used to separate major sections of your paper. Remember, you are writing a short paper, not a lengthy book! An overabundance of headings will tend to make your paper look more like an outline than a paper.
+
+First-level heads should be twelve-point Times Roman bold type, mixed case (initial capitals followed by lower case on all words except articles, conjunctions, and prepositions, which should appear entirely in lower case), with fifteen-point leading, centered, with one blank line preceding them and three additional points of leading following them. Second-level headings should be eleven-point Times Roman bold type, mixed case, with thirteen-point leading, flush left, with one blank line preceding them and three additional points of leading following them. Do not skip a line between paragraphs. Third-level headings should be run in with the text, ten-point Times Roman bold type, mixed case, with twelve-point leading, flush left, with six points of additional space preceding them and no additional points of leading following them.
+
+\subsubsection{Section Numbers}
+The use of section numbers in AAAI Press papers is optional. To use section numbers in \LaTeX{}, uncomment the setcounter line in your document preamble and change the 0 to a 1 or 2. Section numbers should not be used in short poster papers.
+
+\subsubsection{Section Headings.}
+Sections should be arranged and headed as follows: 
+
+\subsubsection{Acknowledgments.}
+The acknowledgments section, if included, appears after the main body of text and is headed ``Acknowledgments." This section includes acknowledgments of help from associates and colleagues, credits to sponsoring agencies, financial support, and permission to publish. Please acknowledge other contributors, grant support, and so forth, in this section. Do not put acknowledgments in a footnote on the first page. If your grant agency requires acknowledgment of the grant on page 1, limit the footnote to the required statement, and put the remaining acknowledgments at the back. Please try to limit acknowledgments to no more than three sentences. 
+
+\subsubsection{Appendices.}
+Any appendices follow the acknowledgments, if included, or after the main body of text if no acknowledgments appear. 
+
+\subsubsection{References}
+The references section should be labeled ``References" and should appear at the very end of the paper (don't end the paper with references, and then put a figure by itself on the last page). A sample list of references is given later on in these instructions. Please use a consistent format for references. Poorly prepared or sloppy references reflect badly on the quality of your paper and your research. Please prepare complete and accurate citations.
+
+\subsection{Illustrations and Figures}
+Figures, drawings, tables, and photographs should be placed throughout the paper near the place where they are first discussed. Do not group them together at the end of the paper. If placed at the top or bottom of the paper, illustrations may run across both columns. Figures must not invade the top, bottom, or side margin areas. Figures must be inserted using the \textbackslash usepackage\{graphicx\}. Number figures sequentially, for example, figure 1, and so on. 
+
+The illustration number and caption should appear under the illustration. Labels, and other text in illustrations must be at least nine-point type. 
+
+\subsubsection{Low-Resolution Bitmaps.}
+You may not use low-resolution (such as 72 dpi) screen-dumps and GIF files---these files contain so few pixels that they are always blurry, and illegible when printed. If they are color, they will become an indecipherable mess when converted to black and white. This is always the case with gif files, which should never be used. The resolution of screen dumps can be increased by reducing the print size of the original file while retaining the same number of pixels. You can also enlarge files by manipulating them in software such as PhotoShop. Your figures should be a minimum of 266 dpi when incorporated into your document.
+
+\subsubsection{\LaTeX{} Overflow.}
+\LaTeX{} users please beware: \LaTeX{} will sometimes put portions of the figure or table or an equation in the margin. If this happens, you need to scale the figure or table down, or reformat the equation. Check your log file! You must fix any overflow into the margin (that means no overfull boxes in \LaTeX{}). If you don't, the overflow text will simply be eliminated. \textbf{Nothing is permitted to intrude into the margins.}
+
+\subsubsection{Using Color.}
+Your paper will be printed in black and white and grayscale. Consequently, because conversion to grayscale can cause undesirable effects (red changes to black, yellow can disappear, and so forth), we strongly suggest you avoid placing color figures in your document. Of course, any reference to color will be indecipherable to your reader. 
+
+\subsubsection{Drawings.}
+We suggest you use computer drawing software (such as Adobe Illustrator or, (if unavoidable), the drawing tools in Microsoft Word) to create your illustrations. Do not use Microsoft Publisher. These illustrations will look best if all line widths are uniform (half- to two-point in size), and you do not create labels over shaded areas. Shading should be 133 lines per inch if possible. Use Times Roman or Helvetica for all figure call-outs. \textbf{Do not use hairline width lines} --- be sure that the stroke width of all lines is at least .5 pt. Zero point lines will print on a laser printer, but will completely disappear on the high-resolution devices used by our printers.
+
+\subsubsection{Photographs and Images.}
+Photographs and other images should be in grayscale (color photographs will not reproduce well; for example, red tones will reproduce as black, yellow may turn to white, and so forth) and set to a minimum of 266 dpi. Do not prescreen images.
+
+\subsubsection{Resizing Graphics.}
+Resize your graphics \textbf{before} you include them with LaTeX. You may \textbf{not} use trim or clip options as part of your \textbackslash includgraphics command. Resize the media box of your PDF using a graphics program instead. 
+
+\subsubsection{Fonts in Your Illustrations}
+You must embed all fonts in your graphics before including them in your LaTeX document.
+
+\subsection{References} 
+The aaai.sty file includes a set of definitions for use in formatting references with BibTeX. These definitions make the bibliography style fairly close to the one specified below. To use these definitions, you also need the BibTeX style file ``aaai.bst," available in the author kit on the AAAI web site. Then, at the end of your paper but before \textbackslash end{document}, you need to put the following lines:
+
+\begin{quote}
+\begin{small}
+\textbackslash bibliographystyle\{aaai\}
+\textbackslash bibliography\{bibfile1,bibfile2,...\}
+\end{small}
+\end{quote}
+
+The list of files in the \textbackslash  bibliography command should be the names of your BibTeX source files (that is, the .bib files referenced in your paper).
+
+The following commands are available for your use in citing references:
+\begin{quote}
+\begin{small}
+\textbackslash cite: Cites the given reference(s) with a full citation. This appears as ``(Author Year)'' for one reference, or ``(Author Year; Author Year)'' for multiple references.\\
+\textbackslash shortcite: Cites the given reference(s) with just the year. This appears as ``(Year)'' for one reference, or ``(Year; Year)'' for multiple references.\\
+\textbackslash citeauthor: Cites the given reference(s) with just the author name(s) and no parentheses.\\
+\textbackslash citeyear: Cites the given reference(s) with just the date(s) and no parentheses.
+\end{small}
+\end{quote}
+
+\textbf{Warning:} The aaai.sty file is incompatible with the hyperref and natbib packages. If you use either, your references will be garbled.
+
+Formatted bibliographies should look like the following examples.
+
+\smallskip \noindent \textit{Book with Multiple Authors}\\
+Engelmore, R., and Morgan, A. eds. 1986. \textit{Blackboard Systems.} Reading, Mass.: Addison-Wesley.
+
+\smallskip \noindent \textit{Journal Article}\\
+Robinson, A. L. 1980a. New Ways to Make Microcircuits Smaller. \textit{Science} 208: 1019--1026.
+
+\smallskip \noindent \textit{Magazine Article}\\
+Hasling, D. W.; Clancey, W. J.; and Rennels, G. R. 1983. Strategic Explanations in Consultation. \textit{The International Journal of Man-Machine Studies} 20(1): 3--19.
+
+\smallskip \noindent \textit{Proceedings Paper Published by a Society}\\
+Clancey, W. J. 1983b. Communication, Simulation, and Intelligent Agents: Implications of Personal Intelligent Machines for Medical Education. In Proceedings of the Eighth International Joint Conference on Artificial Intelligence, 556--560. Menlo Park, Calif.: International Joint Conferences on Artificial Intelligence, Inc.
+
+\smallskip \noindent \textit{Proceedings Paper Published by a Press or Publisher}\\
+Clancey, W. J. 1984. Classification Problem Solving. In \textit{Proceedings of the Fourth National Conference on Artificial Intelligence,} 49--54. Menlo Park, Calif.: AAAI Press. 
+
+\smallskip \noindent \textit{University Technical Report}\\
+Rice, J. 1986. Poligon: A System for Parallel Problem Solving, Technical Report, KSL-86-19, Dept. of Computer Science, Stanford Univ. 
+
+\smallskip \noindent \textit{Dissertation or Thesis}\\
+Clancey, W. J. 1979b. Transfer of Rule-Based Expertise through a Tutorial Dialogue. Ph.D. diss., Dept. of Computer Science, Stanford Univ., Stanford, Calif.
+
+\smallskip \noindent \textit{Forthcoming Publication}\\
+Clancey, W. J. 1986a. The Engineering of Qualitative Models. Forthcoming.
+
+
+
+\section{Producing Reliable PDF\\Documents with \LaTeX{}}
+Generally speaking, PDF files are platform independent and accessible to everyone. When creating a paper for a proceedings or publication in which many PDF documents must be merged and then printed on high-resolution PostScript RIPs, several requirements must be met that are not normally of concern. Thus to ensure that your paper will look like it does when printed on your own machine, you must take several precautions:
+\begin{itemize}
+\item Use type 1 fonts (not type 3 fonts)
+\item Use only standard Times, Nimbus, and CMR font packages (not fonts like F3 or fonts with tildes in the names or fonts---other than Computer Modern---that are created for specific point sizes, like Times\~{}19) or fonts with strange combinations of numbers and letters
+\item Embed all fonts when producing the PDF
+\item Do not use the [T1]{fontenc} package (install the CM super fonts package instead)
+\end{itemize}
+
+\subsection{Creating Output Using PDF\LaTeX{} Is Required}
+By using the PDF\TeX{} program instead of straight \LaTeX{} or \TeX{}, you will probably avoid the type 3 font problem altogether (unless you use a package that calls for metafont). PDF\LaTeX{} enables you to create a PDF document directly from \LaTeX{} source. The one requirement of this software is that all your graphics and images must be available in a format that PDF\LaTeX{} understands (normally PDF).
+
+PDF\LaTeX{}'s default is to create documents with type 1 fonts. If you find that it is not doing so in your case, it is likely that one or more fonts are missing from your system or are not in a path that is known to PDF\LaTeX{}.
+
+\subsubsection{dvipdf Script}
+Scripts such as dvipdf which ostensibly bypass the Postscript intermediary should not be used since they generally do not instruct dvips to use the config.pdf file.
+
+\subsubsection{dvipdfm}
+Do not use this dvi-PDF conversion package if your document contains graphics (and we recommend you avoid it even if your document does not contain graphics).
+
+\subsection{Ghostscript}
+\LaTeX{} users should not use GhostScript to create their PDFs.
+
+\subsection{Graphics}
+If you are still finding type 3 fonts in your PDF file, look at your graphics! \LaTeX{} users should check all their imported graphics files as well for font problems.
+
+\section{Proofreading Your PDF}
+Please check all the pages of your PDF file. Is the page size A4? Are there any type 3, Identity-H, or CID fonts? Are all the fonts embedded? Are there any areas where equations or figures run into the margins? Did you include all your figures? Did you follow mixed case capitalization rules for your title? Did you include a copyright notice? Do any of the pages scroll slowly (because the graphics draw slowly on the page)? Are URLs underlined and in color? You will need to fix these common errors before submitting your file. 
+
+\section{Improperly Formatted Files }
+In the past, AAAI has corrected improperly formatted files submitted by the authors. Unfortunately, this has become an increasingly burdensome expense that we can no longer absorb. Consequently, if your file is improperly formatted, it may not be possible to include your paper in the publication. If time allows, however, you will be notified via e-mail (with a copy to the program chair) of the problems with your file and given the option of correcting the file yourself (and paying a late fee) or asking that AAAI have the file corrected for you, for an additional fee. If you opt to correct the file yourself, please note that we cannot provide you with any additional advice beyond that given in your packet. Files that are not corrected after a second attempt will be withdrawn.
+
+\subsection{\LaTeX{} 209 Warning}
+If you use \LaTeX{} 209 we will not be able to publish your paper. Convert your paper to \LaTeX{}2e.
+
+\section{Naming Your Electronic File}
+We request that you name your \LaTeX{} source file with your last name (family name) so that it can easily be differentiated from other submissions. If you name your files with the name of the event or ``aaai" or ``paper" or ``camera-ready" or some other generic or indecipherable name, you bear all risks of loss --- it is extremely likely that your file may be overwritten.
+
+\section{Submitting Your Electronic Files to AAAI}
+Submitting your files to AAAI is a two-step process. It is explained fully in the author registration and submission instructions. Please consult this document for details on how to submit your paper.
+
+\section{Inquiries} 
+If you have any questions about the preparation or submission of your paper as instructed in this document, please contact AAAI Press at the address given below. If you have technical questions about implementation of the aaai style file, please contact an expert at your site. We do not provide technical support for \LaTeX{} or any other software package. To avoid problems, please keep your paper simple, and do not incorporate complicated macros and style files.
+
+\begin{quote}
+\noindent AAAI Press\\
+2275 East Bayshore Road, Suite 160\\
+Palo Alto, California 94303\\ 
+\textit{Telephone:} (650) 328-3123\\ 
+\textit{E-mail:} See the submission instructions for your particular conference or event.
+\end{quote}
+
+\section{Additional Resources}
+\LaTeX{} is a difficult program to master. If you've used that software, and this document didn't help or some items were not explained clearly, we recommend you read Michael Shell's excellent document (testflow doc.txt V1.0a 2002/08/13) about obtaining correct PS/PDF output on \LaTeX{} systems. (It was written for another purpose, but it has general application as well). It is available at www.ctan.org in the tex-archive.
+
+\section{ Acknowledgments}
+AAAI is especially grateful to Peter Patel Schneider for his work in implementing the aaai.sty file, liberally using the ideas of other style hackers, including Barbara Beeton. We also acknowledge with thanks the work of George Ferguson for his guide to using the style and BibTeX files --- which has been incorporated into this document  --- and Hans Guesgen, who provided several timely modifications, as well as the many others who have, from time to time, sent in suggestions on improvements to the AAAI style. 
+
+The preparation of the \LaTeX{} and Bib\TeX{} files that implement these instructions was supported by Schlumberger Palo Alto Research, AT\&T Bell Laboratories, Morgan Kaufmann Publishers, The Live Oak Press, LLC, and AAAI Press. Bibliography style changes were added by Sunil Issar. \verb+\+pubnote was added by J. Scott Penberthy. George Ferguson added support for printing the AAAI copyright slug. Additional changes to aaai.sty and aaai.bst have been made by the AAAI staff.
+
+\bigskip
+\noindent Thank you for reading these instructions carefully. We look forward to receiving your electronic files!
+
+%\end{document}

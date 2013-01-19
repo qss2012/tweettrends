@@ -1,0 +1,57 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+The top-level auxiliary file: formatting-instructions-latex.aux
+The style file: aaai.bst
+Database file #1: colingbiblio.bib
+Warning--empty booktitle in blei03
+Warning--empty booktitle in hong
+Warning--empty booktitle in mallet
+Warning--empty booktitle in mor
+Warning--empty booktitle in baldwin10
+Warning--empty booktitle in newman11
+Warning--empty booktitle in ramage
+Warning--empty booktitle in wallach
+Warning--empty booktitle in acadz
+Warning--empty booktitle in yang2012www
+Warning--empty booktitle in baldwin11
+You've used 20 entries,
+            2568 wiz_defined-function locations,
+            688 strings with 8011 characters,
+and the built_in function-call counts, 8972 in all, are:
+= -- 950
+> -- 373
+< -- 11
++ -- 126
+- -- 126
+* -- 671
+:= -- 1407
+add.period$ -- 102
+call.type$ -- 20
+change.case$ -- 142
+chr.to.int$ -- 20
+cite$ -- 31
+duplicate$ -- 380
+empty$ -- 657
+format.name$ -- 168
+if$ -- 1925
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 21
+newline$ -- 125
+num.names$ -- 60
+pop$ -- 157
+preamble$ -- 1
+purify$ -- 163
+quote$ -- 0
+skip$ -- 294
+stack$ -- 0
+substring$ -- 384
+swap$ -- 106
+text.length$ -- 11
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 156
+warning$ -- 11
+while$ -- 67
+width$ -- 25
+write$ -- 281
+(There were 11 warnings)
