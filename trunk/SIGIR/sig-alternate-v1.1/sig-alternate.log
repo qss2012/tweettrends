@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.5.21)  21 JAN 2013 00:36
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.5.21)  21 JAN 2013 01:50
 entering extended mode
  %&-line parsing enabled.
 **sig-alternate.tex
@@ -806,6 +806,10 @@ LaTeX Font Info:    Try loading font information for U+lasy on input line 168.
 (/usr/share/texmf-texlive/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
+Overfull \hbox (1040.39996pt too wide) in paragraph at lines 168--168
+ [][][][][] 
+ []
+
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <9> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 188.
 
@@ -1064,12 +1068,12 @@ Overfull \hbox (7.4105pt too wide) in paragraph at lines 1268--1279
 
 ] (./sig-alternate.aux) ) 
 Here is how much of TeX's memory you used:
- 18459 strings out of 495062
- 367504 string characters out of 1182644
- 504722 words of memory out of 3000000
- 21217 multiletter control sequences out of 15000+50000
+ 18458 strings out of 495062
+ 367492 string characters out of 1182644
+ 504723 words of memory out of 3000000
+ 21216 multiletter control sequences out of 15000+50000
  51736 words of font info for 59 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  63i,22n,61p,840b,447s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on sig-alternate.dvi (9 pages, 113048 bytes).
+Output written on sig-alternate.dvi (9 pages, 112784 bytes).
