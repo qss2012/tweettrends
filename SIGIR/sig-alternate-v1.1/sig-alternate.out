@@ -1,0 +1,24 @@
+\BOOKMARK [1][-]{section.1}{Tweet Pooling for LDA Topic Modeling}{}
+\BOOKMARK [2][-]{subsection.1.1}{Latent Dirichlet Allocation and Topic Modeling}{section.1}
+\BOOKMARK [2][-]{subsection.1.2}{Tweet Pooling Schemes}{section.1}
+\BOOKMARK [1][-]{section.2}{Twitter Dataset Construction}{}
+\BOOKMARK [1][-]{section.3}{Evaluating Topic Models - Metrics used}{}
+\BOOKMARK [2][-]{subsection.3.1}{Purity Scores}{section.3}
+\BOOKMARK [2][-]{subsection.3.2}{Normalized Mutual Information}{section.3}
+\BOOKMARK [2][-]{subsection.3.3}{Pointwise Mutual Information}{section.3}
+\BOOKMARK [2][-]{subsection.3.4}{Held Out Probability}{section.3}
+\BOOKMARK [1][-]{section.4}{Initial Results for Pooling Schemes}{}
+\BOOKMARK [2][-]{subsection.4.1}{Document Characteristics for Different Pooling Schemes}{section.4}
+\BOOKMARK [2][-]{subsection.4.2}{Comparison of Pooling Schemes}{section.4}
+\BOOKMARK [1][-]{section.5}{General Study of Hashtags \046 Hashtag Pooling}{}
+\BOOKMARK [2][-]{subsection.5.1}{How Many Tweets have Hashtags?}{section.5}
+\BOOKMARK [2][-]{subsection.5.2}{Incorporating Other Tweets :: Brute Force Approach}{section.5}
+\BOOKMARK [2][-]{subsection.5.3}{Automatic Hashtag Labeling}{section.5}
+\BOOKMARK [3][-]{subsubsection.5.3.1}{Algorithm}{subsection.5.3}
+\BOOKMARK [3][-]{subsubsection.5.3.2}{Automatic Hashtag Labelling}{subsection.5.3}
+\BOOKMARK [3][-]{subsubsection.5.3.3}{Other Similarity Metrics}{subsection.5.3}
+\BOOKMARK [1][-]{section.6}{Overall Comparison}{}
+\BOOKMARK [1][-]{section.7}{Related Work}{}
+\BOOKMARK [1][-]{section.8}{Summary and Conclusion}{}
+\BOOKMARK [1][-]{section.9}{Additional Authors}{}
+\BOOKMARK [1][-]{section.10}{References}{}

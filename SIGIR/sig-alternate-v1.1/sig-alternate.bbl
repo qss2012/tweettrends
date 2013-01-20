@@ -1,0 +1,117 @@
+\begin{thebibliography}{10}
+
+\bibitem{blei03}
+D.~Blei, A.~Ng, and M.~Jordon.
+\newblock Latent dirichlet allocation.
+\newblock volume~3, pages 993--1022, 2003.
+
+\bibitem{iaf}
+S.~E. Chan, R.~K. Pon, and A.~F. Cárdenas.
+\newblock Visualization and clustering of author social networks.
+\newblock In {\em International Conference on Distributed Multimedia Systems
+  Workshop on Visual Languages and Computing in Grand Canyon}, pages 30--31,
+  Arizona, USA, 2006.
+
+\bibitem{Han2012}
+B.~Han, P.~Cook, and T.~Baldwin.
+\newblock Automatically constructing a normalisation dictionary for microblogs.
+\newblock In {\em Proc.\ of the 2012 Joint Conf.\ on Empirical Methods in
+  Natural Language Processing and Computational Natural Language Learning
+  (EMNLP-CoNLL 2012)}, pages 421--432, Jeju Island, Korea, 2012.
+
+\bibitem{hong}
+L.~Hong and B.~Davison.
+\newblock Empirical study of topic modeling in {T}witter.
+\newblock In proceedings 1st ACM Workshop on Social Media Analytics, 2010.
+
+\bibitem{MRS08}
+C.~Manning, P.~Raghavan, and H.~Schütze.
+\newblock {\em Introduction to Information Retrieval}.
+\newblock Cambridge University Press, 2008.
+
+\bibitem{mallet}
+A.~McCallum.
+\newblock Mallet: A machine learning for language toolkit.
+\newblock 2002.
+
+\bibitem{mor}
+M.~Naaman, H.~Becker, and L.~Gravano.
+\newblock Hip and trendy: Characterizing emerging trends on {T}witter.
+\newblock In proceedings Journal of the American Society for Information
+  Science and Technology (JASIST), 62(5). doi: 10.1002/asi.21489, 2011.
+
+\bibitem{Naveed2011cikm}
+N.~Naveed, T.~Gottron, J.~Kunegis, and A.~C. Alhadi.
+\newblock Searching microblogs: coping with sparsity and document quality.
+\newblock In {\em Proceedings of the 20th ACM international conference on
+  Information and knowledge management}, CIKM '11, pages 183--188, New York,
+  NY, USA, 2011. ACM.
+
+\bibitem{newman11}
+D.~Newman, E.~Bonilla, and W.~Buntine.
+\newblock Improving topic coherence with regularized topic models.
+\newblock In proceedings of NIPS, 2011.
+
+\bibitem{baldwin10}
+D.~Newman, J.~Lau, K.~Grieser, and T.~Baldwin.
+\newblock Automatic evaluation of topic coherence.
+\newblock In proceedings NAACL, 2010.
+
+\bibitem{radev02}
+D.~Radev, E.~Hovy, and K.~McKeown.
+\newblock Introduction to the special issue on summarization.
+\newblock {\em Comput. Linguist.}, 28(4):399--408, Dec. 2002.
+
+\bibitem{ramage}
+D.~Ramage, S.~Dumais, and D.~Liebling.
+\newblock Characterizing microblogs with topic models.
+\newblock In proceedings AAAI Conference on Weblogs and Social Media, 2010.
+
+\bibitem{RoseLev}
+D.~Rose and D.~Levinson.
+\newblock Understanding user goals in web search.
+\newblock In {\em Proc. of the 13th Int.\ Conf.\ on WWW}, WWW '04, pages
+  13--19, 2004.
+
+\bibitem{wallach}
+H.~Wallach, I.~Murray, R.~Salakhutdinov, and D.~Mimno.
+\newblock Evaluation methods for topic models.
+\newblock In proceedings ICML, 2009.
+
+\bibitem{acadz}
+H.~Wang.
+\newblock Online ngram-enhanced topic model for academic retrieval.
+\newblock In proceedings Sixth International Conference on Digital Information
+  Management (ICDIM), 2011.
+
+\bibitem{Weng2010wsdm}
+J.~Weng, E.-P. Lim, J.~Jiang, and Q.~He.
+\newblock Twitterrank: finding topic-sensitive influential twitterers.
+\newblock In {\em Proceedings of the third ACM international conference on Web
+  search and data mining}, WSDM '10, pages 261--270, New York, NY, USA, 2010.
+  ACM.
+
+\bibitem{yang2012www}
+L.~Yang, T.~Sun, M.~Zhang, and Q.~Mei.
+\newblock We know what @you \#tag: does the dual role affect hashtag adoption?
+\newblock WWW '12, pages 261--270, 2012.
+
+\bibitem{baldwin11}
+T.-I. Yang, A.~Torget, and R.~Mihalcea.
+\newblock Topic modeling on historical newspapers.
+\newblock In proceedings ACL HLT, 2011.
+
+\bibitem{zangerle2011recommending}
+E.~Zangerle, W.~Gassler, and G.~Specht.
+\newblock Recommending\#-tags in twitter.
+\newblock In {\em Proceedings of the Workshop on Semantic Adaptive Social Web
+  (SASWeb 2011). CEUR Workshop Proceedings}, volume 730, pages 67--78, 2011.
+
+\bibitem{wayne}
+W.~X. Zhao, J.~Jiang, J.~Weng, J.~He, E.-P. Lim, H.~Yan, and X.~Li.
+\newblock Comparing twitter and traditional media using topic models.
+\newblock In {\em Proceedings of the 33rd European conference on Advances in
+  information retrieval}, ECIR'11, pages 338--349, Berlin, Heidelberg, 2011.
+  Springer-Verlag.
+
+\end{thebibliography}
