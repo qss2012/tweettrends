@@ -567,6 +567,244 @@ Note that the three datasets span three different scenarios in which
 tweets would be posted. Evaluating our methods on each of these would
 give us useful insights as to which methods work well for which type
 of data.
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{table*}[!ht]
+%\setcounter{table}{3}
+\centering
+\resizebox{14cm}{!} 
+{
+	\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|}
+	\hline
+	Query Term  & Apple & Baseball & Burger King & Cricket & France & McDonalds & Microsoft & Obama & Sarkozy & USA\\
+	\hline
+	Apple & 1 & 0.0007 & 0.0 & 0.0006 & 0.0003 & 0.0074 & 0.0008 & 0.0 & 0.0068 & 0.0001\\
+	\hline
+	Baseball & 0.0036 & 1 & 0.0011 & 0.0 & 0.0 & 0.0 & 0.0038 & 0.0 & 0.0084 & 0.0\\
+	\hline
+	Burger King & 0.0071 & 0.0 & 1 & 0.0 & 0.0013 & 0.0175 & 0.0 & 0.0 & 0.0 & 0.0049\\
+	\hline
+	Cricket & 0.0002 & 0.0022 &  & 0.054 & 0.026 & 0.034 & 0.027 & 0.034 & 0.020 & 0.028\\
+	\hline
+	France & & & & & 0.073 & 0.026 & 0.023 & 0.026 & 0.027 & 0.023\\
+	\hline
+	McDonalds & & & & & & 0.080 & 0.027 & 0.033 & 0.019 & 0.028\\
+	\hline
+	\end{tabular}
+}
+\caption{Specific}\label{cf4}
+\end{table*}
+
+\begin{table*}[!ht]
+%\setcounter{table}{3}
+\centering
+\resizebox{14cm}{!} 
+{
+	\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|}
+	\hline
+	Query Term & attack & conference & flight 447 & iran election & jackson & lakers & recession & scandal & swine flu & t20\\
+	\hline
+	attack & 1 & 0.0 & 0.0 & 0.0010 & 0.0008 & 0.0023 & 0.0 & 0.0 & 0.0015 & 0.0002\\
+	\hline	
+conference  & 0.0002 & 1 & 0.0 & 0.0010 & 0.0007 & 0.0023 & 0.0030 & 0.0015 & 0.0002 & 0.0\\
+	 	\hline
+flight 447 & 0.0 & 0.0 & 1 & 0.0  & 0.0 & 0.0001 & 0.0 & 0.0 & 0.0 & 0.0\\
+	  	\hline
+iran election	& 0.0018	 & 0.0 & 0.0 & 1 & 0.0002 & 0.0004 & 0.0 & 0.0004 & 0.0 & 0.0 \\
+	   	\hline
+jackson	  & 0.0337 & 0.0008 & 0.0 & 0.0  & 1 & 0.0350 & 0.0 & 0.0002 & 0.0007 & 0.0\\
+	   	\hline
+lakers	  & 0.0010 & 0.0012 & 0.0 & 0.0 & 0.0137 & 1 & 0.0 & 0.0001 & 0.0028 & 0.0\\
+	    	\hline
+recession  & 0.0007 & 0.0015 & 0.0 & 0.0 & 0.0 & 0.0006 & 1 & 0.0001 & 0.0021 & 0.0\\
+	     	\hline
+scandal & 0.0006 & 0.0007 & 0.0 & 0.0008 & 0.0 & 0.0001 & 0.0002 & 1 & 0.0002 & 0.0\\
+	      	\hline
+swine flu & 0.0008 & 0.0008 & 0.0 & 0.0 & 0.0005 & 0.0035 & 0.0017 & 0.0004 & 1 & 0.0\\
+	       \hline
+t20 & 0.0118 & 0.0025 & 0.0 & 0.0 & 0.0010 & 0.0012 & 0.0010 & 0.0010 & 0.0 & 1\\
+	\hline
+	\end{tabular}
+}
+\caption{dataset3-cf1}\label{cf2}
+\end{table*}
+
+\begin{table*}[!ht]
+%\setcounter{table}{3}
+\centering
+\resizebox{14cm}{!} 
+{
+	\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|}
+	\hline
+Query Term & business & design & family & food & fun & health & movie & music & space & sport\\
+	\hline
+business	 & 1 & 0.0118 & 0.0044 & 0.0036 & 0.0116 & 0.0076 & 0.0036 & 0.0027 & 0.0037 & 0.0035\\ 
+	 	\hline
+design & 0.0261 & 1 & 0.0031 & 0.0064 & 0.0101 & 0.0029 & 0.0031 & 0.0065 & 0.0054 & 0.0028
+	 	\\ 
+	 	\hline
+	 	
+family & 0.0094  & 0.0015 & 1 & 0.0089 & 0.0460 & 0.0083 & 0.0074 & 0.0091 & 0.0021 & 0.0028 
+	 	 \\ 
+	 	\hline
+food & 0.0048 & 0.0031 & 0.0021 & 1 & 0.0014 & 0.0063 & 0.0032 & 0.0043 & 0.0029 & 0.0017 
+	 	\\ 
+	 	\hline
+fun & 0.0047 & 0.0041 & 0.0215 & 0.0035	& 1 & 0.0044 & 0.012 & 0.0041 & 0.0043 & 0.0024 
+	 	\\ 
+	 	\hline
+	 health	 & 0.0148 & 0.0089 & 0.0080 & 0.0152 & 0.0091 & 1 & 0.0022 & 0.0034 & 0.0045 & 0.0023
+	 	\\ 
+	 	\hline
+movie & 0.0021 & 0.000044 & 0.0054 & 0.0019 & 0.0332 & 0.0008 & 0.0016 & 0.0102 & 0.0031 & 0.0072 
+	 	 \\ 
+	 	\hline
+music & 0.0018 & 0.0034 & 0.0051 & 0.0025 & 0.0154 & 0.00 & & 0.113 & 0.039 & 0.028 
+	 	\\ 
+	 	\hline
+space & 0.0081 & 0.0112 & 0.0010 & 0.0014 & 0.0171 & 0.0008 & 0.0093 & 0.0096 & 1 & 0.0016 
+	 	\\ 
+	 	\hline
+sport & 0.0450 & 0.0231 & 0.0120 & 0.0166 & 0.0290 & 0.0036 & 0.0096 & 0.0068 & 0.0104 & 1 \\
+	\hline
+	\end{tabular}
+}
+\caption{dataset2}\label{cf6}
+\end{table*}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{table*}[!ht]
+%\setcounter{table}{3}
+\centering
+\resizebox{14cm}{!} 
+{
+	\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|}
+	\hline
+	Query Term  & Apple & Baseball & Burger King & Cricket & France & McDonalds & Microsoft & Obama & Sarkozy & USA\\
+	\hline
+	Apple & 0.516 & 0.028 & 0.026 & 0.028 & 0.021 & 0.029 & 0.025 & 0.027 & 0.016 & 0.024\\
+	\hline
+	Baseball & & 0.073 & 0.029 & 0.033 & 0.024 & 0.034 & 0.026 & 0.031 & 0.017 & 0.027\\
+	\hline
+	Burger King & & & 0.141 & 0.031 & 0.024 & 0.036 & 0.024 & 0.030 & 0.018 & 0.026\\
+	\hline
+	Cricket & & & & 0.054 & 0.026 & 0.034 & 0.027 & 0.034 & 0.020 & 0.028\\
+	\hline
+	France & & & & & 0.073 & 0.026 & 0.023 & 0.026 & 0.027 & 0.023\\
+	\hline
+	McDonalds & & & & & & 0.080 & 0.027 & 0.033 & 0.019 & 0.028\\
+	\hline
+	\end{tabular}
+}
+\caption{Specific}\label{cf4}
+\end{table*}
+
+\begin{table*}[!ht]
+%\setcounter{table}{3}
+\centering
+\resizebox{14cm}{!} 
+{
+	\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|}
+	\hline
+	Query Term & attack & conference & flight 447 & iran election & jackson & lakers & recession & scandal & swine flu & t20\\
+	\hline
+	attack & 0.077 & 0.035 & 0.030 & 0.031 & 0.031 & 0.029 & 0.036 & 0.030 & 0.026 & 0.026\\
+	\hline	
+conference & 	 & 0.081 & 0.034 & 0.036 & 0.038 & 0.037 & 0.048 & 0.036 & 0.031 & 0.033\\
+	 	\hline
+flight 447	  &  &  & 0.023 & 0.034 & 0.029 & 0.027 & 0.039 & 0.031 & 0.029 & 0.026\\
+	  	\hline
+iran election	   &  &  &  & 0.016 & 0.030 & 0.029 & 0.037 & 0.031 & 0.024 & 0.028 \\
+	   	\hline
+jackson	  &  &  &  &   & 0.061 & 0.035 & 0.039 & 0.031 & 0.027 & 0.027\\
+	   	\hline
+lakers	  &  &  &  &  &    & 0.083 & 0.039 & 0.031 & 0.025 & 0.027\\
+	    	\hline
+	  recession  &  &  &  &  &  &   & 0.083 & 0.039 & 0.034 & 0.034\\
+	     	\hline
+scandal	 &  &  &  &  &  &  &       & 0.047 & 0.026 & 0.027\\
+	      	\hline
+swine flu	       &  &  &  &  &  &  &  &  & 0.017 & 0.023\\
+	       \hline
+t20	     &  &  &  &  &  &  &  &  &    & 0.037\\
+	\hline
+	\end{tabular}
+}
+\caption{dataset3}\label{cf5}
+\end{table*}
+
+\begin{table*}[!ht]
+%\setcounter{table}{3}
+\centering
+\resizebox{14cm}{!} 
+{
+	\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|}
+	\hline
+	Query Term & business & design & family & food & fun & health & movie & music & space & sport\\
+	\hline
+business	 & 0.118 & 0.036 & 0.040 & 0.037 & 0.037 & 0.036 & 0.037 & 0.037 & 0.037 & 0.030\\ 
+	 	\hline
+design & 	 	& 0.117 & 0.036 & 0.034 & 0.033 & 0.032 & 0.035 & 0.035 & 0.034 & 0.028
+	 	\\ 
+	 	\hline
+	 	
+	 family &  & 	 & 0.116 & 0.045 & 0.049 & 0.038 & 0.048 & 0.043 & 0.043 & 0.028 
+	 	 \\ 
+	 	\hline
+food &  &  & 	 	& 0.116 & 0.043 & 0.036 & 0.045 & 0.041 & 0.039 & 0.027 
+	 	\\ 
+	 	\hline
+	fun  &  &  &  & 	& 0.118 & 0.033 & 0.045 & 0.041 & 0.040 & 0.024 
+	 	\\ 
+	 	\hline
+	 health	 &  &  &  &  & & 0.115 & 0.035 & 0.034 & 0.035 & 0.030
+	 	\\ 
+	 	\hline
+movie	 	 &  &  &  &  &  &  & 0.126 & 0.043 & 0.041 & 0.027 
+	 	 \\ 
+	 	\hline
+music	 &  &  &  &  &  &  & & 0.113 & 0.039 & 0.028 
+	 	\\ 
+	 	\hline
+	 space	 &  &  &  &  &  &  &  & & 0.118 & 0.026 
+	 	\\ 
+	 	\hline
+sport	  &  &  &  &  &  &  &  & & 	& 0.101\\
+	\hline
+	\end{tabular}
+}
+\caption{dataset2}\label{cf6}
+\end{table*}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
  
 % We next present the evaluation metrics used to compare the different topic models learnt by the different pooling schemes. \\
 
