@@ -1,57 +1,71 @@
 This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
 The top-level auxiliary file: sig-alternate.aux
 The style file: abbrv.bst
-Database file #1: colingbiblio.bib
-Warning--empty booktitle in blei03
-Warning--empty booktitle in hong
-Warning--empty booktitle in mallet
-Warning--empty booktitle in mor
-Warning--empty booktitle in newman11
-Warning--empty booktitle in baldwin10
-Warning--empty booktitle in ramage
-Warning--empty booktitle in wallach
-Warning--empty booktitle in acadz
-Warning--empty booktitle in yang2012www
-Warning--empty booktitle in baldwin11
-You've used 20 entries,
+I couldn't open database file sig-alternate.bib
+---line 107 of file sig-alternate.aux
+ : \bibdata{sig-alternate
+ :                       }
+I'm skipping whatever remains of this command
+I found no database files---while reading file sig-alternate.aux
+Warning--I didn't find a database entry for "RoseLev"
+Warning--I didn't find a database entry for "radev02"
+Warning--I didn't find a database entry for "blei03"
+Warning--I didn't find a database entry for "baldwin11"
+Warning--I didn't find a database entry for "acadz"
+Warning--I didn't find a database entry for "wayne"
+Warning--I didn't find a database entry for "Han2012"
+Warning--I didn't find a database entry for "Weng2010wsdm"
+Warning--I didn't find a database entry for "hong"
+Warning--I didn't find a database entry for "iaf"
+Warning--I didn't find a database entry for "mallet"
+Warning--I didn't find a database entry for "mor"
+Warning--I didn't find a database entry for "wallach"
+Warning--I didn't find a database entry for "baldwin10"
+Warning--I didn't find a database entry for "MRS08"
+Warning--I didn't find a database entry for "newman11"
+Warning--I didn't find a database entry for "zangerle2011recommending"
+Warning--I didn't find a database entry for "yang2012www"
+Warning--I didn't find a database entry for "ramage"
+Warning--I didn't find a database entry for "Naveed2011cikm"
+You've used 0 entries,
             2118 wiz_defined-function locations,
-            611 strings with 7128 characters,
-and the built_in function-call counts, 7740 in all, are:
-= -- 747
-> -- 373
-< -- 11
-+ -- 146
-- -- 126
-* -- 492
-:= -- 1212
-add.period$ -- 63
-call.type$ -- 20
-change.case$ -- 122
+            521 strings with 3918 characters,
+and the built_in function-call counts, 18 in all, are:
+= -- 0
+> -- 0
+< -- 0
++ -- 0
+- -- 0
+* -- 2
+:= -- 7
+add.period$ -- 0
+call.type$ -- 0
+change.case$ -- 0
 chr.to.int$ -- 0
-cite$ -- 31
-duplicate$ -- 339
-empty$ -- 631
-format.name$ -- 126
-if$ -- 1696
+cite$ -- 0
+duplicate$ -- 0
+empty$ -- 1
+format.name$ -- 0
+if$ -- 1
 int.to.chr$ -- 0
-int.to.str$ -- 20
-missing$ -- 21
-newline$ -- 103
-num.names$ -- 40
-pop$ -- 176
+int.to.str$ -- 0
+missing$ -- 0
+newline$ -- 3
+num.names$ -- 0
+pop$ -- 0
 preamble$ -- 1
-purify$ -- 103
+purify$ -- 0
 quote$ -- 0
-skip$ -- 245
+skip$ -- 1
 stack$ -- 0
-substring$ -- 384
-swap$ -- 99
-text.length$ -- 11
+substring$ -- 0
+swap$ -- 0
+text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 78
-warning$ -- 11
-while$ -- 67
-width$ -- 22
-write$ -- 224
-(There were 11 warnings)
+type$ -- 0
+warning$ -- 0
+while$ -- 0
+width$ -- 0
+write$ -- 2
+(There were 2 error messages)
