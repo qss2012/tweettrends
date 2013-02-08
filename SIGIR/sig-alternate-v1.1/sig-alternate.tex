@@ -583,23 +583,34 @@ of data.
 {
 	\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|}
 	\hline
-	Query Term  & Apple & Baseball & Burger King & Cricket & France & McDonalds & Microsoft & Obama & Sarkozy & USA\\
+	Query Term  & apple & baseball & burger king & cricket & france & mcdonalds & microsoft & obama & sarkozy & usa\\
 	\hline
-	Apple & 1 & 0.0007 & 0.0 & 0.0006 & 0.0003 & 0.0074 & 0.0008 & 0.0 & 0.0068 & 0.0001\\
+	apple & 1 & 0.0007 & 0.0002 &  0.0 & 0.0005 & 0.0002 & 0.0070 & 0.0009 & 0.0 & 0.0065\\
 	\hline
-	Baseball & 0.0036 & 1 & 0.0011 & 0.0 & 0.0 & 0.0 & 0.0038 & 0.0 & 0.0084 & 0.0\\
+	baseball & 0.0036 & 1 & 0.0 & 0.0010 & 0.0 & 0.0  & 0.0 & 0.0039 & 0.0 & 0.0079\\
 	\hline
-	Burger King & 0.0071 & 0.0 & 1 & 0.0 & 0.0013 & 0.0175 & 0.0 & 0.0 & 0.0 & 0.0049\\
+	burger king & 0.0071 & 0.0 & 1 & 0.0 & 0.0013 & 0.0175 & 0.0 & 0.0 & 0.0 & 0.0049\\
 	\hline
-	Cricket & 0.0002 & 0.0022 &  & 0.054 & 0.026 & 0.034 & 0.027 & 0.034 & 0.020 & 0.028\\
+	cricket & 0.0002 & 0.0016 & 0.0 & 1 & 0.0001 & 0.0 & 0.0 & 0.021 & 0.0 & 0.032\\
 	\hline
-	France & & & & & 0.073 & 0.026 & 0.023 & 0.026 & 0.027 & 0.023\\
+	france & 0.0030 & 0.0002 & 0.0 & 0.0 & 1 & 0.0008 & 0.0016 & 0.0048 & 0.0200 & 0.0224\\
 	\hline
-	McDonalds & & & & & & 0.080 & 0.027 & 0.033 & 0.019 & 0.028\\
+	mcdonalds & 0.0074 & 0.0002 & 0.0100 & 0.0036 & 0.00103 & 1 & 0.0 & 0.0 & 0.065\\
+	\hline
+	microsoft & 0.0178 & 0.0 & 0.0 & 0.0 & 0.0007 & 1 & 0.001 & 0.0008 & 0.0 & 0.0089
+	\\
+	\hline
+	obama & 0.0006 & 0.0005 & 0.0 & 0.0002 & 0.0007 & 0.0 & 0.0001 & 1 & 0.0008 & 0.0180
+	\\
+	\hline
+	sarkozy & 0.0 & 0.0 & 0.0 & 0.0 & 0.1200 & 0.0 & 0.0010 & 0.0404 & 1 & 0.0010
+	\\
+	\hline
+	usa & 0.0029 & 0.0005 & 0.0002 & 0.0002 & 0.0022 & 0.0001 & 0.0018 & 0.0118 & 0.0002 & 1\\
 	\hline
 	\end{tabular}
 }
-\caption{Specific}\label{cf4}
+\caption{Specific-CF-1}\label{cf4}
 \end{table*}
 
 \begin{table*}[!ht]
@@ -633,7 +644,7 @@ t20 & 0.0118 & 0.0025 & 0.0 & 0.0 & 0.0010 & 0.0012 & 0.0010 & 0.0010 & 0.0 & 1\
 	\hline
 	\end{tabular}
 }
-\caption{dataset3-cf1}\label{cf2}
+\caption{dataset3-CF-1}\label{cf2}
 \end{table*}
 
 \begin{table*}[!ht]
@@ -676,7 +687,7 @@ sport & 0.0450 & 0.0231 & 0.0120 & 0.0166 & 0.0290 & 0.0036 & 0.0096 & 0.0068 & 
 	\hline
 	\end{tabular}
 }
-\caption{dataset2}\label{cf6}
+\caption{dataset2-CF-1}\label{cf6}
 \end{table*}
 
 
@@ -719,9 +730,20 @@ sport & 0.0450 & 0.0231 & 0.0120 & 0.0166 & 0.0290 & 0.0036 & 0.0096 & 0.0068 & 
 	\hline
 	McDonalds & & & & & & 0.080 & 0.027 & 0.033 & 0.019 & 0.028\\
 	\hline
+	Microsoft &  &  &  &  &  &  & 0.077 & 0.028 & 0.017 & 0.024
+	\\
+	\hline
+	Obama &  &  &  &  &  &  &  & 0.071 & 0.022 & 0.028
+	\\
+	\hline
+	Sarkozy &  &  &  &  &  &  &  &  & 0.072 & 0.019
+	\\
+	\hline
+	USA &  &  &  &  &  &  &  &  &  & 0.030\\
+	\hline
 	\end{tabular}
 }
-\caption{Specific}\label{cf4}
+\caption{Specific-CF-2}\label{cf4}
 \end{table*}
 
 \begin{table*}[!ht]
@@ -755,7 +777,7 @@ t20	     &  &  &  &  &  &  &  &  &    & 0.037\\
 	\hline
 	\end{tabular}
 }
-\caption{dataset3}\label{cf5}
+\caption{dataset3-CF-2}\label{cf5}
 \end{table*}
 
 \begin{table*}[!ht]
@@ -798,7 +820,7 @@ sport	  &  &  &  &  &  &  &  & & 	& 0.101\\
 	\hline
 	\end{tabular}
 }
-\caption{dataset2}\label{cf6}
+\caption{dataset2-CF-2}\label{cf6}
 \end{table*}
 
 
