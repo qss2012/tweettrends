@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.21)  8 FEB 2013 15:49
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.21)  8 FEB 2013 16:04
 entering extended mode
  %&-line parsing enabled.
 **sig-alternate.tex
@@ -916,14 +916,14 @@ l.889
 LaTeX Warning: Text page \thepage  contains only floats.
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Overfull \vbox (2.33932pt too high) has occurred while \output is active []
 
 
 
 LaTeX Warning: Text page \thepage  contains only floats.
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Overfull \vbox (2.33932pt too high) has occurred while \output is active []
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
@@ -1066,7 +1066,7 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  18757 strings out of 495061
  370831 string characters out of 1182621
- 541728 words of memory out of 3000000
+ 542728 words of memory out of 3000000
  21415 multiletter control sequences out of 15000+50000
  65046 words of font info for 71 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
@@ -1084,7 +1084,7 @@ b8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/sha
 re/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fon
 ts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/u
 tmri8a.pfb>
-Output written on sig-alternate.pdf (10 pages, 319186 bytes).
+Output written on sig-alternate.pdf (10 pages, 319390 bytes).
 PDF statistics:
  403 PDF objects out of 1000 (max. 8388607)
  87 named destinations out of 1000 (max. 500000)
