@@ -1,50 +1,3 @@
-% This is "sig-alternate.tex" V2.0 May 2012
-% This file should be compiled with V2.5 of "sig-alternate.cls" May 2012
-%
-% This example file demonstrates the use of the 'sig-alternate.cls'
-% V2.5 LaTeX2e document class file. It is for those submitting
-% articles to ACM Conference Proceedings WHO DO NOT WISH TO
-% STRICTLY ADHERE TO THE SIGS (PUBS-BOARD-ENDORSED) STYLE.
-% The 'sig-alternate.cls' file will produce a similar-looking,
-% albeit, 'tighter' paper resulting in, invariably, fewer pages.
-%
-% ----------------------------------------------------------------------------------------------------------------
-% This .tex file (and associated .cls V2.5) produces:
-%       1) The Permission Statement
-%       2) The Conference (location) Info information
-%       3) The Copyright Line with ACM data
-%       4) NO page numbers
-%
-% as against the acm_proc_article-sp.cls file which
-% DOES NOT produce 1) thru' 3) above.
-%
-% Using 'sig-alternate.cls' you have control, however, from within
-% the source .tex file, over both the CopyrightYear
-% (defaulted to 200X) and the ACM Copyright Data
-% (defaulted to X-XXXXX-XX-X/XX/XX).
-% e.g.
-% \CopyrightYear{2007} will cause 2007 to appear in the copyright line.
-% \crdata{0-12345-67-8/90/12} will cause 0-12345-67-8/90/12 to appear in the copyright line.
-%
-% ---------------------------------------------------------------------------------------------------------------
-% This .tex source is an example which *does* use
-% the .bib file (from which the .bbl file % is produced).
-% REMEMBER HOWEVER: After having produced the .bbl file,
-% and prior to final submission, you *NEED* to 'insert'
-% your .bbl file into your source .tex file so as to provide
-% ONE 'self-contained' source file.
-%
-% ================= IF YOU HAVE QUESTIONS =======================
-% Questions regarding the SIGS styles, SIGS policies and
-% procedures, Conferences etc. should be sent to
-% Adrienne Griscti (griscti@acm.org)
-%
-% Technical questions _only_ to
-% Gerald Murray (murray@hq.acm.org)
-% ===============================================================
-%
-% For tracking purposes - this is V2.0 - May 2012
-
 \documentclass{sig-alternate}
 
 \usepackage{color}
@@ -58,6 +11,8 @@
 \usepackage{amsmath,amssymb}
 \usepackage{epsfig,subfigure}
 \usepackage{pgfplots}
+\usepackage{verbatim}
+
 \newcommand{\fix}{\marginpar{FIX}}
 \newcommand{\new}{\marginpar{NEW}}
 \newcommand{\ind}[1]{\mathbb{I}[#1]}
@@ -81,59 +36,15 @@
 \usepackage{courier}
 \frenchspacing
 
+\long\def\COMMENT#1\ENDCOMMENT{\message{(Commented text...)}\par}
+
 
 
 \begin{document}
-%
-% --- Author Metadata here ---
-%\CopyrightYear{2007} % Allows default copyright year (20XX) to be over-ridden - IF NEED BE.
-%\crdata{0-12345-67-8/90/01}  % Allows default copyright data (0-89791-88-6/97/05) to be over-ridden - IF NEED BE.
-% --- End of Author Metadata ---
 
 \title{Improving LDA Topic Models for Microblogs\\ via Automatic Tweet Labeling and Pooling}
-%\subtitle{[Extended Abstract]
-%\titlenote{A full version of this paper is available as \textit{Author's Guide to Preparing ACM SIG Proceedings Using \LaTeX$2_\epsilon$\ and BibTeX} at \texttt{www.acm.org/eaddress.htm}}}
-%
-% You need the command \numberofauthors to handle the 'placement
-% and alignment' of the authors beneath the title.
-%
-% For aesthetic reasons, we recommend 'three authors at a time'
-% i.e. three 'name/affiliation blocks' be placed beneath the title.
-%
-% NOTE: You are NOT restricted in how many 'rows' of
-% "name/affiliations" may appear. We just ask that you restrict
-% the number of 'columns' to three.
-%
-% Because of the available 'opening page real-estate'
-% we ask you to refrain from putting more than six authors
-% (two rows with three columns) beneath the article title.
-% More than six makes the first-page appear very cluttered indeed.
-%
-% Use the \alignauthor commands to handle the names
-% and affiliations for an 'aesthetic maximum' of six authors.
-% Add names, affiliations, addresses for
-% the seventh etc. author(s) as the argument for the
-% \additionalauthors command.
-% These 'additional authors' will be output/set for you
-% without further effort on your part as the last section in
-% the body of your article BEFORE References or any Appendices.
 
-%\numberofauthors{8} %  in this sample file, there are a *total*
-% of EIGHT authors. SIX appear on the 'first-page' (for formatting
-% reasons) and the remaining two appear in the \additionalauthors section.
-%
 \author{
-% You can go ahead and credit any number of authors here,
-% e.g. one 'row of three' or two rows (consisting of one row of three
-% and a second row of one, two or three).
-%
-% The command \alignauthor (no curly braces needed) should
-% precede each author name, affiliation/snail-mail address and
-% e-mail address. Additionally, tag each line of
-% affiliation/address with \affaddr, and tag the
-% e-mail address with \email.
-%
-% 1st. author
 \alignauthor
 Author 1\\
        \affaddr{Affiliation 1}\\
@@ -154,23 +65,12 @@ Author 3\\
        \affaddr{Address 3}\\
        \affaddr{Country 3}\\
        \email{email3}
-%\and  % use '\and' if you need 'another row' of author names
-% 4th. author
-%\alignauthor Author 4\\
-   %    \affaddr{Affiliation 4}\\
-  %     \affaddr{Address 4}\\
- %      \affaddr{Country 4}\\
-%       \email{email1}
 }
 
 
 \maketitle
 \begin{abstract}
-Twitter : the world of 140 characters poses serious
-  challenges to the efficacy of topic models on short, messy text.
-  While topic models such as Latent Dirichlet Allocation (LDA) have a
-  long history of successful application to news articles and academic
-  abstracts, they are often less coherent when applied to microblog
+Twitter : the world of 140 characters poses serious challenges to the efficacy of topic models on short, messy text. While topic models such as Latent Dirichlet Allocation (LDA) have a long history of successful application to news articles and academic abstracts, they are often less coherent when applied to microblog
   content like Twitter.  In this paper, we investigate methods to
   improve topics learned from Twitter content \emph{without} modifying
   the basic machinery of LDA; we achieve this through various pooling
@@ -182,9 +82,9 @@ Twitter : the world of 140 characters poses serious
   unmodified LDA baseline and a variety of pooling schemes.
 \end{abstract}
 
-% A category with the (minimum) three required fields
+
 \category{H.4}{Information Systems Applications}{Miscellaneous}
-%A category including the fourth, optional field follows...
+
 \category{D.2.8}{Software Engineering}{Metrics}[complexity measures, performance measures]
 
 \terms{Theory}
@@ -438,8 +338,7 @@ burst-wise polling aggregates tweets for each burst-term into a single
 document trains LDA on the set of documents for each burst-term. The
 tweets which do not contain any of the burst-term were ignored for the
 purpose of training the LDA model. We then use the trained model to
-infer a topic mixture for each of the individual tweets. This scheme
-is henceforth referred to as Burst Score-wise pooling.
+infer a topic mixture for each of the individual tweets. This scheme is henceforth referred to as Burst Score-wise pooling.
 
 \paragraph{Temporal Pooling: }
 
@@ -574,13 +473,14 @@ of data.
 
 
 
+%\COMMENT begins comment
+\begin{comment}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{table*}[!ht]
-%\setcounter{table}{3}
-\centering
-\resizebox{14cm}{!} 
-{
+%\begin{table*}[!ht]
+%\centering
+%\resizebox{14cm}{!} 
+%{
 	\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|}
 	\hline
 	\textbf{Query Term}  & \textbf{apple} & \textbf{baseball} & \textbf{burger king} & \textbf{cricket} & \textbf{france} & \textbf{mcdonalds} & \textbf{microsoft} & \textbf{obama} & \textbf{sarkozy} & \textbf{usa}\\
@@ -825,6 +725,8 @@ of data.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{comment}
+%\ENDCOMMENT ends comment
 
 
  
@@ -1070,6 +972,41 @@ experiments as it agreed generally with the other scores,
 and is not as appropriate  as a quality metric for the
 undirected information task.
 
+Table~\ref{tbl-8} shows the results on the different datasets when using this method and the relative percentage improvement.
+
+\begin{table*}[!ht]
+%\setcounter{table}{9}
+\centering
+%\resizebox{8.5cm}{!} 
+{
+	\begin{tabular}{|l|cc|cc|cc|}
+	\hline
+	Metric  & \multicolumn {2}{c|}{Generic} & \multicolumn {2}{c|}{Specific} & \multicolumn {2}{c|}{Events}\\
+	\hline
+	 & Full & \% improvement & Full & \% improvement & Full & \% improvement\\
+	\hline
+	Purity & 0.60 & +13.2\% & 0.69 & +1.4\% & 0.68 & -1.5\% \\
+	\hline
+	NMI & 0.29 & +3.5\% & 0.23 & +0.1\% & 0.40 & +2.5\% \\
+	\hline
+	PMI & 0.42 & -46.1\% & 0.59 & -58\% & 1.2 & +155\% \\
+	\hline
+	Held-Out Probability & -55.9 & +31.9\% & -58.9 & +34\% & -55.4 & +35.8\%\\
+	\hline
+	\end{tabular}
+}
+\caption{Results of incorporating other tweets on different datasets. \% improvements are measured in comparison with simple hashtag pooling results.}\label{tbl-8}
+\end{table*}
+
+The results in the above table suggest this brute force technique
+substantially harms the topic coherence (lower PMI scores) but
+improves cluster reconstruction (higher purity scores).  Hence, we
+need to look for alternative ways in which we could improve cluster
+reconstruction without adversely affecting the topic coherence. In the
+next section we present a way of doing so and show that our proposed
+method performs better than all results so far.
+
+
 
 \section{Related Work}
 
@@ -1185,11 +1122,20 @@ quality of topic models for Twitter and microblog data.
 % \nocite{*}
 %\bibliographystyle{coling2012
 
+%%================================================================
+\end{document}
+
+%\COMMENT begins comment
+%\ENDCOMMENT ends comment
+
 \section*{Appendix}
 
 \section*{General Study of Hashtags \& Hashtag Pooling}
 
 \label{sec:hashtag_pooling}
+
+
+
 
 Hashtag-based tweet pooling outperforms other pooling schemes and
 unpooled tweets in terms of both: reconstructing known clusters as
@@ -1197,6 +1143,8 @@ well as extracting coherent topic words. In this section we look into
 hashtags and hashtag-based pooling in detail and analyse the
 prominence of hashtags in our datasets and look at ways to further
 improve the results.
+
+
 
 \subsection*{How Many Tweets have Hashtags?}
 
@@ -1236,40 +1184,7 @@ incorporating this data while training LDA models.  We first attempt addressing 
 One way of incorporating the large portion of the dataset that is not
 aggregated into a pooled document could be to include all of these
 unpooled tweets as individual documents alongside the hashtag-pooled
-documents.  Table~\ref{tbl-8} shows the results on the different datasets when using this method and the relative percentage improvement.
-
-\begin{table*}[!ht]
-%\setcounter{table}{9}
-\centering
-%\resizebox{8.5cm}{!} 
-{
-	\begin{tabular}{|l|cc|cc|cc|}
-	\hline
-	Metric  & \multicolumn {2}{c|}{Generic} & \multicolumn {2}{c|}{Specific} & \multicolumn {2}{c|}{Events}\\
-	\hline
-	 & Full & \% improvement & Full & \% improvement & Full & \% improvement\\
-	\hline
-	Purity & 0.60 & +13.2\% & 0.69 & +1.4\% & 0.68 & -1.5\% \\
-	\hline
-	NMI & 0.29 & +3.5\% & 0.23 & +0.1\% & 0.40 & +2.5\% \\
-	\hline
-	PMI & 0.42 & -46.1\% & 0.59 & -58\% & 1.2 & +155\% \\
-	\hline
-	Held-Out Probability & -55.9 & +31.9\% & -58.9 & +34\% & -55.4 & +35.8\%\\
-	\hline
-	\end{tabular}
-}
-\caption{Results of incorporating other tweets on different datasets. \% improvements are measured in comparison with simple hashtag pooling results.}\label{tbl-8}
-\end{table*}
-
-The results in the above table suggest this brute force technique
-substantially harms the topic coherence (lower PMI scores) but
-improves cluster reconstruction (higher purity scores).  Hence, we
-need to look for alternative ways in which we could improve cluster
-reconstruction without adversely affecting the topic coherence. In the
-next section we present a way of doing so and show that our proposed
-method performs better than all results so far.
-
+documents.  
 \subsection*{Automatic Hashtag Labeling}
 
 \label{subsec:assign_hashtags}
@@ -1579,8 +1494,3 @@ assignment on the three datasets and across the three metrics.
 
 In Table~\ref{tbl-10}, we see that the best Purity and NMI scores are obtained by hashtag assignment while even the simple hashtag-based pooling works much better than the baseline method of unpooled tweets. When the dataset in consideration consists of generic terms simple hashtag pooling gives the best results in terms of topic coherence. On the other hand when we have tweets on specific named entities or events in general, one might want to prefer hashtag assignment as it results in best PMI scores for the Specific and Events datasets, presumably because it is better at recovering coherent multiword topics for these entities/events.
 
-
-%\nocite{TALN2007,LaigneletRioult09,LanglaisPatry07,au1972,cks1981,mb2012}
-
-%%================================================================
-\end{document}
