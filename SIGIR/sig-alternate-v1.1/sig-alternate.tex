@@ -75,9 +75,8 @@ Twitter : the world of 140 characters poses serious challenges to the efficacy o
   improve topics learned from Twitter content \emph{without} modifying
   the basic machinery of LDA; we achieve this through various pooling
   schemes that aggregate tweets in a data preprocessing step for LDA.
-  We empirically establish that a novel method of combining
-  automatic hashtag labeling techniques with tweet pooling by hashtags
-  leads to a vast improvement in a variety of measures of topic
+  We empirically establish that \begin{comment}a novel method of combining
+  automatic hashtag labeling techniques with \end{comment}tweet pooling by hashtags leads to a vast improvement in a variety of measures of topic
   coherence across three diverse Twitter datasets in comparison to an
   unmodified LDA baseline and a variety of pooling schemes.
 \end{abstract}
@@ -164,16 +163,15 @@ While lingistic ``cleaning'' of text could help somewhat,
 for instance  \cite{Han2012},  a complementary approach 
 using LDA is also needed because there are so few words in a tweet.
 An intuitive solution to this problem is tweet
-pooling~\cite{Weng2010wsdm,hong}: merging related tweets together and presenting them as a
-single document to the LDA model.  
+pooling~\cite{Weng2010wsdm,hong}: merging related tweets together and presenting them as a single document to the LDA model.  
 %  The bad performance of LDA on
 %  Twitter data can be attributed to the fact that in an unpooled setting
 %  each document is small (140 characters) as well as written with
 %  non-standard words, 
 %  hence an individual document does not contains enough content
 %  which might help LDA to discover latent semantics in a document.
-In this paper we examine various tweet-pooling schemes and further 
-enhancements to improve pooling quality.  We compare
+In this paper we examine various tweet-pooling schemes \begin{comment}and further 
+enhancements \end{comment}to improve pooling quality.  We compare
 the performance of these methods across different datasets; these are
 constructed so that they are representative of the diverse collections
 of content possible in the microblog environment.  
@@ -199,8 +197,7 @@ the following questions:
 \item Do the different proposed pooling strategies perform better than
   unpooled tweets?
 \item Which pooling scheme works best for which metric and why?
-\item What further improvements can be made to the various pooling schemes
-  so as to obtain topics which are coherent and interpretable?
+\begin{comment}\item What further improvements can be made to the various pooling schemes so as to obtain topics which are coherent and interpretable?\end{comment}
 \end{itemize}
 In answering these questions, we make the following novel
 contributions:
@@ -211,24 +208,17 @@ contributions:
 \item We show that a novel \emph{hashtag-based pooling} approach leads
   to best results across \emph{all} evaluation metrics.  The
   performance is a substantial improvement over unpooled use.
-\item Given the prevalence of tweets without any hashtag, we present
-  similarity metrics for automatic hashtag assignment for these tweets and
+\begin{comment}\item Given the prevalence of tweets without any hashtag, we present similarity metrics for automatic hashtag assignment for these tweets and
   demonstrate further improvement of hashtag-based pooling.  
-  We also observe that 
-  similarity metrics based on \emph{inverse author frequency}
-  (IAF)~\cite{iaf} offer some of the most robust performance for 
-  hashtag-based pooling across all datasets and evaluation metrics.
+  We also observe that similarity metrics based on \emph{inverse author frequency} (IAF)~\cite{iaf} offer some of the most robust performance for 
+  hashtag-based pooling across all datasets and evaluation metrics.\end{comment}
 \end{itemize}
 
 In the following sections we first provide a brief overview of topic
 modeling and LDA followed by a proposal for different tweet pooling
 schemes in Section~\ref{sec:pooling}.  We next discuss Twitter dataset
 construction in Section~\ref{sec:dataset} followed by evaluation
-metrics in Section~\ref{sec:evaluation}. After discussing initial
-results in Section~\ref{sec:init_results} where hashtag-based pooling
-emerges as a leading approach, we discuss further analysis and
-improvements to hashtag-based pooling in Section~\ref{sec:hashtag_pooling}, followed by an in-depth evaluation of similarity metrics for automatic hashtag labeling.  We present a
-final overall comparison of the best overall methods in
+metrics in Section~\ref{sec:evaluation}. We discuss document characteristics for different pooling schemes followed by their comparison using the different metrics. \begin{comment}After discussing initial results in Section~\ref{sec:init_results} where hashtag-based pooling emerges as a leading approach, we discuss further analysis and improvements to hashtag-based pooling in Section~\ref{sec:hashtag_pooling}, followed by an in-depth evaluation of similarity metrics for automatic hashtag labeling.\end{comment} We present a final overall comparison of the best overall methods in
 Section~\ref{sec:overall}.  Related work is described in
 Section~\ref{sec:related_work} and Section~\ref{sec:conclusion}
 summarises and concludes.
