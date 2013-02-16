@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.21)  16 FEB 2013 18:30
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.21)  16 FEB 2013 21:15
 entering extended mode
  %&-line parsing enabled.
 **sig-alternate.tex
@@ -875,11 +875,6 @@ een already used, duplicate ignored
                    \relax 
 l.795 \[
          [3]
-Overfull \hbox (31.72275pt too wide) in paragraph at lines 857--857
-[]\secfnt INITIAL RE-SULTS FOR POOL-ING SCHEMES 
- []
-
-
 Overfull \hbox (14.62581pt too wide) in paragraph at lines 867--867
 []\secfnt Document Char-ac-ter-is-tics for Dif-fer-ent Pool-
  []
@@ -1743,58 +1738,51 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1018 
+l.1010 
         [4]
+
+LaTeX Warning: Characters dropped after `\end{comment}' on input line 1015.
+
+
+LaTeX Warning: Characters dropped after `\end{comment}' on input line 1036.
+
+
+LaTeX Warning: Characters dropped after `\end{comment}' on input line 1038.
+
+
+Overfull \hbox (3.28598pt too wide) in paragraph at lines 1036--1039
+[]\T1/ptm/m/n/9 Across di-verse datasets and var-i-ous topic co-her-ence met-ri
+cs, pool-
+ []
+
+(./sig-alternate.bbl
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
-
-LaTeX Warning: Reference `tbl-9' on page \thepage  undefined on input line 1054
-.
-
-
-Overfull \hbox (2.58649pt too wide) in paragraph at lines 1052--1059
-\T1/ptm/m/n/9 her-ence. The ini-tial re-sults pre-sented in Ta-ble [][]4[][] su
-g-gest that hashtag-
- []
-
-
-LaTeX Warning: Reference `tbl-9' on page \thepage  undefined on input line 1063
-.
-
-
-LaTeX Warning: Reference `tbl-10' on page \thepage  undefined on input line 106
-5.
-
-
-Overfull \hbox (7.4105pt too wide) in paragraph at lines 1060--1071
-\T1/ptm/m/n/9 with sim-ple hash-tag pool-ing and hash-tag as-sign-ment schemes.
- Across
- []
-
-(./sig-alternate.bblpdfTeX warning (ext4): destination with the same identifier
- (name{page.}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1 \begin{thebibliography}{10}
-                                [5])pdfTeX warning (ext4): destination with the
- same identifier (name{page.}) has been already used, duplicate ignored
+l.93 
+      [5])pdfTeX warning (ext4): destination with the same identifier (name{pag
+e.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1110 \end{document}
-                      [6] (./sig-alternate.aux)
+l.1078 \end{document}
+                      [6
+
+] (./sig-alternate.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 17682 strings out of 495061
- 357644 string characters out of 1182621
- 473537 words of memory out of 3000000
- 20390 multiletter control sequences out of 15000+50000
+ 17676 strings out of 495061
+ 357598 string characters out of 1182621
+ 472537 words of memory out of 3000000
+ 20385 multiletter control sequences out of 15000+50000
  58775 words of font info for 68 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 63i,13n,61p,623b,357s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 63i,13n,61p,623b,403s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texli
 ve/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-texlive/fonts/typ
 e1/public/amsfonts/cm/cmmi9.pfb></usr/share/texmf-texlive/fonts/type1/public/am
@@ -1806,9 +1794,9 @@ s/type1/urw/helvetic/uhvb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/helve
 tic/uhvr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr
 /share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive
 /fonts/type1/urw/times/utmri8a.pfb>
-Output written on sig-alternate.pdf (6 pages, 196005 bytes).
+Output written on sig-alternate.pdf (6 pages, 192447 bytes).
 PDF statistics:
- 240 PDF objects out of 1000 (max. 8388607)
- 56 named destinations out of 1000 (max. 500000)
+ 237 PDF objects out of 1000 (max. 8388607)
+ 55 named destinations out of 1000 (max. 500000)
  133 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -36,7 +36,7 @@
 \usepackage{courier}
 \frenchspacing
 
-\long\def\COMMENT#1\ENDCOMMENT{\message{(Commented text...)}\par}
+%\long\def\COMMENT#1\ENDCOMMENT{\message{(Commented text...)}\par}
 
 
 
@@ -854,7 +854,7 @@ which is an unbiased method.  Another approach is the so-called
 document completion method \cite{wallach}, however with so few words we felt holding out a subset of a (small) document was ill-advised.
 
 
-\section{Initial Results for Pooling Schemes}
+\section{Results for Pooling Schemes}
 
 In this section we discuss the results of the experimental evaluation
 of the tweet pooling schemes introduced in
@@ -866,7 +866,7 @@ described in Section~\ref{sec:evaluation}.
 
 \subsection{Document Characteristics for Different Pooling Schemes}
 
-Here we look at the document characteristics of the documents in the
+We first have a look at the document characteristics of the documents in the
 different pooling schemes for the three datasets. Characteristics
 like the number of documents affect LDA directly and hence it will be
 interesting to look at what the training data consists
@@ -954,47 +954,19 @@ using each scheme.
 
 Based on these results we conclude that hashtag-based pooling scheme
 \emph{clearly} performs better than unpooled scheme as well as other
-pooling schemes. An obvious question to ask is: Can we do better? In
+pooling schemes.
+
+
+\begin{comment}
+An obvious question to ask is: Can we do better? In
 the next section we look into hashtag-based pooling in detail and
 devise methods which further improve the results and provide better
 topics.  We did not evaluate the held-out probability in later
 experiments as it agreed generally with the other scores,
 and is not as appropriate  as a quality metric for the
 undirected information task.
+\end{comment}
 
-Table~\ref{tbl-8} shows the results on the different datasets when using this method and the relative percentage improvement.
-
-\begin{table*}[!ht]
-%\setcounter{table}{9}
-\centering
-%\resizebox{8.5cm}{!} 
-{
-	\begin{tabular}{|l|cc|cc|cc|}
-	\hline
-	Metric  & \multicolumn {2}{c|}{Generic} & \multicolumn {2}{c|}{Specific} & \multicolumn {2}{c|}{Events}\\
-	\hline
-	 & Full & \% improvement & Full & \% improvement & Full & \% improvement\\
-	\hline
-	Purity & 0.60 & +13.2\% & 0.69 & +1.4\% & 0.68 & -1.5\% \\
-	\hline
-	NMI & 0.29 & +3.5\% & 0.23 & +0.1\% & 0.40 & +2.5\% \\
-	\hline
-	PMI & 0.42 & -46.1\% & 0.59 & -58\% & 1.2 & +155\% \\
-	\hline
-	Held-Out Probability & -55.9 & +31.9\% & -58.9 & +34\% & -55.4 & +35.8\%\\
-	\hline
-	\end{tabular}
-}
-\caption{Results of incorporating other tweets on different datasets. \% improvements are measured in comparison with simple hashtag pooling results.}\label{tbl-8}
-\end{table*}
-
-The results in the above table suggest this brute force technique
-substantially harms the topic coherence (lower PMI scores) but
-improves cluster reconstruction (higher purity scores).  Hence, we
-need to look for alternative ways in which we could improve cluster
-reconstruction without adversely affecting the topic coherence. In the
-next section we present a way of doing so and show that our proposed
-method performs better than all results so far.
 
 
 
@@ -1040,34 +1012,30 @@ Our work is different from these in the sense that we provide a simple
 yet effective way which greatly improves the quality of topics
 obtained without making any major complicated modifications to
 standard LDA. The detailed experiments on a variety of datasets
-highlight our novel contribution of hashtag-based pooling and automatic
-hashtag labeling using similarity metrics like IAF~\cite{iaf} as an
-approach that improves a range of topic coherence measures.
+highlight our novel contribution of hashtag-based pooling \begin{comment}and automatic hashtag labeling using similarity metrics like IAF~\cite{iaf} \end{comment} as an approach that improves a range of topic coherence measures.
 
 \section{Summary and Conclusion}
 
 \label{sec:conclusion}
 
 %The work described in t
-This paper presents a way of aggregating tweets in order to improve performance of topic models in terms of quality of topics obtained measures by the ability to reconstruct clusters and topic coherence. The initial results presented in Table~\ref{tbl-456} suggest that hashtag-based pooling outperforms all other pooling strategies including the default way of training topic models on
-Twitter data (unpooled). Since a major portion of Twitter data does not contains hashtags we looked at ways of assigning hashtags to tweets. Insights from Hashtag
-Assignment results (Table~\ref{tbl-9}) suggest that when the main aim
-is to use the topics obtained to extract different events mentioned in
-the Twitter data, one should use hashtag assignment with a relaxed
-threshold($\sim0.5$). The high values of Purity scores and NMI values for
-low threshold support this claim.
+This paper presents a way of aggregating tweets in order to improve performance of topic models in terms of quality of topics obtained measures by the ability to reconstruct clusters and topic coherence. The results presented in Table~\ref{tbl-456} suggest that hashtag-based pooling outperforms all other pooling strategies including the default way of training topic models on Twitter data (unpooled).
+
+\begin{comment}
+Since a major portion of Twitter data does not contains hashtags we looked at ways of assigning hashtags to tweets. Insights from Hashtag Assignment results (Table~\ref{tbl-9}) suggest that when the main aim is to use the topics obtained to extract different events mentioned in the Twitter data, one should use hashtag assignment with a relaxed threshold($\sim0.5$). The high values of Purity scores and NMI values for low threshold support this claim.
 
 When the goal is to obtain interesting topics with topic words
 pertaining to the same common theme (coherent topic words), hashtag
 assignment with strict constraints (threshold $\sim 0.9$) works
 well. The PMI scores in Table~\ref{tbl-9} highlight that topic
 coherence increases down the column with a threshold of
-0.9 giving most coherent topics. Overall, results shown in Table~\ref{tbl-10} compare unpooled scheme with simple hashtag pooling and hashtag assignment schemes. Across diverse datasets and various topic coherence metrics, the best
-hashtag assignment method performs substantially better in comparison
-to an unmodified LDA baseline and a variety of existing and novel
-pooling schemes.  This indicates the promise of this novel automatic
-hashtag labeling and pooling approach that drastically improves the
-quality of topic models for Twitter and microblog data.
+0.9 giving most coherent topics. Overall, results shown in Table~\ref{tbl-10} compare unpooled scheme with simple hashtag pooling and hashtag assignment schemes.
+\end{comment}
+
+
+Across diverse datasets and various topic coherence metrics, \begin{comment}the best\end{comment} hashtag assignment method performs substantially better in comparison to an unmodified LDA baseline and a variety of existing and novel
+pooling schemes. This indicates the promise of this novel automatic
+hashtag \begin{comment}labeling and \end{comment}pooling approach that drastically improves the quality of topic models for Twitter and microblog data.
 
 %To this end, we have achieved our initial goal.  We have introduced
 %novel techniques for automatic tweet hashtag labeling and pooling that
@@ -1168,7 +1136,43 @@ incorporating this data while training LDA models.  We first attempt addressing 
 One way of incorporating the large portion of the dataset that is not
 aggregated into a pooled document could be to include all of these
 unpooled tweets as individual documents alongside the hashtag-pooled
-documents.  
+documents.
+
+Table~\ref{tbl-8} shows the results on the different datasets when using this method and the relative percentage improvement.
+
+\begin{table*}[!ht]
+%\setcounter{table}{9}
+\centering
+%\resizebox{8.5cm}{!} 
+{
+	\begin{tabular}{|l|cc|cc|cc|}
+	\hline
+	Metric  & \multicolumn {2}{c|}{Generic} & \multicolumn {2}{c|}{Specific} & \multicolumn {2}{c|}{Events}\\
+	\hline
+	 & Full & \% improvement & Full & \% improvement & Full & \% improvement\\
+	\hline
+	Purity & 0.60 & +13.2\% & 0.69 & +1.4\% & 0.68 & -1.5\% \\
+	\hline
+	NMI & 0.29 & +3.5\% & 0.23 & +0.1\% & 0.40 & +2.5\% \\
+	\hline
+	PMI & 0.42 & -46.1\% & 0.59 & -58\% & 1.2 & +155\% \\
+	\hline
+	Held-Out Probability & -55.9 & +31.9\% & -58.9 & +34\% & -55.4 & +35.8\%\\
+	\hline
+	\end{tabular}
+}
+\caption{Results of incorporating other tweets on different datasets. \% improvements are measured in comparison with simple hashtag pooling results.}\label{tbl-8}
+\end{table*}
+
+The results in the above table suggest this brute force technique
+substantially harms the topic coherence (lower PMI scores) but
+improves cluster reconstruction (higher purity scores).  Hence, we
+need to look for alternative ways in which we could improve cluster
+reconstruction without adversely affecting the topic coherence. In the
+next section we present a way of doing so and show that our proposed
+method performs better than all results so far.
+
+
 \subsection*{Automatic Hashtag Labeling}
 
 \label{subsec:assign_hashtags}
