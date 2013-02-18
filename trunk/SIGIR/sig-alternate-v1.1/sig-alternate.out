@@ -1,15 +1,10 @@
-\BOOKMARK [1][-]{section.1}{Tweet Pooling for LDA Topic Modeling}{}
-\BOOKMARK [2][-]{subsection.1.1}{Latent Dirichlet Allocation and Topic Modeling}{section.1}
-\BOOKMARK [2][-]{subsection.1.2}{Tweet Pooling Schemes}{section.1}
-\BOOKMARK [1][-]{section.2}{Twitter Dataset Construction}{}
-\BOOKMARK [1][-]{section.3}{Evaluating Topic Models - Metrics used}{}
-\BOOKMARK [2][-]{subsection.3.1}{Purity Scores}{section.3}
-\BOOKMARK [2][-]{subsection.3.2}{Normalized Mutual Information}{section.3}
-\BOOKMARK [2][-]{subsection.3.3}{Pointwise Mutual Information}{section.3}
-\BOOKMARK [2][-]{subsection.3.4}{Held Out Probability}{section.3}
-\BOOKMARK [1][-]{section.4}{Results for Pooling Schemes}{}
-\BOOKMARK [2][-]{subsection.4.1}{Document Characteristics for Different Pooling Schemes}{section.4}
-\BOOKMARK [2][-]{subsection.4.2}{Comparison of Pooling Schemes}{section.4}
-\BOOKMARK [1][-]{section.5}{Related Work}{}
-\BOOKMARK [1][-]{section.6}{Summary and Conclusion}{}
-\BOOKMARK [1][-]{section.7}{References}{}
+\BOOKMARK [1][-]{section.1}{Introduction}{}
+\BOOKMARK [1][-]{section.2}{Tweet Pooling for Topic Models}{}
+\BOOKMARK [1][-]{section.3}{Twitter Dataset Construction}{}
+\BOOKMARK [1][-]{section.4}{Evaluation Metrics used}{}
+\BOOKMARK [1][-]{section.5}{Results for Pooling Schemes}{}
+\BOOKMARK [2][-]{subsection.5.1}{Document Characteristics}{section.5}
+\BOOKMARK [2][-]{subsection.5.2}{Comparison of Pooling Schemes}{section.5}
+\BOOKMARK [1][-]{section.6}{Related Work}{}
+\BOOKMARK [1][-]{section.7}{Summary and Conclusion}{}
+\BOOKMARK [1][-]{section.8}{References}{}
