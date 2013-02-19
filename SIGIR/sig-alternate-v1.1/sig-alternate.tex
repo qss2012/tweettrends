@@ -153,7 +153,7 @@ coherent and interpretable.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 How can we extract better topics in microblogging environments with
-standard LDA?  While lingistic ``cleaning'' of text could help
+standard LDA?  While linguistic ``cleaning'' of text could help
 somewhat, for instance \cite{Han2012}, a complementary approach using
 LDA is also needed because there are so few words in a tweet.  An
 intuitive solution to this problem is tweet
@@ -221,7 +221,7 @@ of messages posted for the terms in the time period exceeds some
 expected level of activity.  In order to identify trends in Twitter
 posts, unusual "bursts" of term frequency can be detected in the data.
 We run a simple burst detection algorithm to detect such trending
-topics and aggregate tweets containing those terms having high burst
+terms and aggregate tweets containing those terms having high burst
 scores.  To identify terms that appear more frequently than expected,
 we will assign a score to terms according to their deviation from an
 expected frequency. Assume that $M$ is the set of all messages in our
@@ -264,7 +264,7 @@ exclusive interview for Google by Lady Gaga (singer).
 %'youth is wasted on the young' must be eating his words right
 %now. \#March15 \#Jan25 \#Feb14 ", referring to the protest movements
 %in the Arab world.
-For the hashtag-based pooling scheme, for each create pooled documents
+For the hashtag-based pooling scheme, we create pooled documents
 for each hashtag. If any tweet has more than one hashtag, this tweet
 gets added to the tweet-pool of each of those hashtags.
 
