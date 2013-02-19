@@ -5,17 +5,16 @@ D.~Blei, A.~Ng, and M.~Jordon.
 \newblock Latent {D}irichlet allocation.
 \newblock volume~3, pages 993--1022, 2003.
 
-\bibitem{iaf}
-S.~E. Chan, R.~K. Pon, and A.~F. C\'{a}rdenas.
-\newblock Visualization and clustering of author social networks.
-\newblock In {\em International Conference on Distributed Multimedia Systems
-  Workshop on Visual Languages and Computing in Grand Canyon}, pages 30--31,
-  Arizona, USA, 2006.
-
 \bibitem{Han2012}
 B.~Han, P.~Cook, and T.~Baldwin.
 \newblock Automatically constructing a normalisation dictionary for microblogs.
 \newblock In {\em Proc.\ of EMNLP-CoNLL 2012}, pages 421--432, Korea, 2012.
+
+\bibitem{han2012tist}
+B.~Han, P.~Cook, and T.~Baldwin.
+\newblock Lexical normalisation of short text messages.
+\newblock {\em ACM Transactions on Intelligent Systems and Technology}, to
+  appear, 2012.
 
 \bibitem{hong}
 L.~Hong and B.~Davison.
@@ -26,11 +25,6 @@ L.~Hong and B.~Davison.
 C.~Manning, P.~Raghavan, and H.~Sch\"{u}tze.
 \newblock {\em Introduction to Information Retrieval}.
 \newblock Cambridge University Press, 2008.
-
-\bibitem{mallet}
-A.~McCallum.
-\newblock Mallet: A machine learning for language toolkit.
-\newblock 2002.
 
 \bibitem{mor}
 M.~Naaman, H.~Becker, and L.~Gravano.
@@ -69,17 +63,6 @@ J.~Weng, E.-P. Lim, J.~Jiang, and Q.~He.
 \newblock Twitterrank: finding topic-sensitive influential twitterers.
 \newblock In {\em Proceedings WSDM '10}, pages 261--270, New York, NY, USA,
   2010. ACM.
-
-\bibitem{yang2012www}
-L.~Yang, T.~Sun, M.~Zhang, and Q.~Mei.
-\newblock We know what @you \#tag: does the dual role affect hashtag adoption?
-\newblock WWW '12, pages 261--270, 2012.
-
-\bibitem{zangerle2011recommending}
-E.~Zangerle, W.~Gassler, and G.~Specht.
-\newblock Recommending\#-tags in twitter.
-\newblock In {\em Proceedings of the Workshop on Semantic Adaptive Social Web
-  (SASWeb 2011).}, volume 730, pages 67--78, 2011.
 
 \bibitem{wayne}
 W.~X. Zhao, J.~Jiang, J.~Weng, J.~He, E.-P. Lim, H.~Yan, and X.~Li.
