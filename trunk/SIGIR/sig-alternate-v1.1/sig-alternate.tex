@@ -386,8 +386,8 @@ In order to cluster with LDA, we let a topic represent each cluster
 and assign each tweet to its corresponding mixture topic of highest
 probability (an inferred quantity via LDA).  Then by analysing
 clustering-based metrics, we wish to understand how well the different
-tweet pooling schemes are able to cluster according to the original
-queries used to produce the datasets.  
+tweet pooling schemes are able to reproduce clusters representing the
+original queries used to produce the datasets.  
 
 Formally, let $T_{i}$ be the set of tweets in LDA topic cluster $i$ and
 $Q_{j}$ be the set of tweets with query label $j$.  Then let $T = \lbrace
@@ -594,18 +594,18 @@ an unlabeled and labeled tweet exceeds a certain confidence threshold
 $C$, we assign the hashtag of the labeled tweet to the unlabeled tweet
 (and hence it joins the pool for this hashtag).  For our similarity
 metric between tweets, two obvious candidates are cosine similarity
-using TF and TF-IDF vector space representations for
-tweets~\cite{salton83Introduction}.  
+using TF and TF-IDF vector space representations~\cite{salton83Introduction}.  
 
-On an initial exploratory analysis, we found that a medium-range confidence
-threshold of $C=0.5$ gave best results for purity and NMI since
-tweets with the same class label have a higher average TF-IDF
+On an initial exploratory analysis, we found that a medium-range
+confidence threshold of $C=0.5$ gave best results for purity and NMI
+since tweets with the same class label have a higher average TF-IDF
 similarity than tweets with a different class label and so pooling
 these tweets together makes more topic-aligned hashtag pools that aid
-cluster reconstruction.  On the other hand, PMI improved most for
-a rather high confidence threshold of $C=0.9$ since tweets that were only
-marginally relevant to a hashtag reduced the overall topical coherence of
-hashtag-pooled documents and led to a noisier LDA model.
+cluster reconstruction.  On the other hand, PMI improved most for a
+rather high confidence threshold of $C=0.9$ since otherwise, tweets
+that were only marginally relevant to a hashtag reduced the overall
+topical coherence of hashtag-pooled documents and led to a noisier LDA
+model.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table*}[t!]
@@ -680,7 +680,7 @@ quality.  This related research suggests a number of orthogonal
 methods that could be used to complement our tweet pooling scheme.
 
 For automatic hashtag labeling that proved crucial to improving topics
-in our hastag-based pooling model, additional features for hashtag
+in our hashtag-based pooling model, additional features for hashtag
 assignment can be found in the comprehensive study~\cite{yang2012www}
 which can be leveraged in future extensions along with novel 
 social-media based similarity metrics like those incorporating inverse
@@ -691,18 +691,19 @@ author frequency~\cite{iaf} and other social network properties.
 \label{sec:conclusion}
 
 This paper presents a way of aggregating tweets in order to improve
-performance of topic models in terms of quality of topics obtained
+performance of topic models in terms of quality of topics obtained as
 measured by the ability to reconstruct clusters and topic
 coherence. The results presented in Table~\ref{tbl-456} on three
-diverse selections of Twitter data suggest that the novel scheme of
-hashtag pooling leads to drastically improved topic coherence over
-other pooled and unpooled schemes while the novel hashtag-based
-pooling scheme with the addition of automatic TF similarity-based
-hashtag assignment outperforms all other pooling strategies and
-unpooled methods on cluster reconstruction metrics.  In conclusion,
-these two novel schemes present LDA users with novel methods for
-\emph{significantly} improving LDA topic modeling on Twitter without
-requiring any modification of the underlying LDA machinery.
+diverse selections of Twitter data suggest the novel scheme of hashtag
+pooling leads to drastically improved topic modeling over other pooled
+and unpooled schemes.  The further addition of automatic TF
+similarity-based hashtag assignment to hashtag pooling outperforms all
+other pooling strategies and unpooled methods on cluster
+reconstruction metrics as shown in Table~\ref{tbl-overall-final}.  In
+conclusion, these two novel schemes present LDA users with novel
+methods for \emph{significantly} improving LDA topic modeling on
+Twitter without requiring any modification of the underlying LDA
+machinery.
 
 %\bibliographystyle{aaai}
 \bibliographystyle{abbrv}
