@@ -42,7 +42,7 @@
 
 \begin{document}
 
-\title{Improving LDA Topic Models for Microblogs\\ via Automatic Tweet Labeling and Pooling}
+\title{Improving LDA Topic Models for Microblogs\\ via Tweet Pooling and Automatic Labeling}
 %\title{Improving LDA Topic Models for Microblogs\\ via Tweet Pooling}
 
 \author{
@@ -79,15 +79,15 @@ less coherent when applied to microblog content like Twitter.  In this
 paper, we investigate methods to improve topics learned from Twitter
 content \emph{without} modifying the basic machinery of LDA; we
 achieve this through various pooling schemes that aggregate tweets in
-a data preprocessing step for LDA.  We empirically establish that
-tweet pooling by hashtags leads to a vast improvement in a variety of
-measures of topic coherence across three diverse Twitter datasets in
-comparison to an unmodified LDA baseline and a variety of pooling
-schemes.
-% TODO: edit last sentence?
-\begin{comment}a novel method of combining
-  automatic hashtag labeling techniques with 
-\end{comment}
+a data preprocessing step for LDA.  We empirically establish that a
+novel method of tweet pooling by hashtags leads to a vast improvement
+in a variety of measures of topic coherence across three diverse
+Twitter datasets in comparison to an unmodified LDA baseline and a
+variety of pooling schemes.  An additional contribution of automatic
+hashtag labeling further improves on the hashtag pooling results for a
+subset of metrics.  Overall, these two novel schemes lead to a highly
+effective method for significantly improving LDA topic models on
+Twitter content.
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%
@@ -159,18 +159,21 @@ LDA is also needed because there are so few words in a tweet.  An
 intuitive solution to this problem is tweet
 pooling~\cite{Weng2010wsdm,hong}: merging related tweets together and
 presenting them as a single document to the LDA model.  In this paper
-we examine various tweet-pooling schemes to improve LDA topic quality.
-We compare the performance of these methods across three datasets
-constructed to be representative of the diverse collections of content
-possible in the microblog environment and examine a variety of topic
-coherence evaluation metrics including the ability of the learned LDA
-topics to reconstruct known clusters and the interpretability of
-these topics via statistical information measures.  
-%
-Overall, we find that the novel method of pooling tweets by 
-hashtags yields superior performance for all metrics on all datasets,
-thus providing a scheme for significantly improved LDA topic modeling
-on Twitter.
+we examine existing tweet-pooling schemes to improve LDA topic quality
+and propose a few novel schemes.  We compare the performance of these
+methods across three datasets constructed to be representative of the
+diverse collections of content possible in the microblog environment
+and examine a variety of topic coherence evaluation metrics including
+the ability of the learned LDA topics to reconstruct known clusters
+and the interpretability of these topics via statistical information
+measures.
+
+Overall, we find that the novel method of pooling tweets by hashtags
+yields superior performance for all metrics on all datasets and an
+automatic hashtag assignment scheme further improves the hashtag
+pooling results on a subset of metrics.  Hence this work provides two
+novel methods for significantly improving LDA topic modeling on
+Twitter content.
 
 %{\bf TODO:} In this paper, we make a few important contributions: 
 %\begin{enumerate}
@@ -480,7 +483,7 @@ affect LDA.  Table~\ref{tbl-3} presents these statistics.
 \begin{table*}%[!ht]
 %\setcounter{table}{3}
 \centering
-\caption{Document Characteristics for different schemes}\label{tbl-3}
+\caption{Document Characteristics for different pooling schemes.}\label{tbl-3}
 \resizebox{14cm}{!} 
 {
 	\begin{tabular}{|l|ccc|ccc|ccc|}
@@ -514,23 +517,25 @@ scheme to Authorwise and Hashtagwise pooling scheme, while the
 corresponding size of the documents in each case increases. On an
 average the document size increases by a factor of seven in
 hashtag-based pooling when compared against unpooled or authorwise
-pooling schemes. On the other extreme lies the temporal pooling with
-many fewer documents of a much larger average size.
+pooling schemes. On the other extreme lies the temporal pooling scheme
+with many fewer documents of a much larger average size.
 %Some level of pooling is good, but it should also retain
 %semantic coherence.
 
 \subsection{Comparison of Pooling Schemes}
 
 For the three datasets (viz. Generic, Specific and Events) and pooling
-schemes, we next evaluate the Purity scores, NMI scores, PMI scores
-and the Held-out probabilities in Table~\ref{tbl-456} on the topic
-model obtained by training LDA using each scheme.
+schemes, we next evaluate the Purity scores, NMI scores and PMI scores
+in Table~\ref{tbl-456} on the topic model obtained by training LDA
+using each scheme.
+
 
 \begin{table*}[t!]
+\vspace{-2mm}
 %\setcounter{table}{11}
 \centering
-\caption{Results of different pooling schemes}\label{tbl-456}
-\resizebox{18cm}{!} 
+\caption{Results of different pooling schemes.}\label{tbl-456}
+\resizebox{17.5cm}{!} 
 {
 	\begin{tabular}{|l|ccc|ccc|ccc|}
 	\hline
@@ -604,10 +609,11 @@ hashtag-pooled documents and led to a noisier LDA model.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table*}[t!]
+\vspace{-4mm}
 %\setcounter{table}{13}
-\caption{ Overall percentage improvement over unpooled scheme.}\label{tbl-overall-final}
+\caption{ Overall percentage improvement of hashtag pooling variants over unpooled scheme.}\label{tbl-overall-final}
 \centering
-\resizebox{18cm}{!} 
+\resizebox{17.5cm}{!} 
 {
         \begin{tabular}{|l|ccc|ccc|ccc|}
         \hline
@@ -631,7 +637,7 @@ hashtag-pooled documents and led to a noisier LDA model.
 
 The overall results obtained via hashtag assignment are shown in
 Table~\ref{tbl-overall-final} and demonstrate that hashtag pooling
-with TF-similarity based tag assignment produces the best cluster
+with TF-similarity based tag assignment results in the best cluster
 reproductions with the highest Purity and NMI scores of all methods
 examined, while basic hashtag pooling without tag assignment generally
 provides the best results for topic coherence measured via the PMI
@@ -667,12 +673,18 @@ this is better than no pooling, or the author-topic model.
 \cite{newman11} proposed two methods to regularize the
 resulting topics towards better coherence.
 %\cite{kireyev2009} used term weighting to tackle term
-sparseness in LDA, the weights are derived from LSA vector length.
+%sparseness in LDA, the weights are derived from LSA vector length.
 \cite{Naveed2011cikm} used LDA for tweet retrieval. In addition, they
 used retweet as an indicator of "interestingness" to improve retrieval
 quality.  This related research suggests a number of orthogonal
 methods that could be used to complement our tweet pooling scheme.
 
+For automatic hashtag labeling that proved crucial to improving topics
+in our hastag-based pooling model, additional features for hashtag
+assignment can be found in the comprehensive study~\cite{yang2012www}
+which can be leveraged in future extensions along with novel 
+social-media based similarity metrics like those incorporating inverse
+author frequency~\cite{iaf} and other social network properties.
 
 \section{Conclusion}
 
@@ -685,9 +697,12 @@ coherence. The results presented in Table~\ref{tbl-456} on three
 diverse selections of Twitter data suggest that the novel scheme of
 hashtag pooling leads to drastically improved topic coherence over
 other pooled and unpooled schemes while the novel hashtag-based
-pooling with automatic hashtag assignment outperforms all other
-pooling strategies and unpooled methods on cluster reconstruction
-metrics.  
+pooling scheme with the addition of automatic TF similarity-based
+hashtag assignment outperforms all other pooling strategies and
+unpooled methods on cluster reconstruction metrics.  In conclusion,
+these two novel schemes present LDA users with novel methods for
+\emph{significantly} improving LDA topic modeling on Twitter without
+requiring any modification of the underlying LDA machinery.
 
 %\bibliographystyle{aaai}
 \bibliographystyle{abbrv}
