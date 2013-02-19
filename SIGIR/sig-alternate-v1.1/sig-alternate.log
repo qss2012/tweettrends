@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011/Cygwin) (format=pdflatex 2012.5.9)  19 FEB 2013 17:14
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011/Cygwin) (format=pdflatex 2012.5.9)  19 FEB 2013 17:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -880,10 +880,14 @@ Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 629.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 629.
 Package rerunfilecheck Info: File `sig-alternate.out' has not changed.
 (rerunfilecheck)             Checksum: 1D2F091CB2155D381427805E1E3A52FA;584.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 21065 strings out of 493629
- 452142 string characters out of 3148772
+ 21062 strings out of 493629
+ 452094 string characters out of 3148772
  621394 words of memory out of 3000000
  23903 multiletter control sequences out of 15000+200000
  57639 words of font info for 67 fonts, out of 3000000 for 9000
@@ -899,10 +903,10 @@ ic/amsfonts/cm/cmti9.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvb8a
 .pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/tex
 mf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw
 /times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on sig-alternate.pdf (4 pages, 159055 bytes).
+Output written on sig-alternate.pdf (4 pages, 157554 bytes).
 PDF statistics:
- 177 PDF objects out of 1000 (max. 8388607)
- 157 compressed objects within 2 object streams
- 36 named destinations out of 1000 (max. 500000)
+ 174 PDF objects out of 1000 (max. 8388607)
+ 154 compressed objects within 2 object streams
+ 33 named destinations out of 1000 (max. 500000)
  93 words of extra memory for PDF output out of 10000 (max. 10000000)
 

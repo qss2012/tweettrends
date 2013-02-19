@@ -5,52 +5,50 @@ The style file: abbrv.bst
 Database file #1: colingbiblio.bib
 Warning--empty booktitle in blei03
 Warning--empty booktitle in hong
-Warning--empty booktitle in mallet
 Warning--empty booktitle in mor
 Warning--empty booktitle in newman11
 Warning--empty booktitle in baldwin10
 Warning--empty booktitle in ramage
 Warning--empty booktitle in wallach
-Warning--empty booktitle in yang2012www
-You've used 16 entries,
+You've used 13 entries,
             2118 wiz_defined-function locations,
-            586 strings with 6242 characters,
-and the built_in function-call counts, 6410 in all, are:
-= -- 617
-> -- 317
-< -- 10
-+ -- 124
-- -- 108
-* -- 406
-:= -- 999
-add.period$ -- 51
-call.type$ -- 16
-change.case$ -- 101
+            570 strings with 5771 characters,
+and the built_in function-call counts, 5052 in all, are:
+= -- 483
+> -- 269
+< -- 6
++ -- 105
+- -- 92
+* -- 325
+:= -- 809
+add.period$ -- 42
+call.type$ -- 13
+change.case$ -- 84
 chr.to.int$ -- 0
-cite$ -- 25
-duplicate$ -- 281
-empty$ -- 514
-format.name$ -- 108
-if$ -- 1409
+cite$ -- 20
+duplicate$ -- 214
+empty$ -- 392
+format.name$ -- 92
+if$ -- 1094
 int.to.chr$ -- 0
-int.to.str$ -- 16
-missing$ -- 17
-newline$ -- 83
-num.names$ -- 32
-pop$ -- 154
+int.to.str$ -- 13
+missing$ -- 14
+newline$ -- 68
+num.names$ -- 26
+pop$ -- 125
 preamble$ -- 1
-purify$ -- 86
+purify$ -- 72
 quote$ -- 0
-skip$ -- 202
+skip$ -- 148
 stack$ -- 0
-substring$ -- 315
-swap$ -- 87
-text.length$ -- 10
+substring$ -- 224
+swap$ -- 59
+text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 62
-warning$ -- 9
-while$ -- 54
-width$ -- 18
-write$ -- 178
-(There were 9 warnings)
+type$ -- 50
+warning$ -- 7
+while$ -- 40
+width$ -- 15
+write$ -- 144
+(There were 7 warnings)
