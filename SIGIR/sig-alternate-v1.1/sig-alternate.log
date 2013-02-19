@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011/Cygwin) (format=pdflatex 2012.5.9)  19 FEB 2013 20:12
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011/Cygwin) (format=pdflatex 2012.5.9)  19 FEB 2013 22:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -826,6 +826,9 @@ f pool-ing schemes
  []
 
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 Underfull \hbox (badness 1642) in paragraph at lines 354--354
 []|\T1/ptm/m/n/8 Obama/23.2 Sarkozy/0.4 base-ball/3.5 cricket/1.8 Mc-don-alds/1
 .5 Burg-erk-ing/0.5 Ap-
@@ -837,7 +840,7 @@ Overfull \hbox (1.85191pt too wide) in paragraph at lines 333--355
  []
 
 
-Overfull \hbox (1.0226pt too wide) in paragraph at lines 388--393
+Overfull \hbox (1.0226pt too wide) in paragraph at lines 389--394
 \T1/ptm/m/n/9 be the set of tweets with query la-bel $\OML/cmm/m/it/9 j$\T1/ptm
 /m/n/9 . Then let $\OML/cmm/m/it/9 T \OT1/cmr/m/n/9 = \OMS/cmsy/m/n/9 f\OML/cmm
 /m/it/9 T[]; [] ; T[]\OMS/cmsy/m/n/9 g$
@@ -847,34 +850,50 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.410 \]
-         [2] (./sig-alternate.bblpdfTeX warning (ext4): destination with the sa
-me identifier (name{page.}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.40 
-      [3])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 627.
+l.409 \[
+         [2]
+Overfull \hbox (8.1519pt too wide) in paragraph at lines 533--553
+ [][] 
+ []
+
+
+LaTeX Warning: Citation `salton83Introduction' on page \thepage  undefined on i
+nput line 593.
+
+
+Overfull \hbox (8.16019pt too wide) in paragraph at lines 610--629
+ [][] 
+ []
+
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.627 \end{document}
-                     [4
-
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 627.
+l.691 
+       [3] (./sig-alternate.bbl)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 700.
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.700 \end{document}
+                     [4]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 700.
  (./sig-alternate.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 627.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 627.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 700.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 700.
 Package rerunfilecheck Info: File `sig-alternate.out' has not changed.
-(rerunfilecheck)             Checksum: 1D2F091CB2155D381427805E1E3A52FA;584.
+(rerunfilecheck)             Checksum: 5BAA27BDE2EFF4ADE6AA64EE204F6F40;641.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 21056 strings out of 493629
- 452026 string characters out of 3148772
- 622394 words of memory out of 3000000
- 23899 multiletter control sequences out of 15000+200000
+ 21061 strings out of 493629
+ 452107 string characters out of 3148772
+ 623394 words of memory out of 3000000
+ 23902 multiletter control sequences out of 15000+200000
  56561 words of font info for 66 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
  63i,13n,74p,656b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -888,10 +907,10 @@ ic/amsfonts/cm/cmti9.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvb8a
 .pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/tex
 mf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw
 /times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on sig-alternate.pdf (4 pages, 156908 bytes).
+Output written on sig-alternate.pdf (4 pages, 160498 bytes).
 PDF statistics:
- 174 PDF objects out of 1000 (max. 8388607)
- 154 compressed objects within 2 object streams
- 32 named destinations out of 1000 (max. 500000)
- 93 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 178 PDF objects out of 1000 (max. 8388607)
+ 158 compressed objects within 2 object streams
+ 34 named destinations out of 1000 (max. 500000)
+ 101 words of extra memory for PDF output out of 10000 (max. 10000000)
 

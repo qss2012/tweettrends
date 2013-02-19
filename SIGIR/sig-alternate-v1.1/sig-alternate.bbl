@@ -53,10 +53,10 @@ D.~Ramage, S.~Dumais, and D.~Liebling.
 \newblock Characterizing microblogs with topic models.
 \newblock In proceedings AAAI Conference on Weblogs and Social Media, 2010.
 
-\bibitem{wallach}
-H.~Wallach, I.~Murray, R.~Salakhutdinov, and D.~Mimno.
-\newblock Evaluation methods for topic models.
-\newblock In proceedings ICML, 2009.
+\bibitem{salton83Introduction}
+G.~Salton and M.~McGill.
+\newblock {\em Introduction to modern information retrieval}.
+\newblock McGraw-Hill, 1983.
 
 \bibitem{Weng2010wsdm}
 J.~Weng, E.-P. Lim, J.~Jiang, and Q.~He.

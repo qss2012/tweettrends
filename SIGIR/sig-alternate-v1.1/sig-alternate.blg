@@ -9,44 +9,44 @@ Warning--empty booktitle in mor
 Warning--empty booktitle in newman11
 Warning--empty booktitle in baldwin10
 Warning--empty booktitle in ramage
-Warning--empty booktitle in wallach
+Warning--can't use both author and editor fields in salton83Introduction
 You've used 13 entries,
             2118 wiz_defined-function locations,
-            570 strings with 5771 characters,
-and the built_in function-call counts, 5052 in all, are:
-= -- 483
-> -- 269
+            571 strings with 5777 characters,
+and the built_in function-call counts, 4976 in all, are:
+= -- 477
+> -- 259
 < -- 6
-+ -- 105
-- -- 92
-* -- 325
-:= -- 809
++ -- 101
+- -- 88
+* -- 318
+:= -- 796
 add.period$ -- 42
 call.type$ -- 13
-change.case$ -- 84
+change.case$ -- 81
 chr.to.int$ -- 0
 cite$ -- 20
-duplicate$ -- 214
-empty$ -- 392
-format.name$ -- 92
-if$ -- 1094
+duplicate$ -- 213
+empty$ -- 388
+format.name$ -- 88
+if$ -- 1079
 int.to.chr$ -- 0
 int.to.str$ -- 13
-missing$ -- 14
+missing$ -- 15
 newline$ -- 68
 num.names$ -- 26
-pop$ -- 125
+pop$ -- 122
 preamble$ -- 1
-purify$ -- 72
+purify$ -- 70
 quote$ -- 0
 skip$ -- 148
 stack$ -- 0
 substring$ -- 224
-swap$ -- 59
+swap$ -- 60
 text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 50
+type$ -- 48
 warning$ -- 7
 while$ -- 40
 width$ -- 15
