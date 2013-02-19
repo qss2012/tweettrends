@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011/Cygwin) (format=pdflatex 2012.5.9)  19 FEB 2013 23:08
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011/Cygwin) (format=pdflatex 2012.5.9)  19 FEB 2013 23:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -853,24 +853,18 @@ age.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.681 
-       [3]
-Overfull \hbox (1.49843pt too wide) in paragraph at lines 693--706
-\T1/ptm/m/n/9 ods on clus-ter re-con-struc-tion met-rics. In con-clu-sion, thes
-e two novel
- []
-
-(./sig-alternate.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 715.
+       [3] (./sig-alternate.bbl)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 716.
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.715 \end{document}
+l.716 \end{document}
                      [4]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 715.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 716.
  (./sig-alternate.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 715.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 715.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 716.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 716.
 Package rerunfilecheck Info: File `sig-alternate.out' has not changed.
 (rerunfilecheck)             Checksum: 5BAA27BDE2EFF4ADE6AA64EE204F6F40;641.
  ) 
@@ -892,10 +886,10 @@ ic/amsfonts/cm/cmti9.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvb8a
 .pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/tex
 mf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw
 /times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on sig-alternate.pdf (4 pages, 163207 bytes).
+Output written on sig-alternate.pdf (4 pages, 163232 bytes).
 PDF statistics:
- 183 PDF objects out of 1000 (max. 8388607)
- 163 compressed objects within 2 object streams
+ 184 PDF objects out of 1000 (max. 8388607)
+ 164 compressed objects within 2 object streams
  36 named destinations out of 1000 (max. 500000)
  101 words of extra memory for PDF output out of 10000 (max. 10000000)
 
