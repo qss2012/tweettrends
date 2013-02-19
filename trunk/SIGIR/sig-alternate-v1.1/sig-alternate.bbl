@@ -5,6 +5,13 @@ D.~Blei, A.~Ng, and M.~Jordon.
 \newblock Latent {D}irichlet allocation.
 \newblock volume~3, pages 993--1022, 2003.
 
+\bibitem{iaf}
+S.~E. Chan, R.~K. Pon, and A.~F. C\'{a}rdenas.
+\newblock Visualization and clustering of author social networks.
+\newblock In {\em International Conference on Distributed Multimedia Systems
+  Workshop on Visual Languages and Computing in Grand Canyon}, pages 30--31,
+  Arizona, USA, 2006.
+
 \bibitem{Han2012}
 B.~Han, P.~Cook, and T.~Baldwin.
 \newblock Automatically constructing a normalisation dictionary for microblogs.
@@ -63,6 +70,11 @@ J.~Weng, E.-P. Lim, J.~Jiang, and Q.~He.
 \newblock Twitterrank: finding topic-sensitive influential twitterers.
 \newblock In {\em Proceedings WSDM '10}, pages 261--270, New York, NY, USA,
   2010. ACM.
+
+\bibitem{yang2012www}
+L.~Yang, T.~Sun, M.~Zhang, and Q.~Mei.
+\newblock We know what @you \#tag: does the dual role affect hashtag adoption?
+\newblock WWW '12, pages 261--270, 2012.
 
 \bibitem{wayne}
 W.~X. Zhao, J.~Jiang, J.~Weng, J.~He, E.-P. Lim, H.~Yan, and X.~Li.
