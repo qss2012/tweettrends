@@ -1,19 +1,22 @@
 ================================================================================================================================================
 
 Project Title: tweettrends
-Feb-March 2012
+Feb-March 2012: BTS Pilani
+May-July 2012: NICTA, Canberra
 
 ================================================================================================================================================
 
 Purpose:
-Given a dataset of tweets recorded over some period of time, this project tries to find out trending topics and corresponding time 
-using a mixture of approaches
+Given a dataset of tweets recorded over some period of time, this project tries to find out trending topics using Latent Dirichlet Allocation (LDA) and corresponding time 
+using a mixture of approaches.
 
 
 ================================================================================================================================================
 
 Contributed By:
 Rishabh Mehrotra (erishabh@gmail.com)
+Scott Sanner (NICTA, ANU)
+Wray Buntine (NICTA, ANU)
 
 ================================================================================================================================================
 
