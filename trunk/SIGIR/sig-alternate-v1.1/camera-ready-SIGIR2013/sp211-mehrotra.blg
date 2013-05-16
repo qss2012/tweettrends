@@ -1,0 +1,54 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+The top-level auxiliary file: sp211-mehrotra.aux
+The style file: abbrv.bst
+Database file #1: colingbiblio.bib
+Warning--empty booktitle in blei03
+Warning--empty booktitle in hong
+Warning--empty booktitle in mor
+Warning--empty booktitle in newman11
+Warning--empty booktitle in baldwin10
+Warning--empty booktitle in ramage
+Warning--can't use both author and editor fields in salton83Introduction
+Warning--empty booktitle in yang2012www
+You've used 15 entries,
+            2118 wiz_defined-function locations,
+            582 strings with 6164 characters,
+and the built_in function-call counts, 5922 in all, are:
+= -- 572
+> -- 300
+< -- 8
++ -- 117
+- -- 102
+* -- 378
+:= -- 934
+add.period$ -- 48
+call.type$ -- 15
+change.case$ -- 94
+chr.to.int$ -- 0
+cite$ -- 23
+duplicate$ -- 256
+empty$ -- 463
+format.name$ -- 102
+if$ -- 1295
+int.to.chr$ -- 0
+int.to.str$ -- 15
+missing$ -- 17
+newline$ -- 78
+num.names$ -- 30
+pop$ -- 140
+preamble$ -- 1
+purify$ -- 81
+quote$ -- 0
+skip$ -- 184
+stack$ -- 0
+substring$ -- 286
+swap$ -- 78
+text.length$ -- 8
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 56
+warning$ -- 8
+while$ -- 49
+width$ -- 17
+write$ -- 167
+(There were 8 warnings)
