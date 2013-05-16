@@ -1,0 +1,85 @@
+\begin{thebibliography}{10}
+
+\bibitem{blei03}
+D.~Blei, A.~Ng, and M.~Jordon.
+\newblock Latent {D}irichlet allocation.
+\newblock volume~3, pages 993--1022, 2003.
+
+\bibitem{iaf}
+S.~E. Chan, R.~K. Pon, and A.~F. C\'{a}rdenas.
+\newblock Visualization and clustering of author social networks.
+\newblock In {\em International Conference on Distributed Multimedia Systems
+  Workshop on Visual Languages and Computing in Grand Canyon}, pages 30--31,
+  Arizona, USA, 2006.
+
+\bibitem{Han2012}
+B.~Han, P.~Cook, and T.~Baldwin.
+\newblock Automatically constructing a normalisation dictionary for microblogs.
+\newblock In {\em Proc.\ of EMNLP-CoNLL 2012}, pages 421--432, Korea, 2012.
+
+\bibitem{han2012tist}
+B.~Han, P.~Cook, and T.~Baldwin.
+\newblock Lexical normalisation of short text messages.
+\newblock {\em ACM Transactions on Intelligent Systems and Technology}, to
+  appear, 2012.
+
+\bibitem{hong}
+L.~Hong and B.~Davison.
+\newblock Empirical study of topic modeling in {T}witter.
+\newblock In proceedings 1st ACM Workshop on Social Media Analytics, 2010.
+
+\bibitem{MRS08}
+C.~Manning, P.~Raghavan, and H.~Sch\"{u}tze.
+\newblock {\em Introduction to Information Retrieval}.
+\newblock Cambridge University Press, 2008.
+
+\bibitem{mor}
+M.~Naaman, H.~Becker, and L.~Gravano.
+\newblock Hip and trendy: Characterizing emerging trends on {T}witter.
+\newblock In proceedings Journal of the American Society for Information
+  Science and Technology (JASIST), 62(5). doi: 10.1002/asi.21489, 2011.
+
+\bibitem{Naveed2011cikm}
+N.~Naveed, T.~Gottron, J.~Kunegis, and A.~C. Alhadi.
+\newblock Searching microblogs: coping with sparsity and document quality.
+\newblock In {\em Proceedings of CIKM '11}, pages 183--188, New York, NY, USA,
+  2011. ACM.
+
+\bibitem{newman11}
+D.~Newman, E.~Bonilla, and W.~Buntine.
+\newblock Improving topic coherence with regularized topic models.
+\newblock In proceedings of NIPS, 2011.
+
+\bibitem{baldwin10}
+D.~Newman, J.~Lau, K.~Grieser, and T.~Baldwin.
+\newblock Automatic evaluation of topic coherence.
+\newblock In proceedings NAACL, 2010.
+
+\bibitem{ramage}
+D.~Ramage, S.~Dumais, and D.~Liebling.
+\newblock Characterizing microblogs with topic models.
+\newblock In proceedings AAAI Conference on Weblogs and Social Media, 2010.
+
+\bibitem{salton83Introduction}
+G.~Salton and M.~McGill.
+\newblock {\em Introduction to modern information retrieval}.
+\newblock McGraw-Hill, 1983.
+
+\bibitem{Weng2010wsdm}
+J.~Weng, E.-P. Lim, J.~Jiang, and Q.~He.
+\newblock Twitterrank: finding topic-sensitive influential twitterers.
+\newblock In {\em Proceedings WSDM '10}, pages 261--270, New York, NY, USA,
+  2010. ACM.
+
+\bibitem{yang2012www}
+L.~Yang, T.~Sun, M.~Zhang, and Q.~Mei.
+\newblock We know what @you \#tag: does the dual role affect hashtag adoption?
+\newblock WWW '12, pages 261--270, 2012.
+
+\bibitem{wayne}
+W.~X. Zhao, J.~Jiang, J.~Weng, J.~He, E.-P. Lim, H.~Yan, and X.~Li.
+\newblock Comparing twitter and traditional media using topic models.
+\newblock In {\em Proceedings of ECIR'11}, pages 338--349, Berlin, Heidelberg,
+  2011. Springer-Verlag.
+
+\end{thebibliography}
