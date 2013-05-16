@@ -42,48 +42,34 @@
 
 \begin{document}
 
-
-\conferenceinfo{SIGIR'13,} {July 28--August 1, 2013, Dublin, Ireland.} 
-\CopyrightYear{2013} 
-\crdata{978-1-4503-2034-4/13/07} 
-\clubpenalty=10000 
-\widowpenalty = 10000
-
-
-
 \title{Improving LDA Topic Models for Microblogs\\ via Tweet Pooling and Automatic Labeling}
 %\title{Improving LDA Topic Models for Microblogs\\ via Tweet Pooling}
-\numberofauthors{4}
+
 \author{
 \alignauthor
-Rishabh Mehrotra\\
-       \affaddr{BITS  Pilani}\\
-       \affaddr{Pilani, India}\\
-       \email{erishabh@gmail.com}
+Author 1\\
+       \affaddr{Affiliation 1}\\
+       \affaddr{Address 1}\\
+       \affaddr{Country 1}\\
+       \email{email1}
 % 2nd. author
 \alignauthor
-Scott Sanner\\
-       \affaddr{NICTA \& ANU}\\
-       \affaddr{Canberra, Australia}\\
-       \email{Scott.Sanner@nicta.com.au}
+Author 1\\
+       \affaddr{Affiliation 2}\\
+       \affaddr{Address 2}\\
+       \affaddr{Country 2}\\
+       \email{email2}
        % 3rd. author
-\and
 \alignauthor
-Wray Buntine\\
-       \affaddr{NICTA \& ANU}\\
-       \affaddr{Canberra, Australia}\\
-       \email{Wray.Buntine@nicta.com.au}
-       % 4th. author
-\alignauthor
-Lexing Xie\\
-       \affaddr{ANU \& NICTA}\\
-       \affaddr{Canberra, Australia}\\
-       \email{lexing.xie@anu.edu.au}
+Author 3\\
+       \affaddr{Affiliation 3}\\
+       \affaddr{Address 3}\\
+       \affaddr{Country 3}\\
+       \email{email3}
 }
 
 
 \maketitle
-
 \begin{abstract}
 Twitter: the world of 140 characters poses serious challenges to the
 efficacy of topic models on short, messy text. While topic models such
@@ -256,7 +242,7 @@ Let us denote an individual term having burst-score greater than some
 threshold $\tau$ on some day $d \in D$ as a \textit{burst-term}.  Then
 our first novel aggregation method of Burst Score-wise Pooling
 aggregates tweets for each burst-term into a single document for
-training LDA, where we found $\tau = 5$ to provide best results. If any tweet has more than one burst-term, this tweet gets added to the tweet-pool of each of those burst-terms.
+training LDA, where we found $\tau = 5$ to provide best results.
 
 \vspace{1mm}\noindent {\bf Temporal Pooling:} When a major event occurs, a
 large number of users often start tweeting about the event within a
@@ -426,8 +412,8 @@ normalized mutual information (NMI) defined as follows
 \[
 \mathit{NMI}(T,Q) = \frac{2 I(T;Q)}{H(T) + H(Q)}, 
 \]
-where $I(\cdot,\cdot)$ is mutual information, $H(\cdot)$ is entropy
-as defined in~\cite{MRS08}, $T$ and $Q$ are as defined previously.
+where $I(\cdot,\cdot)$ is mutual information and $H(\cdot)$ is entropy
+as defined in~\cite{MRS08}.
 %\[
 %I(T,Q) = \Sigma_{i \in \{ 1\ldots|T|\} } \Sigma_{j \in \{1\ldots|Q| \} } \frac{|T_{i} \cap Q_{j}|}{|T_{i}|} log \frac{|T_{i} \cap Q_{j}|}{|T_{i}|} 
 %~~~~~~~~~~~~~~~~~~
@@ -540,7 +526,8 @@ with many fewer documents of a much larger average size.
 
 For the three datasets (viz. Generic, Specific and Events) and pooling
 schemes, we next evaluate the Purity scores, NMI scores and PMI scores
-in Table~\ref{tbl-456} on the topic model obtained by training LDA for 10 topics using each scheme.
+in Table~\ref{tbl-456} on the topic model obtained by training LDA
+using each scheme.
 
 
 \begin{table*}[t!]
@@ -717,13 +704,6 @@ conclusion, these two novel schemes present LDA users with novel
 methods for \emph{significantly} improving LDA topic modeling on
 Twitter without requiring any modification of the underlying LDA
 machinery.
-
-\section*{Acknowledgments} 
-
-NICTA is funded by the Australian
-Government as represented by the Department of Broadband,
-Communications and the Digital Economy and the Australian Research
-Council through the ICT Centre of Excellence program.
 
 %\bibliographystyle{aaai}
 \bibliographystyle{abbrv}

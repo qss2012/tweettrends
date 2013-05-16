@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.21)  16 MAY 2013 16:44
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.21)  16 MAY 2013 17:27
 entering extended mode
  %&-line parsing enabled.
 **sp211-mehrotra.tex
@@ -810,25 +810,26 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.694 
-       [3] (./sp211-mehrotra.bbl
-Underfull \vbox (badness 3179) has occurred while \output is active []
+       [3]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
-een already used, duplicate ignored
+
+(./sp211-mehrotra.bblpdfTeX warning (ext4): destination with the same identifie
+r (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.68 \bibitem{Weng2010wsdm}
-                            [4])pdfTeX warning (ext4): destination with the sam
-e identifier (name{page.}) has been already used, duplicate ignored
+l.58 \bibitem{ramage}
+                      [4])pdfTeX warning (ext4): destination with the same iden
+tifier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.729 \end{document}
+l.736 \end{document}
                      [5
 
 ] (./sp211-mehrotra.aux) ) 
 Here is how much of TeX's memory you used:
- 17592 strings out of 495061
- 356576 string characters out of 1182621
+ 17593 strings out of 495061
+ 356586 string characters out of 1182621
  473619 words of memory out of 3000000
  20324 multiletter control sequences out of 15000+50000
  57697 words of font info for 67 fonts, out of 3000000 for 9000
@@ -845,9 +846,9 @@ share/texmf-texlive/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texmf-texli
 ve/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-texlive/fonts/type1/ur
 w/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb><
 /usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on sp211-mehrotra.pdf (5 pages, 187054 bytes).
+Output written on sp211-mehrotra.pdf (5 pages, 187873 bytes).
 PDF statistics:
- 184 PDF objects out of 1000 (max. 8388607)
- 36 named destinations out of 1000 (max. 500000)
+ 188 PDF objects out of 1000 (max. 8388607)
+ 37 named destinations out of 1000 (max. 500000)
  101 words of extra memory for PDF output out of 10000 (max. 10000000)
 
