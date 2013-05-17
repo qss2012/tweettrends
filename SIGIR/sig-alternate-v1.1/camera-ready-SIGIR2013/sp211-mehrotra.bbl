@@ -8,9 +8,7 @@ D.~Blei, A.~Ng, and M.~Jordon.
 \bibitem{iaf}
 S.~E. Chan, R.~K. Pon, and A.~F. C\'{a}rdenas.
 \newblock Visualization and clustering of author social networks.
-\newblock In {\em International Conference on Distributed Multimedia Systems
-  Workshop on Visual Languages and Computing in Grand Canyon}, pages 30--31,
-  Arizona, USA, 2006.
+\newblock pages 30--31, Arizona, USA, 2006.
 
 \bibitem{Han2012}
 B.~Han, P.~Cook, and T.~Baldwin.
@@ -19,14 +17,14 @@ B.~Han, P.~Cook, and T.~Baldwin.
 
 \bibitem{han2012tist}
 B.~Han, P.~Cook, and T.~Baldwin.
-\newblock Lexical normalisation of short text messages.
-\newblock {\em ACM Transactions on Intelligent Systems and Technology}, to
-  appear, 2012.
+\newblock Lexical normalisation of social media text.
+\newblock {\em ACM Transactions on Intelligent Systems and Technology}, 4(1),
+  Feb. 2013.
 
 \bibitem{hong}
 L.~Hong and B.~Davison.
 \newblock Empirical study of topic modeling in {T}witter.
-\newblock In proceedings 1st ACM Workshop on Social Media Analytics, 2010.
+\newblock 1st ACM Workshop on Social Media Analytics, 2010.
 
 \bibitem{MRS08}
 C.~Manning, P.~Raghavan, and H.~Sch\"{u}tze.
@@ -36,29 +34,27 @@ C.~Manning, P.~Raghavan, and H.~Sch\"{u}tze.
 \bibitem{mor}
 M.~Naaman, H.~Becker, and L.~Gravano.
 \newblock Hip and trendy: Characterizing emerging trends on {T}witter.
-\newblock In proceedings Journal of the American Society for Information
-  Science and Technology (JASIST), 62(5). doi: 10.1002/asi.21489, 2011.
+\newblock {\em J. Am. Soc. Inf. Sci. Technol.}, 62(5):902--918, May 2011.
 
 \bibitem{Naveed2011cikm}
 N.~Naveed, T.~Gottron, J.~Kunegis, and A.~C. Alhadi.
 \newblock Searching microblogs: coping with sparsity and document quality.
-\newblock In {\em Proceedings of CIKM '11}, pages 183--188, New York, NY, USA,
-  2011. ACM.
+\newblock In {\em CIKM '11}, pages 183--188, 2011.
 
 \bibitem{newman11}
 D.~Newman, E.~Bonilla, and W.~Buntine.
 \newblock Improving topic coherence with regularized topic models.
-\newblock In proceedings of NIPS, 2011.
+\newblock NIPS, 2011.
 
 \bibitem{baldwin10}
 D.~Newman, J.~Lau, K.~Grieser, and T.~Baldwin.
 \newblock Automatic evaluation of topic coherence.
-\newblock In proceedings NAACL, 2010.
+\newblock NAACL, 2010.
 
 \bibitem{ramage}
 D.~Ramage, S.~Dumais, and D.~Liebling.
 \newblock Characterizing microblogs with topic models.
-\newblock In proceedings AAAI Conference on Weblogs and Social Media, 2010.
+\newblock AAAI Conference on Weblogs and Social Media, 2010.
 
 \bibitem{salton83Introduction}
 G.~Salton and M.~McGill.
@@ -68,8 +64,7 @@ G.~Salton and M.~McGill.
 \bibitem{Weng2010wsdm}
 J.~Weng, E.-P. Lim, J.~Jiang, and Q.~He.
 \newblock Twitterrank: finding topic-sensitive influential twitterers.
-\newblock In {\em Proceedings WSDM '10}, pages 261--270, New York, NY, USA,
-  2010. ACM.
+\newblock In {\em WSDM'10}, pages 261--270, 2010.
 
 \bibitem{yang2012www}
 L.~Yang, T.~Sun, M.~Zhang, and Q.~Mei.
@@ -79,7 +74,6 @@ L.~Yang, T.~Sun, M.~Zhang, and Q.~Mei.
 \bibitem{wayne}
 W.~X. Zhao, J.~Jiang, J.~Weng, J.~He, E.-P. Lim, H.~Yan, and X.~Li.
 \newblock Comparing twitter and traditional media using topic models.
-\newblock In {\em Proceedings of ECIR'11}, pages 338--349, Berlin, Heidelberg,
-  2011. Springer-Verlag.
+\newblock In {\em ECIR'11}, pages 338--349, 2011.
 
 \end{thebibliography}
