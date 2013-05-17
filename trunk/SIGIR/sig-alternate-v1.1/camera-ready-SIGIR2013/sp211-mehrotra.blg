@@ -1,10 +1,15 @@
-This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2012)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: sp211-mehrotra.aux
 The style file: abbrv.bst
 Database file #1: colingbiblio.bib
+I was expecting an "="---line 216 of file colingbiblio.bib
+ :  page 
+ :       - {5:1--5:27},
+I'm skipping whatever remains of this entry
 Warning--empty booktitle in blei03
+Warning--empty booktitle in iaf
 Warning--empty booktitle in hong
-Warning--empty booktitle in mor
 Warning--empty booktitle in newman11
 Warning--empty booktitle in baldwin10
 Warning--empty booktitle in ramage
@@ -12,43 +17,43 @@ Warning--can't use both author and editor fields in salton83Introduction
 Warning--empty booktitle in yang2012www
 You've used 15 entries,
             2118 wiz_defined-function locations,
-            582 strings with 6164 characters,
-and the built_in function-call counts, 5922 in all, are:
-= -- 572
+            580 strings with 5791 characters,
+and the built_in function-call counts, 5951 in all, are:
+= -- 565
 > -- 300
 < -- 8
 + -- 117
 - -- 102
-* -- 378
-:= -- 934
-add.period$ -- 48
+* -- 392
+:= -- 932
+add.period$ -- 45
 call.type$ -- 15
 change.case$ -- 94
 chr.to.int$ -- 0
 cite$ -- 23
-duplicate$ -- 256
-empty$ -- 463
+duplicate$ -- 253
+empty$ -- 469
 format.name$ -- 102
-if$ -- 1295
+if$ -- 1292
 int.to.chr$ -- 0
 int.to.str$ -- 15
 missing$ -- 17
 newline$ -- 78
 num.names$ -- 30
-pop$ -- 140
+pop$ -- 136
 preamble$ -- 1
 purify$ -- 81
 quote$ -- 0
-skip$ -- 184
+skip$ -- 191
 stack$ -- 0
-substring$ -- 286
-swap$ -- 78
+substring$ -- 311
+swap$ -- 80
 text.length$ -- 8
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 56
 warning$ -- 8
-while$ -- 49
+while$ -- 51
 width$ -- 17
-write$ -- 167
-(There were 8 warnings)
+write$ -- 162
+(There was 1 error message)
