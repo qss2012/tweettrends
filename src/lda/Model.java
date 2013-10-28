@@ -342,15 +342,16 @@ public class Model {
 	public boolean saveModelTwords(String filename){
 		try{
 			String temp="";
-			temp=filename.substring(0,filename.indexOf('\\'));
+			temp=filename.substring(0,filename.indexOf('/'));
 			temp+="/final";
 			String temp1="";
-			temp1=filename.substring(filename.indexOf('\\'));
+			temp1=filename.substring(filename.indexOf('/'));
 			filename=temp+temp1;
 			//System.out.println("```````````````````````````````````````````"+filename);
 			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
 					new FileOutputStream(filename), "UTF-8"));
-
+			BufferedWriter writer1 = new BufferedWriter(new OutputStreamWriter(
+					new FileOutputStream("src/resources/topicTop10"), "UTF-8"));
 			if (twords > V){
 				twords = V;
 			}
@@ -367,16 +368,22 @@ public class Model {
 				writer.write("Topic " + k + "th:\n");
 				Collections.sort(wordsProbsList);
 
-				for (int i = 0; i < twords; i++){
-					if (data.localDict.contains((Integer)wordsProbsList.get(i).first)){
+				for (int i = 0; i < twords; i++)
+				{
+					if (data.localDict.contains((Integer)wordsProbsList.get(i).first))
+					{
 						String word = data.localDict.getWord((Integer)wordsProbsList.get(i).first);
 						if(word.length()>2)
-						writer.write("\t" + word + " " + wordsProbsList.get(i).second + "\n");
+						{
+							writer.write("\t" + word + " " + wordsProbsList.get(i).second + "\n");
+							if(i<2) writer1.write(word+"\n");
+						}
 					}
 				}
 			} //end foreach topic
 
 			writer.close();
+			writer1.close();
 		}
 		catch(Exception e){
 			System.out.println("Error while saving model twords: " + e.getMessage());
