@@ -1,6 +1,9 @@
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Comparator;
@@ -17,7 +20,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import datastr.Tweet;
 import datastr.Word;
-import datastr.WordCandidate;
 
 
 public class Common {
@@ -30,7 +32,7 @@ public class Common {
 	public BufferedWriter out1;
 	
 	@SuppressWarnings("unused")
-	public Common(String file,int threadno,Aggregate ag,BufferedWriter out,BufferedWriter out1)
+	public Common(String file,int threadno,Aggregate ag,BufferedWriter out,BufferedWriter out1,WordCandidateList wcl) throws IOException
 	{
 		thread=threadno;
 		this.ag=ag;
@@ -42,9 +44,9 @@ public class Common {
 		dataset.dictionary=new HashMap<String,Word>();
 		dataset.scoresArr=new ArrayList<CountPerDay>();
 		dataset.stopWords=new HashMap<String,String>();
-		wcl=new WordCandidateList();
-		wcl.list=new HashMap<String,WordCandidate>();
-		
+		//wcl=new WordCandidateList();
+		//wcl.list=new HashMap<String,WordCandidate>();
+		Common.wcl=wcl;
 		System.out.println("Dataset created...ie...datastr created");
 		Preprocess prep=new Preprocess(file,dataset);
 		System.out.println("Done with preprocessing");
@@ -82,7 +84,7 @@ public class Common {
 		while(itr.hasNext()) 
 		{
 			tw=itr.next();
-			if(tw.count>1000 && tw.idf>500)
+			if(tw.count>10 && tw.idf>5)
 			outw.write(tw.word+" "+tw.count+" "+tw.idf+"\n");
 			if(max<tw.count) {max=tw.count;w1=tw;}
 			if(max1<tw.idf) {max1=tw.idf;w2=tw;}
@@ -93,7 +95,20 @@ public class Common {
 		
 		
 		new Burst(dataset,wcl,thread,ag,out,out1);
-		
+		/*FileOutputStream fileOut;
+		try {
+			fileOut = new FileOutputStream("src/resources/wcl"+thread+".ser");
+			ObjectOutputStream outer = new ObjectOutputStream(fileOut);
+			outer.writeObject(wcl);
+			outer.close();
+			fileOut.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
 		
 		System.out.println("Out of Burst Class");
 		System.out.println("size of burst scores = "+dataset.scoresArr.size());
@@ -124,6 +139,7 @@ public class Common {
 			CountPerDay cpd;
 			while(itr.hasNext())
 			{
+				System.out.print(".");
 				cpd=itr.next();
 				SimpleDateFormat sdf = new SimpleDateFormat("dd: MMM : yyyy");
 				String td=sdf.format(cpd.date); 
@@ -132,6 +148,7 @@ public class Common {
 				
 			}
 		} catch (IOException e) {e.printStackTrace();}
+		System.out.println();
 	}
 
 }
