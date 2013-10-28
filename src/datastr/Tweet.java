@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-@SuppressWarnings("unused")
+
 public class Tweet {
 	
 	private String user;
@@ -17,19 +17,27 @@ public class Tweet {
 	private String text;
 	private String text_no_sw;
 	private ArrayList<Word> wordList;
+	private String url;
+	private String hour;
 	
 	
+	@SuppressWarnings("deprecation")
 	public Tweet(String tweet) throws ParseException
 	{
 		 String token[] = tweet.split("\t");
+		 //if(token.length<3) {System.out.println(tweet);System.exit(0);}
 		 this.user=token[0];
+		 if(token[1].length()>0)
 		 this.name=token[1];
+		 else this.name ="";
+		 this.url="";
 		 token[2]=token[2].trim();
 		 final String twitter_date="EEE, dd MMMM yyyy HH:mm:ss Z";
 		 SimpleDateFormat sf = new SimpleDateFormat(twitter_date);
 		 sf.setLenient(true);
 		 this.date=sf.parse(token[2]);
 		 this.text=token[3].toLowerCase();
+		 this.hour=""+date.getHours()+date.getDate()+date.getMonth()+date.getYear();
 		 cleanText();
 	}
 
@@ -38,27 +46,31 @@ public class Tweet {
 	
 	public String getUser()
 	{
-		return user;
+		return this.user;
 	}
 	public String getName()
 	{
-		return name;
+		return this.name;
 	}
 	public Date getDate()
 	{
-		return date;
+		return this.date;
 	}
 	public String getText()
 	{
-		return text;
+		return this.text;
 	}
 	public String getTest_no_sw()
 	{
-		return text_no_sw;
+		return this.text_no_sw;
 	}
 	public ArrayList<Word> getWordList()
 	{
-		return wordList;
+		return this.wordList;
+	}
+	public String getHour()
+	{
+		return this.hour;
 	}
 	
 	//--------------------------------------------------------
@@ -93,12 +105,12 @@ public class Tweet {
 	
 	public void cleanText()
 	{
-		text=text.replaceAll("'"," ");
-		text=text.replaceAll(","," ");
-		text=text.replaceAll(": "," ");
-		text=text.replaceAll("!"," ");
-		text=text.replaceAll("-"," ");
-		text=text.replaceAll("#"," ");
+		this.text=text.replaceAll("'"," ");
+		this.text=text.replaceAll(","," ");
+		this.text=text.replaceAll(": "," ");
+		this.text=text.replaceAll("!"," ");
+		this.text=text.replaceAll("-"," ");
+		//this.text=text.replaceAll("#"," ");
 		//text.replaceAll("?"," ");
 		//text.replaceAll("("," ");
 		//text.replaceAll(")"," ");
