@@ -11,12 +11,12 @@ public class Input {
 	
 	@SuppressWarnings("unused")
 	//public static void main() throws IOException, ParseException
-	public Input(String filename) throws IOException, ParseException
+	public Input(String filename, Date minDate, Date maxDate) throws IOException, ParseException
 	{
 		this.filename=filename;
-		Date minDate,maxDate;
+		//Date minDate,maxDate;
 		System.out.println("Hey There!");
-		BufferedReader brd = new BufferedReader(new FileReader("src/resources/"+filename));
+		BufferedReader brd = new BufferedReader(new FileReader(filename));
         String singleline = brd.readLine();
         Tweet t=new Tweet(singleline);
         minDate=maxDate=t.getDate();int tot=0;
@@ -27,6 +27,7 @@ public class Input {
     		if(maxDate.compareTo(tw.getDate())<0) maxDate=tw.getDate();
     		singleline=brd.readLine();
         }
+        System.out.println("DATES_____: "+minDate+maxDate);
         int days=noofdays(minDate,maxDate);
         int first,second,third,fourth;
         first=days/4;second=first+days/4;third=second+days/4;fourth=first+days;
@@ -54,7 +55,8 @@ public class Input {
 		BufferedWriter out3 = new BufferedWriter(fstream3);
 		FileWriter fstream4 = new FileWriter("src/resources/fourthpart.txt");
 		BufferedWriter out4 = new BufferedWriter(fstream4);
-        BufferedReader br = new BufferedReader(new FileReader("src/resources/"+filename));
+        //BufferedReader br = new BufferedReader(new FileReader("src/resources/"+filename));
+		BufferedReader br = new BufferedReader(new FileReader(filename));
         String  line= br.readLine();int c1=0,c2=0,c3=0,c4=0;
         while(line!=null)
         {
