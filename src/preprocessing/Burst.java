@@ -141,7 +141,11 @@ public class Burst {
 									String temp="";int l=0;
 									while(twitr.hasNext())
 									{
-										if(l>20) break;
+										if(l>50) 
+										{
+											//System.out.println("Inside Burst.java and break coz l>50 now");
+											break;
+										}
 										Tweet tw=twitr.next();
 										if(tw.getText().contains(cpd.word.word)) {temp+=tw.getTest_no_sw().trim();l++;}//out1.write(tw.getText()+". ");
 									}
